@@ -23,16 +23,16 @@ default: &default
 
 development:
   <<: *default
-  database: adminka_development
+  database: transactions_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user running Rails.
-  #username: adminka
+  username: <%= ENV['Counter_invited_sites_db_dev_username'] %>
 
   # The password associated with the postgres role (username).
-  #password:
+  password: <%= ENV['Counter_invited_sites_db_dev_password'] %>
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -57,8 +57,10 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: adminka_test
+  database: transactions_test
 
+  username: <%= ENV['Counter_invited_sites_db_dev_username'] %>
+  password: <%= ENV['Counter_invited_sites_db_dev_password'] %>
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
@@ -81,6 +83,6 @@ test:
 #
 production:
   <<: *default
-  database: adminka_production
-  username: adminka
-  password: <%= ENV["ADMINKA_DATABASE_PASSWORD"] %>
+  database: transactions_production
+  username: <%= ENV['Counter_invited_sites_db_dev_username'] %>
+  password: <%= ENV['Counter_invited_sites_db_dev_password'] %>
