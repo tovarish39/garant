@@ -17,6 +17,8 @@ end
 
 def start
   $mes = ($mes.class == Callback) ? $mes.message : $mes
+  $user.update(new_deal:'false')
+
   $bot.send_message(
     chat_id:$mes.chat.id,
     text:Start[$lang],

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_16_072321) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_16_161923) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,7 +20,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_16_072321) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "lang"
-    t.string "new_trans", default: "false"
+    t.string "new_deal", default: "false"
+    t.string "new_currency_to_deal"
+    t.string "new_user_id_to_deal"
+    t.string "new_amount_currency_to_deal"
+    t.string "new_condition_to_deal"
   end
 
 end

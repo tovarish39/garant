@@ -13,7 +13,7 @@ require_relative '../../adminka/app/models/user'
 require_relative '../handler/init'
 
 # buttons 
-require_relative '../handler/buttons/new_trans'
+require_relative '../handler/buttons/deal'
 
 # контроллер
 require_relative '../handler/controller'

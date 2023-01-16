@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: transactions_development
+  database: garant_dev
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: transactions_test
+  database: garant_test
 
   username: <%= ENV['Counter_invited_sites_db_dev_username'] %>
   password: <%= ENV['Counter_invited_sites_db_dev_password'] %>
@@ -83,6 +83,6 @@ test:
 #
 production:
   <<: *default
-  database: transactions_production
+  database: garant_prod
   username: <%= ENV['Counter_invited_sites_db_dev_username'] %>
   password: <%= ENV['Counter_invited_sites_db_dev_password'] %>
