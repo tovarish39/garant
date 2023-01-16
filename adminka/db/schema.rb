@@ -21,8 +21,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_16_161923) do
     t.datetime "updated_at", null: false
     t.string "lang"
     t.string "new_deal", default: "false"
-    t.string "new_currency_to_deal"
     t.string "new_user_id_to_deal"
+    t.string "new_currency_to_deal"
     t.string "new_amount_currency_to_deal"
     t.string "new_condition_to_deal"
   end
