@@ -1,6 +1,6 @@
 def new_trans
   $user.update(new_trans:'true')
-  $bot.send_message(chat_id:$mes.chat.id, text:Send_username_or_id[$lang])
+  $bot.send_message(chat_id:$mes.chat.id, text:Send_username_or_id[$lang], reply_markup:)
 end
 
 def try_by_telegram_id
@@ -26,6 +26,7 @@ end
 
 
 def search_user_for_trans
+  $user.update(new_trans:'false')
   user_by_telegram_id = try_by_telegram_id() 
   user_by_username = try_by_username()
 
@@ -41,11 +42,16 @@ def search_user_for_trans
     $bot.send_message(
       chat_id:$mes.chat.id,
       text:User_not_found[$lang]
+      reply_markup:Start_markup.call
     )
-  end
-  $user.update(new_trans:'false') 
+  end 
 end
 
 def choose_role
   
+end
+
+def cancel
+  $user.update(new_trans:'false')
+  start()
 end

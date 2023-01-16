@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_15_143448) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_16_072321) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_15_143448) do
     t.string "telegram_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "lang", default: "Russian"
+    t.string "lang"
     t.string "new_trans", default: "false"
   end
 

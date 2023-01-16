@@ -1,21 +1,21 @@
 def handle
-    # $bot.send_message(chat_id:$mes.chat.id, text:'text')
     $user = searching_user()              # поиск ранее созданного user
     $user ||= create_user() unless $user  # создание user, если не найден
     $lang = $user.lang
     update_username_if_changed()
-
-    # $bot.send_message(chat_id:$mes.chat.id, text:'text')
  
     if    $mes.class == Message   
         case 
-        when $user.new_trans == "true"        ; search_user_for_trans() # данные для поиска user в бд для сделки
+        when !$lang ;                        ; language_choose()       # обязательный выбор языка # если открыта ссылка от referer и пользователь новый
+        when $mes.text == Cancel[$lang]      ; cancel()   
+        when $user.new_trans == "true"       ; search_user_for_trans() # данные для поиска user в бд для сделки
         when $mes.text == Propose_dial[$lang]; new_trans()             # получено "Предложить сделку"
         else start()
         end
     elsif $mes.class == Callback
         case
         when $mes.data =~ /Предложить сделку/; choose_role()
+        when $mes.data =~ /Выбранный язык/;    language_selected()
         end
     end 
 

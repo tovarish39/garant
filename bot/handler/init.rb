@@ -16,9 +16,25 @@ def update_username_if_changed
 end
 
 def start
+  $mes = ($mes.class == Callback) ? $mes.message : $mes
   $bot.send_message(
     chat_id:$mes.chat.id,
-    text:'приветствие',
+    text:Start[$lang],
     reply_markup:Start_markup.call
   )
+end
+
+def language_choose()
+  # handle_referer() if user_new_has_referer
+
+  $mes = $mes.message if $mes.class == Callback
+  $user.update(lang:nil)
+  $bot.send_message(chat_id: $mes.chat.id, text: Choose_language, reply_markup:Languages_markup)
+end
+
+def language_selected
+  $lang = $mes.data.split('/').first
+  $user.update(lang:$lang)
+  $bot.delete_message(chat_id:$mes.message.chat.id, message_id:$mes.message.message_id)
+  start()
 end
