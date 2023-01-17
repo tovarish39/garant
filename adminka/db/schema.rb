@@ -10,21 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_16_161923) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_16_215531) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "telegram_id"
+    t.string "lang"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "lang"
-    t.string "new_deal", default: "false"
-    t.string "new_user_id_to_deal"
-    t.string "new_currency_to_deal"
-    t.string "new_amount_currency_to_deal"
-    t.string "new_condition_to_deal"
+    t.json "new_deal"
+    t.string "pending"
   end
 
 end

@@ -68,7 +68,7 @@ Crypto_urrency_inline   = ->{Inline_B.new(text:Crypto_currecues[$lang], callback
 Another_currency_inline = ->{Inline_B.new(text:Another_currecues[$lang],callback_data:"#{$to_user.id}/Другое")}
 Back_to_actions_inline  = ->{Inline_B.new(text:Back[$lang],             callback_data:"#{$to_user.id}/Назад к действиям")}
 Back_to_currency_types  = ->{Inline_B.new(text:Back[$lang],             callback_data:"#{$to_user.id}/Назад к типам валют")}   
-Crypto_currecues_inline = ->{Crypto_currecues_array.map {|crypto| Inline_B.new(text:crypto, callback_data:"#{$to_user.id}/#{crypto}/Валюта сделки")}}}
+Crypto_currecues_inline = ->{Crypto_currecues_array.map {|crypto| Inline_B.new(text:crypto, callback_data:"#{$to_user.id}/#{crypto}/Валюта сделки")}}
  
 # inline markups
 Languages_markup        =    Inline_M.new(inline_keyboard:[[Russian_inline, English_inline]])
@@ -79,5 +79,5 @@ Disputs_markup          = ->{Inline_M.new(inline_keyboard:[ Won_inline.call, Los
 Back_to_disputs_markup  = ->{Inline_M.new(inline_keyboard:  Back_to_disputs_inline.call)}
 Actions_markup          = ->{Inline_M.new(inline_keyboard:[ Buy_inline.call, Sell_inline.call, Back_to_user_inline.call])}
 Currency_type_markup    = ->{Inline_M.new(inline_keyboard:[ Crypto_urrency_inline.call, Another_currency_inline.call, Back_to_actions_inline.call])}
-Crypto_currencies_markup= ->{Inline_M.new(inline_keyboard:Crypto_currecues_inline << )}
+# Crypto_currencies_markup= ->{Inline_M.new(inline_keyboard:Crypto_currecues_inline << )}
 # Push_amount_markup      = ->{Inline_M.new(inline_keyboard:[ Buy_inline.call, Sell_inline.call, Back_to_user_inline.call])}

@@ -1,6 +1,54 @@
-def find_user
-  $user.update(new_deal:'true')
+# text
+def pending_user
+  $user.update(pending:'user_to_deal', new_deal:{to_user_id:nil})
   $bot.send_message(chat_id:$mes.chat.id, text:Send_username_or_id[$lang], reply_markup:Cancel_to_start_markup.call)
+end
+
+#callback
+def cancel
+  $user.update(pending:nil)
+  $mes = $mes.message if $mes.class == Callback
+  $bot.delete_message(chat_id: $mes.chat.id, message_id:$mes.message_id)
+  start() #text
+end
+
+# text callback
+def search_user_for_deal earlier_finding_id = false
+  $user.update(pending:nil)
+  
+
+  # $bot.delete_message(chat_id: $mes.chat.id, message_id:$mes.message_id - 1) if $mes.class == Message
+  
+  unless earlier_finding_id
+    user_by_telegram_id = try_by_telegram_id() 
+    user_by_username = try_by_username()
+
+    $to_user = user_by_telegram_id || user_by_username
+  else
+    $to_user = User.find(earlier_finding_id)
+    $mes = $mes.message
+  end
+
+  if $to_user
+    $user.update(new_deal:{to_user_id:$to_user.id})
+    text = %{
+<b>👤Пользователь:</b>
+Имя Фамилия
+<b>username:</b> #{$to_user.username}
+<b>id</b> #{$to_user.telegram_id}
+
+📈Сделок как покупатель: 0
+📉Сделок как продавец: 0
+⚖️Споры: 0
+📬Отзывы: 0
+
+⭐️Рейтинг: 5/5
+    }
+    $bot.send_message(chat_id:$mes.chat.id,text:text,reply_markup:Propose_deal_markup.call,parse_mode:'HTML')
+  else
+    $bot.send_message(chat_id:$mes.chat.id,text:User_not_found[$lang],reply_markup:Start_markup.call)
+    start()
+  end 
 end
 
 def try_by_telegram_id
@@ -22,62 +70,6 @@ def try_by_username
     end
   end
   nil
-end
-
-
-def search_user_for_deal earlier_finding_id = false
-  if $mes.class == Message; $bot.delete_message(chat_id: $mes.chat.id, message_id:$mes.message_id - 1); end
-  
-  $user.update(new_deal:'false')
-  unless earlier_finding_id
-    user_by_telegram_id = try_by_telegram_id() 
-    user_by_username = try_by_username()
-
-    $to_user = user_by_telegram_id || user_by_username
-  else
-    $to_user = User.find(earlier_finding_id)
-    $mes = $mes.message
-  end
-
-  if $to_user
-    text = %{
-<b>👤Пользователь:</b>
-Имя Фамилия
-<b>username:</b> #{$to_user.username}
-<b>id</b> #{$to_user.telegram_id}
-
-📈Сделок как покупатель: 0
-📉Сделок как продавец: 0
-⚖️Споры: 0
-📬Отзывы: 0
-
-⭐️Рейтинг: 5/5
-    }
-
-
-    $bot.send_message(
-      chat_id:$mes.chat.id,
-      text:text,
-      reply_markup:Propose_deal_markup.call,
-      parse_mode:'HTML'
-    )
-  else
-    $bot.send_message(
-      chat_id:$mes.chat.id,
-      text:User_not_found[$lang],
-      reply_markup:Start_markup.call
-    )
-  end 
-end
-
-
-
-def cancel
-  $user.update(new_deal:'false')
-  
-  $mes = $mes.message if $mes.class == Callback
-  $bot.delete_message(chat_id: $mes.chat.id, message_id:$mes.message_id)
-  start()
 end
 
 ##################################################################
@@ -117,13 +109,9 @@ def try_write_amount_currency
 end
 
 #########################################################################
-def get_to_user_id
-  $mes.data.split('/').first
-end
 
 
 def comments
-  $to_user = User.find(get_to_user_id())
   $mes = $mes.message if $mes.class == Callback
   $bot.delete_message(chat_id: $mes.chat.id, message_id:$mes.message_id)
 
@@ -139,14 +127,17 @@ def comments
 end
 
 def finding_earlier_user
-  $to_user = User.find(get_to_user_id())
   $bot.delete_message(chat_id: $mes.message.chat.id, message_id:$mes.message.message_id)
 
   search_user_for_deal($to_user.id)
 end
 
 def disputs
-  $to_user = User.find(get_to_user_id())
+  return if $to_user.id != $user.new_deal['to_user_id']
+   
+  
+
+
   unless $mes.data =~ /Назад к спорам/; $bot.delete_message(chat_id: $mes.message.chat.id, message_id:$mes.message.message_id);end
 
   $mes = $mes.message if $mes.class == Callback
@@ -154,7 +145,6 @@ def disputs
 end
 
 def disputes_list wins_losts
-  $to_user = User.find(get_to_user_id())
   $mes = $mes.message if $mes.class == Callback
   $bot.delete_message(chat_id: $mes.chat.id, message_id:$mes.message_id)
     

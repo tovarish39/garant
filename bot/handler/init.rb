@@ -6,6 +6,7 @@ def create_user
   User.create(
     telegram_id: $mes.from.id,
     username: $mes.from.username || "-",
+    new_deal:{to_user_id:nil}
   )
 end
 
@@ -17,7 +18,7 @@ end
 
 def start
   $mes = ($mes.class == Callback) ? $mes.message : $mes
-  $user.update(new_deal:'false')
+  $user.update(new_deal:{to_user_id:nil})
 
   $bot.send_message(
     chat_id:$mes.chat.id,
