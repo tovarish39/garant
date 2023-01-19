@@ -6,7 +6,7 @@ def create_user
   User.create(
     telegram_id: $mes.from.id,
     username: $mes.from.username || "-",
-    new_deal:{to_user_id:nil}
+    filling:Default_filling     
   )
 end
 
@@ -17,27 +17,19 @@ def update_username_if_changed
 end
 
 def start
-  $mes = ($mes.class == Callback) ? $mes.message : $mes
-  $user.update(new_deal:{to_user_id:nil})
-
-  $bot.send_message(
-    chat_id:$mes.chat.id,
-    text:Start[$lang],
-    reply_markup:Start_markup.call
-  )
+  $user.update(filling:Default_filling)
+  send_message(Start[$lang], Start_markup.call)
 end
 
-def language_choose()
-  # handle_referer() if user_new_has_referer
-
-  $mes = $mes.message if $mes.class == Callback
-  $user.update(lang:nil)
-  $bot.send_message(chat_id: $mes.chat.id, text: Choose_language, reply_markup:Languages_markup)
+def view_languages()
+  $user.update(lang:'viewed')
+  send_message(Choose_language, Languages_markup)
 end
 
+# callback
 def language_selected
   $lang = $mes.data.split('/').first
   $user.update(lang:$lang)
-  $bot.delete_message(chat_id:$mes.message.chat.id, message_id:$mes.message.message_id)
+  delete_pushed()
   start()
 end
