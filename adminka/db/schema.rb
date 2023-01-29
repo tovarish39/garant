@@ -10,28 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_19_151521) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_29_134349) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "deals", force: :cascade do |t|
     t.integer "seller_user_id"
-    t.integer "order_user_id"
+    t.integer "custumer_user_id"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "currency"
+    t.string "amount"
+    t.string "state"
+    t.text "conditions"
     t.index ["user_id"], name: "index_deals_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
+    t.string "first_name"
+    t.string "last_name"
     t.string "telegram_id"
     t.string "lang"
-    t.json "filling"
+    t.string "state", default: "start"
+    t.string "to_user_id"
+    t.string "role"
+    t.string "currency"
+    t.string "amount"
+    t.text "conditions"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "next"
-    t.string "next_mes_id"
   end
 
   add_foreign_key "deals", "users"

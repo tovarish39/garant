@@ -1,4 +1,4 @@
-require_relative './hat/requires'
+require_relative '../hat/requires'
 
 
 Telegram::Bot::Client.run(Bot_token) do |bot|

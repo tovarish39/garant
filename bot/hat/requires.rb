@@ -1,5 +1,7 @@
 require 'telegram/bot'
 require 'active_record'
+require 'aasm'
+
 
 # константы
 require_relative './constants'
@@ -14,11 +16,12 @@ require_relative '../../adminka/app/models/deal'
 require_relative '../handler/init'
 
 # buttons 
-require_relative '../handler/buttons/search_user/filling'
+require_relative '../handler/buttons/search_user/deal'
 require_relative '../handler/buttons/search_user/comments'
 require_relative '../handler/buttons/search_user/disputs'
 
-# контроллер
-require_relative '../handler/controller'
+#обработка при согласовании deal
+require_relative '../handler/conformation_by_users'
 
-# p1
+# контроллер
+require_relative '../controller'
