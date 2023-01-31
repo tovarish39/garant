@@ -96,8 +96,8 @@ def handle
     elsif $mes.class == Callback
       puts "mes.data = #{$mes.data}"
 # из любого состояния и не меняя состояние после обработки
-        if    $mes.data =~ /ответ seller|custumer на new_deal/; handle_deal_request() # действия от seller|custumer
-        elsif $mes.data =~ /ответ by_custumer на deal/;         handle_by_custumer()     # действия от custumer
+        if    $mes.data =~ /response_seller to request_by_custumer/; handle_response_by_seller()   # действия от seller
+        elsif $mes.data =~ /response_custumer to request_by_seller/; handle_response_by_custumer() # действия custumer
 # обработка с изменением состояния 
         else 
           event_bot = Event_bot.new

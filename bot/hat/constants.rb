@@ -78,10 +78,13 @@ Back_to_currency_types  = ->{Inline_B.new(text:Back[$lang],             callback
 Crypto_currecues_inline = ->{Crypto_currecues_array.map {|crypto| Inline_B.new(text:crypto, callback_data:"Валюта сделки/#{crypto}")}}
 Cofirm_deal_inline      = ->{Inline_B.new(text:Confirm[$lang],          callback_data:"Подтвердить сделку")}   
 Cancel_deal_inline      = ->{Inline_B.new(text:Cancel[$lang],           callback_data:"Назад к юзеру")}
-I_Accept          = ->(deal){Inline_B.new(text:Accept[$lang],           callback_data:"ответ seller|custumer на new_deal/Принять/#{deal.id}")}
-I_Reject          = ->(deal){Inline_B.new(text:Reject[$lang],           callback_data:"ответ seller|custumer на new_deal/Отклонить/#{deal.id}")}
-I_pay             = ->(deal){Inline_B.new(text:Pay[$lang],              callback_data:"ответ by_custumer на deal/pay/#{deal.id}")}
-I_cancel          = ->(deal){Inline_B.new(text:Cancel[$lang],           callback_data:"ответ by_custumer на deal/cancel deal/#{deal.id}")}
+
+
+I_accept          = ->(deal){Inline_B.new(text:Accept[$lang],           callback_data:"response_seller to request_by_custumer/Принять/#{deal.id}")}
+I_reject          = ->(deal){Inline_B.new(text:Reject[$lang],           callback_data:"response_seller to request_by_custumer/Отклонить/#{deal.id}")}
+
+I_pay             = ->(deal){Inline_B.new(text:Pay[$lang],              callback_data:"response_custumer to request_by_seller/pay/#{deal.id}")}
+I_cancel          = ->(deal){Inline_B.new(text:Cancel[$lang],           callback_data:"response_custumer to request_by_seller/cancel deal/#{deal.id}")}
 
 # inline markups
 Languages_markup        =    Inline_M.new(inline_keyboard:[[Russian_inline, English_inline]])
@@ -94,8 +97,11 @@ Actions_markup          = ->{Inline_M.new(inline_keyboard:[ Buy_inline.call, Sel
 Currency_type_markup    = ->{Inline_M.new(inline_keyboard:[ Crypto_urrency_inline.call, Another_currency_inline.call, Back_to_actions_inline.call])}
 Crypto_currencies_markup= ->{Inline_M.new(inline_keyboard:Crypto_currecues_inline.call << Back_to_currency_types.call)}
 Confirm_deal_markup     = ->{Inline_M.new(inline_keyboard:[ Cofirm_deal_inline.call, Cancel_deal_inline.call])}
-M_Accept_reject   = ->(deal){Inline_M.new(inline_keyboard:[ I_Accept.call(deal), I_Reject.call(deal)])}
-M_pay_cancel      = ->(deal){Inline_M.new(inline_keyboard:[ I_pay.call(deal), I_cancel.call(deal)])}
+# M_Accept_reject   = ->(deal){Inline_M.new(inline_keyboard:[ I_Accept.call(deal), I_Reject.call(deal)])}
+# M_pay_cancel      = ->(deal){Inline_M.new(inline_keyboard:[ I_pay.call(deal), I_cancel.call(deal)])}
+
+M_accept_reject_by_custumer=->(deal){Inline_M.new(inline_keyboard:[ I_pay.call(deal), I_cancel.call(deal)])}
+M_accept_reject_by_seller  =->(deal){Inline_M.new(inline_keyboard:[ I_accept.call(deal), I_reject.call(deal)])}
 
 To_user_info            = -> (to_user, lang){
   return %{

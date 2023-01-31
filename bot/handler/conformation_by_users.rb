@@ -1,97 +1,84 @@
-def seller? deal
-    $user.id == deal.seller_user_id
-  end
-  
-  def custumer? deal
-    $user.id == deal.custumer_user_id
-  end
-  
+def try_paying
+  true
+end
 
-  
-  def try_paying
-    true
-  end
-  
-  def find_custumer deal
-    User.find(deal.custumer_user_id)
-  end
-  
-  def find_seller(deal)
-    User.find(deal.seller_user_id)
-  end
-  
-  def deal_payed_and_notifing deal, seller
-    deal.update(state:'payed')
-    send_message(TB_notify_to_custumer_success_payed[$lang])
-    send_message_to_user(TB_notifi_to_seller_success_payed.call(deal, seller, $lang), seller)
-  end
-  
-  # seller|custumer action 
-  def handle_deal_request
-    puts 'seller|custumer action '
-    deal_id = $mes.data.split('/')[2]
-    action_to_request = $mes.data.split('/')[1]
-    deal = Deal.find(deal_id)
-    return unless deal.state =~ /request_to/# || deal.state =~ /accessed_by/# если запрос на deal был ранее обработан
-  
-    seller   = find_seller(deal)
-    custumer = find_custumer(deal)
-puts "seller = #{seller.telegram_id}"
+def find_custumer deal
+  User.find(deal.custumer_user_id)
+end
 
-    case action_to_request
-    when  'Принять'
-      if   seller?(deal)
-puts 'seller access'
-        deal.update(state:"accessed_by seller-user_id: #{$user.id}")
-        send_message(TB_pending_pay_from_custumer[$lang]) # сообщение to_seller об отправке запроса на оплату to_custumer
-        send_message_to_user(TB_response_pay.call(deal, $user, $lang), custumer, M_pay_cancel.call(deal)) # сообщение с предложением оплаты to_custumer 
-      elsif custumer?(deal)
-        # deal.update(state:"accessed by custumer-user_id: #{$user.id}")
-        deal_payed_and_notifing(deal, seller)
-      end
-    when  'Отклонить'
-      if seller?(deal)
-        rejecting_deal(deal, seller)
-      elsif custumer?(deal)
-        rejecting_deal(deal, custumer)
-      end
-    end
-  end
-  
-  # custumer action 
-  def handle_by_custumer
-    puts 'custumer action '
+def find_seller(deal)
+  User.find(deal.seller_user_id)
+end
 
-    deal_id = $mes.data.split('/')[2]
-    action_to_request = $mes.data.split('/')[1]
-    deal = Deal.find(deal_id)
-    return unless deal.state =~ /accessed_by seller/ # если запрос на deal был ранее обработан
+def deal_payed_and_notifing deal, seller
+  deal.update(state:'payed')
+  send_message(TB_notify_to_custumer_success_payed[$lang])
+  send_message_to_user(TB_notifi_to_seller_success_payed.call(deal, seller, $lang), seller)
+end
+
+
+def get_data
+  deal_id  = $mes.data.split('/')[2]
+  action   = $mes.data.split('/')[1]
+  deal = Deal.find(deal_id)
+  seller   = find_seller(deal)
+  custumer = find_custumer(deal)
   
-    seller   = find_seller(deal)
-    custumer = find_custumer(deal)
-puts "seller = #{seller.telegram_id}"
-    case action_to_request
-    when  'cancel deal'
-      rejecting_deal(deal, custumer)
-    when  'pay'
-      result = try_paying()
-      if result 
-        deal_payed_and_notifing(deal, seller)
-      end
-    end
+  {action:  action,
+   deal:    deal,
+   seller:  seller,
+   custumer:custumer
+  }
+end
+
+
+# seller action 
+def handle_response_by_seller
+  data = get_data() # action, deal, seller, custumer
+  deal = data[:deal]
+
+  return unless deal.state =~ /request_to seller/# если запрос был ранее обработан
+
+  case data[:action]
+  when  'Принять'
+      send_message(Request_deal.call(deal, $lang)) # уведомление об отправке запроса продавцу
+      send_message_to_user(Request_deal_to_user.call(deal, $user, $lang), data[:custumer], M_accept_reject_by_custumer.call(deal))
+      deal.update(state: 'request_to custumer')
+      deal_payed_and_notifing(deal, data[:seller])
+  when  'Отклонить'
+      rejecting_deal(deal, data[:custumer])
   end
-  
-  
-  def rejecting_deal deal, user_from
-    puts 'reject_deal'
-    deal.update(state:"rejected by user_id: #{user_from.id}")
-    custumer = User.find(deal.custumer_user_id)
-    seller   = User.find(deal.seller_user_id)
-    if seller?(deal)
-      send_message(BT_reject_deal_self[$lang])
-      send_message_to_user(BT_reject_deal_to_from_user.call(deal, $user, $lang), custumer)
-    elsif custumer?(deal)
-      send_message(BT_reject_deal_self[$lang])
-      send_message_to_user(BT_reject_deal_to_from_user.call(deal, $user, $lang), seller)
+end
+
+# custumer action 
+def handle_response_by_custumer
+
+  data = get_data() # action, deal, seller, custumer
+  deal = data[:deal]
+
+  return unless deal.state =~ /request_to custumer/ # если запрос  был ранее обработан
+
+  case data[:action]
+  when  'pay'
+    result = try_paying()
+    if result 
+      deal_payed_and_notifing(deal, data[:seller])
     end
+  when  'cancel deal'
+    rejecting_deal(deal, data[:custumer])
+  end  
+end
+
+
+def rejecting_deal deal, user_from
+  deal.update(state:"rejected by user_id: #{user_from.id}")
+  custumer = User.find(deal.custumer_user_id)
+  seller   = User.find(deal.seller_user_id)
+  if seller?(deal)
+    send_message(BT_reject_deal_self[$lang])
+    send_message_to_user(BT_reject_deal_to_from_user.call(deal, $user, $lang), custumer)
+  elsif custumer?(deal)
+    send_message(BT_reject_deal_self[$lang])
+    send_message_to_user(BT_reject_deal_to_from_user.call(deal, $user, $lang), seller)
   end
+end
