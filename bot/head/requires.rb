@@ -1,10 +1,9 @@
 require 'telegram/bot'
 require 'active_record'
 require 'aasm'
+require 'colorize'
 
 
-# константы
-require_relative './constants'
 
 # модели
 require_relative '../../adminka/app/models/application_record'
@@ -25,3 +24,6 @@ require_relative '../handler/conformation_by_users'
 
 # контроллер
 require_relative '../controller'
+
+# константы
+require_relative './constants'

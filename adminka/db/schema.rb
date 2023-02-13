@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_29_134349) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_13_171435) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,13 +34,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_29_134349) do
     t.string "telegram_id"
     t.string "lang"
     t.string "state", default: "start"
-    t.string "to_user_id"
+    t.string "userTo_id"
     t.string "role"
     t.string "currency"
     t.string "amount"
     t.text "conditions"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "lang_viewed"
   end
 
   add_foreign_key "deals", "users"

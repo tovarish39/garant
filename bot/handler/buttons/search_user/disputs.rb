@@ -1,28 +1,42 @@
-def view_types_of_disputs
-  edit_message(Disputs_by_user[$lang], Disputs_types_markup.call)
+def view_type_of_disputs
+  userTo = last_userTo()
+  return if !userTo
+
+  edit_message(B_disputs_by_userTo[$lang], IM_type_of_disputs.call(userTo))
 end
 
-def disputes_list wins_losts
-  delete_pushed()
+def disputes_list wins_losts, userTo
+  # delete_pushed()
   texts = []
-  texts << Won[$lang]  if wins_losts == 'wins'
-  texts << Lost[$lang] if wins_losts == 'losts'
-
+  texts << T_won_disputs[$lang]  if wins_losts == 'wins'
+  texts << T_lost_disputs[$lang] if wins_losts == 'losts'
+# не доделано
   texts.each_with_index do |text, index|
-      send_message(text)                              if index != texts.size - 1 # промежуточный
-      send_message(text, Back_to_disputs_markup.call) if index == texts.size - 1 # последний текст 
+      send_message(text)                                          if index != texts.size - 1 # промежуточный
+      send_message(text, IM_back_to_type_of_disputs.call(userTo)) if index == texts.size - 1 # последний текст 
   end
 end
 
 def disputs_won
-  disputes_list('wins')
+  userTo = last_userTo()
+  return if !userTo
+  
+  disputes_list('wins', userTo)
 end
 
 def disputs_lost
-  disputes_list('losts')
+  userTo = last_userTo()
+  return if !userTo
+
+  disputes_list('losts', userTo)
 end
 
+def back_to_type_of_disputs
+  userTo = last_userTo()
+  return if !userTo
 
+  edit_message(B_disputs_by_userTo[$lang], IM_type_of_disputs.call(userTo))
+end
 
 
 

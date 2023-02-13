@@ -1,4 +1,4 @@
-require_relative '../hat/requires'
+require_relative '../head/requires'
 
 
 Telegram::Bot::Client.run(Bot_token) do |bot|
@@ -6,8 +6,6 @@ Telegram::Bot::Client.run(Bot_token) do |bot|
 
         $bot = bot.api      # глобальное определение, чтоб не передавать в каждую функцию,
         $mes = message      # обновляются при каждом новом сообщении
-    
-
 
         
         handle() if   $mes

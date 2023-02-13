@@ -2,8 +2,7 @@
 
 # text нажата "Найти пользователя"
 def find_userTo
-  puts 'find_userTo'
-  send_message(Send_username_or_id[$lang],Cancel_to_start_markup.call)
+  send_message(B_await_username_or_id[$lang],IM_cancel_to_start.call)
 end
 
 ######################################################
@@ -11,30 +10,32 @@ def userTo_exist?
   user_by_telegram_id = try_by_telegram_id() 
   user_by_username    = try_by_username()
 
-  to_user = user_by_telegram_id || user_by_username
-  $user.update(to_user_id:to_user.id) if to_user
-  to_user
+  userTo = user_by_telegram_id || user_by_username
+  $user.update(userTo_id:userTo.id) if userTo
+  userTo
 end
 
 def userTo_not_found
-  send_message(User_not_found[$lang])
+  send_message(B_userTo_not_found[$lang])
 end
 
 def run_to_userTo
-  to_user = User.find($user.to_user_id)
+  userTo = User.find($user.userTo_id)
   $user.update(
-    # to_user_id:to_user.id,
+    userTo_id: userTo.id,
     role:      nil,
     currency:  nil,
     amount:    nil,
     conditions:nil
   )
 
-  send_message(To_user_info.call(to_user, $lang), Propose_deal_markup.call) if $mes.class == Message
-  edit_message(To_user_info.call(to_user, $lang), Propose_deal_markup.call) if $mes.class == Callback
+  send_message(B_userTo_info.call(userTo), IM_offer_deal.call(userTo))
 end
 
-
+def cancel
+  delete_pushed()
+  to_start()
+end
 
 def try_by_telegram_id
   telegram_id = $mes.text.gsub(/\D/, '')
@@ -55,6 +56,13 @@ def try_by_username
     end
   end
   nil
+end
+
+def last_userTo # return userTo || false
+  clicked_userTo_id = $mes.data.split('/').last
+  last_userTo_id = $user.userTo_id
+  return false if last_userTo_id != clicked_userTo_id
+  userTo = User.find(last_userTo_id)
 end
 
 ########################################################################
