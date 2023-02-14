@@ -3,13 +3,11 @@ password_pg = ENV['Counter_invited_sites_db_dev_password']
 ActiveRecord::Base.establish_connection("postgres://#{username_pg}:#{password_pg}@localhost/garant_dev")
 Bot_token = ENV['Garant_bot_token']
 St_machine = Event_bot.new
+
 # сокращения
 CallbackClass  = Telegram::Bot::Types::CallbackQuery
 MessageClass   = Telegram::Bot::Types::Message
 UpdateMember   = Telegram::Bot::Types::ChatMemberUpdated
-
-
-
 
 RM = ->(keyboard)           {Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard:keyboard, resize_keyboard:true)}
 IM = ->(inline_keyboard)    {Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard:inline_keyboard)}
@@ -39,7 +37,7 @@ T_start_actions = [
 ]
 
 
-# Crypto_currecues_array = ['BTC', 'ETH']
+Arr_cryptoCurrecues = ['BTC', 'ETH']
 
 # # сообщения бота
 B_choose_language             = "Выберите язык / Choose language"
@@ -50,11 +48,11 @@ B_userTo_comments             = {Ru=>'Отзывы о пользователе',
 B_disputs_by_userTo           = {Ru=>'Споры пользователя',                     En=>'Users disputs'}
 # Wins                        = {Ru=>'Победные споры пользователя',            En=>'Winning user disputes'}
 # Losts                       = {Ru=>'Пройгрышные споры пользователя',         En=>'Losing user disputes'}
-# Choose_action               = {Ru=>'Выберите дейсвие',                       En=>'Choose action'}
-# Choose_currencies_type      = {Ru=>'Выберите валюту сделки',                 En=>'Choose currency type'}
-# Push_amount_currency        = {Ru=>'Введите сумму сделки в',                 En=>'Enter the transaction amount in'}
-# Push_conditions             = {Ru=>'Введите условия сделки',                 En=>'Enter deal conditions'}
-# Invalid_amount              = {Ru=>'Не валидное число',                      En=>'Invalid amount'}
+B_choose_role                 = {Ru=>'Выберите роль',                          En=>'Choose role'}
+B_currency_types              = {Ru=>'Выберите валюту сделки',                 En=>'Choose currency type'}
+B_push_amount_currency        = {Ru=>'Введите сумму сделки в',                 En=>'Enter the transaction amount in'}
+B_push_conditions             = {Ru=>'Введите условия сделки',                 En=>'Enter deal conditions'}
+B_invalid_amount              = {Ru=>'Не валидное число',                      En=>'Invalid amount'}
 # BT_reject_deal_self         = {Ru=>'Вы отменили сделку',                     En=>'You canceled the deal'}
 # TB_pending_pay_from_custumer= {Ru=>'Ожидание оплаты покупателем',            En=>'Pending pay by custumer'}
 
@@ -66,10 +64,10 @@ T_disputes         = {Ru=>'Споры',                 En=>'Disputes'}
 T_back             = {Ru=>'Назад',                 En=>'Back'}
 T_won_disputs      = {Ru=>'Выйграл споров',        En=>'Won disputs'}
 T_lost_disputs     = {Ru=>'Проиграл споров',       En=>'Lost disputs'}
-# Buy              = {Ru=>'Я покупатель',          En=>'I`m custumer'}
-# Sell             = {Ru=>'Я продавец',            En=>'I`m seller'}
-# Crypto_currecues = {Ru=>'Криптовалюта',          En=>'Crypto-Currencies'}
-# Another_currecues= {Ru=>'Другое',                En=>'Another'}
+T_custumer         = {Ru=>'Я покупатель',          En=>'I`m custumer'}
+T_seller           = {Ru=>'Я продавец',            En=>'I`m seller'}
+T_cryptocurrencies = {Ru=>'Криптовалюта',          En=>'Crypto-Currencies'}
+T_another          = {Ru=>'Другое',                En=>'Another'}
 # Cancel           = {Ru=>'Отмена',                En=>'Cancel'}
 # Confirm          = {Ru=>'Подтвердить',           En=>'Confirm'}
 # Accept           = {Ru=>'Принять',               En=>'Accept'}
@@ -81,29 +79,31 @@ RM_start = -> {RM.call([T_find_user[$lang], T_deals[$lang], [T_profile[$lang], T
 
 # # inline buttons
 # :language
-IB_rus                    =             IB.call( Ru,                       "#{Ru}/Выбранный язык")
-IB_en                     =             IB.call( En,                       "#{En}/Выбранный язык")
+IB_rus                    =    IB.call( Ru,                  "#{Ru}/Выбранный язык")
+IB_en                     =    IB.call( En,                  "#{En}/Выбранный язык")
 # :await_userTo_data
-IB_cancel_to_start        = ->         {IB.call( T_cancel[$lang],          "Cancel"              )}
+IB_cancel_to_start        = -> {IB.call( T_cancel[$lang],     "Cancel"                                )}
 # UserToActions
-IB_offer_deal             = ->(userTo) {IB.call( T_offer_deal[$lang],      "Offer_deal/#{            userTo.id}")}
-IB_comments               = ->(userTo) {IB.call( T_comments[$lang],        "Comments/#{              userTo.id}")}
-IB_disputes               = ->(userTo) {IB.call( T_disputes[$lang],        "Disputs/#{               userTo.id}")}
-# TypeOfDisputs Comments
-IB_back_to_userTo_actions = ->(userTo) {IB.call( T_back[$lang],                  "Back_to userTo_actions/#{userTo.id}")}
+IB_offer_deal             = -> {IB.call( T_offer_deal[$lang], "Offer_deal/#{              $userTo.id}")}
+IB_comments               = -> {IB.call( T_comments[$lang],   "Comments/#{                $userTo.id}")}
+IB_disputes               = -> {IB.call( T_disputes[$lang],   "Disputs/#{                 $userTo.id}")}
+# TypeOfDisputs Comments Role CurrenyTypes
+IB_back_to_userTo_actions = -> {IB.call( T_back[$lang],       "Back_to userTo_actions/#{  $userTo.id}")}
 # TypeOfDisputs
-IB_won_disputs             = ->(userTo) {IB.call("#{T_won_disputs[$lang]} (111)",  "Won_disputs/#{ userTo.id}")}
-IB_lost_disputs            = ->(userTo) {IB.call("#{T_lost_disputs[$lang]} (111)", "Lost_disputs/#{userTo.id}")}
+IB_won_disputs             = ->{IB.call("#{T_won_disputs[$lang]} (111)",  "Won_disputs/#{ $userTo.id}")}
+IB_lost_disputs            = ->{IB.call("#{T_lost_disputs[$lang]} (111)", "Lost_disputs/#{$userTo.id}")}
 # WonDisputs LostDisputs
-IB_back_to_type_of_disputs = ->(userTo) {IB.call( T_back[$lang],            "Back_to TypeOfDisputs/#{userTo.id}")}
-
-# Buy_inline              = ->{Inline_B.new(text:Buy[$lang],              callback_data:"Я покупатель")}
-# Sell_inline             = ->{Inline_B.new(text:Sell[$lang],             callback_data:"Я продавец")}
-# Crypto_urrency_inline   = ->{Inline_B.new(text:Crypto_currecues[$lang], callback_data:"Криптовалюта")}
-# Another_currency_inline = ->{Inline_B.new(text:Another_currecues[$lang],callback_data:"Другое")}
+IB_back_to_type_of_disputs = ->{IB.call( T_back[$lang],      "Back_to TypeOfDisputs/#{    $userTo.id}")}
+# Role
+IB_custumer               = ->{IB.call(T_custumer[$lang],    "I`m custumer/#{             $userTo.id}")}
+IB_seller                 = ->{IB.call(T_seller[$lang],      "I`m seller/#{               $userTo.id}")}
+# CurrencyTypes
+IB_crypto_currencies      = ->{IB.call(T_cryptocurrencies[$lang], "Criptocurrencies/#{$userTo.id}")}
+IB_another                = ->{IB.call(T_another[$lang],          "Another/#{$userTo.id}")}
+# Currencies
+IB_Arr_cryptocurrecues    = ->{ Arr_cryptoCurrecues.map {|crypto| IB.call(crypto, "Currency/#{crypto}/#{$userTo.id}")}}
+IB_back_to_CurrencyTypes  = ->{ IB.call(T_back[$lang],             "back_to CurrencyTypes/#{$userTo.id}")}   
 # Back_to_actions_inline  = ->{Inline_B.new(text:Back[$lang],             callback_data:"Назад к действиям")}
-# Back_to_currency_types  = ->{Inline_B.new(text:Back[$lang],             callback_data:"Назад к типам валют/")}   
-# Crypto_currecues_inline = ->{Crypto_currecues_array.map {|crypto| Inline_B.new(text:crypto, callback_data:"Валюта сделки/#{crypto}")}}
 # Cofirm_deal_inline      = ->{Inline_B.new(text:Confirm[$lang],          callback_data:"Подтвердить сделку")}   
 # Cancel_deal_inline      = ->{Inline_B.new(text:Cancel[$lang],           callback_data:"Назад к юзеру")}
 
@@ -115,15 +115,15 @@ IB_back_to_type_of_disputs = ->(userTo) {IB.call( T_back[$lang],            "Bac
 # I_cancel          = ->(deal){Inline_B.new(text:Cancel[$lang],           callback_data:"response_custumer to request_by_seller/cancel deal/#{deal.id}")}
 
 # # inline markups
-IM_languages               =              IM.call([[IB_rus, IB_en]])
-IM_cancel_to_start         = ->         { IM.call(  IB_cancel_to_start.call)}
-IM_offer_deal              = ->(userTo) { IM.call([ IB_offer_deal.call(userTo), IB_comments.call(userTo), IB_disputes.call(userTo)])}
-IM_back_to_userTo_actions  = ->(userTo) { IM.call(  IB_back_to_userTo_actions.call(userTo))}
-IM_type_of_disputs         = ->(userTo) { IM.call([ IB_won_disputs.call(userTo), IB_lost_disputs.call(userTo), IB_back_to_userTo_actions.call(userTo)])}
-IM_back_to_type_of_disputs = ->(userTo) { IM.call(  IB_back_to_type_of_disputs.call(userTo))}
-# Actions_markup          = ->{Inline_M.new(inline_keyboard:[ Buy_inline.call, Sell_inline.call, Back_to_user_inline.call])}
-# Currency_type_markup    = ->{Inline_M.new(inline_keyboard:[ Crypto_urrency_inline.call, Another_currency_inline.call, Back_to_actions_inline.call])}
-# Crypto_currencies_markup= ->{Inline_M.new(inline_keyboard:Crypto_currecues_inline.call << Back_to_currency_types.call)}
+IM_languages               =     IM.call([[IB_rus, IB_en]])
+IM_cancel_to_start         = ->{ IM.call(  IB_cancel_to_start.call)}
+IM_offer_deal              = ->{ IM.call([ IB_offer_deal.call, IB_comments.call, IB_disputes.call])}
+IM_back_to_userTo_actions  = ->{ IM.call(  IB_back_to_userTo_actions.call)}
+IM_type_of_disputs         = ->{ IM.call([ IB_won_disputs.call, IB_lost_disputs.call, IB_back_to_userTo_actions.call])}
+IM_back_to_type_of_disputs = ->{ IM.call(  IB_back_to_type_of_disputs.call)}
+IM_role                    = ->{ IM.call([ IB_custumer.call, IB_seller.call, IB_back_to_userTo_actions.call])}
+IM_currency_types          = ->{ IM.call( [IB_crypto_currencies.call, IB_another.call, IB_back_to_userTo_actions.call])}
+IM_cryptocurrencies        = ->{ IM.call(  IB_Arr_cryptocurrecues.call << IB_back_to_CurrencyTypes.call)}
 # Confirm_deal_markup     = ->{Inline_M.new(inline_keyboard:[ Cofirm_deal_inline.call, Cancel_deal_inline.call])}
 # # M_Accept_reject   = ->(deal){Inline_M.new(inline_keyboard:[ I_Accept.call(deal), I_Reject.call(deal)])}
 # # M_pay_cancel      = ->(deal){Inline_M.new(inline_keyboard:[ I_pay.call(deal), I_cancel.call(deal)])}
@@ -141,13 +141,13 @@ B_dusputs            = {Ru=>"⚖️Dusputs:",                En=>"⚖️Dusputs:
 B_comments           = {Ru=>"📬Comments:",              En=>"📬Comments:"}
 B_rating             = {Ru=>"⭐️Rating:",                En=>"⭐️Rating:"}
 
-B_userTo_info = -> (userTo){
+B_userTo_info = ->{
   text = ""
   text << "<b>#{B_user[$lang]}</b>" << "\n"
-  text << "<b>#{B_first_name[$lang]}</b> #{userTo.first_name}"   << "\n" if userTo.first_name != '-'
-  text << "<b>#{B_last_name[$lang]}</b> #{userTo.last_name}"   << "\n" if userTo.last_name != '-'
-  text << "<b>#{B_username[$lang]}</b> #{userTo.username}"  << "\n" if userTo.username != '-'
-  text << "<b>#{B_user_id[$lang]}</b> #{userTo.telegram_id}"  << "\n"
+  text << "<b>#{B_first_name[$lang]}</b> #{$userTo.first_name}"   << "\n" if $userTo.first_name != '-'
+  text << "<b>#{B_last_name[$lang]}</b> #{$userTo.last_name}"   << "\n" if $userTo.last_name != '-'
+  text << "<b>#{B_username[$lang]}</b> #{$userTo.username}"  << "\n" if $userTo.username != '-'
+  text << "<b>#{B_user_id[$lang]}</b> #{$userTo.telegram_id}"  << "\n"
   text << "\n"
   text << "<b>#{B_deals_how_seller[$lang]}</b> 0"  << "\n"
   text << "<b>#{B_deals_how_custumer[$lang]}</b> 0"  << "\n"

@@ -5,8 +5,12 @@ class Event_bot
 
   aasm do
     state :language 
-  
-    state :start, :await_userTo_data, :userTo, :currency_amount, :confirmetion_new_deal
+    state :start
+    state :await_userTo_data
+    state :userTo
+    state :currency_amount
+    state :conditions
+    state :confirmation_new_deal
 
     after_all_transitions :log_status_change
 
@@ -22,7 +26,7 @@ class Event_bot
 # 🔎Найти пользователя🔎
       transitions if: ->{text?(T_find_user[$lang])}, after: :find_userTo, to: :await_userTo_data
     end
-
+# :await_userTo_data
     event :await_userTo_data_action, from: :await_userTo_data do
       transitions if: ->{text?() && !userTo_exist?()}, after: :userTo_not_found, to: :await_userTo_data # user не найден 
       transitions if: ->{text?() &&  userTo_exist?()}, after: :run_to_userTo,    to: :userTo            # user найден
@@ -30,18 +34,32 @@ class Event_bot
     end
 
     event :userTo_action, from: :userTo do
-# UserToActions
+# from UserToActions
       transitions if: ->{data?(/Comments/)},               after: :view_comments,        to: :userTo   #
       transitions if: ->{data?(/Disputs/)},                after: :view_type_of_disputs, to: :userTo   #
-# Comments  TypeOfDisputs      
+      transitions if: ->{data?(/Offer_deal/)},             after: :choose_role,          to: :userTo   #
+# from Comments TypeOfDisputs Role CurrencyTypes     
       transitions if: ->{data?(/Back_to userTo_actions/)}, after: :to_userTo_from_back, to: :userTo   # 
-# TypeOfDisputs
-      transitions if: ->{data?(/Won_disputs/)},            after: :disputs_won,  to: :userTo   # 
-      transitions if: ->{data?(/Lost_disputs/)},           after: :disputs_lost, to: :userTo   # 
-# WonDisputs LostDisputs
+# from TypeOfDisputs
+      transitions if: ->{data?(/Won_disputs/)},            after: :disputs_won,             to: :userTo   # 
+      transitions if: ->{data?(/Lost_disputs/)},           after: :disputs_lost,            to: :userTo   # 
+# from WonDisputs LostDisputs
       transitions if: ->{data?(/Back_to TypeOfDisputs/)},  after: :back_to_type_of_disputs, to: :userTo   # 
-
+# from Role
+      transitions if: ->{data?(/I`m custumer/)},           after: :choose_type_of_currencies, to: :userTo   # 
+      transitions if: ->{data?(/I`m seller/)},             after: :choose_type_of_currencies, to: :userTo   # 
+# CurrencyTypes
+      transitions if: ->{data?(/Criptocurrencies/)},       after: :choose_specific_currency, to: :userTo   # 
+      transitions if: ->{data?(/Another/)},                                                  to: :userTo   # 
+# Currencies
+      transitions if: ->{data?(/back_to CurrencyTypes/)},  after: :back_to_CurrencyTypes,    to: :userTo   # 
+      transitions if: ->{data?(/Currency/)},               after: :choose_amount,            to: :currency_amount   #  
     end 
+# :currency_amount
+    event :currency_amount_action, from: :currency_amount do
+      transitions if:     ->{text?(/^\s*[\d]+([,\.][\d]+)?\s*$/)}, after: :choose_conditions, to: :conditions
+      transitions unless: ->{text?(/^\s*[\d]+([,\.][\d]+)?\s*$/)}, after: :amount_invalid,    to: :currency_amount
+    end
     # state :start, :await_userTo_data, :userTo, :await_role, :await_type_of_currencies, :await_specific_currency, :await_amount, :await_conditions, :confirm_new_deal
     # state :comments, :types_of_disput, :specific_disputs
 

@@ -11,16 +11,20 @@ require_relative '../../adminka/app/models/user'
 require_relative '../../adminka/app/models/deal'
 
 
-# обработка при любом обращении к боту
-require_relative '../handler/init'
 
-# buttons 
-require_relative '../handler/buttons/search_user/deal'
-require_relative '../handler/buttons/search_user/comments'
-require_relative '../handler/buttons/search_user/disputs'
+require_relative '../handler/init'            # обработка при любом обращении к боту
+require_relative '../handler/from_all_states' # обработка при согласовании deal
+require_relative '../handler/common'
 
-#обработка при согласовании deal
-require_relative '../handler/conformation_by_users'
+
+# states 
+require_relative '../handler/states/await_userTo_data'
+require_relative '../handler/states/conditions'
+require_relative '../handler/states/confirmation_new_deal'
+require_relative '../handler/states/currency_amount'
+require_relative '../handler/states/language'
+require_relative '../handler/states/start'
+require_relative '../handler/states/userTo'
 
 # контроллер
 require_relative '../controller'
