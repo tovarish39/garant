@@ -135,11 +135,11 @@ B_first_name         = {Ru=>"Имя:",                     En=>"First name:"}
 B_last_name          = {Ru=>"Фамилия:",                 En=>"Last name:"}
 B_username           = {Ru=>"username:",                En=>"username:"}
 B_user_id            = {Ru=>"id:",                      En=>"id:"}
-B_deals_how_seller   = {Ru=>"📈Сделок как покупатель:", En=>"📈Deals how seller:"}
-B_deals_how_custumer = {Ru=>"📉Deals how custumer:",    En=>"📉Deals how custumer:"}
-B_dusputs            = {Ru=>"⚖️Dusputs:",                En=>"⚖️Dusputs:"}
-B_comments           = {Ru=>"📬Comments:",              En=>"📬Comments:"}
-B_rating             = {Ru=>"⭐️Rating:",                En=>"⭐️Rating:"}
+B_deals_how_seller   = {Ru=>"📈Сделок как продавец:",   En=>"📈Deals how seller:"}
+B_deals_how_custumer = {Ru=>"📉Сделок как покупатель:", En=>"📉Deals how custumer:"}
+B_dusputs            = {Ru=>"⚖️Споры:",                  En=>"⚖️Dusputs:"}
+B_comments           = {Ru=>"📬Отзывы:",                En=>"📬Comments:"}
+B_rating             = {Ru=>"⭐️Рейтинг:",               En=>"⭐️Rating:"}
 B_deal_with          = {Ru=>"Сделка с ",                En=>"Deal with "}
 B_conditions         = {Ru=>"Условия сделки:",          En=>"Conditions:"}
 B_amount_deal        = {Ru=>"Cумма сделки:",            En=>"Amount:"}
@@ -164,7 +164,7 @@ B_userTo_sub_info = ->(user = $userTo){
   text << "<b>#{B_first_name[$lang]}</b> #{user.first_name } \n" if user.first_name != '-'
   text << "<b>#{B_last_name[$lang] }</b> #{user.last_name  } \n" if user.last_name  != '-'
   text << "<b>#{B_username[$lang]  }</b> #{user.username   } \n" if user.username   != '-'
-  text << "<b>#{B_user_id[$lang]   }</b> #{user.telegram_id}" << "\n"
+  text << "<b>#{B_user_id[$lang]   }</b> #{user.telegram_id}\n"
 }
 B_deal_data = ->{%{
 <b>#{B_conditions[$lang]}</b>
@@ -178,7 +178,7 @@ B_userTo_info = ->{%{
 <b>#{B_user[$lang]}</b>
 #{B_userTo_sub_info.call}
 <b>#{B_deals_how_seller[$lang]}</b>
-<b>#{B_deals_how_custumer[$lang]}</b>"
+<b>#{B_deals_how_custumer[$lang]}</b>
 <b>#{B_dusputs[$lang]}</b>
 <b>#{B_comments[$lang]}</b>
 
