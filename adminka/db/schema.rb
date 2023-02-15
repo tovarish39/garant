@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_13_171435) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_15_132025) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "deals", force: :cascade do |t|
-    t.integer "seller_user_id"
-    t.integer "custumer_user_id"
+    t.integer "seller_id"
+    t.integer "custumer_id"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "currency"
     t.string "amount"
-    t.string "state"
+    t.string "status"
     t.text "conditions"
     t.index ["user_id"], name: "index_deals_on_user_id"
   end

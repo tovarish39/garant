@@ -1,21 +1,37 @@
-
-
-def deal_request
-  to_user = User.find($user.to_user_id)
-  current_user_is_seller   = $user.role == 'seller'
-  current_user_is_custumer = $user.role == 'custumer'
-
+def creating_deal(seller:, custumer:) 
   deal = $user.deals.create(
-    seller_user_id:   ( current_user_is_seller) ? $user.id :  to_user.id,
-    custumer_user_id: (!current_user_is_seller) ? $user.id :  to_user.id,
-    currency:           $user.currency,
-    amount:             $user.amount,
-    conditions:         $user.conditions,
-    state:              "request_to #{(current_user_is_seller) ? 'custumer' : 'seller'}"
+    seller_id:   seller.id,
+    custumer_id: custumer.id,
+    currency:   $user.currency,
+    amount:     $user.amount,
+    conditions: $user.conditions,
   )
-
-  send_message(Request_deal.call(deal, $lang)) # уведомление создающему дело
-  send_message_to_user(Request_deal_to_user.call(deal, $user, $lang), to_user, M_accept_reject_by_custumer.call(deal)) if current_user_is_seller   # запрос custumer, если сам seller
-  send_message_to_user(Request_deal_to_user.call(deal, $user, $lang), to_user, M_accept_reject_by_seller.call(deal))   if current_user_is_custumer # запрос seller, если сам custumer
-  start()
 end
+
+def send_request_to_userTo(action)
+  send_message_to_user(
+    B_request_deal_to_userTo.call(action),
+    $userTo,
+    IM_accept_reject.call
+    )
+end
+#################################################################################
+# first request
+def deal_request
+  return if !get_userTo() # defining $userTo
+
+  self_seller   = $user.role == 'I`m seller'
+  self_custumer = $user.role == 'I`m custumer'
+# seller создал deal
+  if    self_seller
+    $deal = creating_deal(seller:$user,   custumer:$userTo) 
+    send_request_to_userTo(B_to_buy[$lang])
+# custumer создал deal
+  elsif self_custumer
+    $deal = creating_deal(seller:$userTo, custumer:$user)
+    send_request_to_userTo(B_to_sell[$lang])
+  end
+  send_message(B_request_deal_self.call) # уведомление создающему дело
+  to_start()
+end
+#######################################################################################

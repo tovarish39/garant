@@ -1,6 +1,7 @@
-def confirming
+def to_confirming
   $user.update(conditions:$mes.text)
-  $to_user = User.find($user.to_user_id)
+  $userTo = User.find($user.userTo_id)
 
-  send_message(Confirm_deal.call($user, $to_user, $lang), Confirm_deal_markup.call)
+  send_message(B_confirm_deal.call, IM_confirm_deal.call)
 end
+

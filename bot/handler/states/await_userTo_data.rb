@@ -5,9 +5,9 @@ def userTo_exist?
   user_by_telegram_id = try_by_telegram_id() 
   user_by_username    = try_by_username()
 
-  userTo = user_by_telegram_id || user_by_username
-  $user.update(userTo_id:userTo.id) if userTo
-  userTo
+  $userTo = user_by_telegram_id || user_by_username
+  $user.update(userTo_id:$userTo.id) if $userTo
+  $userTo
 end
 
 def userTo_not_found
@@ -24,7 +24,7 @@ def run_to_userTo
     conditions:nil
   )
 
-  send_message(B_userTo_info.call(userTo), IM_offer_deal.call(userTo))
+  send_message(B_userTo_info.call, IM_offer_deal.call)
 end
 
 def cancel

@@ -23,9 +23,9 @@ En = 'English'
 
 # главное меню
 T_find_user        = {Ru=>'🔎Найти пользователя🔎',En=>'🔎Find_user🔎'}
-T_deals            = {Ru=>'🤝Сделки🤝',            En=>'🤝Deals🤝'}
-T_profile          = {Ru=>'👨‍💼Профиль👨‍💼',           En=>'👨‍💼Profile👨‍💼'}
-T_help             = {Ru=>'😱Помощь😱',            En=>'😱Help😱'}
+T_deals            = {Ru=>'🤝Сделки🤝',            En=>'🤝Deals🤝'    }
+T_profile          = {Ru=>'👨‍💼Профиль👨‍💼',           En=>'👨‍💼Profile👨‍💼'  }
+T_help             = {Ru=>'😱Помощь😱',            En=>'😱Help😱'     }
 
 
 T_start_actions = [
@@ -40,76 +40,75 @@ T_start_actions = [
 Arr_cryptoCurrecues = ['BTC', 'ETH']
 
 # # сообщения бота
-B_choose_language             = "Выберите язык / Choose language"
-B_start                       = {Ru=>'Выберите действие из меню',              En=>'Choose action in menu'}
-B_await_username_or_id        = {Ru=>'отправьте username или id пользователя', En=>'send username or user id'}
-B_userTo_not_found            = {Ru=>'Пользователь не найден',                 En=>'User not found'}
-B_userTo_comments             = {Ru=>'Отзывы о пользователе',                  En=>'Users comments'}
-B_disputs_by_userTo           = {Ru=>'Споры пользователя',                     En=>'Users disputs'}
-# Wins                        = {Ru=>'Победные споры пользователя',            En=>'Winning user disputes'}
-# Losts                       = {Ru=>'Пройгрышные споры пользователя',         En=>'Losing user disputes'}
-B_choose_role                 = {Ru=>'Выберите роль',                          En=>'Choose role'}
-B_currency_types              = {Ru=>'Выберите валюту сделки',                 En=>'Choose currency type'}
-B_push_amount_currency        = {Ru=>'Введите сумму сделки в',                 En=>'Enter the transaction amount in'}
-B_push_conditions             = {Ru=>'Введите условия сделки',                 En=>'Enter deal conditions'}
-B_invalid_amount              = {Ru=>'Не валидное число',                      En=>'Invalid amount'}
-# BT_reject_deal_self         = {Ru=>'Вы отменили сделку',                     En=>'You canceled the deal'}
+B_choose_language       = "Выберите язык / Choose language"
+B_start                 = {Ru=>'Выберите действие из меню',              En=>'Choose action in menu'}
+B_await_username_or_id  = {Ru=>'отправьте username или id пользователя', En=>'send username or user id'}
+B_userTo_not_found      = {Ru=>'Пользователь не найден',                 En=>'User not found'}
+B_userTo_comments       = {Ru=>'Отзывы о пользователе',                  En=>'Users comments'}
+B_disputs_by_userTo     = {Ru=>'Споры пользователя',                     En=>'Users disputs'}
+# Wins                  = {Ru=>'Победные споры пользователя',            En=>'Winning user disputes'}
+# Losts                 = {Ru=>'Пройгрышные споры пользователя',         En=>'Losing user disputes'}
+B_choose_role           = {Ru=>'Выберите роль',                          En=>'Choose role'}
+B_currency_types        = {Ru=>'Выберите валюту сделки',                 En=>'Choose currency type'}
+B_push_amount_currency  = {Ru=>'Введите сумму сделки в',                 En=>'Enter the transaction amount in'}
+B_push_conditions       = {Ru=>'Введите условия сделки',                 En=>'Enter deal conditions'}
+B_invalid_amount        = {Ru=>'Не валидное число',                      En=>'Invalid amount'}
+B_reject_deal_self      = {Ru=>'Вы отменили сделку',                     En=>'You canceled the deal'}
 # TB_pending_pay_from_custumer= {Ru=>'Ожидание оплаты покупателем',            En=>'Pending pay by custumer'}
 
 # # текст кнопок 
-T_cancel           = {Ru=>'Отмена',                En=>'Cancel'}
-T_offer_deal       = {Ru=>'Предложить сделку',     En=>'Offer a deal'}
-T_comments         = {Ru=>'Отзывы',                En=>'Comments'}
-T_disputes         = {Ru=>'Споры',                 En=>'Disputes'}
-T_back             = {Ru=>'Назад',                 En=>'Back'}
-T_won_disputs      = {Ru=>'Выйграл споров',        En=>'Won disputs'}
-T_lost_disputs     = {Ru=>'Проиграл споров',       En=>'Lost disputs'}
-T_custumer         = {Ru=>'Я покупатель',          En=>'I`m custumer'}
-T_seller           = {Ru=>'Я продавец',            En=>'I`m seller'}
-T_cryptocurrencies = {Ru=>'Криптовалюта',          En=>'Crypto-Currencies'}
-T_another          = {Ru=>'Другое',                En=>'Another'}
-# Cancel           = {Ru=>'Отмена',                En=>'Cancel'}
-# Confirm          = {Ru=>'Подтвердить',           En=>'Confirm'}
-# Accept           = {Ru=>'Принять',               En=>'Accept'}
-# Reject           = {Ru=>'Отклонить',             En=>'Reject'}
-# Pay              = {Ru=>'Оплатить',              En=>'Pay'}
+T_cancel     = {Ru=>'Отмена',                En=>'Cancel'}
+T_offer_deal = {Ru=>'Предложить сделку',     En=>'Offer a deal'}
+T_comments   = {Ru=>'Отзывы',                En=>'Comments'}
+T_disputes   = {Ru=>'Споры',                 En=>'Disputes'}
+T_back       = {Ru=>'Назад',                 En=>'Back'}
+T_wons       = {Ru=>'Выйграл споров',        En=>'Won disputs'}
+T_losts      = {Ru=>'Проиграл споров',       En=>'Lost disputs'}
+T_custumer   = {Ru=>'Я покупатель',          En=>'I`m custumer'}
+T_seller     = {Ru=>'Я продавец',            En=>'I`m seller'}
+T_cryptos    = {Ru=>'Криптовалюта',          En=>'Crypto-Currencies'}
+T_another    = {Ru=>'Другое',                En=>'Another'}
+T_confirm    = {Ru=>'Подтвердить',           En=>'Confirm'}
+T_accept     = {Ru=>'Принять',               En=>'Accept'}
+T_reject     = {Ru=>'Отклонить',             En=>'Reject'}
+# Pay        = {Ru=>'Оплатить',              En=>'Pay'}
 
 # # reply_markups
 RM_start = -> {RM.call([T_find_user[$lang], T_deals[$lang], [T_profile[$lang], T_help[$lang]]])}
 
 # # inline buttons
 # :language
-IB_rus                    =    IB.call( Ru,                  "#{Ru}/Выбранный язык")
-IB_en                     =    IB.call( En,                  "#{En}/Выбранный язык")
+IB_rus                    =    IB.call( Ru,                        "#{Ru}/Выбранный язык")
+IB_en                     =    IB.call( En,                        "#{En}/Выбранный язык")
 # :await_userTo_data
-IB_cancel_to_start        = -> {IB.call( T_cancel[$lang],     "Cancel"                                )}
+IB_cancel_to_start        = -> {IB.call( T_cancel[$lang],          "Cancel"                                )}
 # UserToActions
-IB_offer_deal             = -> {IB.call( T_offer_deal[$lang], "Offer_deal/#{              $userTo.id}")}
-IB_comments               = -> {IB.call( T_comments[$lang],   "Comments/#{                $userTo.id}")}
-IB_disputes               = -> {IB.call( T_disputes[$lang],   "Disputs/#{                 $userTo.id}")}
+IB_offer_deal             = -> {IB.call( T_offer_deal[$lang],      "Offer_deal/#{            $userTo.id}")}
+IB_comments               = -> {IB.call( T_comments[$lang],        "Comments/#{              $userTo.id}")}
+IB_disputes               = -> {IB.call( T_disputes[$lang],        "Disputs/#{               $userTo.id}")}
 # TypeOfDisputs Comments Role CurrenyTypes
-IB_back_to_userTo_actions = -> {IB.call( T_back[$lang],       "Back_to userTo_actions/#{  $userTo.id}")}
+IB_back_to_userTo_actions = -> {IB.call( T_back[$lang],            "Back_to userTo_actions/#{$userTo.id}")}
 # TypeOfDisputs
-IB_won_disputs             = ->{IB.call("#{T_won_disputs[$lang]} (111)",  "Won_disputs/#{ $userTo.id}")}
-IB_lost_disputs            = ->{IB.call("#{T_lost_disputs[$lang]} (111)", "Lost_disputs/#{$userTo.id}")}
+IB_won_disputs             = ->{IB.call("#{T_wons[$lang]} (111)",  "Won_disputs/#{           $userTo.id}")}
+IB_lost_disputs            = ->{IB.call("#{T_losts[$lang]} (111)", "Lost_disputs/#{          $userTo.id}")}
 # WonDisputs LostDisputs
-IB_back_to_type_of_disputs = ->{IB.call( T_back[$lang],      "Back_to TypeOfDisputs/#{    $userTo.id}")}
+IB_back_to_type_of_disputs = ->{IB.call( T_back[$lang],            "Back_to TypeOfDisputs/#{ $userTo.id}")}
 # Role
-IB_custumer               = ->{IB.call(T_custumer[$lang],    "I`m custumer/#{             $userTo.id}")}
-IB_seller                 = ->{IB.call(T_seller[$lang],      "I`m seller/#{               $userTo.id}")}
+IB_custumer               = ->{IB.call(T_custumer[$lang],          "I`m custumer/#{          $userTo.id}")}
+IB_seller                 = ->{IB.call(T_seller[$lang],            "I`m seller/#{            $userTo.id}")}
 # CurrencyTypes
-IB_crypto_currencies      = ->{IB.call(T_cryptocurrencies[$lang], "Criptocurrencies/#{$userTo.id}")}
-IB_another                = ->{IB.call(T_another[$lang],          "Another/#{$userTo.id}")}
+IB_crypto_currencies      = ->{IB.call(T_cryptos[$lang],           "Criptocurrencies/#{      $userTo.id}")}
+IB_another                = ->{IB.call(T_another[$lang],           "Another/#{               $userTo.id}")}
 # Currencies
 IB_Arr_cryptocurrecues    = ->{ Arr_cryptoCurrecues.map {|crypto| IB.call(crypto, "Currency/#{crypto}/#{$userTo.id}")}}
-IB_back_to_CurrencyTypes  = ->{ IB.call(T_back[$lang],             "back_to CurrencyTypes/#{$userTo.id}")}   
-# Back_to_actions_inline  = ->{Inline_B.new(text:Back[$lang],             callback_data:"Назад к действиям")}
-# Cofirm_deal_inline      = ->{Inline_B.new(text:Confirm[$lang],          callback_data:"Подтвердить сделку")}   
-# Cancel_deal_inline      = ->{Inline_B.new(text:Cancel[$lang],           callback_data:"Назад к юзеру")}
+IB_back_to_CurrencyTypes  = ->{ IB.call(T_back[$lang],             "back_to CurrencyTypes/#{ $userTo.id}")}   
+# :confirmation_new_deal
+IB_cofirm_new_deal        = ->{IB.call(T_confirm[$lang],           "Confirming_new_deal/#{   $userTo.id}")}   
+IB_cancel_new_deal        = ->{IB.call(T_cancel[$lang],            "Cancel_new_deal/#{       $userTo.id}")}
 
-
-# I_accept          = ->(deal){Inline_B.new(text:Accept[$lang],           callback_data:"response_seller to request_by_custumer/Принять/#{deal.id}")}
-# I_reject          = ->(deal){Inline_B.new(text:Reject[$lang],           callback_data:"response_seller to request_by_custumer/Отклонить/#{deal.id}")}
+# from_all_states
+IB_accept                 = ->{IB.call(T_accept[$lang],            "Accept/#{$deal.id}")}
+IB_reject                 = ->{IB.call(T_reject[$lang],            "Reject/#{$deal.id}")}
 
 # I_pay             = ->(deal){Inline_B.new(text:Pay[$lang],              callback_data:"response_custumer to request_by_seller/pay/#{deal.id}")}
 # I_cancel          = ->(deal){Inline_B.new(text:Cancel[$lang],           callback_data:"response_custumer to request_by_seller/cancel deal/#{deal.id}")}
@@ -124,169 +123,111 @@ IM_back_to_type_of_disputs = ->{ IM.call(  IB_back_to_type_of_disputs.call)}
 IM_role                    = ->{ IM.call([ IB_custumer.call, IB_seller.call, IB_back_to_userTo_actions.call])}
 IM_currency_types          = ->{ IM.call( [IB_crypto_currencies.call, IB_another.call, IB_back_to_userTo_actions.call])}
 IM_cryptocurrencies        = ->{ IM.call(  IB_Arr_cryptocurrecues.call << IB_back_to_CurrencyTypes.call)}
-# Confirm_deal_markup     = ->{Inline_M.new(inline_keyboard:[ Cofirm_deal_inline.call, Cancel_deal_inline.call])}
-# # M_Accept_reject   = ->(deal){Inline_M.new(inline_keyboard:[ I_Accept.call(deal), I_Reject.call(deal)])}
+IM_confirm_deal            = ->{ IM.call([ IB_cofirm_new_deal.call, IB_cancel_new_deal.call])}
+IM_accept_reject           = ->{ IM.call([ IB_accept.call, IB_reject.call])}
 # # M_pay_cancel      = ->(deal){Inline_M.new(inline_keyboard:[ I_pay.call(deal), I_cancel.call(deal)])}
 
 # M_accept_reject_by_custumer=->(deal){Inline_M.new(inline_keyboard:[ I_pay.call(deal), I_cancel.call(deal)])}
 # M_accept_reject_by_seller  =->(deal){Inline_M.new(inline_keyboard:[ I_accept.call(deal), I_reject.call(deal)])}
+# 
 B_user               = {Ru=>"👤Пользователь:",          En=>"👤User:"}
 B_first_name         = {Ru=>"Имя:",                     En=>"First name:"}
 B_last_name          = {Ru=>"Фамилия:",                 En=>"Last name:"}
 B_username           = {Ru=>"username:",                En=>"username:"}
 B_user_id            = {Ru=>"id:",                      En=>"id:"}
 B_deals_how_seller   = {Ru=>"📈Сделок как покупатель:", En=>"📈Deals how seller:"}
-B_deals_how_custumer = {Ru=>"📉Deals how custumer",     En=>"📉Deals how custumer"}
+B_deals_how_custumer = {Ru=>"📉Deals how custumer:",    En=>"📉Deals how custumer:"}
 B_dusputs            = {Ru=>"⚖️Dusputs:",                En=>"⚖️Dusputs:"}
 B_comments           = {Ru=>"📬Comments:",              En=>"📬Comments:"}
 B_rating             = {Ru=>"⭐️Rating:",                En=>"⭐️Rating:"}
-
-B_userTo_info = ->{
+B_deal_with          = {Ru=>"Сделка с ",                En=>"Deal with "}
+B_conditions         = {Ru=>"Условия сделки:",          En=>"Conditions:"}
+B_amount_deal        = {Ru=>"Cумма сделки:",            En=>"Amount:"}
+B_comission          = {Ru=>"Комиссия гаранта:",        En=>"Comission:"}
+B_amount_result      = {Ru=>"Сумма к оплате:",          En=>"Result amount:"}
+B_offer              = {Ru=>"Предложение",              En=>"Offer"}
+B_from               = {Ru=>"от",                       En=>"from"}
+B_to_buy             = {Ru=>"покупки",                  En=>"to buy"}
+B_to_sell            = {Ru=>"продажи",                  En=>"to sell"}
+B_deal_id            = {Ru=>"Сделка №",                 En=>"Deal №"}
+B_reject_deal        = {Ru=>"Отклонил сделку",          En=>"Reject deal"}
+B_custumer           = {Ru=>"Покупатель",               En=>"Custumer"}
+B_seller             = {Ru=>"Продавец",                 En=>"Seller"}
+B_accessed           = {Ru=>"принял сделку №",          En=>"accessed deal №"}
+B_accessed_by_seller = {
+  Ru=>"Принял сделку, чтобы продолжить, передайте средства на храниние гаранту",          
+  En=>"Accepted the deal, to continue, transfer the funds for safekeeping to the guarant"
+}
+###########################################
+B_userTo_sub_info = ->(user = $userTo){
   text = ""
-  text << "<b>#{B_user[$lang]}</b>" << "\n"
-  text << "<b>#{B_first_name[$lang]}</b> #{$userTo.first_name}"   << "\n" if $userTo.first_name != '-'
-  text << "<b>#{B_last_name[$lang]}</b> #{$userTo.last_name}"   << "\n" if $userTo.last_name != '-'
-  text << "<b>#{B_username[$lang]}</b> #{$userTo.username}"  << "\n" if $userTo.username != '-'
-  text << "<b>#{B_user_id[$lang]}</b> #{$userTo.telegram_id}"  << "\n"
-  text << "\n"
-  text << "<b>#{B_deals_how_seller[$lang]}</b> 0"  << "\n"
-  text << "<b>#{B_deals_how_custumer[$lang]}</b> 0"  << "\n"
-  text << "<b>#{B_dusputs[$lang]}</b> 0"  << "\n"
-  text << "<b>#{B_comments[$lang]}</b> 0"  << "\n"
-  text << "\n"
-  text << "<b>#{B_rating[$lang]}</b> 5/5"  << "\n"
-  text
+  text << "<b>#{B_first_name[$lang]}</b> #{user.first_name } \n" if user.first_name != '-'
+  text << "<b>#{B_last_name[$lang] }</b> #{user.last_name  } \n" if user.last_name  != '-'
+  text << "<b>#{B_username[$lang]  }</b> #{user.username   } \n" if user.username   != '-'
+  text << "<b>#{B_user_id[$lang]   }</b> #{user.telegram_id}" << "\n"
+}
+B_deal_data = ->{%{
+<b>#{B_conditions[$lang]}</b>
+#{$user.conditions}
+#{B_amount_deal[$lang]  } <b>#{$user.amount} #{$user.currency}</b>
+#{B_comission[$lang]    } <b>999</b>
+#{B_amount_result[$lang]} <b>999</b>
+}}
+###########################################
+B_userTo_info = ->{%{
+<b>#{B_user[$lang]}</b>
+#{B_userTo_sub_info.call}
+<b>#{B_deals_how_seller[$lang]}</b>
+<b>#{B_deals_how_custumer[$lang]}</b>"
+<b>#{B_dusputs[$lang]}</b>
+<b>#{B_comments[$lang]}</b>
+
+<b>#{B_rating[$lang]}</b> 5/5
+}}
+
+B_confirm_deal = ->{%{
+#{B_deal_with[$lang]} <b>#{B_user[$lang]}</b>
+#{B_userTo_sub_info.call}
+#{B_deal_data.call}
+}}
+
+B_request_deal_self = ->{
+  return "Запрос на сделкy № <b>#{$deal.id}</b> успешно отправлен, ожидвайте подтверждения"      if $lang == Ru
+  return "Request to deal № <b>#{ $deal.id}</b> sent successfully, please wait for confirmation" if $lang == En
 }
 
-# Confirm_deal            = -> (user, to_user, lang) {
-#   return %{
-# Сделка с 
-# <b>Имя:</b> #{to_user.first_name}
-# <b>Фамилия:</b> #{to_user.last_name}
-# <b>username:</b> #{to_user.username}
-# <b>id:</b> #{to_user.telegram_id}
+B_request_deal_to_userTo = ->(action){%{
+#{B_offer[$lang]} #{action} #{B_from[$lang]}
+#{B_userTo_sub_info.call($user)}
+#{B_deal_data.call}
+}}
 
-# Условия сделки:
-# #{user.conditions}
+B_reject_deal_userTo = ->{%{
+#{B_deal_id[$lang]} #{$deal.id}
+<b>#{B_user[$lang]}</b>
+#{B_userTo_sub_info.call($user)} 
+#{B_reject_deal[$lang]}
+}}
 
-# Cумма сделки: <b>#{user.amount} #{user.currency}</b>
-# Комиссия гаранта: 999
-# Сумма к оплате: 999
-# } if lang == Ru 
-#   return %{
-# Deal with 
-# <b>First name:</b> #{to_user.first_name}
-# <b>Last name:</b> #{to_user.last_name}
-# <b>username:</b> #{to_user.username}
-# <b>id:</b> #{to_user.telegram_id}
-  
-#   Conditions:
-#   #{user.conditions}
-  
-#   Amount: <b>#{user.amount} #{user.currency}</b>
-#   Comission: 999
-#   Result amount: 999
-# }  if lang == En  }
+B_request_deal_to_custumer = ->{%{
+#{B_seller[$lang]}
+#{B_userTo_sub_info.call($user)}
+#{B_accessed_by_seller[$lang]}
+}}
 
-# Request_deal = -> (deal_created, lang) {
-#   return "Запрос на сделкy № <b>#{deal_created.id}</b> успешно отправлен, ожидвайте подтверждения" if lang == Ru
-#   return "Request to deal № <b>#{deal_created.id}</b> sent successfully, please wait for confirmation" if lang == En
-# }
+B_success_notify = {
+  Ru=>"Принял сделку, средства заморожены на счету гаранта, вы можете передать товар/оказать услугу.\nЗавершить сделку может покупатель. Если у вас возник спор, то вы можете вызвать модератора, перейдя в раздел 'Сделки'.",
+  En=>"I accepted the deal, the funds are frozen on the account of the guarantor, you can transfer the goods / provide the service.\nThe buyer can complete the transaction. If you have a dispute, you can call a moderator by going to the 'Deals' section."
+}
 
-# Request_deal_to_user = -> (deal, user_from, lang){
-#   return %{
-# Предложение <b>#{(user_from.role == 'seller') ? 'продажи' : 'покупки'}</b> от
-# <b>Имя:</b> #{user_from.first_name}
-# <b>Фамилия:</b> #{user_from.last_name}
-# <b>username:</b> #{user_from.username}
-# <b>id:</b> #{user_from.telegram_id}
-# <b>Условия сделки:</b> #{deal.conditions}
-# <b>Сумма сделки:</b> #{deal.amount} #{deal.currency}
-# <b>Комиссия гаранта:</b>  ---------
-# <b>Сумма к получению:</b> ---------
-#   } if lang == Ru
-#   return %{
-# Offer <b>#{(user_from.role == 'seller') ? 'to sell' : 'to buy'}</b> from
-# <b>First name:</b> #{user_from.first_name}
-# <b>Last name:</b> #{user_from.last_name}
-# <b>username:</b> #{user_from.username}
-# <b>id:</b> #{user_from.telegram_id}
-# <b>Conditions:</b> #{deal.conditions}
-# <b>Amount:</b> #{deal.amount} #{deal.currency}
-# <b>Comission:</b>  ---------
-# <b>Result amount:</b> ---------
-#   } if lang == En
-# }
+B_notifi_to_seller_success_payed = ->{%{
+#{B_deal_id[$lang]} #{$deal.id}
+#{B_custumer[$lang]}
+#{B_userTo_sub_info.call($user)}
+#{B_success_notify[$lang]}
+}}
 
-# BT_reject_deal_to_from_user = ->(deal, rejected_by_user, lang){
-#   return %{
-# Сделка № #{deal.id}
-# <b>Пользователь</b>
-# <b>Имя:</b> #{rejected_by_user.first_name}
-# <b>Фамилия:</b> #{rejected_by_user.last_name}
-# <b>username:</b> #{rejected_by_user.username}
-# <b>id:</b> #{rejected_by_user.telegram_id}
-
-# Отклонил сделку
-#   } if lang == Ru
-#   return %{
-# Deal № #{deal.id}
-# <b>User</b>
-# <b>First name:</b> #{rejected_by_user.first_name}
-# <b>Last name:</b> #{rejected_by_user.last_name}
-# <b>username:</b> #{rejected_by_user.username}
-# <b>id:</b> #{rejected_by_user.telegram_id}
-
-# Reject deal
-#   } if lang == En
-# }
-
-# TB_response_pay = ->(deal, accepted_by_user, lang){
-#   return %{
-# Сделка № #{deal.id}
-# <b>Продавец</b>
-# <b>Имя:</b> #{accepted_by_user.first_name}
-# <b>Фамилия:</b> #{accepted_by_user.last_name}
-# <b>username:</b> #{accepted_by_user.username}
-# <b>id:</b> #{accepted_by_user.telegram_id}
-
-# Принял сделку, чтобы продолжить, передайте средства на храниние гаранту
-#   } if lang == Ru
-#   return %{
-# Deal № #{deal.id}
-# <b>Seller</b>
-# <b>First name:</b> #{accepted_by_user.first_name}
-# <b>Last name:</b> #{accepted_by_user.last_name}
-# <b>username:</b> #{accepted_by_user.username}
-# <b>id:</b> #{accepted_by_user.telegram_id}
-
-# Accepted the deal, to continue, transfer the funds for safekeeping to the guarant
-#   } if lang == En
-# }
-
-# TB_notifi_to_seller_success_payed = ->(deal, custumer, lang){
-#   return %{
-# Сделка № #{deal.id}
-# <b>Покупатель</b>
-# <b>Имя:</b> #{custumer.first_name}
-# <b>Фамилия:</b> #{custumer.last_name}
-# <b>username:</b> #{custumer.username}
-# <b>id:</b> #{custumer.telegram_id}
-
-# Принял сделку, средства заморожены на счету гаранта, вы можете передать товар/оказать услугу.
-# Завершить сделку может покупатель. Если у вас возник спор, то вы можете вызвать модератора, перейдя в раздел "Сделки".
-#       } if lang == Ru
-#   return %{
-# Deal № #{deal.id}
-# <b>Custumer</b>
-# <b>First name:</b> #{custumer.first_name}
-# <b>Last name:</b> #{custumer.last_name}
-# <b>username:</b> #{custumer.username}
-# <b>id:</b> #{custumer.telegram_id}
-
-# I accepted the deal, the funds are frozen on the account of the guarantor, you can transfer the goods / provide the service.
-# The buyer can complete the transaction. If you have a dispute, you can call a moderator by going to the "Deals" section.
-#       } if lang == En
-# }
-
-# TB_notify_to_custumer_success_payed = {Ru=>'Средства переведены на хранение гаранту', En=>'The funds were transferred to the safekeeping of the guarant'}
+B_notify_to_custumer_success_payed = {
+  Ru=>'Средства переведены на хранение гаранту', 
+  En=>'The funds were transferred to the safekeeping of the guarant'
+}
