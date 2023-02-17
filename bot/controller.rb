@@ -71,7 +71,7 @@ class Event_bot
     end
   end
   def log_status_change
-    puts "user_telegram_id #{$user.telegram_id.colorize(:blue)} (event: #{aasm.current_event.to_s.colorize(:blue)} #{("callbackData = " + $mes.data.colorize(:yellow)) if data?()})"
+    #puts "user_telegram_id #{$user.telegram_id.colorize(:blue)} (event: #{aasm.current_event.to_s.colorize(:blue)} #{("callbackData = " + $mes.data.colorize(:yellow)) if data?()})"
   end
 end
 
