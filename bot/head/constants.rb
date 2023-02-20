@@ -42,8 +42,12 @@ Arr_cryptoCurrecues = ['BTC', 'ETH']
 # # сообщения бота
 B_choose_language       = "Выберите язык / Choose language"
 B_start                 = {Ru=>'Выберите действие из меню',              En=>'Choose action in menu'}
-B_await_username_or_id  = {Ru=>'отправьте username или id пользователя', En=>'send username or user id'}
+B_await_username_or_id  = {
+  Ru=>'Отправьте username или id пользователя или выберите из списка контактов, нажав на кнопку',
+  En=>'Send username or user id or select from the contact list by clicking on the button'
+}
 B_userTo_not_found      = {Ru=>'Пользователь не найден',                 En=>'User not found'}
+B_userTo_not_subscr     = {Ru=>"Пользователь не подписан на бота",       En=>"The user is not subscribed to the bot"}
 B_userTo_comments       = {Ru=>'Отзывы о пользователе',                  En=>'Users comments'}
 B_disputs_by_userTo     = {Ru=>'Споры пользователя',                     En=>'Users disputs'}
 # Wins                  = {Ru=>'Победные споры пользователя',            En=>'Winning user disputes'}
@@ -58,6 +62,7 @@ B_reject_deal_self      = {Ru=>'Вы отменили сделку',            
 
 # # текст кнопок 
 T_cancel     = {Ru=>'Отмена',                En=>'Cancel'}
+T_select_contact = {Ru=>'Выбрать контакт',     En=>'Select contact'}
 T_offer_deal = {Ru=>'Предложить сделку',     En=>'Offer a deal'}
 T_comments   = {Ru=>'Отзывы',                En=>'Comments'}
 T_disputes   = {Ru=>'Споры',                 En=>'Disputes'}
@@ -75,20 +80,23 @@ T_reject     = {Ru=>'Отклонить',             En=>'Reject'}
 
 # # reply_markups
 RM_start = -> {RM.call([T_find_user[$lang], T_deals[$lang], [T_profile[$lang], T_help[$lang]]])}
+RM_cancel_to_start         = ->{ RM.call( [
+  [{text:T_select_contact[$lang], request_user:{request_id:111}}],
+   T_cancel[$lang]   
+])}
 
 # # inline buttons
 # :language
 IB_rus                    =    IB.call( Ru,                        "#{Ru}/Выбранный язык")
 IB_en                     =    IB.call( En,                        "#{En}/Выбранный язык")
 # :await_userTo_data
-IB_cancel_to_start        = -> {IB.call( T_cancel[$lang],          "Cancel"                                )}
 # UserToActions
 IB_offer_deal             = -> {IB.call( T_offer_deal[$lang],      "Offer_deal/#{            $userTo.id}")}
 IB_comments               = -> {IB.call( T_comments[$lang],        "Comments/#{              $userTo.id}")}
 IB_disputes               = -> {IB.call( T_disputes[$lang],        "Disputs/#{               $userTo.id}")}
 # TypeOfDisputs Comments Role CurrenyTypes
 IB_back_to_userTo_actions = -> {IB.call( T_back[$lang],            "Back_to userTo_actions/#{$userTo.id}")}
-# TypeOfDisputs
+# TypeOfDisputsB_await_username_or_id
 IB_won_disputs             = ->{IB.call("#{T_wons[$lang]} (111)",  "Won_disputs/#{           $userTo.id}")}
 IB_lost_disputs            = ->{IB.call("#{T_losts[$lang]} (111)", "Lost_disputs/#{          $userTo.id}")}
 # WonDisputs LostDisputs
@@ -115,7 +123,6 @@ IB_reject                 = ->{IB.call(T_reject[$lang],            "Reject/#{$de
 
 # # inline markups
 IM_languages               =     IM.call([[IB_rus, IB_en]])
-IM_cancel_to_start         = ->{ IM.call(  IB_cancel_to_start.call)}
 IM_offer_deal              = ->{ IM.call([ IB_offer_deal.call, IB_comments.call, IB_disputes.call])}
 IM_back_to_userTo_actions  = ->{ IM.call(  IB_back_to_userTo_actions.call)}
 IM_type_of_disputs         = ->{ IM.call([ IB_won_disputs.call, IB_lost_disputs.call, IB_back_to_userTo_actions.call])}

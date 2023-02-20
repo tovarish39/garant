@@ -28,9 +28,11 @@ class Event_bot
     end
 # :await_userTo_data
     event :await_userTo_data_action, from: :await_userTo_data do
-      transitions if: ->{text?() && !userTo_exist?()}, after: :userTo_not_found, to: :await_userTo_data # user не найден 
-      transitions if: ->{text?() &&  userTo_exist?()}, after: :run_to_userTo,    to: :userTo            # user найден
-      transitions if: ->{data?('Cancel')},             after: :cancel,           to: :start             # 
+      transitions if: ->{text?(T_cancel[$lang])},               after: :cancel,           to: :start             # "Отмена"
+      transitions if: ->{user_shared?() && !bot_has_userTo?()}, after: :userTo_not_found, to: :await_userTo_data # userTo не найден 
+      transitions if: ->{user_shared?() &&  bot_has_userTo?()}, after: :run_to_userTo,    to: :userTo            # userTo    найден 
+      transitions if: ->{text?()        && !bot_has_userTo?()}, after: :userTo_not_found, to: :await_userTo_data # userTo не найден 
+      transitions if: ->{text?()        &&  bot_has_userTo?()}, after: :run_to_userTo,    to: :userTo            # userTo    найден
     end
 
     event :userTo_action, from: :userTo do
@@ -85,8 +87,8 @@ def handle
   $chat_id = $mes.class == MessageClass ? $mes.chat.id : $mes.message.chat.id
 
 # при любом состоянии     не изменяя состояние
-  if    $lang && data?(/Reject/); rejecting_deal()
-  elsif $lang && data?(/Accept/); accepting_deal()   
+  if    $lang && data?(/Reject/); rejecting_deal() # реакция на действия других пользователей
+  elsif $lang && data?(/Accept/); accepting_deal() # реакция на действия других пользователей
 # при определённом состоянии изменяя состояние
   else  
     from_state = case 
@@ -104,28 +106,6 @@ def handle
 end
 
 
-def  click_main_button_or_start? =  text? && T_start_actions.include?($mes.text) # любая кнопка из главного меню или '/start'
-
-def comparing message, compare
-  return true if !compare
-  with_text  = compare.class == String
-  with_regex = compare.class == Regexp 
-  return true if with_text  && message == compare
-  return true if with_regex && message =~ compare
-  false
-end
-
-def text?(compare = nil) # сообщение text любое или соответствие сравниваемому
-   return nil if $mes.class != MessageClass
-   text = $mes.text
-   comparing(text, compare)
-end
-
-def data?(compare = nil) # сообщение callback любое или соответствие сравниваемому
-  return nil if $mes.class != CallbackClass
-  data = $mes.data
-  comparing(data, compare)
-end
 
 def send_message text, reply_markup = nil
   $bot.send_message(chat_id: $chat_id, text:text, reply_markup:reply_markup, parse_mode:"HTML")
