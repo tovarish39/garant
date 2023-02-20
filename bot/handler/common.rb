@@ -48,8 +48,8 @@ def bot_has_userTo?
 
   if user_shared?() # при поиске из контактов
     telegram_id = $mes.user_shared['user_id']
-puts $mes.user_shared 
-puts telegram_id
+# puts $mes.user_shared 
+# puts telegram_id
     user_by_telegram_id = try_by_telegram_id(telegram_id)
     $userTo = user_by_telegram_id
 
@@ -59,7 +59,7 @@ puts telegram_id
     user_by_username    = try_by_username()
     $userTo = user_by_telegram_id || user_by_username
   end
-puts $userTo
+# puts $userTo
   $user.update(userTo_id:$userTo.id) if $userTo
   $userTo # User || nil
 end

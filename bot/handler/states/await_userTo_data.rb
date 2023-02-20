@@ -21,7 +21,6 @@ def run_to_userTo
 end
 
 def cancel
-#   delete_pushed()
   to_start()
 end
 

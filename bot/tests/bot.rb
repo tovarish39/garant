@@ -25,11 +25,14 @@ Telegram::Bot::Client.run(token) do |bot|
         #  bot.api.send_message(chat_id: message.chat.id, text: question, reply_markup: answers)
 
 
-        bot.api.send_message(
+        mes = bot.api.send_message(
+            asd:'asd',
             chat_id:message.chat.id,
             text:message.text,
             reply_markup: answers
         ) if message.text
+
+        puts mes if message.text
     end
 end
 
