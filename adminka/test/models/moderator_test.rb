@@ -1,6 +1,6 @@
 require "test_helper"
 
-class BoundModeratorTest < ActiveSupport::TestCase
+class ModeratorTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

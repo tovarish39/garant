@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_22_204458) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_23_182923) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,15 +18,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_204458) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "telegram_id"
-  end
-
-  create_table "bound_moderators", force: :cascade do |t|
-    t.bigint "dispute_id", null: false
-    t.string "telegram_id"
-    t.string "username"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["dispute_id"], name: "index_bound_moderators_on_dispute_id"
   end
 
   create_table "deals", force: :cascade do |t|
@@ -54,6 +45,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_204458) do
     t.index ["deal_id"], name: "index_disputes_on_deal_id"
   end
 
+  create_table "moderators", force: :cascade do |t|
+    t.string "telegram_id"
+    t.string "username"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "taken_disputes", force: :cascade do |t|
+    t.bigint "moderator_id", null: false
+    t.bigint "dispute_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dispute_id"], name: "index_taken_disputes_on_dispute_id"
+    t.index ["moderator_id"], name: "index_taken_disputes_on_moderator_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "first_name"
@@ -73,7 +80,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_204458) do
     t.string "cur_deal_id"
   end
 
-  add_foreign_key "bound_moderators", "disputes"
   add_foreign_key "deals", "users"
   add_foreign_key "disputes", "deals"
+  add_foreign_key "taken_disputes", "disputes"
+  add_foreign_key "taken_disputes", "moderators"
 end
