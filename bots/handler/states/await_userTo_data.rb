@@ -3,7 +3,7 @@
 
 
 def userTo_not_found
-  send_message(B_userTo_not_found[$lang])  if text?()        # при вводе telegram_id || username
+  send_message(B_userTo_not_found[$lang])  if text_mes?()        # при вводе telegram_id || username
   send_message(B_userTo_not_subscr[$lang]) if user_shared?() # при выборе из списка контактов
 end
 
@@ -16,7 +16,7 @@ def run_to_userTo
     amount:    nil,
     conditions:nil
   )
-
+  send_message(B_info[$lang], RM_start.call)
   send_message(B_userTo_info.call, IM_offer_deal.call)
 end
 

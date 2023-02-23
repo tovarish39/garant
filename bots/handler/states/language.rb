@@ -14,7 +14,7 @@ def to_start
     amount:    nil,
     conditions:nil
   )
-  send_message(B_start[$lang], RM_start.call)
+  send_message(B_choose_action[$lang], RM_start.call)
 end
 
 def view_languages()

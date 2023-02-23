@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_15_132025) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_22_204458) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "avalible_moderators", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "telegram_id"
+  end
+
+  create_table "bound_moderators", force: :cascade do |t|
+    t.bigint "dispute_id", null: false
+    t.string "telegram_id"
+    t.string "username"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dispute_id"], name: "index_bound_moderators_on_dispute_id"
+  end
 
   create_table "deals", force: :cascade do |t|
     t.integer "seller_id"
@@ -24,7 +39,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_132025) do
     t.string "amount"
     t.string "status"
     t.text "conditions"
+    t.string "hash"
     t.index ["user_id"], name: "index_deals_on_user_id"
+  end
+
+  create_table "disputes", force: :cascade do |t|
+    t.bigint "deal_id", null: false
+    t.string "created_by_user_id"
+    t.string "status"
+    t.string "mes_ids_to_moderators", default: [], array: true
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deal_id"], name: "index_disputes_on_deal_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,7 +69,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_132025) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "lang_viewed"
+    t.string "mes_ids_to_edit", default: [], array: true
+    t.string "cur_deal_id"
   end
 
+  add_foreign_key "bound_moderators", "disputes"
   add_foreign_key "deals", "users"
+  add_foreign_key "disputes", "deals"
 end

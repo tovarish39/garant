@@ -1,0 +1,2 @@
+class AvalibleModerator < ApplicationRecord
+end

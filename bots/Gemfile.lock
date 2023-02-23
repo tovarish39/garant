@@ -21,6 +21,7 @@ GEM
       descendants_tracker (~> 0.0.1)
     colorize (0.8.1)
     concurrent-ruby (1.1.10)
+    connection_pool (2.3.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     dry-inflector (1.0.0)
@@ -36,6 +37,10 @@ GEM
     minitest (5.17.0)
     multipart-post (2.2.3)
     pg (1.4.5)
+    redis (5.0.6)
+      redis-client (>= 0.9.0)
+    redis-client (0.12.2)
+      connection_pool
     ruby2_keywords (0.0.5)
     telegram-bot-ruby (0.21.1)
       dry-inflector
@@ -58,6 +63,7 @@ DEPENDENCIES
   activerecord
   colorize
   pg (~> 1.1)
+  redis
   telegram-bot-ruby (~> 0.21.1)
 
 BUNDLED WITH

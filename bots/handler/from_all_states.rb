@@ -13,14 +13,14 @@ def accepting_deal
 
   if    self_seller # подтверждение и отправка покупателю запрос на оплату
     $userTo = User.find($deal.custumer_id)
-    $deal.update(status:'accessed_by seller')
+    $deal.update(status:'accessed_by_seller')
     send_message_to_user(B_request_deal_to_custumer.call,$userTo,IM_accept_reject.call)
     send_message(B_request_deal_self.call)  
-  elsif self_custumer
+  elsif self_custumer # оплата покупателем и status:payed
     result = try_paying()
     if result
       $userTo = User.find($deal.seller_id)
-      $deal.update(status:'accessed_by custumer')
+      $deal.update(status:'payed_by_custumer')
       send_message(B_notify_to_custumer_success_payed[$lang])
       send_message_to_user(B_notifi_to_seller_success_payed.call, $userTo)
     end
@@ -37,10 +37,10 @@ def rejecting_deal
   
   if    self_seller
     $userTo = User.find($deal.custumer_id)
-    $deal.update(status:"rejected_by seller; user_id='#{$user.id}'")
+    $deal.update(status:"rejected_by_seller; user_id='#{$user.id}'")
   elsif self_custumer
     $userTo = User.find($deal.seller_id)
-    $deal.update(status:"rejected_by custumer; user_id='#{$user.id}'")
+    $deal.update(status:"rejected_by_custumer; user_id='#{$user.id}'")
   end
   
   send_message_to_user(B_reject_deal_userTo.call, $userTo)

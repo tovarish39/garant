@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  deal: one
+  created_by_user_id: MyString
+  status: MyString
+  mes_ids_to_moderators: MyString
+
+two:
+  deal: two
+  created_by_user_id: MyString
+  status: MyString
+  mes_ids_to_moderators: MyString
