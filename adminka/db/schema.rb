@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_23_182923) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_24_160905) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,7 +30,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_182923) do
     t.string "amount"
     t.string "status"
     t.text "conditions"
-    t.string "hash"
+    t.string "hash_name"
     t.index ["user_id"], name: "index_deals_on_user_id"
   end
 
@@ -42,6 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_182923) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "sended_to_moderators", default: [], array: true
     t.index ["deal_id"], name: "index_disputes_on_deal_id"
   end
 
@@ -61,6 +62,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_182923) do
     t.index ["moderator_id"], name: "index_taken_disputes_on_moderator_id"
   end
 
+  create_table "used_hashes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "first_name"
@@ -78,6 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_182923) do
     t.boolean "lang_viewed"
     t.string "mes_ids_to_edit", default: [], array: true
     t.string "cur_deal_id"
+    t.string "hash_name"
   end
 
   add_foreign_key "deals", "users"

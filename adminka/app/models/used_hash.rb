@@ -1,0 +1,2 @@
+class UsedHash < ApplicationRecord
+end
