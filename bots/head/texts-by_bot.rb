@@ -57,7 +57,8 @@ B_userTo_sub_info = ->(user = $userTo){
   text << "<b>#{B_user_id[$lang]   }</b> #{user.telegram_id}\n"
 }
 B_deal_data = ->(model = $user){
-%{<b>#{B_conditions[$lang]}</b>
+%{<b>#{B_deal_id[$lang]}</b> ##{model.hash_name}
+<b>#{B_conditions[$lang]}</b>
 #{model.conditions}
 #{B_amount_deal[$lang]  } <b>#{model.amount} #{model.currency}</b>
 #{B_comission[$lang]    } <b>999</b>

@@ -5,6 +5,7 @@ def creating_deal(seller:, custumer:)
     currency:   $user.currency,
     amount:     $user.amount,
     conditions: $user.conditions,
+    hash_name:  $user.hash_name
   )
 end
 

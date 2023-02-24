@@ -115,6 +115,7 @@ end
 
 
 def handle
+  puts 'income'
   $user = searching_user()              # поиск ранее созданного user
   $user ||= create_user() unless $user  # создание user, если не найден
   $lang = $user.lang

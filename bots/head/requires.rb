@@ -6,11 +6,15 @@ require 'logger'
 
 # модели
 require_relative '../../adminka/app/models/application_record'
-require_relative '../../adminka/app/models/user'
+require_relative '../../adminka/app/models/avalible_moderator'
 require_relative '../../adminka/app/models/deal'
 require_relative '../../adminka/app/models/dispute'
-require_relative '../../adminka/app/models/avalible_moderator'
-require_relative '../../adminka/app/models/bound_moderator'
+require_relative '../../adminka/app/models/moderator'
+require_relative '../../adminka/app/models/taken_dispute'
+require_relative '../../adminka/app/models/used_hash'
+require_relative '../../adminka/app/models/user'
+
+
 
 require_relative '../handler/init'            # обработка при любом обращении к боту
 require_relative '../handler/from_all_states' # обработка при согласовании deal

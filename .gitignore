@@ -32,3 +32,6 @@
 
 /bot/log/*
 !/bot/log/.keep
+
+bots/tmp/*
+!bots/tmp/.keep

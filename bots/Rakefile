@@ -1,0 +1,19 @@
+desc "starting polling main bot && starting pollint moderator bot && starting redis-listener"
+task :start_bots do
+  common_path = "#{__dir__}/bin"
+  main_path      = "#{common_path}/polling-main.rb"
+  moderator_path = "#{common_path}/polling-mod.rb"
+  redis_path     = "#{common_path}/redis-listener.rb"
+  system("(bundle exec ruby #{main_path} &)")      # main bot
+  system("(bundle exec ruby #{moderator_path} &)") # moderabor bot
+  system("(bundle exec ruby #{redis_path} &)")     # redis
+end
+
+desc "killing pids bots && redis"
+task :stop_bots do
+  pids_file_path = "#{__dir__}/tmp/pids.txt"
+  pids_file = File.readlines(pids_file_path).each do |pid|
+    system("kill -9 #{pid}")
+  end 
+  FileUtils.rm(pids_file_path)
+end
