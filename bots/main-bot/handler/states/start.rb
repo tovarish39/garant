@@ -3,11 +3,11 @@
 # text нажата "Найти пользователя"
 def find_userTo
   send_message(
-    B_await_username_or_id[$lang],
+    B_await_username_or_id[$lg],
     RM_cancel_to_start.call
   )
 end
 
 def to_deals_menu
-  send_message(B_choose_action[$lang], RM_deals_menu.call)
+  send_message(B_choose_action[$lg], RM_deals_menu.call)
 end

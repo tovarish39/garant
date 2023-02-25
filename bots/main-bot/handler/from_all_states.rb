@@ -21,7 +21,7 @@ def accepting_deal
     if result
       $userTo = User.find($deal.seller_id)
       $deal.update(status:'payed_by_custumer')
-      send_message(B_notify_to_custumer_success_payed[$lang])
+      send_message(B_notify_to_custumer_success_payed[$lg])
       send_message_to_user(B_notifi_to_seller_success_payed.call, $userTo)
     end
   end
@@ -44,6 +44,6 @@ def rejecting_deal
   end
   
   send_message_to_user(B_reject_deal_userTo.call, $userTo)
-  send_message(B_reject_deal_self[$lang])
+  send_message(B_reject_deal_self[$lg])
 end
 

@@ -19,7 +19,10 @@ require_relative '../../adminka/app/models/user'
 
 require_relative '../main-bot/handler/init'            # обработка при любом обращении к боту
 require_relative '../main-bot/handler/from_all_states' # обработка при согласовании deal
-require_relative '../main-bot/handler/common'
+require_relative '../common-sub_functions/bot-shortcuts'
+require_relative '../common-sub_functions/logs'
+require_relative '../common-sub_functions/sub'
+require_relative '../common-sub_functions/validates'
 
 # states 
 require_relative '../main-bot/handler/states/await_userTo_data'

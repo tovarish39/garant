@@ -54,54 +54,54 @@ B_by_custumer        = {Ru=>"Покупателем",              En=>"Custumer
 ###########################################
 B_userTo_sub_info = ->(user = $userTo){
   text = ""
-  text << "<b>#{B_first_name[$lang]}</b> #{user.first_name } \n" if user.first_name != '-'
-  text << "<b>#{B_last_name[$lang] }</b> #{user.last_name  } \n" if user.last_name  != '-'
-  text << "<b>#{B_username[$lang]  }</b> @#{user.username   } \n" if user.username   != '-'
-  text << "<b>#{B_user_id[$lang]   }</b> #{user.telegram_id}\n"
+  text << "<b>#{B_first_name[$lg]}</b> #{user.first_name } \n" if user.first_name != '-'
+  text << "<b>#{B_last_name[$lg] }</b> #{user.last_name  } \n" if user.last_name  != '-'
+  text << "<b>#{B_username[$lg]  }</b> @#{user.username   } \n" if user.username   != '-'
+  text << "<b>#{B_user_id[$lg]   }</b> #{user.telegram_id}\n"
 }
 B_deal_data = ->(model = $user){
-%{<b>#{B_deal_id[$lang]}</b> ##{model.hash_name}
-<b>#{B_conditions[$lang]}</b>
+%{<b>#{B_deal_id[$lg]}</b> ##{model.hash_name}
+<b>#{B_conditions[$lg]}</b>
 #{model.conditions}
-#{B_amount_deal[$lang]  } <b>#{model.amount} #{model.currency}</b>
-#{B_comission[$lang]    } <b>999</b>
-#{B_amount_result[$lang]} <b>999</b>}}
+#{B_amount_deal[$lg]  } <b>#{model.amount} #{model.currency}</b>
+#{B_comission[$lg]    } <b>999</b>
+#{B_amount_result[$lg]} <b>999</b>}}
 ###########################################
 B_userTo_info = ->{
-%{<b>#{B_user[$lang]}</b>
+%{<b>#{B_user[$lg]}</b>
 #{B_userTo_sub_info.call}
-<b>#{B_deals_how_seller[$lang]}</b>
-<b>#{B_deals_how_custumer[$lang]}</b>
-<b>#{B_dusputs[$lang]}</b>
-<b>#{B_comments[$lang]}</b>
+<b>#{B_deals_how_seller[$lg]}</b>
+<b>#{B_deals_how_custumer[$lg]}</b>
+<b>#{B_dusputs[$lg]}</b>
+<b>#{B_comments[$lg]}</b>
 
-<b>#{B_rating[$lang]}</b> 5/5}}
+<b>#{B_rating[$lg]}</b> 5/5}}
 
 B_confirm_deal = ->{
-%{#{B_deal_with[$lang]} <b>#{B_user[$lang]}</b>
+%{#{B_deal_with[$lg]} <b>#{B_user[$lg]}</b>
 #{B_userTo_sub_info.call}
 #{B_deal_data.call}}}
 
 B_request_deal_self = ->{
-  return "Запрос на сделкy ##{$deal.hash_name} успешно отправлен, ожидайте подтверждения"       if $lang == Ru
-  return "Request to deal ##{ $deal.hash_name} sent successfully, please wait for confirmation" if $lang == En
+  return "Запрос на сделкy ##{$deal.hash_name} успешно отправлен, ожидайте подтверждения"       if $lg == Ru
+  return "Request to deal ##{ $deal.hash_name} sent successfully, please wait for confirmation" if $lg == En
 }
 
 B_request_deal_to_userTo = ->(action){
-%{#{B_offer[$lang]} #{action} #{B_from[$lang]}
+%{#{B_offer[$lg]} #{action} #{B_from[$lg]}
 #{B_userTo_sub_info.call($user)}
 #{B_deal_data.call}}}
 
 B_reject_deal_userTo = ->{
-%{#{B_deal_id[$lang]} ##{$deal.hash_name}
-<b>#{B_user[$lang]}</b>
+%{#{B_deal_id[$lg]} ##{$deal.hash_name}
+<b>#{B_user[$lg]}</b>
 #{B_userTo_sub_info.call($user)} 
-#{B_reject_deal[$lang]}}}
+#{B_reject_deal[$lg]}}}
 
 B_request_deal_to_custumer = ->{
-%{#{B_seller[$lang]}
+%{#{B_seller[$lg]}
 #{B_userTo_sub_info.call($user)}
-#{B_accessed_by_seller[$lang]}}}
+#{B_accessed_by_seller[$lg]}}}
 
 B_success_notify = {
   Ru=>"Принял сделку, средства заморожены на счету гаранта, вы можете передать товар/оказать услугу.\nЗавершить сделку может покупатель. Если у вас возник спор, то вы можете вызвать модератора, перейдя в раздел 'Сделки'.",
@@ -109,10 +109,10 @@ B_success_notify = {
 }
 
 B_notifi_to_seller_success_payed = ->{
-%{#{B_deal_id[$lang]} ##{$deal.hash_name}
-#{B_custumer[$lang]}
+%{#{B_deal_id[$lg]} ##{$deal.hash_name}
+#{B_custumer[$lg]}
 #{B_userTo_sub_info.call($user)}
-#{B_success_notify[$lang]}}}
+#{B_success_notify[$lg]}}}
 
 B_notify_to_custumer_success_payed = {
   Ru=>'Средства переведены на хранение гаранту', 
@@ -123,7 +123,7 @@ B_notify_to_custumer_success_payed = {
 
 B_none_deals_active = {Ru=>'У вас нет активных сделок', En=>'You don`t have any active deals'}
 B_deal_full_info = ->(deal) {
-%{#{B_deal_with[$lang]} <b>#{B_user[$lang]}</b>
+%{#{B_deal_with[$lg]} <b>#{B_user[$lg]}</b>
 #{B_userTo_sub_info.call}
 #{B_deal_data.call(deal)}}}
 

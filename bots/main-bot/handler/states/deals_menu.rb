@@ -1,5 +1,5 @@
 def user_hasnot_active_deals
-    send_message(B_none_deals_active[$lang])
+    send_message(B_none_deals_active[$lg])
 end
 
 def deals_active
@@ -13,7 +13,7 @@ def deals_active
         if    deal.seller_id == $user.id # self seller
             $userTo = User.find(deal.custumer_id)
             if   deal.status == 'dispute_request'
-                text = B_deal_full_info.call(deal) + "\n\n" + B_opened_disput[$lang]
+                text = B_deal_full_info.call(deal) + "\n\n" + B_opened_disput[$lg]
                 text << " \n ведёт @#{moderator_username}" if moderator_username
                 send_message(text)
             else
@@ -24,7 +24,7 @@ def deals_active
         elsif deal.custumer_id == $user.id # self custumer
             $userTo = User.find(deal.seller_id)
             if  deal.status == 'dispute_request'
-                text = B_deal_full_info.call(deal) + "\n\n" + B_opened_disput[$lang]
+                text = B_deal_full_info.call(deal) + "\n\n" + B_opened_disput[$lg]
                 text << " \n ведёт @#{moderator_username}" if moderator_username
                 send_message(text)
             else
@@ -43,7 +43,7 @@ end
 
 def to_await_disput_text
     deal = get_deal()
-    send_message(B_couse_disput[$lang], RM_cancel.call)
+    send_message(B_couse_disput[$lg], RM_cancel.call)
 
     $user.update(
         mes_ids_to_edit:[$mes.message.message_id],

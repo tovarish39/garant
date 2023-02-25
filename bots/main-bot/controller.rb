@@ -32,14 +32,14 @@ class Event_bot
 # /start 
       transitions if: ->{text_mes?('/start')},           after: :to_start,    to: :start
 # 🔎Найти пользователя🔎
-      transitions if: ->{text_mes?(T_find_user[$lang])}, after: :find_userTo, to: :await_userTo_data
+      transitions if: ->{text_mes?(T_find_user[$lg])}, after: :find_userTo, to: :await_userTo_data
 # 🤝Сделки🤝      
-      transitions if: ->{text_mes?(T_deals[$lang])},     after: :to_deals_menu, to: :deals_menu
+      transitions if: ->{text_mes?(T_deals[$lg])},     after: :to_deals_menu, to: :deals_menu
     end
 # 🔎Найти пользователя🔎    
 ## :await_userTo_data
     event :await_userTo_data_action, from: :await_userTo_data do
-      transitions if: ->{text_mes?(T_cancel[$lang])},               after: :cancel,           to: :start             # "Отмена"
+      transitions if: ->{text_mes?(T_cancel[$lg])},               after: :cancel,           to: :start             # "Отмена"
       transitions if: ->{user_shared?() && !bot_has_userTo?()}, after: :userTo_not_found, to: :await_userTo_data # userTo не найден 
       transitions if: ->{user_shared?() &&  bot_has_userTo?()}, after: :run_to_userTo,    to: :userTo            # userTo    найден 
       transitions if: ->{text_mes?()        && !bot_has_userTo?()}, after: :userTo_not_found, to: :await_userTo_data # userTo не найден 
@@ -89,13 +89,13 @@ class Event_bot
       transitions if: ->{data?(/Open_disput/) && !valid_deal_status?() }, after: :invalid_deal_status,  to: :deals_menu
 
 
-      transitions if: ->{text_mes?(T_active[$lang]) && !user_has_active_deals?()}, after: :user_hasnot_active_deals, to: :deals_menu
-      transitions if: ->{text_mes?(T_active[$lang]) &&  user_has_active_deals?()}, after: :deals_active,          to: :deals_menu
-      transitions if: ->{text_mes?(T_back[$lang])},                                after: :to_start,                 to: :start
+      transitions if: ->{text_mes?(T_active[$lg]) && !user_has_active_deals?()}, after: :user_hasnot_active_deals, to: :deals_menu
+      transitions if: ->{text_mes?(T_active[$lg]) &&  user_has_active_deals?()}, after: :deals_active,          to: :deals_menu
+      transitions if: ->{text_mes?(T_back[$lg])},                                after: :to_start,                 to: :start
     end
 ## :await_disput_text
     event :await_disput_text_action, from: :await_disput_text do
-      transitions if: ->{text_mes?(T_cancel[$lang])}, after: :to_deals_menu,  to: :deals_menu
+      transitions if: ->{text_mes?(T_cancel[$lg])}, after: :to_deals_menu,  to: :deals_menu
       transitions if: ->{text_mes?()},                after: :create_dispute, to: :deals_menu
     end
 
@@ -118,17 +118,17 @@ def handle
   # puts 'income'
   $user = searching_user()              # поиск ранее созданного user
   $user ||= create_user() unless $user  # создание user, если не найден
-  $lang = $user.lang
+  $lg = $user.lang
   update_user_info_if_changed()
   $chat_id = $mes.class == MessageClass ? $mes.chat.id : $mes.message.chat.id
 
 # при любом состоянии     не изменяя состояние
-  if    $lang && data?(/Reject/); rejecting_deal() # реакция на действия других пользователей
-  elsif $lang && data?(/Accept/); accepting_deal() # реакция на действия других пользователей
+  if    $lg && data?(/Reject/); rejecting_deal() # реакция на действия других пользователей
+  elsif $lg && data?(/Accept/); accepting_deal() # реакция на действия других пользователей
 # при определённом состоянии изменяя состояние
   else  
     from_state = case 
-                 when !$lang                        then 'language'  .to_sym  # язык не выбран
+                 when !$lg                        then 'language'  .to_sym  # язык не выбран
                  when click_main_button_or_start?() then 'start'     .to_sym  # кликнута главная кнопка меню или '/start'# пока только /start и найти пользователя
                  else                                     $user.state.to_sym  # предидущее состояние
                  end  

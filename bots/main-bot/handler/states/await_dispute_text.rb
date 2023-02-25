@@ -8,8 +8,8 @@ def create_dispute
     )
     userTo_id = deal.seller_id == $user.id ? deal.custumer_id : deal.seller_id
     $userTo = User.find(userTo_id) 
-    send_message_to_user(B_deal_full_info.call(deal) + "\n\n" + B_opened_disput[$lang], $userTo)
-    edit_message((B_deal_full_info.call(deal) + "\n\n" + B_opened_disput[$lang]), nil, $user.mes_ids_to_edit[0])
-    send_message(B_request[$lang], RM_deals_menu.call)
+    send_message_to_user(B_deal_full_info.call(deal) + "\n\n" + B_opened_disput[$lg], $userTo)
+    edit_message((B_deal_full_info.call(deal) + "\n\n" + B_opened_disput[$lg]), nil, $user.mes_ids_to_edit[0])
+    send_message(B_request[$lg], RM_deals_menu.call)
     system("(redis-cli publish one #{dispute.id} &)")
 end

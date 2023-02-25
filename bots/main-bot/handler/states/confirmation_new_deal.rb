@@ -26,11 +26,11 @@ def deal_request
 # seller создал deal
   if    self_seller
     $deal = creating_deal(seller:$user,   custumer:$userTo) 
-    send_request_to_userTo(B_to_sell[$lang])
+    send_request_to_userTo(B_to_sell[$lg])
 # custumer создал deal
   elsif self_custumer
     $deal = creating_deal(seller:$userTo, custumer:$user)
-    send_request_to_userTo(B_to_buy[$lang])
+    send_request_to_userTo(B_to_buy[$lg])
   end
   send_message(B_request_deal_self.call) # уведомление создающему дело
   to_start()

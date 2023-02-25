@@ -44,14 +44,14 @@ T_custumer_lost  = {Ru=>'Покупатель проиграл',   En=>'Custumer
 T_all_lost       = {Ru=>'Нарушение',             En=>'Nonobservance'}
 
 # # reply_markupsnonobservance
-RM_start = -> {RM.call([T_find_user[$lang], T_deals[$lang], [T_profile[$lang], T_help[$lang]]])}
+RM_start = -> {RM.call([T_find_user[$lg], T_deals[$lg], [T_profile[$lg], T_help[$lg]]])}
 RM_cancel_to_start         = ->{ RM.call( [
-  [{text:T_select_contact[$lang], request_user:{request_id:111}}],
-   T_cancel[$lang]   
+  [{text:T_select_contact[$lg], request_user:{request_id:111}}],
+   T_cancel[$lg]   
 ])}
 # :deals_menu
-RM_deals_menu =->{RM.call([T_active[$lang], T_deals_history[$lang], T_disputs[$lang], T_back[$lang]])}
-RM_cancel     =->{RM.call([T_cancel[$lang]])}
+RM_deals_menu =->{RM.call([T_active[$lg], T_deals_history[$lg], T_disputs[$lg], T_back[$lg]])}
+RM_cancel     =->{RM.call([T_cancel[$lg]])}
 
 # # inline buttons
 # :language
@@ -59,38 +59,38 @@ IB_rus                    =    IB.call( Ru,                        "#{Ru}/Выб
 IB_en                     =    IB.call( En,                        "#{En}/Выбранный язык")
 # :await_userTo_data
 # UserToActions
-IB_offer_deal             = -> {IB.call( T_offer_deal[$lang],      "Offer_deal/#{            $userTo.id}")}
-IB_comments               = -> {IB.call( T_comments[$lang],        "Comments/#{              $userTo.id}")}
-IB_disputes               = -> {IB.call( T_disputs[$lang],        "Disputs/#{               $userTo.id}")}
+IB_offer_deal             = -> {IB.call( T_offer_deal[$lg],      "Offer_deal/#{            $userTo.id}")}
+IB_comments               = -> {IB.call( T_comments[$lg],        "Comments/#{              $userTo.id}")}
+IB_disputes               = -> {IB.call( T_disputs[$lg],        "Disputs/#{               $userTo.id}")}
 # TypeOfDisputs Comments Role CurrenyTypes
-IB_back_to_userTo_actions = -> {IB.call( T_back[$lang],            "Back_to userTo_actions/#{$userTo.id}")}
+IB_back_to_userTo_actions = -> {IB.call( T_back[$lg],            "Back_to userTo_actions/#{$userTo.id}")}
 # TypeOfDisputsB_await_username_or_id
-IB_won_disputs             = ->{IB.call("#{T_wons[$lang]} (111)",  "Won_disputs/#{           $userTo.id}")}
-IB_lost_disputs            = ->{IB.call("#{T_losts[$lang]} (111)", "Lost_disputs/#{          $userTo.id}")}
+IB_won_disputs             = ->{IB.call("#{T_wons[$lg]} (111)",  "Won_disputs/#{           $userTo.id}")}
+IB_lost_disputs            = ->{IB.call("#{T_losts[$lg]} (111)", "Lost_disputs/#{          $userTo.id}")}
 # WonDisputs LostDisputs
-IB_back_to_type_of_disputs = ->{IB.call( T_back[$lang],            "Back_to TypeOfDisputs/#{ $userTo.id}")}
+IB_back_to_type_of_disputs = ->{IB.call( T_back[$lg],            "Back_to TypeOfDisputs/#{ $userTo.id}")}
 # Role
-IB_custumer               = ->{IB.call(T_custumer[$lang],          "I`m custumer/#{          $userTo.id}")}
-IB_seller                 = ->{IB.call(T_seller[$lang],            "I`m seller/#{            $userTo.id}")}
+IB_custumer               = ->{IB.call(T_custumer[$lg],          "I`m custumer/#{          $userTo.id}")}
+IB_seller                 = ->{IB.call(T_seller[$lg],            "I`m seller/#{            $userTo.id}")}
 # CurrencyTypes
-IB_crypto_currencies      = ->{IB.call(T_cryptos[$lang],           "Criptocurrencies/#{      $userTo.id}")}
-IB_another                = ->{IB.call(T_another[$lang],           "Another/#{               $userTo.id}")}
+IB_crypto_currencies      = ->{IB.call(T_cryptos[$lg],           "Criptocurrencies/#{      $userTo.id}")}
+IB_another                = ->{IB.call(T_another[$lg],           "Another/#{               $userTo.id}")}
 # Currencies
 IB_Arr_cryptocurrecues    = ->{ Arr_cryptoCurrecues.map {|crypto| IB.call(crypto, "Currency/#{crypto}/#{$userTo.id}")}}
-IB_back_to_CurrencyTypes  = ->{ IB.call(T_back[$lang],             "back_to CurrencyTypes/#{ $userTo.id}")}   
+IB_back_to_CurrencyTypes  = ->{ IB.call(T_back[$lg],             "back_to CurrencyTypes/#{ $userTo.id}")}   
 # :confirmation_new_deal
-IB_cofirm_new_deal        = ->{IB.call(T_confirm[$lang],           "Confirming_new_deal/#{   $userTo.id}")}   
-IB_cancel_new_deal        = ->{IB.call(T_cancel[$lang],            "Cancel_new_deal/#{       $userTo.id}")}
+IB_cofirm_new_deal        = ->{IB.call(T_confirm[$lg],           "Confirming_new_deal/#{   $userTo.id}")}   
+IB_cancel_new_deal        = ->{IB.call(T_cancel[$lg],            "Cancel_new_deal/#{       $userTo.id}")}
 
 # 🤝Сделки🤝 
 ## :deals_active
-IB_cancel_exist_deal = ->(deal){IB.call(T_cancel_deal[$lang],       "Cancel_exist_deal/#{deal.id}")}
-IB_open_disput       = ->(deal){IB.call(T_open_disput[$lang],       "Open_disput/#{      deal.id}")}
-IB_finish_deal       = ->(deal){IB.call(T_finish_deal[$lang],       "Finish_deal/#{      deal.id}")}
+IB_cancel_exist_deal = ->(deal){IB.call(T_cancel_deal[$lg],       "Cancel_exist_deal/#{deal.id}")}
+IB_open_disput       = ->(deal){IB.call(T_open_disput[$lg],       "Open_disput/#{      deal.id}")}
+IB_finish_deal       = ->(deal){IB.call(T_finish_deal[$lg],       "Finish_deal/#{      deal.id}")}
 
 # from_all_states
-IB_accept                 = ->{IB.call(T_accept[$lang],            "Accept/#{$deal.id}")}
-IB_reject                 = ->{IB.call(T_reject[$lang],            "Reject/#{$deal.id}")}
+IB_accept                 = ->{IB.call(T_accept[$lg],            "Accept/#{$deal.id}")}
+IB_reject                 = ->{IB.call(T_reject[$lg],            "Reject/#{$deal.id}")}
 
 # mod-bot
 IB_seller_lost   = ->(dispute, lg){IB.call(T_seller_lost[lg],   "Decision/seller_lost/#{  dispute.id}")}
@@ -112,6 +112,11 @@ IM_accept_reject           = ->{ IM.call([ IB_accept.call, IB_reject.call])}
 IM_seller_deal_actions     = ->(deal){IM.call([IB_cancel_exist_deal.call(deal), IB_open_disput.call(deal)])}
 IM_custumer_deal_actions   = ->(deal){IM.call([IB_finish_deal.call(deal), IB_open_disput.call(deal)])}
 
+
+
+
+
+#########################################
 # mod-bot
 IM_dispute_offer    = -> (dispute, lg) {IM.call(IB.call(T_accept[lg], "Accept/#{dispute.id}"))}
 IM_decision_actions = -> (dispute, lg) {IM.call([
