@@ -154,7 +154,7 @@ B_disput_offer = -> (seller, custumer, deal, dispute, initiator, lg){
 }
 B_dispute_comment = -> (dispute){
   desision = dispute.dispute_lost
-  text = ""
+  text = "\n"
   case desision
   when 'seller_lost'
     text += "выйграл Покупатель"

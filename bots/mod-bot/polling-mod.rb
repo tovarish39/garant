@@ -13,7 +13,6 @@ token = ENV["Garant_moderator_bot"]
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
-puts 'come'
     $bot = bot.api
     $mes = message
 

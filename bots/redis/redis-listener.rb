@@ -43,7 +43,7 @@ begin
                 IM_dispute_offer.call(dispute, lg)
               )
               dispute.sended_to_moderators << {moderator.id => mes['result']['message_id'].to_s}
-              dispute.status = 'pending_moderator'
+              # dispute.status = 'pending_moderator'
               dispute.save
             end
           end
@@ -67,7 +67,7 @@ begin
 # модератор определил решение по спору
           elsif action == 'push-decision'
             desision = dispute.dispute_lost
-            text = "Спор по сделке ##{dispute.hash_name} \n"
+            text = "Спор по сделке ##{dispute.deal.hash_name} \n"
             text += B_dispute_comment.call(dispute)
             [seller, custumer].each {|to_user| send_message_to_user(text, to_user)} 
           end

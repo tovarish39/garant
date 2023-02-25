@@ -20,6 +20,7 @@ myUser = User.find_by(telegram_id:1964112204)
     currency:   'aaa',
     amount:     '111',
     conditions: 'zzz',
-    hash_name:  'hash_name'
+    hash_name:  'hash_name',
+    status:'payed_by_custumer'
   )
 end

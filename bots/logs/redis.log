@@ -1,1 +1,13 @@
 # Logfile created on 2023-02-25 19:38:49 +0200 by logger.rb/v1.5.3
+I date=[2023-02-25 21:50:02] pid=#6315 message='channel, message = one : 1'
+I date=[2023-02-25 21:50:11] pid=#6315 message='channel, message = two : 1:get-dispute'
+I date=[2023-02-25 21:58:52] pid=#6936 message='channel, message = two : 1:push-decision'
+I date=[2023-02-25 22:09:15] pid=#7826 message='channel, message = one : 3'
+I date=[2023-02-25 22:09:32] pid=#7826 message='channel, message = two : 3:get-dispute'
+I date=[2023-02-25 22:10:43] pid=#7826 message='channel, message = two : 3:push-decision'
+I date=[2023-02-25 22:17:09] pid=#8428 message='channel, message = one : 1'
+I date=[2023-02-25 22:20:21] pid=#8428 message='channel, message = two : 1:get-dispute'
+I date=[2023-02-25 22:20:59] pid=#8428 message='channel, message = two : 1:push-decision'
+I date=[2023-02-25 22:24:41] pid=#8901 message='channel, message = one : 2'
+I date=[2023-02-25 22:24:53] pid=#8901 message='channel, message = two : 2:get-dispute'
+I date=[2023-02-25 22:25:09] pid=#8901 message='channel, message = two : 2:push-decision'

@@ -31,6 +31,7 @@ def handle_acception
         end
         system("redis-cli publish two #{dispute.id}:get-dispute")
     end
+    delete_pushed()
     send_message("Спор перенесён во вкладку 'Мои споры'")
 end
 
@@ -83,7 +84,7 @@ def handle_decision
     dispute    = Dispute.find(dispute_id)
     return if dispute.status != 'in_process' # был ранее обработан
     $mod.update(
-        state:'pending_cooment',
+        state:'pending_comment',
         pushed_IB_mes_id: $mes.message.message_id,
         current_dispute_id:dispute_id,
         pushed_action:action
@@ -99,7 +100,7 @@ def finishing_dispute
         comment = $mes.text
 
         # $mod.pushed_action реакция на платёжку
-
+        dispute.deal.update(status:'finished')
         dispute.update(
             comment_by_moderator:comment,
             status:'finished',
