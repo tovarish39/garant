@@ -10,7 +10,7 @@ end
 def handle_acception
     dispute = search_dispute()
     return unless dispute
-    puts dispute.status
+    # puts dispute.status
     is_actual = dispute.status == 'pending_moderator'
     return unless is_actual
 
