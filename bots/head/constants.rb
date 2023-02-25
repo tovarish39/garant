@@ -5,12 +5,6 @@ ActiveRecord::Base.establish_connection("postgres://#{username_pg}:#{password_pg
 Bot_token = ENV['Garant_bot_token']
 St_machine = Event_bot.new
 
-$logger = Logger.new("#{__dir__}/../log/logs.log", 'weekly')
-$logger.formatter = proc do |severity, datetime, progname, msg|
-    date_format = datetime.strftime("%Y-%m-%d %H:%M:%S")
-    "#{severity.slice(0)} date=[#{date_format}] pid=##{Process.pid} message='#{msg}'\n"
-end
-
 # сокращения
 CallbackClass  = Telegram::Bot::Types::CallbackQuery
 MessageClass   = Telegram::Bot::Types::Message

@@ -39,7 +39,7 @@ B_offer              = {Ru=>"Предложение",              En=>"Offer"}
 B_from               = {Ru=>"от",                       En=>"from"}
 B_to_buy             = {Ru=>"покупки",                  En=>"to buy"}
 B_to_sell            = {Ru=>"продажи",                  En=>"to sell"}
-B_deal_id            = {Ru=>"Сделка №",                 En=>"Deal №"}
+B_deal_id            = {Ru=>"Сделка ",                  En=>"Deal "}
 B_reject_deal        = {Ru=>"Отклонил сделку",          En=>"Reject deal"}
 B_custumer           = {Ru=>"Покупатель",               En=>"Custumer"}
 B_seller             = {Ru=>"Продавец",                 En=>"Seller"}
@@ -48,6 +48,9 @@ B_accessed_by_seller = {
   Ru=>"Принял сделку, чтобы продолжить, передайте средства на храниние гаранту",          
   En=>"Accepted the deal, to continue, transfer the funds for safekeeping to the guarant"
 }
+B_opened_by          = {Ru=>"Спор открыт",              En=>"Dispute opened by"} 
+B_by_seller          = {Ru=>"Продавцом",                En=>"Seller"} 
+B_by_custumer        = {Ru=>"Покупателем",              En=>"Custumer"} 
 ###########################################
 B_userTo_sub_info = ->(user = $userTo){
   text = ""
@@ -80,8 +83,8 @@ B_confirm_deal = ->{
 #{B_deal_data.call}}}
 
 B_request_deal_self = ->{
-  return "Запрос на сделкy № <b>#{$deal.id}</b> успешно отправлен, ожидвайте подтверждения"      if $lang == Ru
-  return "Request to deal № <b>#{ $deal.id}</b> sent successfully, please wait for confirmation" if $lang == En
+  return "Запрос на сделкy ##{$deal.hash_name} успешно отправлен, ожидайте подтверждения"       if $lang == Ru
+  return "Request to deal ##{ $deal.hash_name} sent successfully, please wait for confirmation" if $lang == En
 }
 
 B_request_deal_to_userTo = ->(action){
@@ -90,7 +93,7 @@ B_request_deal_to_userTo = ->(action){
 #{B_deal_data.call}}}
 
 B_reject_deal_userTo = ->{
-%{#{B_deal_id[$lang]} #{$deal.id}
+%{#{B_deal_id[$lang]} ##{$deal.hash_name}
 <b>#{B_user[$lang]}</b>
 #{B_userTo_sub_info.call($user)} 
 #{B_reject_deal[$lang]}}}
@@ -106,7 +109,7 @@ B_success_notify = {
 }
 
 B_notifi_to_seller_success_payed = ->{
-%{#{B_deal_id[$lang]} #{$deal.id}
+%{#{B_deal_id[$lang]} ##{$deal.hash_name}
 #{B_custumer[$lang]}
 #{B_userTo_sub_info.call($user)}
 #{B_success_notify[$lang]}}}
@@ -123,3 +126,42 @@ B_deal_full_info = ->(deal) {
 %{#{B_deal_with[$lang]} <b>#{B_user[$lang]}</b>
 #{B_userTo_sub_info.call}
 #{B_deal_data.call(deal)}}}
+
+
+B_disput_offer = -> (seller, custumer, deal, dispute, initiator, lg){
+  text = "<b>Продавец</b>\n"
+  text << "<b>#{B_first_name[lg]}</b> #{seller.first_name } \n" if seller.first_name != '-'
+  text << "<b>#{B_last_name[lg] }</b> #{seller.last_name  } \n" if seller.last_name  != '-'
+  text << "<b>#{B_username[lg]  }</b> @#{seller.username  } \n" if seller.username   != '-'
+  text << "<b>#{B_user_id[lg]   }</b> #{seller.telegram_id}\n"
+  text << "\n"
+  text << "<b>Покупатель</b>\n"
+  text << "<b>#{B_first_name[lg]}</b> #{custumer.first_name } \n" if custumer.first_name != '-'
+  text << "<b>#{B_last_name[lg] }</b> #{custumer.last_name  } \n" if custumer.last_name  != '-'
+  text << "<b>#{B_username[lg]  }</b> @#{custumer.username  } \n" if custumer.username   != '-'
+  text << "<b>#{B_user_id[lg]   }</b> #{custumer.telegram_id}\n"  
+  text << "\n"
+  text << "<b>#{B_deal_id[lg]}</b> ##{deal.hash_name}\n"
+  text << "<b>#{B_conditions[lg]}</b>\n"
+  text << "#{deal.conditions}\n"
+  text << "<b>#{B_amount_deal[lg]}</b> #{deal.amount}\n"
+  text << "<b>#{B_comission[lg]}</b> 999\n"
+  text << "<b>#{B_amount_result[lg]}</b> 999\n"
+  text << "\n"
+  text << "#{B_opened_by[lg]} <b>#{initiator}</b>\n"
+  text << "#{dispute.content}"
+  text 
+}
+B_dispute_comment = -> (dispute){
+  desision = dispute.dispute_lost
+  text = ""
+  case desision
+  when 'seller_lost'
+    text += "выйграл Покупатель"
+  when 'custumer_lost'
+    text += "выйграл Продавец"
+  when 'all_lost'
+    text += "проиграли и Покупатель и Продавец из-за нарушения"
+  end
+    text += "\n комментарий модератора @#{dispute.moderator.username} :\n #{dispute.comment_by_moderator}"
+}

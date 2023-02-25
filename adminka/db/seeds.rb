@@ -5,3 +5,21 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+
+seva_telegram_id = 6016837864
+my_telegram_id   = 1964112204
+
+seva   = User.find_by(telegram_id:6016837864)
+myUser = User.find_by(telegram_id:1964112204)
+
+5.times do
+  myUser.deals.create(
+    seller_id:   myUser.id,
+    custumer_id: seva.id,
+    currency:   'aaa',
+    amount:     '111',
+    conditions: 'zzz',
+    hash_name:  'hash_name'
+  )
+end

@@ -39,8 +39,11 @@ T_deals_history  = {Ru=>'История сделок',        En=>'Deals history
 T_cancel_deal    = {Ru=>'Отменить сделку',       En=>'Cancel deal'}
 T_open_disput    = {Ru=>'Открыть спор',          En=>'Open disput'}
 T_finish_deal    = {Ru=>'Подтвердить',           En=>'Confirm'}
+T_seller_lost    = {Ru=>'Продавец проиграл',     En=>'Seller lost'}
+T_custumer_lost  = {Ru=>'Покупатель проиграл',   En=>'Custumer lost'}
+T_all_lost       = {Ru=>'Нарушение',             En=>'Nonobservance'}
 
-# # reply_markups
+# # reply_markupsnonobservance
 RM_start = -> {RM.call([T_find_user[$lang], T_deals[$lang], [T_profile[$lang], T_help[$lang]]])}
 RM_cancel_to_start         = ->{ RM.call( [
   [{text:T_select_contact[$lang], request_user:{request_id:111}}],
@@ -89,6 +92,10 @@ IB_finish_deal       = ->(deal){IB.call(T_finish_deal[$lang],       "Finish_deal
 IB_accept                 = ->{IB.call(T_accept[$lang],            "Accept/#{$deal.id}")}
 IB_reject                 = ->{IB.call(T_reject[$lang],            "Reject/#{$deal.id}")}
 
+# mod-bot
+IB_seller_lost   = ->(dispute, lg){IB.call(T_seller_lost[lg],   "Decision/seller_lost/#{  dispute.id}")}
+IB_custumer_lost = ->(dispute, lg){IB.call(T_custumer_lost[lg], "Decision/custumer_lost/#{dispute.id}")}
+IB_all_lost      = ->(dispute, lg){IB.call(T_all_lost[lg],      "Decision/all_lost/#{dispute.id}")}
 
 # # inline markups
 IM_languages               =     IM.call([[IB_rus, IB_en]])
@@ -104,3 +111,11 @@ IM_accept_reject           = ->{ IM.call([ IB_accept.call, IB_reject.call])}
 # 🤝Сделки🤝 
 IM_seller_deal_actions     = ->(deal){IM.call([IB_cancel_exist_deal.call(deal), IB_open_disput.call(deal)])}
 IM_custumer_deal_actions   = ->(deal){IM.call([IB_finish_deal.call(deal), IB_open_disput.call(deal)])}
+
+# mod-bot
+IM_dispute_offer    = -> (dispute, lg) {IM.call(IB.call(T_accept[lg], "Accept/#{dispute.id}"))}
+IM_decision_actions = -> (dispute, lg) {IM.call([
+  IB_seller_lost.call(dispute, lg),
+  IB_custumer_lost.call(dispute, lg),
+  IB_all_lost.call(dispute, lg)
+])}

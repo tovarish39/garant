@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_24_160905) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_25_163450) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,11 +38,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_160905) do
     t.bigint "deal_id", null: false
     t.string "created_by_user_id"
     t.string "status"
-    t.string "mes_ids_to_moderators", default: [], array: true
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "sended_to_moderators", default: [], array: true
+    t.text "comment_by_moderator"
+    t.string "dispute_lost"
+    t.json "sended_to_moderators", default: [], array: true
     t.index ["deal_id"], name: "index_disputes_on_deal_id"
   end
 
@@ -51,6 +52,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_160905) do
     t.string "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "state"
+    t.string "pushed_IB_mes_id"
+    t.string "current_dispute_id"
+    t.string "pushed_action"
   end
 
   create_table "taken_disputes", force: :cascade do |t|
