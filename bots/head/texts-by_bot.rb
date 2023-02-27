@@ -174,7 +174,7 @@ B_dispute_comment = -> (dispute){
 # 👨‍💼Профиль👨‍💼
 B_empty_wallet = {Ru=>'Кошелёк пуст',    En=>'Wallet is empty'}
 B_wallet       = {Ru=>'У вас в кошельке',En=>'In your wallet'}
-B_view_wallet = {
+B_view_wallet = ->{
 wallet_content = B_wallet[$lg] + "\n\n"
 $user.wallet.each do |obj|
   currency = obj.keys.first

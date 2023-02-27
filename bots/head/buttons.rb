@@ -119,7 +119,7 @@ IM_accept_reject           = ->{ IM.call([ IB_accept.call, IB_reject.call])}
 IM_seller_deal_actions     = ->(deal){IM.call([IB_cancel_exist_deal.call(deal), IB_open_disput.call(deal)])}
 IM_custumer_deal_actions   = ->(deal){IM.call([IB_finish_deal.call(deal), IB_open_disput.call(deal)])}
 # 👨‍💼Профиль👨‍💼
-IM_extract                 = ->(IM.call(IB.call(IB_extract.call)))
+IM_extract                 = ->{IM.call(IB.call(IB_extract.call))}
 
 
 

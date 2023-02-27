@@ -30,8 +30,8 @@
 # Ignore master key for decrypting credentials and more.
 /adminka/config/master.key
 
-/bot/log/*
-!/bot/log/.keep
+bots/logs/*
+!/bots/logs/.keep
 
 bots/tmp/*
 !bots/tmp/.keep
