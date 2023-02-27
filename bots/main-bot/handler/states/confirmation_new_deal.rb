@@ -5,8 +5,10 @@ def creating_deal(seller:, custumer:)
     currency:   $user.currency,
     amount:     $user.amount,
     conditions: $user.conditions,
-    hash_name:  $user.hash_name
+    # hash_name:  $user.hash_name
   )
+  deal.update(hash_name:get_hash_name(deal.id))
+  deal
 end
 
 def send_request_to_userTo(action)
@@ -17,7 +19,7 @@ def send_request_to_userTo(action)
     )
 end
 #################################################################################
-# first request
+# создание сделки и отправка на подтверждение seller || custumer
 def deal_request
   return if !get_userTo() # defining $userTo
 
@@ -36,3 +38,10 @@ def deal_request
   to_start()
 end
 #######################################################################################
+
+def get_hash_name id
+  drow_zeros_amount = 5 - id.to_s.size
+  hash_name = id.to_s
+  drow_zeros_amount.times {hash_name = '0' + hash_name}
+  hash_name = "N" + hash_name
+end

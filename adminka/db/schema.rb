@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_25_163450) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_26_105353) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -95,8 +95,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_25_163450) do
     t.string "hash_name"
   end
 
+  create_table "wallets", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.json "state", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_wallets_on_user_id"
+  end
+
   add_foreign_key "deals", "users"
   add_foreign_key "disputes", "deals"
   add_foreign_key "taken_disputes", "disputes"
   add_foreign_key "taken_disputes", "moderators"
+  add_foreign_key "wallets", "users"
 end

@@ -100,7 +100,8 @@ def finishing_dispute
         comment = $mes.text
 
         # $mod.pushed_action реакция на платёжку
-        dispute.deal.update(status:'finished')
+        
+        dispute.deal.update(status:'finished by_moderator')
         dispute.update(
             comment_by_moderator:comment,
             status:'finished',

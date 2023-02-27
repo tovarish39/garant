@@ -34,6 +34,7 @@ require_relative '../main-bot/handler/states/start'
 require_relative '../main-bot/handler/states/userTo'
 require_relative '../main-bot/handler/states/deals_menu'
 require_relative '../main-bot/handler/states/await_dispute_text'
+require_relative '../main-bot/handler/states/profile'
 
 # контроллер
 require_relative '../main-bot/controller'

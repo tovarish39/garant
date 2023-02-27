@@ -1,6 +1,6 @@
 def create_dispute
     deal = Deal.find($user.cur_deal_id)
-    deal.update(status:'dispute_request')
+    deal.update(status:'dispute request')
     dispute = deal.disputes.create(
         created_by_user_id:$user.id,
         content:$mes.text.strip,

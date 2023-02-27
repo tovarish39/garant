@@ -11,7 +11,7 @@ end
 
 def valid_deal_status?
   deal = get_deal()
-  return false if deal.status == 'dispute_request' 
+  return false if deal.status == 'dispute request' 
   true
 end
 
@@ -59,6 +59,14 @@ def bot_has_userTo?
   $user.update(userTo_id:$userTo.id) if $userTo
   $userTo # User || nil
 end
+
+
+
+def empty_wallet? = $user.wallet.empty?
+
+
+
+
 ####################################################
 # sub
 

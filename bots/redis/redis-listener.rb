@@ -22,9 +22,10 @@ begin
   redis.subscribe(:one, :two) do |on|
     on.message do |channel, message|
       $logger.info("channel, message = #{channel} : #{message}")
-# из main-bot открыли спор
+# seller || custumer открыл спор
       if channel == 'one'
         dispute = Dispute.find(message)
+        # проверка модераторов по white list
         avalible_morerator_telegram_ids = AvalibleModerator.all.map(&:telegram_id) 
 
         Telegram::Bot::Client.run(token_mod) do |bot|
@@ -43,7 +44,6 @@ begin
                 IM_dispute_offer.call(dispute, lg)
               )
               dispute.sended_to_moderators << {moderator.id => mes['result']['message_id'].to_s}
-              # dispute.status = 'pending_moderator'
               dispute.save
             end
           end

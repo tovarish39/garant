@@ -59,9 +59,12 @@ B_userTo_sub_info = ->(user = $userTo){
   text << "<b>#{B_username[$lg]  }</b> @#{user.username   } \n" if user.username   != '-'
   text << "<b>#{B_user_id[$lg]   }</b> #{user.telegram_id}\n"
 }
+
+B_deal_hash = ->(model = $user){
+"<b>#{B_deal_id[$lg]}</b> ##{model.hash_name}"}
+
 B_deal_data = ->(model = $user){
-%{<b>#{B_deal_id[$lg]}</b> ##{model.hash_name}
-<b>#{B_conditions[$lg]}</b>
+%{<b>#{B_conditions[$lg]}</b>
 #{model.conditions}
 #{B_amount_deal[$lg]  } <b>#{model.amount} #{model.currency}</b>
 #{B_comission[$lg]    } <b>999</b>
@@ -90,6 +93,7 @@ B_request_deal_self = ->{
 B_request_deal_to_userTo = ->(action){
 %{#{B_offer[$lg]} #{action} #{B_from[$lg]}
 #{B_userTo_sub_info.call($user)}
+#{B_deal_hash.call}
 #{B_deal_data.call}}}
 
 B_reject_deal_userTo = ->{
@@ -125,6 +129,7 @@ B_none_deals_active = {Ru=>'У вас нет активных сделок', En=
 B_deal_full_info = ->(deal) {
 %{#{B_deal_with[$lg]} <b>#{B_user[$lg]}</b>
 #{B_userTo_sub_info.call}
+#{B_deal_hash.call}
 #{B_deal_data.call(deal)}}}
 
 
@@ -164,4 +169,17 @@ B_dispute_comment = -> (dispute){
     text += "проиграли и Покупатель и Продавец из-за нарушения"
   end
     text += "\n комментарий модератора @#{dispute.moderator.username} :\n #{dispute.comment_by_moderator}"
+}
+
+# 👨‍💼Профиль👨‍💼
+B_empty_wallet = {Ru=>'Кошелёк пуст',    En=>'Wallet is empty'}
+B_wallet       = {Ru=>'У вас в кошельке',En=>'In your wallet'}
+B_view_wallet = {
+wallet_content = B_wallet[$lg] + "\n\n"
+$user.wallet.each do |obj|
+  currency = obj.keys.first
+  amount   = obj.values.first
+  wallet_content += "#{currency} -- #{amount} \n"
+end
+wallet_content
 }

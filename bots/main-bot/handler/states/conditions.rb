@@ -1,7 +1,8 @@
 def to_confirming
   $user.update(
     conditions:$mes.text,
-    hash_name:get_uniq_hash_name()
+# делается после создания сделки 
+    # hash_name:get_uniq_hash_name()
   )
   $userTo = User.find($user.userTo_id)
 

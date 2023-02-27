@@ -3,8 +3,9 @@ def searching_user model_name = 'User'
   model.find_by(telegram_id:$mes.from.id)
 end
 
-def create_user model_name = 'User'
+def create_user model_name = 'User' # создание User || Moderator
   model = model_name == 'User' ? User : Moderator
+  model.wallet.create if model_name == 'User' 
   model.create(
       telegram_id: $mes.from.id,
       username:    $mes.from.username   || '-',

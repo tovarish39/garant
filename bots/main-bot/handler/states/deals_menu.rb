@@ -9,10 +9,10 @@ def deals_active
       dispute_active = deal.disputes.select {|dispute| dispute.status == 'in_process'}
       moderator_username = dispute_active.first.moderator.username if dispute_active.size != 0
 
-      if  deal.status == 'payed_by_custumer' || deal.status == 'dispute_request'
+      if  deal.status == 'payed by_custumer' || deal.status == 'dispute request'
         if    deal.seller_id == $user.id # self seller
             $userTo = User.find(deal.custumer_id)
-            if   deal.status == 'dispute_request'
+            if   deal.status == 'dispute request'
                 text = B_deal_full_info.call(deal) + "\n\n" + B_opened_disput[$lg]
                 text << " \n ведёт @#{moderator_username}" if moderator_username
                 send_message(text)
@@ -23,7 +23,7 @@ def deals_active
             end
         elsif deal.custumer_id == $user.id # self custumer
             $userTo = User.find(deal.seller_id)
-            if  deal.status == 'dispute_request'
+            if  deal.status == 'dispute request'
                 text = B_deal_full_info.call(deal) + "\n\n" + B_opened_disput[$lg]
                 text << " \n ведёт @#{moderator_username}" if moderator_username
                 send_message(text)

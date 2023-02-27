@@ -42,6 +42,8 @@ T_finish_deal    = {Ru=>'Подтвердить',           En=>'Confirm'}
 T_seller_lost    = {Ru=>'Продавец проиграл',     En=>'Seller lost'}
 T_custumer_lost  = {Ru=>'Покупатель проиграл',   En=>'Custumer lost'}
 T_all_lost       = {Ru=>'Нарушение',             En=>'Nonobservance'}
+T_extract        = {Ru=>'Вывести',               En=>'Extract'}
+
 
 # # reply_markupsnonobservance
 RM_start = -> {RM.call([T_find_user[$lg], T_deals[$lg], [T_profile[$lg], T_help[$lg]]])}
@@ -97,6 +99,11 @@ IB_seller_lost   = ->(dispute, lg){IB.call(T_seller_lost[lg],   "Decision/seller
 IB_custumer_lost = ->(dispute, lg){IB.call(T_custumer_lost[lg], "Decision/custumer_lost/#{dispute.id}")}
 IB_all_lost      = ->(dispute, lg){IB.call(T_all_lost[lg],      "Decision/all_lost/#{dispute.id}")}
 
+# 👨‍💼Профиль👨‍💼
+IB_extract       = -> {IB.call(T_extract[$lg],  "Extract")}
+
+
+
 # # inline markups
 IM_languages               =     IM.call([[IB_rus, IB_en]])
 IM_offer_deal              = ->{ IM.call([ IB_offer_deal.call, IB_comments.call, IB_disputes.call])}
@@ -111,8 +118,8 @@ IM_accept_reject           = ->{ IM.call([ IB_accept.call, IB_reject.call])}
 # 🤝Сделки🤝 
 IM_seller_deal_actions     = ->(deal){IM.call([IB_cancel_exist_deal.call(deal), IB_open_disput.call(deal)])}
 IM_custumer_deal_actions   = ->(deal){IM.call([IB_finish_deal.call(deal), IB_open_disput.call(deal)])}
-
-
+# 👨‍💼Профиль👨‍💼
+IM_extract                 = ->(IM.call(IB.call(IB_extract.call)))
 
 
 

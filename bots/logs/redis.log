@@ -11,3 +11,6 @@ I date=[2023-02-25 22:20:59] pid=#8428 message='channel, message = two : 1:push-
 I date=[2023-02-25 22:24:41] pid=#8901 message='channel, message = one : 2'
 I date=[2023-02-25 22:24:53] pid=#8901 message='channel, message = two : 2:get-dispute'
 I date=[2023-02-25 22:25:09] pid=#8901 message='channel, message = two : 2:push-decision'
+I date=[2023-02-26 11:23:55] pid=#14950 message='channel, message = one : 2'
+I date=[2023-02-26 11:24:09] pid=#14950 message='channel, message = two : 2:get-dispute'
+I date=[2023-02-26 11:24:24] pid=#14950 message='channel, message = two : 2:push-decision'
