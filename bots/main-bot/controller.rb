@@ -38,8 +38,8 @@ class Event_bot
 # 🤝Сделки🤝      
       transitions if: ->{text_mes?(T_deals[$lg])},     after: :to_deals_menu, to: :deals_menu
 # 👨‍💼Профиль👨‍💼
-      # transitions if: ->{text_mes?(T_profile[$lg]) &&  empty_wallet?()},   after: :empty_wallet,  to: :start
-      # transitions if: ->{text_mes?(T_profile[$lg]) && !empty_wallet?()},   after: :view_profile,  to: :profile
+      transitions if: ->{text_mes?(T_profile[$lg]) &&  empty_wallet?()},   after: :empty_wallet,  to: :start
+      transitions if: ->{text_mes?(T_profile[$lg]) && !empty_wallet?()},   after: :view_profile,  to: :profile
     end
 
 
@@ -56,15 +56,15 @@ class Event_bot
     event :userTo_action, from: :userTo do
 ## UserToActions
       transitions if: ->{data?(/Comments/)},               after: :view_comments,             to: :userTo   # "Отзывы"
-      transitions if: ->{data?(/Disputs/)},                after: :view_type_of_disputs,      to: :userTo   # "Комментарии"
+      transitions if: ->{data?(/Disputes/)},                after: :view_type_of_disputes,      to: :userTo   # "Комментарии"
       transitions if: ->{data?(/Offer_deal/)},             after: :choose_role,               to: :userTo   # "Предложить сделку"
-## Comments TypeOfDisputs Role CurrencyTypes     
+## Comments TypeOfDisputes Role CurrencyTypes     
       transitions if: ->{data?(/Back_to userTo_actions/)}, after: :to_userTo_from_back,       to: :userTo   # "Назад"
-## TypeOfDisputs
-      transitions if: ->{data?(/Won_disputs/)},            after: :disputs_won,               to: :userTo   # "Выйграл споров"
-      transitions if: ->{data?(/Lost_disputs/)},           after: :disputs_lost,              to: :userTo   # "Проиграл споров"
-## WonDisputs LostDisputs
-      transitions if: ->{data?(/Back_to TypeOfDisputs/)},  after: :back_to_type_of_disputs,   to: :userTo   # "Назад"
+## TypeOfDisputes
+      transitions if: ->{data?(/Won_disputes/)},            after: :disputes_won,               to: :userTo   # "Выйграл споров"
+      transitions if: ->{data?(/Lost_disputes/)},           after: :disputes_lost,              to: :userTo   # "Проиграл споров"
+## WonDisputes LostDisputes
+      transitions if: ->{data?(/Back_to TypeOfDisputes/)},  after: :back_to_type_of_disputes,   to: :userTo   # "Назад"
 ## Role
       transitions if: ->{data?(/I`m custumer/)},           after: :choose_type_of_currencies, to: :userTo   # "Я покупатель"
       transitions if: ->{data?(/I`m seller/)},             after: :choose_type_of_currencies, to: :userTo   # "Я продавец"
@@ -92,18 +92,39 @@ class Event_bot
 # 🤝Сделки🤝 
 ## :deals_menu
     event :deals_menu_action, from: :deals_menu do
-      transitions if: ->{data?(/Open_disput/) &&  valid_deal_status?() }, after: :to_await_disput_text, to: :await_disput_text # "Открыть спор" 
-      transitions if: ->{data?(/Open_disput/) && !valid_deal_status?() }, after: :invalid_deal_status,  to: :deals_menu        # "Открыть спор" уже была кем-то нажата
+## 'Открыть спор'
+      transitions if:->{data?(/Open_disput/) &&  valid_deal_status?() }, after: :to_await_disput_text,          to: :await_disput_text # 
+      transitions if:->{data?(/Open_disput/) && !valid_deal_status?() }, after: :invalid_deal_status,           to: :deals_menu        # "Открыть спор" уже была кем-то нажата
+## 'Подтвердить'  покупатель подтверждает окончание сделки, средства переводятся продавцу
+      transitions if:->{data?(/Finish_deal/) &&  valid_deal_status?() }, after: :finishing_deal_by_custumer,    to: :deals_menu # 
+      transitions if:->{data?(/Finish_deal/) && !valid_deal_status?() }, after: :invalid_deal_status,           to: :deals_menu # "Открыть спор" уже была кем-то нажата
+## "Отменить сделку" продавец отменяет сделку, средства переводятся покупателю
+      transitions if:->{data?(/Cancel_exist_deal/) &&  valid_deal_status?() }, after: :canceled_deal_by_seller, to: :deals_menu # 
+      transitions if:->{data?(/Cancel_exist_deal/) && !valid_deal_status?() }, after: :invalid_deal_status,     to: :deals_menu # "Открыть спор" уже была кем-то нажата
 
-
-      transitions if: ->{text_mes?(T_active[$lg]) && !user_has_active_deals?()}, after: :user_hasnot_active_deals, to: :deals_menu # "Активные"(сделки) -> отсутствуют
-      transitions if: ->{text_mes?(T_active[$lg]) &&  user_has_active_deals?()}, after: :deals_active,             to: :deals_menu # "Активные"(сделки) -> присутствуют
+## 'Активные'
+      transitions if:->{text_mes?(T_active[$lg])        && !has_active_deals?()},   after: :hasnot_active_deals,  to: :deals_menu #  отсутствуют
+      transitions if:->{text_mes?(T_active[$lg])        &&  has_active_deals?()},   after: :view_active_deals,    to: :deals_menu # присутствуют
+## 'Запросы'
+      transitions if:->{text_mes?(T_requests[$lg])      && !has_request_deals?()},  after: :hasnot_request_deals, to: :deals_menu #  отсутствуют
+      transitions if:->{text_mes?(T_requests[$lg])      &&  has_request_deals?()},  after: :view_request_deals,   to: :deals_menu # присутствуют
+## 'Споры'
+      transitions if:->{text_mes?(T_disputes[$lg])      &&  !has_dispute_deals?()}, after: :hasnot_dispute_deals, to: :deals_menu #  отсутствуют
+      transitions if:->{text_mes?(T_disputes[$lg])      &&   has_dispute_deals?()}, after: :view_dispute_deals,   to: :deals_menu # присутствуют
+## 'История сделок'
+      transitions if:->{text_mes?(T_deals_history[$lg]) && !has_history_deals?()},  after: :hasnot_history_deals, to: :deals_menu #  отсутствуют 
+      transitions if:->{text_mes?(T_deals_history[$lg]) &&  has_history_deals?()},  after: :view_history_deals,   to: :deals_menu # присутствуют
+## 'Назад'
       transitions if: ->{text_mes?(T_back[$lg])},                                after: :to_start,                 to: :start      # "Назад"
     end
 ## :await_disput_text
     event :await_disput_text_action, from: :await_disput_text do
       transitions if: ->{text_mes?(T_cancel[$lg])}, after: :to_deals_menu,  to: :deals_menu # "Отмена" создания спора
       transitions if: ->{text_mes?()},              after: :create_dispute, to: :deals_menu # создание спора
+    end
+## :profile
+    event :profile_action, from: :profile do
+      transitions if:->{data?('Extract')}, after: :extracting, to: :start
     end
 
   end
@@ -114,7 +135,7 @@ class Event_bot
      $logger.info("AFTER  ; user_id = #{$user.id} ; new_state  = #{self.aasm.current_state}" )
   end
   def log_error exception
-    # fail
+#     fail
     $logger.error("ERR ; user_id = #{$user.id} #{exception}")
   end
 
@@ -123,7 +144,6 @@ end
 
 
 def handle
-
   $user = searching_user()              # поиск ранее созданного user
   $user ||= create_user() unless $user  # создание user, если не найден
   $lg = $user.lang

@@ -93,8 +93,10 @@ def handle_decision
 end
 
 def finishing_dispute
+# отменить решение о споре на моменте комментария
     if    text_mes?('Отмена')
         view_menu()
+# завершение спора после комментария
     elsif text_mes?()
         dispute = Dispute.find($mod.current_dispute_id)
         comment = $mes.text
@@ -119,7 +121,7 @@ def finishing_dispute
     )
 end
 
-def list_my_closed_disputs
+def list_my_closed_disputes
     finished_disputes = $mod.disputes.where(status:'finished')
     if finished_disputes.size != 0
         finished_disputes.each do |dispute|

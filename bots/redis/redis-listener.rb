@@ -66,7 +66,24 @@ begin
             end
 # модератор определил решение по спору
           elsif action == 'push-decision'
-            desision = dispute.dispute_lost
+            decision = dispute.dispute_lost # 'seller_lost' || 'custumer_lost' || 'all_lost'
+            currency = dispute.deal.currency
+            amount   = dispute.deal.amount
+
+            case decision
+            when 'seller_lost'
+              custumers_wallet = custumer.wallet
+              # обновление кошелька Покупателя в определённой валюте
+              custumers_wallet.key?(currency) ? custumers_wallet[currency] = custumers_wallet[currency].to_i + amount.to_i : custumers_wallet[currency] = amount.to_i
+              custumer.save
+            when 'custumer_lost'
+              sellers_wallet = seller.wallet
+              # обновление кошелька Покупателя в определённой валюте
+              sellers_wallet.key?(currency) ? sellers_wallet[currency] = sellers_wallet[currency].to_i + amount.to_i : sellers_wallet[currency] = amount.to_i
+              seller.save
+            when 'all_lost'
+            end
+
             text = "Спор по сделке ##{dispute.deal.hash_name} \n"
             text += B_dispute_comment.call(dispute)
             [seller, custumer].each {|to_user| send_message_to_user(text, to_user)} 

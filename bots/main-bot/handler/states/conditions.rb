@@ -1,13 +1,15 @@
 def to_confirming
   $user.update(
     conditions:$mes.text,
-# делается после создания сделки 
+# делается после создания сделки # 
     # hash_name:get_uniq_hash_name()
   )
   $userTo = User.find($user.userTo_id)
 
-
-  send_message(B_confirm_deal.call, IM_confirm_deal.call)
+  self_role = $user.role
+  with = 'with_custumer' if self_role == "I`m seller" 
+  with = 'with_seller'   if self_role == "I`m custumer" 
+  send_message(B_confirm_deal.call(with), IM_confirm_deal.call)
 end
 
 def get_uniq_hash_name

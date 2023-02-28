@@ -5,13 +5,12 @@ end
 
 def create_user model_name = 'User' # создание User || Moderator
   model = model_name == 'User' ? User : Moderator
-  model.wallet.create if model_name == 'User' 
   model.create(
-      telegram_id: $mes.from.id,
-      username:    $mes.from.username   || '-',
-      first_name:  $mes.from.first_name || '-',
-      last_name:   $mes.from.last_name  || '-'
-    )
+    telegram_id: $mes.from.id,
+    username:    $mes.from.username   || '-',
+    first_name:  $mes.from.first_name || '-',
+    last_name:   $mes.from.last_name  || '-'
+  )
 end
 
 def update_user_info_if_changed model_name = 'User'

@@ -7,7 +7,7 @@ end
 def accepting_deal
   deal_id = $mes.data.split('/').last
   $deal = Deal.find(deal_id)
-
+return unless $deal.status =~ /accessed/ || $deal.status.nil?
   self_seller   = $user.id == $deal.seller_id
   self_custumer = $user.id == $deal.custumer_id
 
@@ -39,10 +39,10 @@ def rejecting_deal
   
   if    self_seller
     $userTo = User.find($deal.custumer_id)
-    $deal.update(status:"rejected by_seller; user_id='#{$user.id}'")
+    $deal.update(status:"rejected by_seller")
   elsif self_custumer
     $userTo = User.find($deal.seller_id)
-    $deal.update(status:"rejected by_custumer; user_id='#{$user.id}'")
+    $deal.update(status:"rejected by_custumer")
   end
   
   send_message_to_user(B_reject_deal_userTo.call, $userTo)

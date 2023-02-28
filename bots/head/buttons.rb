@@ -23,10 +23,10 @@ T_cancel         = {Ru=>'Отмена',                En=>'Cancel'}
 T_select_contact = {Ru=>'Выбрать контакт',       En=>'Select contact'}
 T_offer_deal     = {Ru=>'Предложить сделку',     En=>'Offer a deal'}
 T_comments       = {Ru=>'Отзывы',                En=>'Comments'}
-T_disputs        = {Ru=>'Споры',                 En=>'Disputes'}
+T_disputes       = {Ru=>'Споры',                 En=>'Disputes'}
 T_back           = {Ru=>'Назад',                 En=>'Back'}
-T_wons           = {Ru=>'Выйграл споров',        En=>'Won disputs'}
-T_losts          = {Ru=>'Проиграл споров',       En=>'Lost disputs'}
+T_wons           = {Ru=>'Выйграл споров',        En=>'Won disputes'}
+T_losts          = {Ru=>'Проиграл споров',       En=>'Lost disputes'}
 T_custumer       = {Ru=>'Я покупатель',          En=>'I`m custumer'}
 T_seller         = {Ru=>'Я продавец',            En=>'I`m seller'}
 T_cryptos        = {Ru=>'Криптовалюта',          En=>'Crypto-Currencies'}
@@ -35,6 +35,7 @@ T_confirm        = {Ru=>'Подтвердить',           En=>'Confirm'}
 T_accept         = {Ru=>'Принять',               En=>'Accept'}
 T_reject         = {Ru=>'Отклонить',             En=>'Reject'}
 T_active         = {Ru=>'Активные',              En=>'Active'}
+T_requests       = {Ru=>'Запросы',               En=>'Requests'}
 T_deals_history  = {Ru=>'История сделок',        En=>'Deals history'}
 T_cancel_deal    = {Ru=>'Отменить сделку',       En=>'Cancel deal'}
 T_open_disput    = {Ru=>'Открыть спор',          En=>'Open disput'}
@@ -52,7 +53,7 @@ RM_cancel_to_start         = ->{ RM.call( [
    T_cancel[$lg]   
 ])}
 # :deals_menu
-RM_deals_menu =->{RM.call([T_active[$lg], T_deals_history[$lg], T_disputs[$lg], T_back[$lg]])}
+RM_deals_menu =->{RM.call([T_active[$lg], T_requests[$lg], T_disputes[$lg], T_deals_history[$lg], T_back[$lg]])}
 RM_cancel     =->{RM.call([T_cancel[$lg]])}
 
 # # inline buttons
@@ -63,14 +64,14 @@ IB_en                     =    IB.call( En,                        "#{En}/Выб
 # UserToActions
 IB_offer_deal             = -> {IB.call( T_offer_deal[$lg],      "Offer_deal/#{            $userTo.id}")}
 IB_comments               = -> {IB.call( T_comments[$lg],        "Comments/#{              $userTo.id}")}
-IB_disputes               = -> {IB.call( T_disputs[$lg],        "Disputs/#{               $userTo.id}")}
-# TypeOfDisputs Comments Role CurrenyTypes
+IB_disputes               = -> {IB.call( T_disputes[$lg],        "Disputes/#{               $userTo.id}")}
+# TypeOfDisputes Comments Role CurrenyTypes
 IB_back_to_userTo_actions = -> {IB.call( T_back[$lg],            "Back_to userTo_actions/#{$userTo.id}")}
-# TypeOfDisputsB_await_username_or_id
-IB_won_disputs             = ->{IB.call("#{T_wons[$lg]} (111)",  "Won_disputs/#{           $userTo.id}")}
-IB_lost_disputs            = ->{IB.call("#{T_losts[$lg]} (111)", "Lost_disputs/#{          $userTo.id}")}
-# WonDisputs LostDisputs
-IB_back_to_type_of_disputs = ->{IB.call( T_back[$lg],            "Back_to TypeOfDisputs/#{ $userTo.id}")}
+# TypeOfDisputesB_await_username_or_id
+IB_won_disputes             = ->{IB.call("#{T_wons[$lg]} (111)",  "Won_disputes/#{           $userTo.id}")}
+IB_lost_disputes            = ->{IB.call("#{T_losts[$lg]} (111)", "Lost_disputes/#{          $userTo.id}")}
+# WonDisputes LostDisputes
+IB_back_to_type_of_disputes = ->{IB.call( T_back[$lg],            "Back_to TypeOfDisputes/#{ $userTo.id}")}
 # Role
 IB_custumer               = ->{IB.call(T_custumer[$lg],          "I`m custumer/#{          $userTo.id}")}
 IB_seller                 = ->{IB.call(T_seller[$lg],            "I`m seller/#{            $userTo.id}")}
@@ -86,9 +87,9 @@ IB_cancel_new_deal        = ->{IB.call(T_cancel[$lg],            "Cancel_new_dea
 
 # 🤝Сделки🤝 
 ## :deals_active
-IB_cancel_exist_deal = ->(deal){IB.call(T_cancel_deal[$lg],       "Cancel_exist_deal/#{deal.id}")}
-IB_open_disput       = ->(deal){IB.call(T_open_disput[$lg],       "Open_disput/#{      deal.id}")}
-IB_finish_deal       = ->(deal){IB.call(T_finish_deal[$lg],       "Finish_deal/#{      deal.id}")}
+IB_cancel_exist_deal = ->{IB.call(T_cancel_deal[$lg],       "Cancel_exist_deal/#{$deal.id}")}
+IB_open_disput       = ->{IB.call(T_open_disput[$lg],       "Open_disput/#{      $deal.id}")}
+IB_finish_deal       = ->{IB.call(T_finish_deal[$lg],       "Finish_deal/#{      $deal.id}")}
 
 # from_all_states
 IB_accept                 = ->{IB.call(T_accept[$lg],            "Accept/#{$deal.id}")}
@@ -108,18 +109,18 @@ IB_extract       = -> {IB.call(T_extract[$lg],  "Extract")}
 IM_languages               =     IM.call([[IB_rus, IB_en]])
 IM_offer_deal              = ->{ IM.call([ IB_offer_deal.call, IB_comments.call, IB_disputes.call])}
 IM_back_to_userTo_actions  = ->{ IM.call(  IB_back_to_userTo_actions.call)}
-IM_type_of_disputs         = ->{ IM.call([ IB_won_disputs.call, IB_lost_disputs.call, IB_back_to_userTo_actions.call])}
-IM_back_to_type_of_disputs = ->{ IM.call(  IB_back_to_type_of_disputs.call)}
+IM_type_of_disputes         = ->{ IM.call([ IB_won_disputes.call, IB_lost_disputes.call, IB_back_to_userTo_actions.call])}
+IM_back_to_type_of_disputes = ->{ IM.call(  IB_back_to_type_of_disputes.call)}
 IM_role                    = ->{ IM.call([ IB_custumer.call, IB_seller.call, IB_back_to_userTo_actions.call])}
 IM_currency_types          = ->{ IM.call( [IB_crypto_currencies.call, IB_another.call, IB_back_to_userTo_actions.call])}
 IM_cryptocurrencies        = ->{ IM.call(  IB_Arr_cryptocurrecues.call << IB_back_to_CurrencyTypes.call)}
 IM_confirm_deal            = ->{ IM.call([ IB_cofirm_new_deal.call, IB_cancel_new_deal.call])}
 IM_accept_reject           = ->{ IM.call([ IB_accept.call, IB_reject.call])}
 # 🤝Сделки🤝 
-IM_seller_deal_actions     = ->(deal){IM.call([IB_cancel_exist_deal.call(deal), IB_open_disput.call(deal)])}
-IM_custumer_deal_actions   = ->(deal){IM.call([IB_finish_deal.call(deal), IB_open_disput.call(deal)])}
+IM_seller_deal_actions     = ->{IM.call([IB_cancel_exist_deal.call, IB_open_disput.call])}
+IM_custumer_deal_actions   = ->{IM.call([IB_finish_deal.call, IB_open_disput.call])}
 # 👨‍💼Профиль👨‍💼
-IM_extract                 = ->{IM.call(IB.call(IB_extract.call))}
+IM_extract                 = ->{IM.call(IB_extract.call)}
 
 
 

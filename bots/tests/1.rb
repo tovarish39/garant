@@ -1,7 +1,9 @@
-# $LOAD_PATH << './'
-# require '2'
-puts Dir.home()
-# Benchmark.ips do |x|
-#   x.report("constant") { HASH2[:foo] }
-#   x.report("regular")  { HASH1["foo"]}
-# end
+deals1 = [1, 2]
+deals2 = [3, 4]
+
+def first_method current_deals
+    yield(current_deals, 'action')
+end
+
+
+first_method (deals1) {|current_deals, action| deals1.each {puts action}}

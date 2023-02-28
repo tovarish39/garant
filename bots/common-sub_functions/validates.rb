@@ -1,18 +1,41 @@
 ## 🤝Сделки🤝
-def user_has_active_deals?
-  $deals_active = Deal.where("seller_id = '#{$user.id}' or custumer_id = '#{$user.id}'")
-  $deals_active.size == 0 ? false : true
+def get_all_deals_for_user
+  Deal.where("seller_id = '#{$user.id}' or custumer_id = '#{$user.id}'")
 end
 
-def get_deal
-  deal_id = $mes.data.split('/').last
-  Deal.find(deal_id)
+def has_active_deals? # status: =~ /payed/ 
+  deals = get_all_deals_for_user()
+  $active_deals = deals.filter {|deal| deal.status =~ /payed/ }
+  $active_deals.empty? ? false : true
 end
+
+def has_request_deals? # status: == nil || =~ /accessed/
+  all_deals_for_user = get_all_deals_for_user()  
+  $request_deals = all_deals_for_user.filter {|deal| deal.status =~ /accessed/ || deal.status.nil? }
+  $request_deals.empty? ? false : true
+end
+
+def has_dispute_deals? # status: =~ /dispute/
+  all_deals_for_user = get_all_deals_for_user()  
+  $dispute_deals = all_deals_for_user.filter {|deal| deal.status =~ /dispute/ }
+  $dispute_deals.empty? ? false : true
+end
+
+def has_history_deals? # statuses: == 'rejected by_seller' || == 'rejected by_custumer' || == 'canceled by_custumer' || == 'finished by_custumer' || == 'finished by_moderator'
+  all_deals_for_user = get_all_deals_for_user()  
+  $history_deals = all_deals_for_user.filter do |deal| 
+    status = deal.status
+    status =~ /rejected/ || status =~ /canceled/ || status =~ /finished/ 
+  end
+  $history_deals.empty? ? false : true
+end
+
+
 
 def valid_deal_status?
   deal = get_deal()
-  return false if deal.status == 'dispute request' 
-  true
+  return true if deal.status =~ /payed/ 
+  false
 end
 
 def  click_main_button_or_start? 

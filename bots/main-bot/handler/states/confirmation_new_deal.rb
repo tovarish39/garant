@@ -21,7 +21,7 @@ end
 #################################################################################
 # создание сделки и отправка на подтверждение seller || custumer
 def deal_request
-  return if !get_userTo() # defining $userTo
+  return if !get_userTo_from_new_deal() # defining $userTo
 
   self_seller   = $user.role == 'I`m seller'
   self_custumer = $user.role == 'I`m custumer'
