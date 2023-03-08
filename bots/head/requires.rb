@@ -17,27 +17,27 @@ require_relative '../../adminka/app/models/user'
 
 
 
-require_relative '../main-bot/handler/init'            # обработка при любом обращении к боту
-require_relative '../main-bot/handler/from_all_states' # обработка при согласовании deal
+require_relative '../bot-main/handler/init'            # обработка при любом обращении к боту
+require_relative '../bot-main/handler/from_all_states' # обработка при согласовании deal
 require_relative '../common-sub_functions/bot-shortcuts'
 require_relative '../common-sub_functions/logs'
 require_relative '../common-sub_functions/sub'
 require_relative '../common-sub_functions/validates'
 
 # states 
-require_relative '../main-bot/handler/states/await_userTo_data'
-require_relative '../main-bot/handler/states/conditions'
-require_relative '../main-bot/handler/states/confirmation_new_deal'
-require_relative '../main-bot/handler/states/currency_amount'
-require_relative '../main-bot/handler/states/language'
-require_relative '../main-bot/handler/states/start'
-require_relative '../main-bot/handler/states/userTo'
-require_relative '../main-bot/handler/states/deals_menu'
-require_relative '../main-bot/handler/states/await_dispute_text'
-require_relative '../main-bot/handler/states/profile'
+require_relative '../bot-main/handler/states/await_userTo_data'
+require_relative '../bot-main/handler/states/conditions'
+require_relative '../bot-main/handler/states/confirmation_new_deal'
+require_relative '../bot-main/handler/states/currency_amount'
+require_relative '../bot-main/handler/states/language'
+require_relative '../bot-main/handler/states/start'
+require_relative '../bot-main/handler/states/userTo'
+require_relative '../bot-main/handler/states/deals_menu'
+require_relative '../bot-main/handler/states/await_dispute_text'
+require_relative '../bot-main/handler/states/profile'
 
 # контроллер
-require_relative '../main-bot/controller'
+require_relative '../bot-main/controller'
 
 # константы
 require_relative './constants'

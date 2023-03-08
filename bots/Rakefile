@@ -1,7 +1,7 @@
 desc "starting polling main bot && starting pollint moderator bot && starting redis-listener"
 task :start do
-  main_path      = "#{__dir__}/main-bot/polling-main.rb"
-  moderator_path = "#{__dir__}/mod-bot/polling-mod.rb"
+  main_path      = "#{__dir__}/bot-main/polling-main.rb"
+  moderator_path = "#{__dir__}/bot-moderator/polling-mod.rb"
   redis_path     = "#{__dir__}/redis/redis-listener.rb"
   system("(bundle exec ruby #{main_path} &)")      # main bot
   system("(bundle exec ruby #{moderator_path} &)") # moderabor bot
