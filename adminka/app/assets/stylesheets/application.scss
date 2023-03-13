@@ -1,0 +1,133 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+$bg-nav: #0e1621;
+$bg-main: #242f3d;
+
+body{
+   margin: 0;
+   #Home{
+      display: flex;
+   }
+}
+
+#Nav {
+   background-color: $bg-nav;
+   width: 20%;
+   min-height: 100vh;
+
+   .Nav-button{
+      background-color: #242f3d;
+      margin: 2vw 2vw 1vw 2vw;
+      padding: 1vw;
+      font-size: 1.5vw;
+      border-radius: 3px;
+      color: white;
+      font-weight: bold;
+      border: none;
+      width: 19vw;
+      text-align: left;
+   }
+}
+
+#Main{
+   background-color: $bg-main;
+   width: 80%;
+
+   #Bar{
+      width: 71vw;
+      background-color: #4b5562;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 0 0 5px 5px;
+      padding: 1vw;
+      display: flex;
+      justify-content: space-between;
+
+      #BarButton{
+         color: white;
+         border: none;
+         font-size: 2vw;
+         padding-left: 2vw;
+         padding-right: 2vw;
+         // border-radius: 0.5vw;
+         font-weight: bold;
+         height: 4vw; 
+         display: inline-flex;
+         align-items: center;
+         justify-content: space-evenly;      
+      }
+
+      .b-r-all{border-radius: 0.5vw;}
+      .b-r-left{border-radius: 0.5vw 0 0 0.5vw;}
+      .b-r-right{border-radius: 0 0.5vw 0.5vw 0;}
+
+      .locked{background-color: #687689;}
+      .unlocked{background-color: $bg-nav;}
+      #BarButton.unlocked:hover{font-size: 2.1vw;}
+
+      #ToggleLanguage{
+         display: flex;
+      }
+   }
+
+   #Table{
+      width: 73vw;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 2vw;
+
+      color: white;
+      font-size: 1.5vw;
+
+      #TableHead, #TableBody{
+         display: grid;
+         grid-template-columns: repeat(4, 1fr);
+         justify-items: stretch;
+         align-items: stretch;
+      }
+
+      #TableHead{
+         background-color: $bg-nav;
+         border-radius: 0.5vw 0.5vw 0 0;
+         border: 1px solid #909090;
+      }
+      #TableBody{
+         background-color: #3c424b;
+         font-size: 1vw;
+         border-radius: 0 0 0.5vw 0.5vw;
+         border-width: 0 1px 1px 1px;
+         border-style: solid;
+         border-color: #909090;
+      }
+
+      .cell{
+         padding: 0.5vw;
+         word-break: break-all;
+         display: inline-flex;
+         align-items: center;
+         justify-content: space-around;
+      }
+
+      .cell:not(:nth-child(4n + 4)) {
+         border-right: 1px dashed #626262;
+      }
+
+      .cell-body:not(:nth-last-child(-n+4)){
+         border-bottom: 1px solid #626262;
+      }
+
+  }
+}

@@ -35,3 +35,5 @@ bots/logs/*
 
 bots/tmp/*
 !bots/tmp/.keep
+
+adminka/node_modules/*
