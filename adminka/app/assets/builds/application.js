@@ -1660,7 +1660,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState4(initialState) {
+          function useState5(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -2462,7 +2462,7 @@
           exports.useMemo = useMemo3;
           exports.useReducer = useReducer;
           exports.useRef = useRef3;
-          exports.useState = useState4;
+          exports.useState = useState5;
           exports.useSyncExternalStore = useSyncExternalStore2;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2958,9 +2958,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React13 = require_react();
+          var React12 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React13.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React12.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -4565,7 +4565,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React13.Children.forEach(props.children, function(child) {
+                  React12.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -13012,7 +13012,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React13.Component().refs;
+          var emptyRefsObject = new React12.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -27998,14 +27998,14 @@
   addEventListener("turbo:before-fetch-request", encodeMethodIntoRequestBody);
 
   // app/javascript/components/index.jsx
-  var import_react10 = __toESM(require_react());
+  var import_react9 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // app/javascript/components/App.jsx
-  var import_react9 = __toESM(require_react());
+  var import_react8 = __toESM(require_react());
 
   // app/javascript/routes/index.jsx
-  var import_react8 = __toESM(require_react());
+  var import_react7 = __toESM(require_react());
 
   // node_modules/react-router-dom/dist/index.js
   var React2 = __toESM(require_react());
@@ -28062,6 +28062,16 @@
   function invariant(value, message) {
     if (value === false || value === null || typeof value === "undefined") {
       throw new Error(message);
+    }
+  }
+  function warning(cond, message) {
+    if (!cond) {
+      if (typeof console !== "undefined")
+        console.warn(message);
+      try {
+        throw new Error(message);
+      } catch (e) {
+      }
     }
   }
   function createKey() {
@@ -28498,16 +28508,6 @@
     }
     return pathname.slice(startIndex) || "/";
   }
-  function warning(cond, message) {
-    if (!cond) {
-      if (typeof console !== "undefined")
-        console.warn(message);
-      try {
-        throw new Error(message);
-      } catch (e) {
-      }
-    }
-  }
   function resolvePath(to, fromPathname) {
     if (fromPathname === void 0) {
       fromPathname = "/";
@@ -28597,20 +28597,6 @@
 
   // node_modules/react-router/dist/index.js
   var React = __toESM(require_react());
-  function _extends2() {
-    _extends2 = Object.assign ? Object.assign.bind() : function(target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
-        for (var key in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key)) {
-            target[key] = source[key];
-          }
-        }
-      }
-      return target;
-    };
-    return _extends2.apply(this, arguments);
-  }
   function isPolyfill(x, y) {
     return x === y && (x !== 0 || 1 / x === 1 / y) || x !== x && y !== y;
   }
@@ -28724,6 +28710,20 @@
   var RouteErrorContext = /* @__PURE__ */ React.createContext(null);
   if (true) {
     RouteErrorContext.displayName = "RouteError";
+  }
+  function _extends2() {
+    _extends2 = Object.assign ? Object.assign.bind() : function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    return _extends2.apply(this, arguments);
   }
   function useHref(to, _temp) {
     let {
@@ -28864,7 +28864,7 @@
     });
     if (true) {
       true ? warning(parentRoute || matches != null, 'No routes matched location "' + location2.pathname + location2.search + location2.hash + '" ') : void 0;
-      true ? warning(matches == null || matches[matches.length - 1].route.element !== void 0, 'Matched leaf route at location "' + location2.pathname + location2.search + location2.hash + '" does not have an element. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.') : void 0;
+      true ? warning(matches == null || matches[matches.length - 1].route.element !== void 0 || matches[matches.length - 1].route.Component !== void 0, 'Matched leaf route at location "' + location2.pathname + location2.search + location2.hash + '" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.') : void 0;
     }
     let renderedMatches = _renderMatches(matches && matches.map((match) => Object.assign({}, match, {
       params: Object.assign({}, parentParams, match.params),
@@ -28895,7 +28895,7 @@
     }
     return renderedMatches;
   }
-  function DefaultErrorElement() {
+  function DefaultErrorComponent() {
     let error = useRouteError();
     let message = isRouteErrorResponse(error) ? error.status + " " + error.statusText : error instanceof Error ? error.message : JSON.stringify(error);
     let stack = error instanceof Error ? error.stack : null;
@@ -28912,7 +28912,7 @@
     if (true) {
       devInfo = /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("p", null, "\u{1F4BF} Hey developer \u{1F44B}"), /* @__PURE__ */ React.createElement("p", null, "You can provide a way better UX than this when your app throws errors by providing your own\xA0", /* @__PURE__ */ React.createElement("code", {
         style: codeStyles
-      }, "errorElement"), " props on\xA0", /* @__PURE__ */ React.createElement("code", {
+      }, "ErrorBoundary"), " prop on\xA0", /* @__PURE__ */ React.createElement("code", {
         style: codeStyles
       }, "<Route>")));
     }
@@ -28968,7 +28968,7 @@
       children
     } = _ref;
     let dataRouterContext = React.useContext(DataRouterContext);
-    if (dataRouterContext && dataRouterContext.static && dataRouterContext.staticContext && match.route.errorElement) {
+    if (dataRouterContext && dataRouterContext.static && dataRouterContext.staticContext && (match.route.errorElement || match.route.ErrorBoundary)) {
       dataRouterContext.staticContext._deepestRenderedBoundaryId = match.route.id;
     }
     return /* @__PURE__ */ React.createElement(RouteContext.Provider, {
@@ -28995,16 +28995,36 @@
     }
     return renderedMatches.reduceRight((outlet, match, index) => {
       let error = match.route.id ? errors == null ? void 0 : errors[match.route.id] : null;
-      let errorElement = dataRouterState ? match.route.errorElement || /* @__PURE__ */ React.createElement(DefaultErrorElement, null) : null;
-      let matches2 = parentMatches.concat(renderedMatches.slice(0, index + 1));
-      let getChildren = () => /* @__PURE__ */ React.createElement(RenderedRoute, {
-        match,
-        routeContext: {
-          outlet,
-          matches: matches2
+      let errorElement = null;
+      if (dataRouterState) {
+        if (match.route.ErrorBoundary) {
+          errorElement = /* @__PURE__ */ React.createElement(match.route.ErrorBoundary, null);
+        } else if (match.route.errorElement) {
+          errorElement = match.route.errorElement;
+        } else {
+          errorElement = /* @__PURE__ */ React.createElement(DefaultErrorComponent, null);
         }
-      }, error ? errorElement : match.route.element !== void 0 ? match.route.element : outlet);
-      return dataRouterState && (match.route.errorElement || index === 0) ? /* @__PURE__ */ React.createElement(RenderErrorBoundary, {
+      }
+      let matches2 = parentMatches.concat(renderedMatches.slice(0, index + 1));
+      let getChildren = () => {
+        let children = outlet;
+        if (error) {
+          children = errorElement;
+        } else if (match.route.Component) {
+          children = /* @__PURE__ */ React.createElement(match.route.Component, null);
+        } else if (match.route.element) {
+          children = match.route.element;
+        }
+        return /* @__PURE__ */ React.createElement(RenderedRoute, {
+          match,
+          routeContext: {
+            outlet,
+            matches: matches2
+          },
+          children
+        });
+      };
+      return dataRouterState && (match.route.ErrorBoundary || match.route.errorElement || index === 0) ? /* @__PURE__ */ React.createElement(RenderErrorBoundary, {
         location: dataRouterState.location,
         component: errorElement,
         error,
@@ -29023,6 +29043,7 @@
   })(DataRouterHook || (DataRouterHook = {}));
   var DataRouterStateHook;
   (function(DataRouterStateHook3) {
+    DataRouterStateHook3["UseBlocker"] = "useBlocker";
     DataRouterStateHook3["UseLoaderData"] = "useLoaderData";
     DataRouterStateHook3["UseActionData"] = "useActionData";
     DataRouterStateHook3["UseRouteError"] = "useRouteError";
@@ -29119,31 +29140,31 @@
       state = null,
       key = "default"
     } = locationProp;
-    let location2 = React.useMemo(() => {
+    let locationContext = React.useMemo(() => {
       let trailingPathname = stripBasename(pathname, basename);
       if (trailingPathname == null) {
         return null;
       }
       return {
-        pathname: trailingPathname,
-        search,
-        hash,
-        state,
-        key
+        location: {
+          pathname: trailingPathname,
+          search,
+          hash,
+          state,
+          key
+        },
+        navigationType
       };
-    }, [basename, pathname, search, hash, state, key]);
-    true ? warning(location2 != null, '<Router basename="' + basename + '"> is not able to match the URL ' + ('"' + pathname + search + hash + '" because it does not start with the ') + "basename, so the <Router> won't render anything.") : void 0;
-    if (location2 == null) {
+    }, [basename, pathname, search, hash, state, key, navigationType]);
+    true ? warning(locationContext != null, '<Router basename="' + basename + '"> is not able to match the URL ' + ('"' + pathname + search + hash + '" because it does not start with the ') + "basename, so the <Router> won't render anything.") : void 0;
+    if (locationContext == null) {
       return null;
     }
     return /* @__PURE__ */ React.createElement(NavigationContext.Provider, {
       value: navigationContext
     }, /* @__PURE__ */ React.createElement(LocationContext.Provider, {
       children,
-      value: {
-        location: location2,
-        navigationType
-      }
+      value: locationContext
     }));
   }
   function Routes(_ref5) {
@@ -29183,14 +29204,17 @@
         id: element.props.id || treePath.join("-"),
         caseSensitive: element.props.caseSensitive,
         element: element.props.element,
+        Component: element.props.Component,
         index: element.props.index,
         path: element.props.path,
         loader: element.props.loader,
         action: element.props.action,
         errorElement: element.props.errorElement,
-        hasErrorBoundary: element.props.errorElement != null,
+        ErrorBoundary: element.props.ErrorBoundary,
+        hasErrorBoundary: element.props.ErrorBoundary != null || element.props.errorElement != null,
         shouldRevalidate: element.props.shouldRevalidate,
-        handle: element.props.handle
+        handle: element.props.handle,
+        lazy: element.props.lazy
       };
       if (element.props.children) {
         route.children = createRoutesFromChildren(element.props.children, treePath);
@@ -29740,51 +29764,58 @@
   }
 
   // app/javascript/components/Home/Home.jsx
-  var import_react7 = __toESM(require_react());
+  var import_react6 = __toESM(require_react());
 
   // app/javascript/components/Home/Nav/Nav.jsx
   var import_react = __toESM(require_react());
   var Nav_default = () => /* @__PURE__ */ import_react.default.createElement("div", { id: "Nav" }, /* @__PURE__ */ import_react.default.createElement("button", { className: "Nav-button current-Nav-button" }, "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0438"));
 
   // app/javascript/components/Home/Main/Main.jsx
-  var import_react6 = __toESM(require_react());
+  var import_react5 = __toESM(require_react());
 
   // app/javascript/components/Home/Main/Bar/Bar.jsx
-  var import_react4 = __toESM(require_react());
+  var import_react3 = __toESM(require_react());
 
   // app/javascript/components/Home/Main/Bar/BarButton.jsx
   var import_react2 = __toESM(require_react());
-  var BarButton_default = ({ text, border }) => /* @__PURE__ */ import_react2.default.createElement("div", { id: "BarButton", className: `unlocked ${border}` }, text);
-
-  // app/javascript/components/Home/Main/Bar/ToggleLanguage.jsx
-  var import_react3 = __toESM(require_react());
-  var ToggleLanguage_default = () => /* @__PURE__ */ import_react3.default.createElement("div", { id: "ToggleLanguage" }, /* @__PURE__ */ import_react3.default.createElement(BarButton_default, { text: "Ru", border: "b-r-left" }), /* @__PURE__ */ import_react3.default.createElement(BarButton_default, { text: "En", border: "b-r-right" }));
+  var BarButton_default = ({ text, classs, onLanguageClick }) => /* @__PURE__ */ import_react2.default.createElement("div", { id: "BarButton", onClick: onLanguageClick, className: classs }, text);
 
   // app/javascript/components/Home/Main/Bar/Bar.jsx
-  var Bar_default = () => /* @__PURE__ */ import_react4.default.createElement("div", { id: "Bar" }, /* @__PURE__ */ import_react4.default.createElement(BarButton_default, { text: "\u0420\u0430\u0441\u0441\u044B\u043B\u043A\u0430", border: "b-r-all" }), /* @__PURE__ */ import_react4.default.createElement(ToggleLanguage_default, null));
+  var Bar_default = ({ lang, onLanguageClick }) => {
+    const try_selected_ru = lang == "Ru" ? "selected" : "not-selected";
+    const try_selected_en = lang == "En" ? "selected" : "not-selected";
+    return /* @__PURE__ */ import_react3.default.createElement("div", { id: "Bar" }, /* @__PURE__ */ import_react3.default.createElement(BarButton_default, { text: "\u0420\u0430\u0441\u0441\u044B\u043B\u043A\u0430", classs: "b-r-all" }), /* @__PURE__ */ import_react3.default.createElement("div", { id: "ToggleLanguage" }, /* @__PURE__ */ import_react3.default.createElement(BarButton_default, { text: "Ru", onLanguageClick, classs: `b-r-left  ${try_selected_ru}` }), /* @__PURE__ */ import_react3.default.createElement(BarButton_default, { text: "En", onLanguageClick, classs: `b-r-right ${try_selected_en}` })));
+  };
 
   // app/javascript/components/Home/Main/Table/Table.jsx
-  var import_react5 = __toESM(require_react());
-  var Table_default = () => /* @__PURE__ */ import_react5.default.createElement("div", { id: "Table" }, /* @__PURE__ */ import_react5.default.createElement("div", { id: "TableHead" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "cell" }, "telegram_id"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "cell" }, "username"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "cell" }, "\u0434\u0430\u0442\u0430 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "cell" }, "\u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0441\u0434\u0435\u043B\u043E\u043A")), /* @__PURE__ */ import_react5.default.createElement("div", { id: "TableBody" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "cell cell-body" }, "12312312312311111111111111111111111111111111111111111111"), /* @__PURE__ */ import_react5.default.createElement("span", { className: "cell cell-body" }, "username"), /* @__PURE__ */ import_react5.default.createElement("span", { className: "cell cell-body" }, "123123123123132"), /* @__PURE__ */ import_react5.default.createElement("span", { className: "cell cell-body" }, "123"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "cell cell-body" }, "123123123123"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "cell cell-body" }, "username"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "cell cell-body" }, "123123123123132"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "cell cell-body" }, "123"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "cell cell-body" }, "12312312312311111111111111111111111111111111111111111111"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "cell cell-body" }, "username"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "cell cell-body" }, "123123123123132"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "cell cell-body" }, "123"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "cell cell-body" }, "123123123123"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "cell cell-body" }, "username"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "cell cell-body" }, "123123123123132"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "cell cell-body" }, "123")));
+  var import_react4 = __toESM(require_react());
+  var Table_default = () => /* @__PURE__ */ import_react4.default.createElement("div", { id: "Table" }, /* @__PURE__ */ import_react4.default.createElement("div", { id: "TableHead" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell" }, "telegram_id"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell" }, "username"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell" }, "\u0434\u0430\u0442\u0430 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell" }, "\u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0441\u0434\u0435\u043B\u043E\u043A")), /* @__PURE__ */ import_react4.default.createElement("div", { id: "TableBody" }, /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell cell-body" }, "12312312312311111111111111111111111111111111111111111111"), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell cell-body" }, "username"), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell cell-body" }, "123123123123132"), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell cell-body" }, "123"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell cell-body" }, "123123123123"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell cell-body" }, "username"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell cell-body" }, "123123123123132"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell cell-body" }, "123"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell cell-body" }, "12312312312311111111111111111111111111111111111111111111"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell cell-body" }, "username"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell cell-body" }, "123123123123132"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell cell-body" }, "123"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell cell-body" }, "123123123123"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell cell-body" }, "username"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell cell-body" }, "123123123123132"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell cell-body" }, "123")));
 
   // app/javascript/components/Home/Main/Main.jsx
-  var Main_default = () => /* @__PURE__ */ import_react6.default.createElement("div", { id: "Main" }, /* @__PURE__ */ import_react6.default.createElement(Bar_default, null), /* @__PURE__ */ import_react6.default.createElement(Table_default, null));
+  var Main_default = () => {
+    const [language, setLanguage] = (0, import_react5.useState)("Ru");
+    function handleLanguageClick(e) {
+      const selectedLanguage = e.target.innerHTML;
+      setLanguage(selectedLanguage);
+    }
+    return /* @__PURE__ */ import_react5.default.createElement("div", { id: "Main" }, /* @__PURE__ */ import_react5.default.createElement(Bar_default, { lang: language, onLanguageClick: handleLanguageClick }), /* @__PURE__ */ import_react5.default.createElement(Table_default, null));
+  };
 
   // app/javascript/components/Home/Home.jsx
-  var Home_default = () => /* @__PURE__ */ import_react7.default.createElement("div", { id: "Home" }, /* @__PURE__ */ import_react7.default.createElement(Nav_default, null), /* @__PURE__ */ import_react7.default.createElement(Main_default, null));
+  var Home_default = () => /* @__PURE__ */ import_react6.default.createElement("div", { id: "Home" }, /* @__PURE__ */ import_react6.default.createElement(Nav_default, null), /* @__PURE__ */ import_react6.default.createElement(Main_default, null));
 
   // app/javascript/routes/index.jsx
-  var routes_default = /* @__PURE__ */ import_react8.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react8.default.createElement(Routes, null, /* @__PURE__ */ import_react8.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react8.default.createElement(Home_default, null) })));
+  var routes_default = /* @__PURE__ */ import_react7.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react7.default.createElement(Routes, null, /* @__PURE__ */ import_react7.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react7.default.createElement(Home_default, null) })));
 
   // app/javascript/components/App.jsx
-  var App_default = (props) => /* @__PURE__ */ import_react9.default.createElement(import_react9.default.Fragment, null, routes_default);
+  var App_default = (props) => /* @__PURE__ */ import_react8.default.createElement(import_react8.default.Fragment, null, routes_default);
 
   // app/javascript/components/index.jsx
   document.addEventListener("turbo:load", () => {
     const root = (0, import_client.createRoot)(
       document.body.appendChild(document.createElement("div"))
     );
-    root.render(/* @__PURE__ */ import_react10.default.createElement(App_default, null));
+    root.render(/* @__PURE__ */ import_react9.default.createElement(App_default, null));
   });
 })();
 /*! Bundled license information:
@@ -29837,7 +29868,7 @@ react-dom/cjs/react-dom.development.js:
 
 @remix-run/router/dist/router.js:
   (**
-   * @remix-run/router v1.3.3
+   * @remix-run/router v1.4.0
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -29849,7 +29880,7 @@ react-dom/cjs/react-dom.development.js:
 
 react-router/dist/index.js:
   (**
-   * React Router v6.8.2
+   * React Router v6.9.0
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -29861,7 +29892,7 @@ react-router/dist/index.js:
 
 react-router-dom/dist/index.js:
   (**
-   * React Router DOM v6.8.2
+   * React Router DOM v6.9.0
    *
    * Copyright (c) Remix Software Inc.
    *

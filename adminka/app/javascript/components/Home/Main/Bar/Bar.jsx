@@ -1,10 +1,17 @@
 import React from "react";
 import BarButton from "./BarButton";
-import ToggleLanguage from "./ToggleLanguage";
 
-export default () => (
+export default ({lang, onLanguageClick}) => {
+    const try_selected_ru =  (lang == 'Ru') ? 'selected' : 'not-selected'
+    const try_selected_en =  (lang == 'En') ? 'selected' : 'not-selected'
+
+    return (
     <div id="Bar">
-        <BarButton text={'Рассылка'} border={'b-r-all'}/>
-        <ToggleLanguage />
+        <BarButton text={'Рассылка'} classs={'b-r-all'}/>
+        
+        <div id="ToggleLanguage">
+            <BarButton text={'Ru'} onLanguageClick={onLanguageClick} classs={`b-r-left  ${try_selected_ru}`}/>
+            <BarButton text={'En'} onLanguageClick={onLanguageClick} classs={`b-r-right ${try_selected_en}`}/>
+        </div>
     </div>
-)
+)}

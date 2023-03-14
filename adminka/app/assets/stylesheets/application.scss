@@ -76,7 +76,9 @@ body{
 
       .locked{background-color: #687689;}
       .unlocked{background-color: $bg-nav;}
-      #BarButton.unlocked:hover{font-size: 2.1vw;}
+      .selected{background-color: $bg-nav;}
+      .not-selected{background-color: #8b8b89;}
+      #BarButton.not-selected:hover{font-size: 2.1vw;}
 
       #ToggleLanguage{
          display: flex;
