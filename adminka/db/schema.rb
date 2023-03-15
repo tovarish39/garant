@@ -10,15 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_28_193825) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_15_162440) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "avalible_moderators", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "telegram_id"
-  end
 
   create_table "deals", force: :cascade do |t|
     t.integer "seller_id"
@@ -58,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_193825) do
     t.string "pushed_IB_mes_id"
     t.string "current_dispute_id"
     t.string "pushed_action"
+    t.string "rights_status", default: "inactive"
   end
 
   create_table "taken_disputes", force: :cascade do |t|
@@ -81,7 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_193825) do
     t.string "last_name"
     t.string "telegram_id"
     t.string "lang"
-    t.string "state", default: "start"
+    t.string "aasm_state", default: "start"
     t.string "userTo_id"
     t.string "role"
     t.string "currency"
@@ -94,6 +89,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_193825) do
     t.string "cur_deal_id"
     t.string "hash_name"
     t.json "wallet", default: {}
+    t.string "with_bot_status", default: "member"
   end
 
   add_foreign_key "deals", "users"

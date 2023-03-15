@@ -17,6 +17,9 @@ $bg-nav: #0e1621;
 $bg-main: #242f3d;
 
 body{
+   font-family: Arial;
+   font-weight: bold;
+   color: white;
    margin: 0;
    #Home{
       display: flex;
@@ -28,7 +31,7 @@ body{
    width: 20%;
    min-height: 100vh;
 
-   .Nav-button{
+   button{
       background-color: #242f3d;
       margin: 2vw 2vw 1vw 2vw;
       padding: 1vw;
@@ -37,9 +40,17 @@ body{
       color: white;
       font-weight: bold;
       border: none;
-      width: 19vw;
+      width: 16vw;
       text-align: left;
    }
+   .active{
+      width: 18vw;
+      display: block;
+   }
+   :not(.active):hover{
+      opacity: 0.7;
+   }
+
 }
 
 #Main{
@@ -56,13 +67,28 @@ body{
       display: flex;
       justify-content: space-between;
 
+      #rightSideBar, #leftSideBar {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+      }
+
+      #search-user{
+         background-color: #0e1621;
+         border: 1px white solid;
+         border-radius: 5px;
+         font-size: 1.5vw;
+         color: white;
+         padding-left: 2vw; 
+         padding-right: 2vw;
+       }
+
       #BarButton{
          color: white;
          border: none;
          font-size: 1.5vw;
          padding-left: 2vw;
          padding-right: 2vw;
-         // border-radius: 0.5vw;
          font-weight: bold;
          height: 2vw; 
          display: inline-flex;
@@ -70,20 +96,22 @@ body{
          justify-content: space-evenly;      
       }
 
-      .b-r-all{border-radius: 0.5vw;}
-      .b-r-left{border-radius: 0.5vw 0 0 0.5vw;}
+      .b-r-all  {border-radius: 0.5vw;}
+      .b-r-left {border-radius: 0.5vw 0 0 0.5vw;}
       .b-r-right{border-radius: 0 0.5vw 0.5vw 0;}
-
-      .lock{background-color: #687689;}
-      .unlock{background-color: $bg-nav;}
+      .lock     {background-color: #687689;}
+      .unlock   {background-color: $bg-nav;}
       .unlock:hover{opacity: 0.3;}
-     
+      .w-10{width: 10vw;}
+      .w-2 {width:  2vw;}
+      .m-b-1{margin-bottom: 1vw;}
+
       .selected{background-color: $bg-nav;}
       .not-selected{background-color: #8b8b89;}
       #BarButton.not-selected:hover{opacity: 0.3;}
-
       #ToggleLanguage{
          display: flex;
+         margin-bottom: 1vw;
       }
    }
 
@@ -94,15 +122,16 @@ body{
       margin-top: 2vw;
 
       color: white;
-      font-size: 1.5vw;
 
       #TableHead, .user-row{
-         display: grid;
-         grid-template-columns: 0.07fr 1fr 1fr 1fr 1fr; //repeat(4, 1fr);
+         display: grid;  
          justify-items: stretch;
          align-items: stretch;
       }
 
+      .col-5{grid-template-columns: 0.07fr 1fr 1fr 1fr 1fr;}//repeat(4, 1fr);}
+      .fr6{grid-template-columns: repeat(6, 1fr);}
+      
       #TableHead{
          background-color: $bg-nav;
          border-radius: 0.5vw 0.5vw 0 0;
@@ -110,13 +139,13 @@ body{
       }
       .user-row{
          background-color: #3c424b;
-         font-size: 0.8vw;
          border-width: 0 1px 1px 1px;
          border-style: solid;
          border-color: #909090;
       }
       .user-row:last-child{border-radius: 0 0 0.5vw 0.5vw;}
-
+      .f-s-07{font-size: 0.7vw;}
+      .f-s-08{font-size: 0.8vw;}
 
       .cell{
          padding: 0.3vw;

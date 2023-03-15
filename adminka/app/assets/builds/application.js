@@ -1660,7 +1660,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState5(initialState) {
+          function useState6(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1672,7 +1672,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect5(create, deps) {
+          function useEffect6(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -2454,7 +2454,7 @@
           exports.useContext = useContext3;
           exports.useDebugValue = useDebugValue2;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect5;
+          exports.useEffect = useEffect6;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
@@ -2462,7 +2462,7 @@
           exports.useMemo = useMemo3;
           exports.useReducer = useReducer;
           exports.useRef = useRef3;
-          exports.useState = useState5;
+          exports.useState = useState6;
           exports.useSyncExternalStore = useSyncExternalStore2;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2958,9 +2958,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React13 = require_react();
+          var React20 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React13.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React20.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -4565,7 +4565,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React13.Children.forEach(props.children, function(child) {
+                  React20.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -13012,7 +13012,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React13.Component().refs;
+          var emptyRefsObject = new React20.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -34447,14 +34447,14 @@
   addEventListener("turbo:before-fetch-request", encodeMethodIntoRequestBody);
 
   // app/javascript/components/index.jsx
-  var import_react10 = __toESM(require_react());
+  var import_react17 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // app/javascript/components/App.jsx
-  var import_react9 = __toESM(require_react());
+  var import_react16 = __toESM(require_react());
 
   // app/javascript/routes/index.jsx
-  var import_react8 = __toESM(require_react());
+  var import_react15 = __toESM(require_react());
 
   // node_modules/react-router-dom/dist/index.js
   var React2 = __toESM(require_react());
@@ -36212,66 +36212,121 @@
     }, [callback, capture]);
   }
 
-  // app/javascript/components/Home/Home.jsx
+  // app/javascript/components/Users/Users.jsx
   var import_react7 = __toESM(require_react());
 
-  // app/javascript/components/Home/Nav/Nav.jsx
+  // app/javascript/components/Nav.jsx
   var import_react = __toESM(require_react());
-  var Nav_default = () => /* @__PURE__ */ import_react.default.createElement("div", { id: "Nav" }, /* @__PURE__ */ import_react.default.createElement("button", { className: "Nav-button current-Nav-button" }, "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0438"));
+  var Nav_default = () => {
+    const current_path = window.location.pathname;
+    return /* @__PURE__ */ import_react.default.createElement("div", { id: "Nav" }, /* @__PURE__ */ import_react.default.createElement(NavLink, { to: "/" }, /* @__PURE__ */ import_react.default.createElement(
+      "button",
+      {
+        className: current_path == "/" ? "active" : ""
+      },
+      "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0438"
+    )), /* @__PURE__ */ import_react.default.createElement(NavLink, { to: "/moderators" }, /* @__PURE__ */ import_react.default.createElement(
+      "button",
+      {
+        className: current_path == "/moderators" ? "active" : ""
+      },
+      "\u041C\u043E\u0434\u0435\u0440\u0430\u0442\u043E\u0440\u044B"
+    )), /* @__PURE__ */ import_react.default.createElement(NavLink, { to: "/deals" }, /* @__PURE__ */ import_react.default.createElement(
+      "button",
+      {
+        className: current_path == "/deals" ? "active" : ""
+      },
+      "\u0421\u0434\u0435\u043B\u043A\u0438"
+    )));
+  };
 
-  // app/javascript/components/Home/Main/Main.jsx
+  // app/javascript/components/Users/Main.jsx
   var import_react6 = __toESM(require_react());
   var import_jquery2 = __toESM(require_jquery());
 
-  // app/javascript/components/Home/Main/Bar/Bar.jsx
+  // app/javascript/components/Users/Bar.jsx
   var import_react3 = __toESM(require_react());
 
-  // app/javascript/components/Home/Main/Bar/BarButton.jsx
+  // app/javascript/components/Users/BarButton.jsx
   var import_react2 = __toESM(require_react());
   var BarButton_default = ({ text, classs, onClick }) => /* @__PURE__ */ import_react2.default.createElement("div", { id: "BarButton", onClick, className: classs }, text);
 
-  // app/javascript/components/Home/Main/Bar/Bar.jsx
-  var Bar_default = ({ lang, onLanguageClick, checkedList, onSendButtonClick }) => {
+  // app/javascript/components/Users/Bar.jsx
+  var Bar_default = ({ lang, onLanguageClick, checkedList, onSendButtonClick, usersStatus, onStatusClick, onChangeSearching }) => {
     const trySelectedRu = lang == "Ru" ? "selected" : "not-selected";
     const trySelectedEn = lang == "En" ? "selected" : "not-selected";
+    const trySelectedMember = usersStatus == "member" ? "selected" : "not-selected";
+    const trySelectedKicked = usersStatus == "kicked" ? "selected" : "not-selected";
     const stateSendButton = checkedList.length > 0 ? "unlock" : "lock";
-    return /* @__PURE__ */ import_react3.default.createElement("div", { id: "Bar" }, /* @__PURE__ */ import_react3.default.createElement(
+    return /* @__PURE__ */ import_react3.default.createElement("div", { id: "Bar" }, /* @__PURE__ */ import_react3.default.createElement("div", { id: "leftSideBar" }, /* @__PURE__ */ import_react3.default.createElement(
       BarButton_default,
       {
         text: "\u0420\u0430\u0441\u0441\u044B\u043B\u043A\u0430",
-        classs: `b-r-all ${stateSendButton}`,
+        classs: `b-r-all w-10 m-b-1 ${stateSendButton}`,
         onClick: onSendButtonClick
       }
-    ), /* @__PURE__ */ import_react3.default.createElement("div", { id: "ToggleLanguage" }, /* @__PURE__ */ import_react3.default.createElement(
-      BarButton_default,
-      {
-        text: "Ru",
-        onClick: onLanguageClick,
-        classs: `b-r-left  ${trySelectedRu}`
-      }
     ), /* @__PURE__ */ import_react3.default.createElement(
+      "input",
+      {
+        id: "search-user",
+        className: "w-10",
+        type: "text",
+        placeholder: "\u041F\u043E\u0438\u0441\u043A...",
+        onChange: onChangeSearching
+      }
+    )), /* @__PURE__ */ import_react3.default.createElement("div", { id: "rightSideBar" }, /* @__PURE__ */ import_react3.default.createElement("div", { id: "ToggleLanguage" }, /* @__PURE__ */ import_react3.default.createElement(
       BarButton_default,
       {
         text: "En",
         onClick: onLanguageClick,
-        classs: `b-r-right ${trySelectedEn}`
+        classs: `b-r-left w-2 ${trySelectedEn}`
       }
-    )));
+    ), /* @__PURE__ */ import_react3.default.createElement(
+      BarButton_default,
+      {
+        text: "Ru",
+        onClick: onLanguageClick,
+        classs: `b-r-right w-2  ${trySelectedRu}`
+      }
+    )), /* @__PURE__ */ import_react3.default.createElement("div", { id: "ToggleStatus" }, /* @__PURE__ */ import_react3.default.createElement(
+      BarButton_default,
+      {
+        text: "\u0410\u043A\u0442\u0438\u0432\u043D\u044B\u0435",
+        onClick: onStatusClick,
+        classs: `b-r-left w-10  ${trySelectedMember}`
+      }
+    ), /* @__PURE__ */ import_react3.default.createElement(
+      BarButton_default,
+      {
+        text: "\u041D\u0435 \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0435",
+        onClick: onStatusClick,
+        classs: `b-r-right w-10 ${trySelectedKicked}`
+      }
+    ))));
   };
 
-  // app/javascript/components/Home/Main/Table/Table.jsx
+  // app/javascript/components/Users/Table.jsx
   var import_react4 = __toESM(require_react());
   function getFriendlyDateFormat(string) {
     const date = new Date(string);
     return `(${date.getMinutes()}:${date.getHours()})   ${date.getDay()}-${date.toLocaleString("en-us", { month: "short", year: "numeric" })}`;
   }
-  var Table_default = ({ users, lang, onCheckboxClick, onGeneralCheckboxClick }) => {
+  var Table_default = ({ users, lang, onCheckboxClick, onGeneralCheckboxClick, usersStatus, searchTemplate }) => {
     const backendFormatLanguage = lang == "Ru" ? "\u0420\u0443\u0441\u0441\u043A\u0438\u0439" : "English";
-    const usersByLanguage = users.filter((user) => user.lang == backendFormatLanguage);
-    return /* @__PURE__ */ import_react4.default.createElement("div", { id: "Table" }, /* @__PURE__ */ import_react4.default.createElement("div", { id: "TableHead" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell" }, /* @__PURE__ */ import_react4.default.createElement("input", { id: "general-checkbox", type: "checkbox", onClick: onGeneralCheckboxClick })), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell" }, "telegram_id"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell" }, "username"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell" }, "\u0434\u0430\u0442\u0430 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell" }, "\u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0441\u0434\u0435\u043B\u043E\u043A")), usersByLanguage.map((user) => /* @__PURE__ */ import_react4.default.createElement("div", { className: "user-row", key: user.id, "data-id": user.id }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell cell-body" }, /* @__PURE__ */ import_react4.default.createElement("input", { className: "user-checkbox", type: "checkbox", "data-id": user.id, onClick: onCheckboxClick })), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell cell-body" }, user.telegram_id), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell cell-body" }, user.username), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell cell-body" }, getFriendlyDateFormat(user.created_at)), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell cell-body" }, user.deals_size))));
+    const is_searchTemplateEmpty = searchTemplate.length == 0;
+    var regex = new RegExp(`^${searchTemplate}`, "i");
+    const filteresUsers = users.filter(
+      (user) => (
+        // фильтр по языку
+        user.lang == backendFormatLanguage && // фильтр по "активный"/"не активный"
+        user.with_bot_status == usersStatus && // фильтр по поисковику  пустой поисковик || совпадение по телеграм ид || совпадение по юзернейму
+        (is_searchTemplateEmpty || regex.test(user.telegram_id) || regex.test(user.username))
+      )
+    );
+    return /* @__PURE__ */ import_react4.default.createElement("div", { id: "Table" }, /* @__PURE__ */ import_react4.default.createElement("div", { id: "TableHead", className: "col-5 f-s-08" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell" }, /* @__PURE__ */ import_react4.default.createElement("input", { id: "general-checkbox", type: "checkbox", onClick: onGeneralCheckboxClick })), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell" }, "telegram_id"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell" }, "username"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell" }, "\u0434\u0430\u0442\u0430 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell" }, "\u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0441\u0434\u0435\u043B\u043E\u043A")), filteresUsers.map((user) => /* @__PURE__ */ import_react4.default.createElement("div", { className: "user-row col-5 f-s-07", key: user.id, "data-id": user.id }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell cell-body" }, /* @__PURE__ */ import_react4.default.createElement("input", { className: "user-checkbox", type: "checkbox", "data-id": user.id, onClick: onCheckboxClick })), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell cell-body" }, user.telegram_id), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell cell-body" }, user.username), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell cell-body" }, getFriendlyDateFormat(user.created_at)), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell cell-body" }, user.deals_size))));
   };
 
-  // app/javascript/components/Home/Main/Form/Form.jsx
+  // app/javascript/components/Users/Form.jsx
   var import_react5 = __toESM(require_react());
   var import_jquery = __toESM(require_jquery());
   var Form_default = ({ onClick, isForm, checkedList, onSubmit }) => {
@@ -36283,12 +36338,14 @@
     return /* @__PURE__ */ import_react5.default.createElement("div", { className: is_active }, /* @__PURE__ */ import_react5.default.createElement("div", { id: "blanket", className: "blanket" }), /* @__PURE__ */ import_react5.default.createElement("div", { id: "form-wrap" }, /* @__PURE__ */ import_react5.default.createElement("form", { style: { top }, action: "/send_message_to_users", method: "post", onSubmit }, /* @__PURE__ */ import_react5.default.createElement("textarea", { name: "message", placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435..." }), /* @__PURE__ */ import_react5.default.createElement("div", { id: "form-buttons" }, /* @__PURE__ */ import_react5.default.createElement("input", { type: "submit", value: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C", className: "form-button" }), /* @__PURE__ */ import_react5.default.createElement("button", { onClick, className: "form-button" }, "\u041E\u0442\u043C\u0435\u043D\u0430")))));
   };
 
-  // app/javascript/components/Home/Main/Main.jsx
+  // app/javascript/components/Users/Main.jsx
   var Main_default = () => {
     const [users, setUsers] = (0, import_react6.useState)([]);
-    const [language, setLanguage] = (0, import_react6.useState)("Ru");
+    const [language, setLanguage] = (0, import_react6.useState)("En");
     const [checkedList, setCheckedList] = (0, import_react6.useState)([]);
     const [isForm, setIsForm] = (0, import_react6.useState)(false);
+    const [withBotStatus, setWithBotStatus] = (0, import_react6.useState)("member");
+    const [searching, setSearching] = (0, import_react6.useState)("");
     (0, import_react6.useEffect)(() => {
       async function getUsers() {
         const res = await fetch("/getUsers");
@@ -36304,13 +36361,27 @@
         return;
       setIsForm(true);
     }
-    function handleLanguageClick(e) {
-      const selectedLanguage = e.target.innerHTML;
-      setLanguage(selectedLanguage);
+    function uncheckGeneralCheckbox() {
       const generalCheckbox = (0, import_jquery2.default)("#general-checkbox");
       if (generalCheckbox.is(":checked"))
         generalCheckbox.trigger("click");
       setCheckedList([]);
+    }
+    function handleChangeSearcging(e) {
+      const str = e.target.value;
+      setSearching(str);
+      setCheckedList([]);
+    }
+    function handleLanguageClick(e) {
+      const selectedLanguage = e.target.innerHTML;
+      setLanguage(selectedLanguage);
+      uncheckGeneralCheckbox();
+    }
+    function handleStatusClick(e) {
+      const selectedStatus = e.target.innerHTML;
+      const formatBotStatus = selectedStatus == "\u0410\u043A\u0442\u0438\u0432\u043D\u044B\u0435" ? "member" : "kicked";
+      setWithBotStatus(formatBotStatus);
+      uncheckGeneralCheckbox();
     }
     function clickingToAllCheckboxes(userCheckboxes, is_checked) {
       const userIds = [];
@@ -36381,15 +36452,20 @@
       Bar_default,
       {
         lang: language,
+        usersStatus: withBotStatus,
         checkedList,
         onLanguageClick: handleLanguageClick,
-        onSendButtonClick: handleSendButtonClick
+        onSendButtonClick: handleSendButtonClick,
+        onStatusClick: handleStatusClick,
+        onChangeSearching: handleChangeSearcging
       }
     ), /* @__PURE__ */ import_react6.default.createElement(
       Table_default,
       {
         users,
         lang: language,
+        searchTemplate: searching,
+        usersStatus: withBotStatus,
         onCheckboxClick: handleCheckboxClick,
         onGeneralCheckboxClick: handleGeneralCheckboxClick
       }
@@ -36404,21 +36480,85 @@
     ));
   };
 
-  // app/javascript/components/Home/Home.jsx
-  var Home_default = () => /* @__PURE__ */ import_react7.default.createElement("div", { id: "Home" }, /* @__PURE__ */ import_react7.default.createElement(Nav_default, null), /* @__PURE__ */ import_react7.default.createElement(Main_default, null));
+  // app/javascript/components/Users/Users.jsx
+  var Users_default = () => /* @__PURE__ */ import_react7.default.createElement("div", { id: "Home" }, /* @__PURE__ */ import_react7.default.createElement(Nav_default, null), /* @__PURE__ */ import_react7.default.createElement(Main_default, null));
+
+  // app/javascript/components/Deals/Deals.jsx
+  var import_react9 = __toESM(require_react());
+
+  // app/javascript/components/Deals/Main.jsx
+  var import_react8 = __toESM(require_react());
+  var Main_default2 = () => {
+    return /* @__PURE__ */ import_react8.default.createElement("div", { id: "Main" });
+  };
+
+  // app/javascript/components/Deals/Deals.jsx
+  var Deals_default = () => /* @__PURE__ */ import_react9.default.createElement("div", { id: "Home" }, /* @__PURE__ */ import_react9.default.createElement(Nav_default, null), /* @__PURE__ */ import_react9.default.createElement(Main_default2, null));
+
+  // app/javascript/components/Moderators/Moderators.jsx
+  var import_react14 = __toESM(require_react());
+
+  // app/javascript/components/Moderators/Main.jsx
+  var import_react13 = __toESM(require_react());
+  var import_jquery3 = __toESM(require_jquery());
+
+  // app/javascript/components/Moderators/Bar.jsx
+  var import_react10 = __toESM(require_react());
+  var Bar_default2 = () => {
+    return /* @__PURE__ */ import_react10.default.createElement("div", { id: "Bar" }, /* @__PURE__ */ import_react10.default.createElement("div", { id: "leftSideBar" }), /* @__PURE__ */ import_react10.default.createElement("div", { id: "rightSideBar" }));
+  };
+
+  // app/javascript/components/Moderators/Table.jsx
+  var import_react11 = __toESM(require_react());
+  var Table_default2 = () => {
+    return /* @__PURE__ */ import_react11.default.createElement("div", { id: "Table" }, /* @__PURE__ */ import_react11.default.createElement("div", { id: "TableHead", className: "fr6 f-s-07" }, /* @__PURE__ */ import_react11.default.createElement("div", { className: "cell" }, "telegram_id"), /* @__PURE__ */ import_react11.default.createElement("div", { className: "cell" }, "username"), /* @__PURE__ */ import_react11.default.createElement("div", { className: "cell" }, "\u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439"), /* @__PURE__ */ import_react11.default.createElement("div", { className: "cell" }, "\u0440\u0430\u0441\u0441\u043C\u043E\u0442\u0440\u0435\u043D\u043D\u044B\u0445 \u0441\u0434\u0435\u043B\u043E\u043A ", /* @__PURE__ */ import_react11.default.createElement("br", null), "\u0432\u0441\u0435\u0433\u043E | \u043F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u044C | \u043F\u0440\u043E\u0434\u0430\u0432\u0435\u0446 | \u0433\u0430\u0440\u0430\u043D\u0442"), /* @__PURE__ */ import_react11.default.createElement("div", { className: "cell" }, "\u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0445 \u0441\u043F\u043E\u0440\u043E\u0432"), /* @__PURE__ */ import_react11.default.createElement("div", { className: "cell" }, "\u0441\u0442\u0430\u0442\u0443\u0441")));
+  };
+
+  // app/javascript/components/Moderators/Form.jsx
+  var import_react12 = __toESM(require_react());
+  var Form_default2 = () => {
+    return /* @__PURE__ */ import_react12.default.createElement("div", { id: "Form" });
+  };
+
+  // app/javascript/components/Moderators/Main.jsx
+  var Main_default3 = () => {
+    const [moderators, setModerators] = (0, import_react13.useState)([]);
+    (0, import_react13.useEffect)(() => {
+      async function getModerators() {
+        const res = await fetch("/getModerators");
+        const body = await res.text();
+        const moderators2 = JSON.parse(body);
+        setModerators(moderators2);
+      }
+      getModerators();
+    }, []);
+    return /* @__PURE__ */ import_react13.default.createElement("div", { id: "Main" }, /* @__PURE__ */ import_react13.default.createElement(
+      Bar_default2,
+      null
+    ), /* @__PURE__ */ import_react13.default.createElement(
+      Table_default2,
+      null
+    ), /* @__PURE__ */ import_react13.default.createElement(
+      Form_default2,
+      null
+    ));
+  };
+
+  // app/javascript/components/Moderators/Moderators.jsx
+  var Moderators_default = () => /* @__PURE__ */ import_react14.default.createElement("div", { id: "Home" }, /* @__PURE__ */ import_react14.default.createElement(Nav_default, null), /* @__PURE__ */ import_react14.default.createElement(Main_default3, null));
 
   // app/javascript/routes/index.jsx
-  var routes_default = /* @__PURE__ */ import_react8.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react8.default.createElement(Routes, null, /* @__PURE__ */ import_react8.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react8.default.createElement(Home_default, null) })));
+  var routes_default = /* @__PURE__ */ import_react15.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react15.default.createElement(Routes, null, /* @__PURE__ */ import_react15.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react15.default.createElement(Users_default, null) }), /* @__PURE__ */ import_react15.default.createElement(Route, { path: "/moderators", element: /* @__PURE__ */ import_react15.default.createElement(Moderators_default, null) }), /* @__PURE__ */ import_react15.default.createElement(Route, { path: "/deals", element: /* @__PURE__ */ import_react15.default.createElement(Deals_default, null) })));
 
   // app/javascript/components/App.jsx
-  var App_default = (props) => /* @__PURE__ */ import_react9.default.createElement(import_react9.default.Fragment, null, routes_default);
+  var App_default = (props) => /* @__PURE__ */ import_react16.default.createElement(import_react16.default.Fragment, null, routes_default);
 
   // app/javascript/components/index.jsx
   document.addEventListener("turbo:load", () => {
     const root = (0, import_client.createRoot)(
       document.body.appendChild(document.createElement("div"))
     );
-    root.render(/* @__PURE__ */ import_react10.default.createElement(App_default, null));
+    root.render(/* @__PURE__ */ import_react17.default.createElement(App_default, null));
   });
 })();
 /*! Bundled license information:

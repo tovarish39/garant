@@ -5,14 +5,24 @@ function getFriendlyDateFormat(string){
     return `(${date.getMinutes()}:${date.getHours()})   ${date.getDay()}-${date.toLocaleString('en-us',{month:'short', year:'numeric'})}`
 }
 
-export default ({users, lang, onCheckboxClick, onGeneralCheckboxClick}) => {
+export default ({users, lang, onCheckboxClick, onGeneralCheckboxClick, usersStatus, searchTemplate}) => {
     const backendFormatLanguage = (lang == 'Ru') ? 'Русский' : 'English'
+    const is_searchTemplateEmpty = searchTemplate.length == 0
+ 
+    var regex = new RegExp(`^${searchTemplate}`, 'i')
 
-    const usersByLanguage = users.filter(user=> user.lang == backendFormatLanguage)
+    const filteresUsers = users.filter(user=> 
+    // фильтр по языку
+        (user.lang == backendFormatLanguage) && 
+    // фильтр по "активный"/"не активный"
+        (user.with_bot_status == usersStatus) &&
+    // фильтр по поисковику  пустой поисковик || совпадение по телеграм ид || совпадение по юзернейму
+        (is_searchTemplateEmpty || regex.test(user.telegram_id) || regex.test(user.username))
+        )
 
     return (
-    <div id="Table" >
-        <div id="TableHead">
+    <div id="Table">
+        <div id="TableHead" className="col-5 f-s-08">
             <div className="cell"><input id="general-checkbox" type="checkbox"  onClick={onGeneralCheckboxClick}/></div>        
             <div className="cell">telegram_id</div>
             <div className="cell">username</div>
@@ -20,8 +30,8 @@ export default ({users, lang, onCheckboxClick, onGeneralCheckboxClick}) => {
             <div className="cell">количество сделок</div>
         </div>
 
-        {usersByLanguage.map(user => (
-            <div className="user-row" key={user.id} data-id={user.id}>
+        {filteresUsers.map(user => (
+            <div className="user-row col-5 f-s-07" key={user.id} data-id={user.id}>
                 <div className="cell cell-body"><input className="user-checkbox" type="checkbox" data-id={user.id} onClick={onCheckboxClick}/></div>        
                 <span className="cell cell-body">{user.telegram_id}</span>
                 <span className="cell cell-body">{user.username}</span>

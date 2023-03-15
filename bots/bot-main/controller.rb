@@ -149,23 +149,28 @@ def handle
   $lg = $user.lang
   update_user_info_if_changed()         # обновление информации о user, если изменил
   $chat_id = $mes.class == MessageClass ? $mes.chat.id : $mes.message.chat.id
-
+  
+# юзер заблокировал|разблокировал бота
+  if    $mes.class == UpdateMember 
+      new_status = $mes.new_chat_member.status
+      $user.update(with_bot_status:new_status) if new_status == 'member'
+      $user.update(with_bot_status:new_status) if new_status == 'kicked'
 # при любом состоянии     не изменяя состояние
-  if    $lg && data?(/Reject/); rejecting_deal() # отклонение    сделки seller || custumer
+  elsif $lg && data?(/Reject/); rejecting_deal() # отклонение    сделки seller || custumer
   elsif $lg && data?(/Accept/); accepting_deal() # подтверждение сделки seller || custumer
 # при определённом состоянии изменяя состояние
   else  
     from_state = case 
-                 when !$lg                          then 'language'  .to_sym  # язык не выбран, перевод в "language" состояние
-                 when click_main_button_or_start?() then 'start'     .to_sym  # кликнута главная кнопка меню или '/start', перевод в "start" состояние
-                 else                                     $user.state.to_sym  # предидущее состояние
+                 when !$lg                          then 'language'       .to_sym  # язык не выбран, перевод в "language" состояние
+                 when click_main_button_or_start?() then 'start'          .to_sym  # кликнута главная кнопка меню или '/start', перевод в "start" состояние
+                 else                                     $user.aasm_state.to_sym  # предидущее состояние
                  end  
 
     St_machine.aasm.current_state = from_state    
     St_machine.method("#{from_state}_action").call # event = #{from_state}_action
 
     new_state = St_machine.aasm.current_state          
-    $user.update(state:new_state)                  # запись нового состояния
+    $user.update(aasm_state:new_state)                  # запись нового состояния
   end
 end
 

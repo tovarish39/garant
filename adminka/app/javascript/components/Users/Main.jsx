@@ -1,16 +1,20 @@
 import React, {useState, useEffect} from "react";
 import $     from 'jquery'
-import Bar   from './Bar/Bar'
-import Table from "./Table/Table";
-import Form  from './Form/Form'
+import Bar   from './Bar'
+import Table from "./Table";
+import Form  from './Form'
 
 
 export default () => {
-    const [users,       setUsers]       = useState([])
-    const [language,    setLanguage]    = useState('Ru')
-    const [checkedList, setCheckedList] = useState([])
-    const [isForm,      setIsForm]      = useState(false)
+    const [users,         setUsers]         = useState([])
+    const [language,      setLanguage]      = useState('En')
+    const [checkedList,   setCheckedList]   = useState([])
+    const [isForm,        setIsForm]        = useState(false)
+    const [withBotStatus, setWithBotStatus] = useState('member')
+    const [searching,     setSearching]     = useState('')
 
+
+ // получение users при старте   
     useEffect(()=>{
         async function getUsers(){ 
             const res   = await fetch('/getUsers')
@@ -30,13 +34,31 @@ export default () => {
     }
 
 
+    function uncheckGeneralCheckbox() {
+        const generalCheckbox = $("#general-checkbox")
+        if (generalCheckbox.is(':checked')) generalCheckbox.trigger('click')
+        setCheckedList([])
+    }
+
+//  поиск по ид и юзернейму
+    function handleChangeSearcging(e){
+        const str = e.target.value
+        setSearching(str)
+        setCheckedList([])
+    }
+
 // кнопка изменения языка
     function handleLanguageClick(e) {
         const selectedLanguage = e.target.innerHTML
         setLanguage(selectedLanguage)
-        const generalCheckbox = $("#general-checkbox")
-        if (generalCheckbox.is(':checked')) generalCheckbox.trigger('click')
-        setCheckedList([])
+        uncheckGeneralCheckbox()
+    }
+// кнопка изменения статуса "Активные"/"Не активные"
+    function handleStatusClick(e){
+        const selectedStatus = e.target.innerHTML
+        const formatBotStatus = (selectedStatus == 'Активные') ? 'member' : 'kicked'
+        setWithBotStatus(formatBotStatus)
+        uncheckGeneralCheckbox()
     }
 
     function clickingToAllCheckboxes(userCheckboxes, is_checked){
@@ -126,13 +148,18 @@ export default () => {
         <div id="Main">
             <Bar 
                 lang={language} 
+                usersStatus={withBotStatus}
                 checkedList={checkedList} 
                 onLanguageClick={handleLanguageClick}
                 onSendButtonClick={handleSendButtonClick}
+                onStatusClick={handleStatusClick}
+                onChangeSearching={handleChangeSearcging}
                 />
             <Table
               users={users}
               lang={language}
+              searchTemplate={searching}
+              usersStatus={withBotStatus}
               onCheckboxClick={handleCheckboxClick}
               onGeneralCheckboxClick={handleGeneralCheckboxClick}
               />

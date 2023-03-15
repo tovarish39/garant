@@ -13,7 +13,6 @@ export default ({onClick, isForm, checkedList, onSubmit})=>{
             <div id="blanket" className="blanket"></div>
             <div id="form-wrap">
                 <form style={{top:top}} action="/send_message_to_users" method="post" onSubmit={onSubmit}>
-                    {/* <input type="hidden" name="user_ids" value={checkedList}/> */}
                     <textarea name="message" placeholder="Введите сообщение..." ></textarea>
                     
                     <div id="form-buttons">

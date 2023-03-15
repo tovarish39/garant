@@ -16,14 +16,14 @@ Telegram::Bot::Client.run(token) do |bot|
     $bot = bot.api
     $mes = message
 
-    $mod = searching_user('Moderator')             # поиск ранее созданного user
+    $mod = searching_user('Moderator')             # поиск ранее созданного user по telegram_id
     $mod ||= create_user('Moderator') unless $mod  # создание user, если не найден
     # $lg = $mod.lang
     update_user_info_if_changed('Moderator')
     avalible_moderator_telegram_ids = AvalibleModerator.all.map(&:telegram_id)
     $chat_id = $mes.class == MessageClass ? $mes.chat.id : $mes.message.chat.id
 
-    if avalible_moderator_telegram_ids.include?($mod.telegram_id)         # модератор есть в списке возможных модераторов
+    if $mod.rights_status == 'active'                                     # админ определил статуc 'active'
       if    $mod.username == "-" ;           require_username()           # обязательный юзернейм 
       elsif $mod.state == 'pending_comment'; finishing_dispute()          # отмена || завершение обработки спора
       elsif data?(/Accept/);                 handle_acception()           # модератор принимает спор
