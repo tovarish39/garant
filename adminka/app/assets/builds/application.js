@@ -1660,7 +1660,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState6(initialState) {
+          function useState7(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1672,7 +1672,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect6(create, deps) {
+          function useEffect7(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -2454,7 +2454,7 @@
           exports.useContext = useContext3;
           exports.useDebugValue = useDebugValue2;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect6;
+          exports.useEffect = useEffect7;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
@@ -2462,7 +2462,7 @@
           exports.useMemo = useMemo3;
           exports.useReducer = useReducer;
           exports.useRef = useRef3;
-          exports.useState = useState6;
+          exports.useState = useState7;
           exports.useSyncExternalStore = useSyncExternalStore2;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2958,9 +2958,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React20 = require_react();
+          var React24 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React20.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React24.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -4565,7 +4565,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React20.Children.forEach(props.children, function(child) {
+                  React24.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -13012,7 +13012,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React20.Component().refs;
+          var emptyRefsObject = new React24.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -34447,14 +34447,14 @@
   addEventListener("turbo:before-fetch-request", encodeMethodIntoRequestBody);
 
   // app/javascript/components/index.jsx
-  var import_react17 = __toESM(require_react());
+  var import_react21 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // app/javascript/components/App.jsx
-  var import_react16 = __toESM(require_react());
+  var import_react20 = __toESM(require_react());
 
   // app/javascript/routes/index.jsx
-  var import_react15 = __toESM(require_react());
+  var import_react19 = __toESM(require_react());
 
   // node_modules/react-router-dom/dist/index.js
   var React2 = __toESM(require_react());
@@ -36323,7 +36323,7 @@
         (is_searchTemplateEmpty || regex.test(user.telegram_id) || regex.test(user.username))
       )
     );
-    return /* @__PURE__ */ import_react4.default.createElement("div", { id: "Table" }, /* @__PURE__ */ import_react4.default.createElement("div", { id: "TableHead", className: "col-5 f-s-08" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell" }, /* @__PURE__ */ import_react4.default.createElement("input", { id: "general-checkbox", type: "checkbox", onClick: onGeneralCheckboxClick })), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell" }, "telegram_id"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell" }, "username"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell" }, "\u0434\u0430\u0442\u0430 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell" }, "\u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0441\u0434\u0435\u043B\u043E\u043A")), filteresUsers.map((user) => /* @__PURE__ */ import_react4.default.createElement("div", { className: "user-row col-5 f-s-07", key: user.id, "data-id": user.id }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell cell-body" }, /* @__PURE__ */ import_react4.default.createElement("input", { className: "user-checkbox", type: "checkbox", "data-id": user.id, onClick: onCheckboxClick })), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell cell-body" }, user.telegram_id), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell cell-body" }, user.username), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell cell-body" }, getFriendlyDateFormat(user.created_at)), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell cell-body" }, user.deals_size))));
+    return /* @__PURE__ */ import_react4.default.createElement("div", { id: "Table" }, /* @__PURE__ */ import_react4.default.createElement("div", { id: "TableHead", className: "col-5 f-s-08" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell5" }, /* @__PURE__ */ import_react4.default.createElement("input", { id: "general-checkbox", type: "checkbox", onClick: onGeneralCheckboxClick })), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell5" }, "telegram_id"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell5" }, "username"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell5" }, "\u0434\u0430\u0442\u0430 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell5" }, "\u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0441\u0434\u0435\u043B\u043E\u043A")), filteresUsers.map((user) => /* @__PURE__ */ import_react4.default.createElement("div", { className: "row col-5 f-s-07", key: user.id, "data-id": user.id }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell5 cell5-body" }, /* @__PURE__ */ import_react4.default.createElement("input", { className: "user-checkbox", type: "checkbox", "data-id": user.id, onClick: onCheckboxClick })), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell5 cell5-body" }, user.telegram_id), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell5 cell5-body" }, user.username), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell5 cell5-body" }, getFriendlyDateFormat(user.created_at)), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell5 cell5-body" }, user.deals_size))));
   };
 
   // app/javascript/components/Users/Form.jsx
@@ -36484,81 +36484,435 @@
   var Users_default = () => /* @__PURE__ */ import_react7.default.createElement("div", { id: "Home" }, /* @__PURE__ */ import_react7.default.createElement(Nav_default, null), /* @__PURE__ */ import_react7.default.createElement(Main_default, null));
 
   // app/javascript/components/Deals/Deals.jsx
-  var import_react9 = __toESM(require_react());
+  var import_react13 = __toESM(require_react());
 
   // app/javascript/components/Deals/Main.jsx
+  var import_react12 = __toESM(require_react());
+  var import_jquery4 = __toESM(require_jquery());
+
+  // app/javascript/components/Deals/Bar.jsx
   var import_react8 = __toESM(require_react());
+  var Bar_default2 = ({ isActive, onActiveClick }) => {
+    const tryActive = isActive ? "selected" : "not-selected";
+    const tryInactive = !isActive ? "selected" : "not-selected";
+    return /* @__PURE__ */ import_react8.default.createElement("div", { id: "Bar" }, /* @__PURE__ */ import_react8.default.createElement("div", { id: "leftSideBar" }, /* @__PURE__ */ import_react8.default.createElement("div", null, /* @__PURE__ */ import_react8.default.createElement(
+      BarButton_default,
+      {
+        text: "\u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0435",
+        onClick: onActiveClick,
+        classs: `b-r-left w-10 ${tryActive}`
+      }
+    ), /* @__PURE__ */ import_react8.default.createElement(
+      BarButton_default,
+      {
+        text: "\u0430\u0440\u0445\u0438\u0432",
+        onClick: onActiveClick,
+        classs: `b-r-right w-10 ${tryInactive}`
+      }
+    ))), /* @__PURE__ */ import_react8.default.createElement("div", { id: "rightSideBar" }));
+  };
+
+  // app/javascript/components/Deals/TableActive.jsx
+  var import_react9 = __toESM(require_react());
+  var TableActive_default = ({ activeDeals, onFinishClick, onRejectClick }) => {
+    function getFriendlyDateFormat2(string) {
+      const date = new Date(string);
+      return `(${date.getMinutes()}:${date.getHours()})   ${date.getDay()}-${date.toLocaleString("en-us", { month: "short", year: "numeric" })}`;
+    }
+    return /* @__PURE__ */ import_react9.default.createElement("div", { id: "Table" }, /* @__PURE__ */ import_react9.default.createElement("div", { id: "TableHead", className: "fr7 f-s-07" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell7" }, "\u041F\u0440\u043E\u0434\u0430\u0432\u0435\u0446 ", /* @__PURE__ */ import_react9.default.createElement("br", null), " telegram_id/username "), /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell7" }, "\u041F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u044C ", /* @__PURE__ */ import_react9.default.createElement("br", null), " telegram_id/username "), /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell7" }, "\u0423\u0441\u043B\u043E\u0432\u0438\u044F"), /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell7" }, "\u0421\u0443\u043C\u043C\u0430"), /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell7" }, "\u0414\u0430\u0442\u0430 \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u044F"), /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell7" }), /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell7" })), activeDeals && activeDeals.map((deal) => /* @__PURE__ */ import_react9.default.createElement("div", { className: "row fr7 f-s-07", key: deal.id }, /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell7 cell7-body" }, deal.custumer.telegram_id, " / ", deal.custumer.username), /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell7 cell7-body" }, deal.seller.telegram_id, " / ", deal.seller.username), /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell7 cell7-body" }, deal.conditions), /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell7 cell7-body" }, deal.currency, " - ", deal.amount), /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell7 cell7-body" }, getFriendlyDateFormat2(deal.created_at)), /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell7 cell7-body" }, /* @__PURE__ */ import_react9.default.createElement("button", { onClick: onFinishClick, className: "but-deal unlock", "data-id": deal.id }, "\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u044C")), /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell7 cell7-body" }, /* @__PURE__ */ import_react9.default.createElement("button", { onClick: onRejectClick, className: "but-deal unlock", "data-id": deal.id }, "\u041E\u0442\u043A\u043B\u043E\u043D\u0438\u0442\u044C")))));
+  };
+
+  // app/javascript/components/Deals/TableArchive.jsx
+  var import_react10 = __toESM(require_react());
+  var TableArchive_default = ({ archiveDeals }) => {
+    function getFriendlyDateFormat2(string) {
+      const date = new Date(string);
+      return `(${date.getMinutes()}:${date.getHours()})   ${date.getDay()}-${date.toLocaleString("en-us", { month: "short", year: "numeric" })}`;
+    }
+    function duration(start2, finish) {
+      const duration2 = new Date(new Date(finish) - new Date(start2));
+      return `${duration2.getDay()}:${duration2.getHours()}:${duration2.getMinutes()}`;
+    }
+    function lostText(dispute) {
+      switch (dispute.dispute_lost) {
+        case "seller_lost":
+          return "\u0412 \u043F\u043E\u043B\u044C\u0437\u0443 \u043F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u044F";
+        case "custumer_lost":
+          return "\u0412 \u043F\u043E\u043B\u044C\u0437\u0443 \u043F\u0440\u043E\u0434\u0430\u0432\u0446\u0430";
+        case "all_lost":
+          return "\u0412 \u043F\u043E\u043B\u044C\u0437\u0443 \u0433\u0430\u0440\u0430\u043D\u0442\u0430";
+      }
+    }
+    function getFinishData(deal) {
+      switch (deal.status) {
+        case "canceled by_seller":
+          return "\u041E\u0442\u043C\u0435\u043D\u0435\u043D\u0430 \u043F\u0440\u043E\u0434\u0430\u0432\u0446\u043E\u043C";
+        case "finished by_custumer":
+          return "\u0417\u0430\u0432\u0435\u0440\u0448\u0435\u043D\u0430 \u043F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u0435\u043C";
+        case "finished by_administrator":
+          return `\u0417\u0430\u0432\u0435\u0440\u0448\u0435\u043D\u0430 \u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\u043E\u043C ${deal.dispute.comment_by_moderator}`;
+        case "canceled by_administrator":
+          return `\u041E\u0442\u043C\u0435\u043D\u0435\u043D\u0430 \u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\u043E\u043C ${deal.dispute.comment_by_moderator}`;
+        case "finished by_moderator":
+          return `\u0417\u0430\u0432\u0435\u0440\u0448\u0435\u043D\u0430 \u043C\u043E\u0434\u0435\u0440\u0430\u0442\u043E\u0440\u043E\u043C \u0447\u0435\u0440\u0435\u0437 \u0441\u043F\u043E\u0440. ${lostText(deal.dispute)}. ${deal.dispute.comment_by_moderator}`;
+      }
+    }
+    return /* @__PURE__ */ import_react10.default.createElement("div", { id: "Table" }, /* @__PURE__ */ import_react10.default.createElement("div", { id: "TableHead", className: "fr8 f-s-07" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "cell8" }, "\u041F\u0440\u043E\u0434\u0430\u0432\u0435\u0446 ", /* @__PURE__ */ import_react10.default.createElement("br", null), " telegram_id/username "), /* @__PURE__ */ import_react10.default.createElement("div", { className: "cell8" }, "\u041F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u044C ", /* @__PURE__ */ import_react10.default.createElement("br", null), " telegram_id/username "), /* @__PURE__ */ import_react10.default.createElement("div", { className: "cell8" }, "\u0423\u0441\u043B\u043E\u0432\u0438\u044F"), /* @__PURE__ */ import_react10.default.createElement("div", { className: "cell8" }, "\u0421\u0443\u043C\u043C\u0430"), /* @__PURE__ */ import_react10.default.createElement("div", { className: "cell8" }, "\u0414\u0430\u0442\u0430 \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u044F"), /* @__PURE__ */ import_react10.default.createElement("div", { className: "cell8" }, "\u0414\u0430\u0442\u0430 \u0437\u0430\u0432\u0435\u0440\u0448\u0435\u043D\u0438\u044F"), /* @__PURE__ */ import_react10.default.createElement("div", { className: "cell8" }, "\u0414\u043B\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C \u0441\u0434\u0435\u043B\u043A\u0438 ", /* @__PURE__ */ import_react10.default.createElement("br", null), " \u0434\u0434:\u0447\u0447:\u043C\u043C"), /* @__PURE__ */ import_react10.default.createElement("div", { className: "cell8" }, "\u0418\u0442\u043E\u0433 ", /* @__PURE__ */ import_react10.default.createElement("br", null), " \u0437\u0430\u0432\u0435\u0440\u0448\u0435\u043D\u0430 / \u0441\u043F\u043E\u0440 ")), archiveDeals && archiveDeals.map((deal) => /* @__PURE__ */ import_react10.default.createElement("div", { className: "row fr8 f-s-07", key: deal.id }, /* @__PURE__ */ import_react10.default.createElement("span", { className: "cell8 cell8-body" }, deal.custumer.telegram_id, " / ", deal.custumer.username), /* @__PURE__ */ import_react10.default.createElement("span", { className: "cell8 cell8-body" }, deal.seller.telegram_id, " / ", deal.seller.username), /* @__PURE__ */ import_react10.default.createElement("span", { className: "cell8 cell8-body" }, deal.conditions), /* @__PURE__ */ import_react10.default.createElement("span", { className: "cell8 cell8-body" }, deal.currency, " - ", deal.amount), /* @__PURE__ */ import_react10.default.createElement("span", { className: "cell8 cell8-body" }, getFriendlyDateFormat2(deal.created_at)), /* @__PURE__ */ import_react10.default.createElement("span", { className: "cell8 cell8-body" }, getFriendlyDateFormat2(deal.updated_at)), /* @__PURE__ */ import_react10.default.createElement("span", { className: "cell8 cell8-body" }, duration(deal.created_at, deal.updated_at)), /* @__PURE__ */ import_react10.default.createElement("span", { className: "cell8 cell8-body" }, getFinishData(deal)))));
+  };
+
+  // app/javascript/components/Deals/Form.jsx
+  var import_react11 = __toESM(require_react());
+  var import_jquery3 = __toESM(require_jquery());
+  var Form_default2 = ({
+    isForm,
+    onCancelFormClick,
+    onSubmit,
+    isFinishClicked
+  }) => {
+    const form = (0, import_jquery3.default)("form");
+    const is_active = isForm ? "" : "none";
+    if (isForm) {
+      const top2 = (window.innerHeight - form.height()) / 3;
+    }
+    return /* @__PURE__ */ import_react11.default.createElement("div", { className: is_active }, /* @__PURE__ */ import_react11.default.createElement("div", { id: "blanket", className: "blanket" }), /* @__PURE__ */ import_react11.default.createElement("div", { id: "form-wrap" }, /* @__PURE__ */ import_react11.default.createElement(
+      "form",
+      {
+        style: { top },
+        action: "#",
+        method: "post",
+        onSubmit
+      },
+      /* @__PURE__ */ import_react11.default.createElement("textarea", { name: "comment", placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439..." }),
+      /* @__PURE__ */ import_react11.default.createElement("div", { id: "form-buttons" }, /* @__PURE__ */ import_react11.default.createElement("input", { type: "submit", value: isFinishClicked ? "\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u044C" : "\u041E\u0442\u043A\u043B\u043E\u043D\u0438\u0442\u044C", className: "form-button" }), /* @__PURE__ */ import_react11.default.createElement("button", { onClick: onCancelFormClick, className: "form-button" }, "\u041E\u0442\u043C\u0435\u043D\u0430"))
+    )));
+  };
+
+  // app/javascript/components/Deals/Main.jsx
   var Main_default2 = () => {
-    return /* @__PURE__ */ import_react8.default.createElement("div", { id: "Main" });
+    const [isActive, setIsActive] = (0, import_react12.useState)(true);
+    const [deals, setDeals] = (0, import_react12.useState)([]);
+    const [isForm, setIsForm] = (0, import_react12.useState)(false);
+    const [isFinishClicked, setIsFinishClicked] = (0, import_react12.useState)(false);
+    const [currentDealId, setCurrentDealId] = (0, import_react12.useState)("");
+    const X_CSRF_Token = (0, import_jquery4.default)('meta[name="csrf-token"]').attr("content");
+    (0, import_react12.useEffect)(() => {
+      async function getDeals() {
+        const res = await fetch("/getDeals");
+        const body = await res.text();
+        const deals2 = JSON.parse(body);
+        setDeals(deals2);
+      }
+      getDeals();
+    }, []);
+    function handleActiveClick(e) {
+      const clicked = e.target;
+      if (clicked.classList.contains("selected"))
+        return;
+      const new_state = clicked.innerHTML == "\u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0435" ? true : false;
+      setIsActive(new_state);
+    }
+    function handleFinishClick(e) {
+      const deal_id = e.target.dataset.id;
+      setCurrentDealId(deal_id);
+      setIsFinishClicked(true);
+      setIsForm(true);
+    }
+    function hangleRejectClick(e) {
+      const deal_id = e.target.dataset.id;
+      setCurrentDealId(deal_id);
+      setIsFinishClicked(false);
+      setIsForm(true);
+    }
+    function handleCancelFormClick(e) {
+      (0, import_jquery4.default)("textarea[name='comment']").val("");
+      setIsForm(false);
+      e.preventDefault();
+    }
+    function handleSubmit(e) {
+      e.preventDefault();
+      const deal_id = currentDealId;
+      const comment = (0, import_jquery4.default)("textarea[name='comment']");
+      const data = {
+        deal_id,
+        administrator_action: isFinishClicked ? "finished by_administrator" : "canceled by_administrator",
+        comment: comment.val()
+      };
+      const path = isFinishClicked ? "/finishing_deal_by_administrator" : "/canceling_deal_by_administrator";
+      fetch(path, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": X_CSRF_Token
+        }
+      }).then((res) => res.text()).then((body) => JSON.parse(body)).then((deals2) => {
+        setDeals(deals2);
+        setIsForm(false);
+      });
+      comment.val("");
+    }
+    return /* @__PURE__ */ import_react12.default.createElement("div", { id: "Main" }, /* @__PURE__ */ import_react12.default.createElement(
+      Bar_default2,
+      {
+        isActive,
+        onActiveClick: handleActiveClick
+      }
+    ), isActive && /* @__PURE__ */ import_react12.default.createElement(
+      TableActive_default,
+      {
+        activeDeals: deals.active,
+        onFinishClick: handleFinishClick,
+        onRejectClick: hangleRejectClick
+      }
+    ), !isActive && /* @__PURE__ */ import_react12.default.createElement(
+      TableArchive_default,
+      {
+        archiveDeals: deals.archive
+      }
+    ), /* @__PURE__ */ import_react12.default.createElement(
+      Form_default2,
+      {
+        isForm,
+        onCancelFormClick: handleCancelFormClick,
+        onSubmit: handleSubmit,
+        isFinishClicked
+      }
+    ));
   };
 
   // app/javascript/components/Deals/Deals.jsx
-  var Deals_default = () => /* @__PURE__ */ import_react9.default.createElement("div", { id: "Home" }, /* @__PURE__ */ import_react9.default.createElement(Nav_default, null), /* @__PURE__ */ import_react9.default.createElement(Main_default2, null));
+  var Deals_default = () => /* @__PURE__ */ import_react13.default.createElement("div", { id: "Home" }, /* @__PURE__ */ import_react13.default.createElement(Nav_default, null), /* @__PURE__ */ import_react13.default.createElement(Main_default2, null));
 
   // app/javascript/components/Moderators/Moderators.jsx
-  var import_react14 = __toESM(require_react());
+  var import_react18 = __toESM(require_react());
 
   // app/javascript/components/Moderators/Main.jsx
-  var import_react13 = __toESM(require_react());
-  var import_jquery3 = __toESM(require_jquery());
+  var import_react17 = __toESM(require_react());
+  var import_jquery6 = __toESM(require_jquery());
 
   // app/javascript/components/Moderators/Bar.jsx
-  var import_react10 = __toESM(require_react());
-  var Bar_default2 = () => {
-    return /* @__PURE__ */ import_react10.default.createElement("div", { id: "Bar" }, /* @__PURE__ */ import_react10.default.createElement("div", { id: "leftSideBar" }), /* @__PURE__ */ import_react10.default.createElement("div", { id: "rightSideBar" }));
+  var import_react14 = __toESM(require_react());
+  var Bar_default3 = ({ isActive, onRightStatusClick, butTexts, disputes, onCreateClick }) => {
+    const tryActive = isActive ? "selected" : "not-selected";
+    const tryInactive = !isActive ? "selected" : "not-selected";
+    return /* @__PURE__ */ import_react14.default.createElement("div", { id: "Bar" }, /* @__PURE__ */ import_react14.default.createElement("div", { id: "leftSideBar" }, /* @__PURE__ */ import_react14.default.createElement("div", null, /* @__PURE__ */ import_react14.default.createElement(
+      BarButton_default,
+      {
+        text: "\u0421\u043E\u0437\u0434\u0430\u0442\u044C",
+        classs: `b-r-all w-10 m-b-1 unlock`,
+        onClick: onCreateClick
+      }
+    )), /* @__PURE__ */ import_react14.default.createElement("div", null, /* @__PURE__ */ import_react14.default.createElement(
+      BarButton_default,
+      {
+        text: butTexts.active,
+        onClick: onRightStatusClick,
+        classs: `b-r-left w-10 ${tryActive}`
+      }
+    ), /* @__PURE__ */ import_react14.default.createElement(
+      BarButton_default,
+      {
+        text: butTexts.inactive,
+        onClick: onRightStatusClick,
+        classs: `b-r-right w-10  ${tryInactive}`
+      }
+    ))), /* @__PURE__ */ import_react14.default.createElement("div", { id: "rightSideBar" }, /* @__PURE__ */ import_react14.default.createElement("div", null, "\u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0440\u0430\u0441\u0441\u043C\u043E\u0442\u0440\u0435\u043D\u043D\u044B\u0445 \u0441\u043F\u043E\u0440\u043E\u0432 ", /* @__PURE__ */ import_react14.default.createElement("br", null), "--- \u0437\u0430 \u0434\u0435\u043D\u044C   : ", disputes.finished_by_day, /* @__PURE__ */ import_react14.default.createElement("br", null), "--- \u0437\u0430 \u043D\u0435\u0434\u0435\u043B\u044E : ", disputes.finished_by_week, /* @__PURE__ */ import_react14.default.createElement("br", null), "--- \u0437\u0430 \u043C\u0435\u0441\u044F\u0446  : ", disputes.finished_by_month, /* @__PURE__ */ import_react14.default.createElement("br", null), "\u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043D\u0435 \u0440\u0430\u0441\u043F\u0440\u0435\u0434\u0435\u043B\u0451\u043D\u043D\u044B\u0445 \u0441\u043F\u043E\u0440\u043E\u0432 : ", disputes.pending_disputes)));
   };
 
   // app/javascript/components/Moderators/Table.jsx
-  var import_react11 = __toESM(require_react());
-  var Table_default2 = () => {
-    return /* @__PURE__ */ import_react11.default.createElement("div", { id: "Table" }, /* @__PURE__ */ import_react11.default.createElement("div", { id: "TableHead", className: "fr6 f-s-07" }, /* @__PURE__ */ import_react11.default.createElement("div", { className: "cell" }, "telegram_id"), /* @__PURE__ */ import_react11.default.createElement("div", { className: "cell" }, "username"), /* @__PURE__ */ import_react11.default.createElement("div", { className: "cell" }, "\u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439"), /* @__PURE__ */ import_react11.default.createElement("div", { className: "cell" }, "\u0440\u0430\u0441\u0441\u043C\u043E\u0442\u0440\u0435\u043D\u043D\u044B\u0445 \u0441\u0434\u0435\u043B\u043E\u043A ", /* @__PURE__ */ import_react11.default.createElement("br", null), "\u0432\u0441\u0435\u0433\u043E | \u043F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u044C | \u043F\u0440\u043E\u0434\u0430\u0432\u0435\u0446 | \u0433\u0430\u0440\u0430\u043D\u0442"), /* @__PURE__ */ import_react11.default.createElement("div", { className: "cell" }, "\u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0445 \u0441\u043F\u043E\u0440\u043E\u0432"), /* @__PURE__ */ import_react11.default.createElement("div", { className: "cell" }, "\u0441\u0442\u0430\u0442\u0443\u0441")));
+  var import_react15 = __toESM(require_react());
+  var Table_default2 = ({ moderators, isActive, onBlurComment, onChangeStatus }) => {
+    const moderatorsByStatusRights = moderators.filter((moderator) => {
+      if (isActive && moderator.rights_status == "active")
+        return moderator;
+      else if (!isActive && moderator.rights_status == "inactive")
+        return moderator;
+    });
+    function isActiveStatus(status) {
+      return (status = "active") ? "\u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0439" : "\u043D\u0435 \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0439";
+    }
+    function anotherStatus(status) {
+      return (status = "active") ? "\u043D\u0435 \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0439" : "\u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0439";
+    }
+    function inProcessDispudesSize({ disputes }) {
+      const inProcess = disputes.filter((dispute) => dispute.state == "in_process");
+      return inProcess.length;
+    }
+    function finishedDisputesSize({ disputes }) {
+      const seller_lost = [];
+      const custumer_lost = [];
+      const all_lost = [];
+      if (disputes.length > 0) {
+        disputes.forEach((dispute) => {
+          if (dispute.dispute_lost == "seller_lost")
+            seller_lost.push(dispute);
+          if (dispute.dispute_lost == "custumer_lost")
+            custumer_lost.push(dispute);
+          if (dispute.dispute_lost == "all_lost")
+            all_lost.push(dispute);
+        });
+      }
+      return `${disputes.length} | ${seller_lost.length} | ${custumer_lost.length} | ${all_lost.length}`;
+    }
+    return /* @__PURE__ */ import_react15.default.createElement("div", { id: "Table" }, /* @__PURE__ */ import_react15.default.createElement("div", { id: "TableHead", className: "fr6 f-s-07" }, /* @__PURE__ */ import_react15.default.createElement("div", { className: "cell6" }, "telegram_id"), /* @__PURE__ */ import_react15.default.createElement("div", { className: "cell6" }, "username"), /* @__PURE__ */ import_react15.default.createElement("div", { className: "cell6" }, "\u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439"), /* @__PURE__ */ import_react15.default.createElement("div", { className: "cell6" }, "\u0440\u0430\u0441\u0441\u043C\u043E\u0442\u0440\u0435\u043D\u043D\u044B\u0445 \u0441\u043F\u043E\u0440\u043E\u0432 ", /* @__PURE__ */ import_react15.default.createElement("br", null), "\u0432\u0441\u0435\u0433\u043E | \u043F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u044C_\u0432\u044B\u0439\u0433\u0440\u0430\u043B | \u043F\u0440\u043E\u0434\u0430\u0432\u0435\u0446_\u0432\u044B\u0439\u0433\u0440\u0430\u043B | \u0433\u0430\u0440\u0430\u043D\u0442_\u0432\u044B\u0439\u0433\u0440\u0430\u043B"), /* @__PURE__ */ import_react15.default.createElement("div", { className: "cell6" }, "\u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0445 \u0441\u043F\u043E\u0440\u043E\u0432"), /* @__PURE__ */ import_react15.default.createElement("div", { className: "cell6" }, "\u0441\u0442\u0430\u0442\u0443\u0441")), moderatorsByStatusRights.map((moderator) => /* @__PURE__ */ import_react15.default.createElement("div", { className: "row fr6 f-s-07", key: moderator.id }, /* @__PURE__ */ import_react15.default.createElement("span", { className: "cell6 cell6-body" }, moderator.telegram_id), /* @__PURE__ */ import_react15.default.createElement("span", { className: "cell6 cell6-body" }, moderator.username), /* @__PURE__ */ import_react15.default.createElement("span", { className: "cell6 cell6-body" }, /* @__PURE__ */ import_react15.default.createElement("textarea", { name: "comment", className: "f-s-08", placeholder: moderator.comment, "data-id": moderator.id, onBlur: onBlurComment })), /* @__PURE__ */ import_react15.default.createElement("span", { className: "cell6 cell6-body" }, finishedDisputesSize(moderator)), /* @__PURE__ */ import_react15.default.createElement("span", { className: "cell6 cell6-body" }, inProcessDispudesSize(moderator)), /* @__PURE__ */ import_react15.default.createElement("span", { className: "cell6 cell6-body" }, /* @__PURE__ */ import_react15.default.createElement("select", { name: "rights_status", onChange: onChangeStatus, "data-id": moderator.id }, /* @__PURE__ */ import_react15.default.createElement("option", { value: isActiveStatus(moderator.rights_status) }, isActiveStatus(moderator.rights_status)), /* @__PURE__ */ import_react15.default.createElement("option", { value: anotherStatus(moderator.rights_status) }, anotherStatus(moderator.rights_status)))))));
   };
 
   // app/javascript/components/Moderators/Form.jsx
-  var import_react12 = __toESM(require_react());
-  var Form_default2 = () => {
-    return /* @__PURE__ */ import_react12.default.createElement("div", { id: "Form" });
+  var import_react16 = __toESM(require_react());
+  var import_jquery5 = __toESM(require_jquery());
+  var Form_default3 = ({ isForm, onCancelForm, onSubmit }) => {
+    const form = (0, import_jquery5.default)("form");
+    const is_active = isForm ? "" : "none";
+    if (isForm) {
+      const top2 = (window.innerHeight - form.height()) / 3;
+    }
+    return /* @__PURE__ */ import_react16.default.createElement("div", { className: is_active }, /* @__PURE__ */ import_react16.default.createElement("div", { id: "blanket", className: "blanket" }), /* @__PURE__ */ import_react16.default.createElement("div", { id: "form-wrap" }, /* @__PURE__ */ import_react16.default.createElement("form", { style: { top }, action: "/create_moderator", method: "post", onSubmit }, /* @__PURE__ */ import_react16.default.createElement("input", { name: "telegram_id", placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 telegram_id..." }), /* @__PURE__ */ import_react16.default.createElement("div", { id: "form-buttons" }, /* @__PURE__ */ import_react16.default.createElement("input", { type: "submit", value: "\u0421\u043E\u0437\u0434\u0430\u0442\u044C", className: "form-button" }), /* @__PURE__ */ import_react16.default.createElement("button", { onClick: onCancelForm, className: "form-button" }, "\u041E\u0442\u043C\u0435\u043D\u0430")))));
   };
 
   // app/javascript/components/Moderators/Main.jsx
   var Main_default3 = () => {
-    const [moderators, setModerators] = (0, import_react13.useState)([]);
-    (0, import_react13.useEffect)(() => {
+    const [moderators, setModerators] = (0, import_react17.useState)([]);
+    const [isActiveModerators, serIsActiveModerators] = (0, import_react17.useState)(true);
+    const [disputes, setDisputes] = (0, import_react17.useState)([]);
+    const [isForm, setIsForm] = (0, import_react17.useState)(false);
+    const rightStatusButtonTexts = { active: "\u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0435", inactive: "\u043D\u0435 \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0435" };
+    const X_CSRF_Token = (0, import_jquery6.default)('meta[name="csrf-token"]').attr("content");
+    (0, import_react17.useEffect)(() => {
       async function getModerators() {
         const res = await fetch("/getModerators");
         const body = await res.text();
         const moderators2 = JSON.parse(body);
         setModerators(moderators2);
       }
+      async function getDisputes() {
+        const res = await fetch("/getDisputes");
+        const body = await res.text();
+        const disputes2 = JSON.parse(body);
+        setDisputes(disputes2);
+      }
       getModerators();
+      getDisputes();
     }, []);
-    return /* @__PURE__ */ import_react13.default.createElement("div", { id: "Main" }, /* @__PURE__ */ import_react13.default.createElement(
-      Bar_default2,
-      null
-    ), /* @__PURE__ */ import_react13.default.createElement(
+    function handleRightStatusClick(e) {
+      const clickOnSeletedButton = e.target.classList.contains("selected");
+      if (clickOnSeletedButton)
+        return;
+      const activeText = rightStatusButtonTexts.active;
+      const inactiveText = rightStatusButtonTexts.inactive;
+      const isToActive = e.target.innerHTML == activeText;
+      const isToInactive = e.target.innerHTML == inactiveText;
+      if (isToActive)
+        serIsActiveModerators(true);
+      else if (isToInactive)
+        serIsActiveModerators(false);
+    }
+    function handleCreateClick() {
+      setIsForm(true);
+    }
+    function handleCancelForm(e) {
+      e.preventDefault();
+      (0, import_jquery6.default)("input[name='telegram_id']").val("");
+      setIsForm(false);
+    }
+    function handleSubmit(e) {
+      const telegram_id = (0, import_jquery6.default)("input[name='telegram_id']").val();
+      if (telegram_id.trim().length == 0) {
+        e.preventDefault();
+        alert("\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u043D\u0435 \u0434\u043E\u043B\u0436\u043D\u043E \u0431\u044B\u0442\u044C \u043F\u0443\u0441\u0442\u044B\u043C");
+        return;
+      }
+      e.preventDefault();
+      fetch("/create_moderator", {
+        method: "POST",
+        body: JSON.stringify({ telegram_id }),
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": X_CSRF_Token
+        }
+      }).then((res) => res.text()).then((body) => JSON.parse(body)).then((moderators2) => {
+        setModerators(moderators2);
+        (0, import_jquery6.default)("input[name='telegram_id']").val("");
+        setIsForm(false);
+      });
+    }
+    function handleBlurComment(e) {
+      const moderator_id = e.target.dataset.id;
+      let comment = e.target.value;
+      const data = {
+        moderator_id,
+        comment
+      };
+      fetch("/update_comment", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": X_CSRF_Token
+        }
+      }).then((res) => res.text()).then((body) => JSON.parse(body)).then((moderators2) => {
+        setModerators(moderators2);
+      });
+    }
+    function handleChangeStatus(e) {
+      const moderator_id = e.target.dataset.id;
+      const newStatus = e.target.value;
+      const data = {
+        moderator_id,
+        newStatus
+      };
+      fetch("/update_status", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": X_CSRF_Token
+        }
+      }).then((res) => res.text()).then((body) => JSON.parse(body)).then((moderators2) => {
+        setModerators(moderators2);
+      });
+    }
+    return /* @__PURE__ */ import_react17.default.createElement("div", { id: "Main" }, /* @__PURE__ */ import_react17.default.createElement(
+      Bar_default3,
+      {
+        isActive: isActiveModerators,
+        onRightStatusClick: handleRightStatusClick,
+        butTexts: rightStatusButtonTexts,
+        disputes,
+        onCreateClick: handleCreateClick
+      }
+    ), /* @__PURE__ */ import_react17.default.createElement(
       Table_default2,
-      null
-    ), /* @__PURE__ */ import_react13.default.createElement(
-      Form_default2,
-      null
+      {
+        moderators,
+        isActive: isActiveModerators,
+        onBlurComment: handleBlurComment,
+        onChangeStatus: handleChangeStatus
+      }
+    ), /* @__PURE__ */ import_react17.default.createElement(
+      Form_default3,
+      {
+        isForm,
+        onCancelForm: handleCancelForm,
+        onSubmit: handleSubmit
+      }
     ));
   };
 
   // app/javascript/components/Moderators/Moderators.jsx
-  var Moderators_default = () => /* @__PURE__ */ import_react14.default.createElement("div", { id: "Home" }, /* @__PURE__ */ import_react14.default.createElement(Nav_default, null), /* @__PURE__ */ import_react14.default.createElement(Main_default3, null));
+  var Moderators_default = () => /* @__PURE__ */ import_react18.default.createElement("div", { id: "Home" }, /* @__PURE__ */ import_react18.default.createElement(Nav_default, null), /* @__PURE__ */ import_react18.default.createElement(Main_default3, null));
 
   // app/javascript/routes/index.jsx
-  var routes_default = /* @__PURE__ */ import_react15.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react15.default.createElement(Routes, null, /* @__PURE__ */ import_react15.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react15.default.createElement(Users_default, null) }), /* @__PURE__ */ import_react15.default.createElement(Route, { path: "/moderators", element: /* @__PURE__ */ import_react15.default.createElement(Moderators_default, null) }), /* @__PURE__ */ import_react15.default.createElement(Route, { path: "/deals", element: /* @__PURE__ */ import_react15.default.createElement(Deals_default, null) })));
+  var routes_default = /* @__PURE__ */ import_react19.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react19.default.createElement(Routes, null, /* @__PURE__ */ import_react19.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react19.default.createElement(Users_default, null) }), /* @__PURE__ */ import_react19.default.createElement(Route, { path: "/moderators", element: /* @__PURE__ */ import_react19.default.createElement(Moderators_default, null) }), /* @__PURE__ */ import_react19.default.createElement(Route, { path: "/deals", element: /* @__PURE__ */ import_react19.default.createElement(Deals_default, null) })));
 
   // app/javascript/components/App.jsx
-  var App_default = (props) => /* @__PURE__ */ import_react16.default.createElement(import_react16.default.Fragment, null, routes_default);
+  var App_default = (props) => /* @__PURE__ */ import_react20.default.createElement(import_react20.default.Fragment, null, routes_default);
 
   // app/javascript/components/index.jsx
   document.addEventListener("turbo:load", () => {
     const root = (0, import_client.createRoot)(
       document.body.appendChild(document.createElement("div"))
     );
-    root.render(/* @__PURE__ */ import_react17.default.createElement(App_default, null));
+    root.render(/* @__PURE__ */ import_react21.default.createElement(App_default, null));
   });
 })();
 /*! Bundled license information:

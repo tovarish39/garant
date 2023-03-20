@@ -23,20 +23,20 @@ export default ({users, lang, onCheckboxClick, onGeneralCheckboxClick, usersStat
     return (
     <div id="Table">
         <div id="TableHead" className="col-5 f-s-08">
-            <div className="cell"><input id="general-checkbox" type="checkbox"  onClick={onGeneralCheckboxClick}/></div>        
-            <div className="cell">telegram_id</div>
-            <div className="cell">username</div>
-            <div className="cell">дата регистрации</div>
-            <div className="cell">количество сделок</div>
+            <div className="cell5"><input id="general-checkbox" type="checkbox"  onClick={onGeneralCheckboxClick}/></div>        
+            <div className="cell5">telegram_id</div>
+            <div className="cell5">username</div>
+            <div className="cell5">дата регистрации</div>
+            <div className="cell5">количество сделок</div>
         </div>
 
         {filteresUsers.map(user => (
-            <div className="user-row col-5 f-s-07" key={user.id} data-id={user.id}>
-                <div className="cell cell-body"><input className="user-checkbox" type="checkbox" data-id={user.id} onClick={onCheckboxClick}/></div>        
-                <span className="cell cell-body">{user.telegram_id}</span>
-                <span className="cell cell-body">{user.username}</span>
-                <span className="cell cell-body">{getFriendlyDateFormat(user.created_at)}</span>
-                <span className="cell cell-body">{user.deals_size}</span>
+            <div className="row col-5 f-s-07" key={user.id} data-id={user.id}>
+                <div className="cell5 cell5-body"><input className="user-checkbox" type="checkbox" data-id={user.id} onClick={onCheckboxClick}/></div>        
+                <span className="cell5 cell5-body">{user.telegram_id}</span>
+                <span className="cell5 cell5-body">{user.username}</span>
+                <span className="cell5 cell5-body">{getFriendlyDateFormat(user.created_at)}</span>
+                <span className="cell5 cell5-body">{user.deals_size}</span>
             </div>
         ))}
     </div>

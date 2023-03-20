@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_15_162440) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_19_155058) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,7 +52,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_162440) do
     t.string "pushed_IB_mes_id"
     t.string "current_dispute_id"
     t.string "pushed_action"
-    t.string "rights_status", default: "inactive"
+    t.string "rights_status"
+    t.string "comment"
   end
 
   create_table "taken_disputes", force: :cascade do |t|

@@ -94,7 +94,11 @@ def view_history_deals # statuses: == 'rejected by_seller' || == 'rejected by_cu
             $moderators_username  = dispute.moderator.username
             $comment_by_moderator = dispute.comment_by_moderator
         end
-###################################
+# сделку отменил или завершил администратор
+        if dispute && dispute.status == nil
+            $comment_by_administrator = dispute.comment_by_moderator
+        end
+
         send_message(
             B_deal_verbose.call('with_custumer')
             ) if self_seller?()

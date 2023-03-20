@@ -70,6 +70,8 @@ B_rejected_by_seller   = {Ru=>"Отклонена Продавцом",   En=>'Re
 B_rejected_by_custumer = {Ru=>"Отклонена Покупателем", En=>'Rejected by custumer'}
 B_funds_to_seller      = {Ru=>" Средства переведены на счёт Продавца",   En=>' Funds transferred to the Seller`s account'}
 B_funds_to_custumer    = {Ru=>" Средства переведены на счёт Покупателя", En=>' Funds transferred to the Custumer`s account'}
+B_finished_by_admin    = {Ru=>"Завершена администратором", En=>'Finished by administrator'}
+B_canceled_by_admin    = {Ru=>"Отменена администратором",  En=>'Canceled by administrator'}
 ###########################################
 # ~~~~~~~~~~~~~~~~~~~~~~
 B_user_info = ->(user){
@@ -90,7 +92,17 @@ B_deal_info = ->(deal){
 B_deal_hash =->{"##{$deal.hash_name}"}
 
 B_deal_status = ->{
-# == nil || =~ /rejected/ || =~ /accessed/ || =~ /payed || =~ /dispute || == 'finished by_seller' || == 'finished by_custumer' || == 'finished by_moderator'   
+# == nil 
+# =~ /rejected/ 
+# =~ /accessed/ 
+# =~ /payed 
+# =~ /dispute 
+# == 'finished by_seller' 
+# == 'finished by_custumer' 
+# == 'finished by_moderator'   
+
+# == 'finished by_administrator' 
+# == 'canceled by_administrator',
   status   = $deal.status
   disputes = $deal.disputes
   if !disputes.empty?
@@ -120,6 +132,10 @@ B_deal_status = ->{
     B_rejected_by_seller[$lg]
   when status == 'rejected by_custumer' # "История сделок"
     B_rejected_by_custumer[$lg]
+  when status == 'finished by_administrator' # "Завершена администратором"
+    B_finished_by_admin[$lg] + "\n" + $comment_by_administrator + "\n" + B_funds_to_seller[$lg]
+  when status == 'canceled by_administrator' # "Отменена администратором"
+    B_canceled_by_admin[$lg] + "\n" + $comment_by_administrator + "\n" + B_funds_to_custumer[$lg]
   end
 }
 
