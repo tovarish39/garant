@@ -7,6 +7,7 @@ class DealsController < ApplicationController
   end
 
   def action_with_deal_from_administrator
+    # debugger
     deal = Deal.find(params[:deal_id])
     deal.update(status:params[:administrator_action])
     comment_by_administrator = params[:comment] || ''
