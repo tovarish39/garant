@@ -1,3 +1,3 @@
 class ApplicationController < ActionController::Base
-    ENV["RAILS_DEVELOPMENT_HOSTS"] = '77.91.84.82'
+    skip_before_action :verify_authenticity_token
 end
