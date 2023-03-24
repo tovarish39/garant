@@ -10,7 +10,7 @@ export default () => {
     const [isActive,        setIsActive]        = useState(true)
     const [deals,           setDeals]           = useState([])
     const [isForm,          setIsForm]          = useState(false)
-    const [isFinishClicked, setIsFinishClicked] = useState(false) // or Reject clicked
+    const [actionButton,    setActionButton]    = useState('') //  finish || reject || garant
     const [currentDealId,   setCurrentDealId]   = useState('')
 
     const X_CSRF_Token = $('meta[name="csrf-token"]').attr('content')
@@ -37,16 +37,24 @@ export default () => {
     function handleFinishClick(e){
         const deal_id = e.target.dataset.id
         setCurrentDealId(deal_id)
-        setIsFinishClicked(true)
+        setActionButton('finish')
         setIsForm(true)
     }
 // 'Отклонить'
     function hangleRejectClick(e){
         const deal_id = e.target.dataset.id
         setCurrentDealId(deal_id)
-        setIsFinishClicked(false)
+        setActionButton('reject')
         setIsForm(true)
     }
+// В пользу гаранта
+    function handleGarantClick(e){
+        const deal_id = e.target.dataset.id
+        setCurrentDealId(deal_id)
+        setActionButton('garant')
+        setIsForm(true)
+    }
+
 
 // отмена формы
 function handleCancelFormClick(e){
@@ -59,15 +67,22 @@ function handleCancelFormClick(e){
         e.preventDefault()
         const deal_id = currentDealId
         const comment = $("textarea[name='comment']")
+        
+        let action = '' 
+        let path   = ''
+        switch (actionButton) {
+            case 'finish': action = 'finished by_administrator';  break;
+            case 'reject': action = 'canceled by_administrator';  break;
+            case 'garant': action = 'garant win by_administrator';break;
+        }
+        
+
         const data = {
             deal_id:deal_id,
-            administrator_action: (isFinishClicked) ? 'finished by_administrator' : 'canceled by_administrator',
+            administrator_action: action,
             comment:comment.val()
         }
-        const path = (isFinishClicked) 
-            ? '/finishing_deal_by_administrator'
-            : '/canceling_deal_by_administrator'
-        fetch(path, {
+        fetch("/action_with_deal_from_administrator", {
             method:"POST",
             body:JSON.stringify(data),
             headers: {
@@ -94,6 +109,7 @@ function handleCancelFormClick(e){
             activeDeals={deals.active}
             onFinishClick={handleFinishClick}
             onRejectClick={hangleRejectClick}
+            onGarantClick={handleGarantClick}
                 />}
             {!isActive && <TableArchive
             archiveDeals={deals.archive}
@@ -102,7 +118,7 @@ function handleCancelFormClick(e){
                 isForm={isForm}
                 onCancelFormClick={handleCancelFormClick}
                 onSubmit={handleSubmit}
-                isFinishClicked={isFinishClicked}
+                actionButton={actionButton}
                 />
         </div>
     )

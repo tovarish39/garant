@@ -2958,9 +2958,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React24 = require_react();
+          var React27 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React24.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React27.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -4565,7 +4565,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React24.Children.forEach(props.children, function(child) {
+                  React27.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -13012,7 +13012,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React24.Component().refs;
+          var emptyRefsObject = new React27.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -34447,14 +34447,14 @@
   addEventListener("turbo:before-fetch-request", encodeMethodIntoRequestBody);
 
   // app/javascript/components/index.jsx
-  var import_react21 = __toESM(require_react());
+  var import_react24 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // app/javascript/components/App.jsx
-  var import_react20 = __toESM(require_react());
+  var import_react23 = __toESM(require_react());
 
   // app/javascript/routes/index.jsx
-  var import_react19 = __toESM(require_react());
+  var import_react22 = __toESM(require_react());
 
   // node_modules/react-router-dom/dist/index.js
   var React2 = __toESM(require_react());
@@ -36237,6 +36237,12 @@
         className: current_path == "/deals" ? "active" : ""
       },
       "\u0421\u0434\u0435\u043B\u043A\u0438"
+    )), /* @__PURE__ */ import_react.default.createElement(NavLink, { to: "/finances" }, /* @__PURE__ */ import_react.default.createElement(
+      "button",
+      {
+        className: current_path == "/finances" ? "active" : ""
+      },
+      "\u0424\u0438\u043D\u0430\u043D\u0441\u044B"
     )));
   };
 
@@ -36514,12 +36520,12 @@
 
   // app/javascript/components/Deals/TableActive.jsx
   var import_react9 = __toESM(require_react());
-  var TableActive_default = ({ activeDeals, onFinishClick, onRejectClick }) => {
+  var TableActive_default = ({ activeDeals, onFinishClick, onRejectClick, onGarantClick }) => {
     function getFriendlyDateFormat2(string) {
       const date = new Date(string);
       return `(${date.getMinutes()}:${date.getHours()})   ${date.getDay()}-${date.toLocaleString("en-us", { month: "short", year: "numeric" })}`;
     }
-    return /* @__PURE__ */ import_react9.default.createElement("div", { id: "Table" }, /* @__PURE__ */ import_react9.default.createElement("div", { id: "TableHead", className: "fr7 f-s-07" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell7" }, "\u041F\u0440\u043E\u0434\u0430\u0432\u0435\u0446 ", /* @__PURE__ */ import_react9.default.createElement("br", null), " telegram_id/username "), /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell7" }, "\u041F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u044C ", /* @__PURE__ */ import_react9.default.createElement("br", null), " telegram_id/username "), /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell7" }, "\u0423\u0441\u043B\u043E\u0432\u0438\u044F"), /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell7" }, "\u0421\u0443\u043C\u043C\u0430"), /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell7" }, "\u0414\u0430\u0442\u0430 \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u044F"), /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell7" }), /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell7" })), activeDeals && activeDeals.map((deal) => /* @__PURE__ */ import_react9.default.createElement("div", { className: "row fr7 f-s-07", key: deal.id }, /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell7 cell7-body" }, deal.custumer.telegram_id, " / ", deal.custumer.username), /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell7 cell7-body" }, deal.seller.telegram_id, " / ", deal.seller.username), /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell7 cell7-body" }, deal.conditions), /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell7 cell7-body" }, deal.currency, " - ", deal.amount), /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell7 cell7-body" }, getFriendlyDateFormat2(deal.created_at)), /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell7 cell7-body" }, /* @__PURE__ */ import_react9.default.createElement("button", { onClick: onFinishClick, className: "but-deal unlock", "data-id": deal.id }, "\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u044C")), /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell7 cell7-body" }, /* @__PURE__ */ import_react9.default.createElement("button", { onClick: onRejectClick, className: "but-deal unlock", "data-id": deal.id }, "\u041E\u0442\u043A\u043B\u043E\u043D\u0438\u0442\u044C")))));
+    return /* @__PURE__ */ import_react9.default.createElement("div", { id: "Table" }, /* @__PURE__ */ import_react9.default.createElement("div", { id: "TableHead", className: "fr8 f-s-07" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell8" }, "\u041F\u0440\u043E\u0434\u0430\u0432\u0435\u0446 ", /* @__PURE__ */ import_react9.default.createElement("br", null), " telegram_id/username "), /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell8" }, "\u041F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u044C ", /* @__PURE__ */ import_react9.default.createElement("br", null), " telegram_id/username "), /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell8" }, "\u0423\u0441\u043B\u043E\u0432\u0438\u044F"), /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell8" }, "\u0421\u0443\u043C\u043C\u0430"), /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell8" }, "\u0414\u0430\u0442\u0430 \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u044F"), /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell8" }), /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell8" }), /* @__PURE__ */ import_react9.default.createElement("div", { className: "cell8" })), activeDeals && activeDeals.map((deal) => /* @__PURE__ */ import_react9.default.createElement("div", { className: "row fr8 f-s-07", key: deal.id }, /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell8 cell8-body" }, deal.custumer.telegram_id, " / ", deal.custumer.username), /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell8 cell8-body" }, deal.seller.telegram_id, " / ", deal.seller.username), /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell8 cell8-body" }, deal.conditions), /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell8 cell8-body" }, deal.currency, " - ", deal.amount), /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell8 cell8-body" }, getFriendlyDateFormat2(deal.created_at)), /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell8 cell8-body" }, /* @__PURE__ */ import_react9.default.createElement("button", { onClick: onFinishClick, className: "but-deal unlock", "data-id": deal.id }, "\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u044C")), /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell8 cell8-body" }, /* @__PURE__ */ import_react9.default.createElement("button", { onClick: onRejectClick, className: "but-deal unlock", "data-id": deal.id }, "\u041E\u0442\u043A\u043B\u043E\u043D\u0438\u0442\u044C")), /* @__PURE__ */ import_react9.default.createElement("span", { className: "cell8 cell8-body" }, /* @__PURE__ */ import_react9.default.createElement("button", { onClick: onGarantClick, className: "but-deal unlock", "data-id": deal.id }, "\u0413\u0430\u0440\u0430\u043D\u0442")))));
   };
 
   // app/javascript/components/Deals/TableArchive.jsx
@@ -36567,12 +36573,23 @@
     isForm,
     onCancelFormClick,
     onSubmit,
-    isFinishClicked
+    actionButton
   }) => {
+    console.log(actionButton);
     const form = (0, import_jquery3.default)("form");
     const is_active = isForm ? "" : "none";
     if (isForm) {
       const top2 = (window.innerHeight - form.height()) / 3;
+    }
+    function getValue(actionButton2) {
+      switch (actionButton2) {
+        case "finish":
+          return "\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u044C";
+        case "reject":
+          return "\u041E\u0442\u043A\u043B\u043E\u043D\u0438\u0442\u044C";
+        case "garant":
+          return "\u0413\u0430\u0440\u0430\u043D\u0442";
+      }
     }
     return /* @__PURE__ */ import_react11.default.createElement("div", { className: is_active }, /* @__PURE__ */ import_react11.default.createElement("div", { id: "blanket", className: "blanket" }), /* @__PURE__ */ import_react11.default.createElement("div", { id: "form-wrap" }, /* @__PURE__ */ import_react11.default.createElement(
       "form",
@@ -36583,7 +36600,7 @@
         onSubmit
       },
       /* @__PURE__ */ import_react11.default.createElement("textarea", { name: "comment", placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439..." }),
-      /* @__PURE__ */ import_react11.default.createElement("div", { id: "form-buttons" }, /* @__PURE__ */ import_react11.default.createElement("input", { type: "submit", value: isFinishClicked ? "\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u044C" : "\u041E\u0442\u043A\u043B\u043E\u043D\u0438\u0442\u044C", className: "form-button" }), /* @__PURE__ */ import_react11.default.createElement("button", { onClick: onCancelFormClick, className: "form-button" }, "\u041E\u0442\u043C\u0435\u043D\u0430"))
+      /* @__PURE__ */ import_react11.default.createElement("div", { id: "form-buttons" }, /* @__PURE__ */ import_react11.default.createElement("input", { type: "submit", value: getValue(actionButton), className: "form-button" }), /* @__PURE__ */ import_react11.default.createElement("button", { onClick: onCancelFormClick, className: "form-button" }, "\u041E\u0442\u043C\u0435\u043D\u0430"))
     )));
   };
 
@@ -36592,7 +36609,7 @@
     const [isActive, setIsActive] = (0, import_react12.useState)(true);
     const [deals, setDeals] = (0, import_react12.useState)([]);
     const [isForm, setIsForm] = (0, import_react12.useState)(false);
-    const [isFinishClicked, setIsFinishClicked] = (0, import_react12.useState)(false);
+    const [actionButton, setActionButton] = (0, import_react12.useState)("");
     const [currentDealId, setCurrentDealId] = (0, import_react12.useState)("");
     const X_CSRF_Token = (0, import_jquery4.default)('meta[name="csrf-token"]').attr("content");
     (0, import_react12.useEffect)(() => {
@@ -36614,13 +36631,19 @@
     function handleFinishClick(e) {
       const deal_id = e.target.dataset.id;
       setCurrentDealId(deal_id);
-      setIsFinishClicked(true);
+      setActionButton("finish");
       setIsForm(true);
     }
     function hangleRejectClick(e) {
       const deal_id = e.target.dataset.id;
       setCurrentDealId(deal_id);
-      setIsFinishClicked(false);
+      setActionButton("reject");
+      setIsForm(true);
+    }
+    function handleGarantClick(e) {
+      const deal_id = e.target.dataset.id;
+      setCurrentDealId(deal_id);
+      setActionButton("garant");
       setIsForm(true);
     }
     function handleCancelFormClick(e) {
@@ -36632,13 +36655,25 @@
       e.preventDefault();
       const deal_id = currentDealId;
       const comment = (0, import_jquery4.default)("textarea[name='comment']");
+      let action = "";
+      let path = "";
+      switch (actionButton) {
+        case "finish":
+          action = "finished by_administrator";
+          break;
+        case "reject":
+          action = "canceled by_administrator";
+          break;
+        case "garant":
+          action = "garant win by_administrator";
+          break;
+      }
       const data = {
         deal_id,
-        administrator_action: isFinishClicked ? "finished by_administrator" : "canceled by_administrator",
+        administrator_action: action,
         comment: comment.val()
       };
-      const path = isFinishClicked ? "/finishing_deal_by_administrator" : "/canceling_deal_by_administrator";
-      fetch(path, {
+      fetch("/action_with_deal_from_administrator", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -36662,7 +36697,8 @@
       {
         activeDeals: deals.active,
         onFinishClick: handleFinishClick,
-        onRejectClick: hangleRejectClick
+        onRejectClick: hangleRejectClick,
+        onGarantClick: handleGarantClick
       }
     ), !isActive && /* @__PURE__ */ import_react12.default.createElement(
       TableArchive_default,
@@ -36675,7 +36711,7 @@
         isForm,
         onCancelFormClick: handleCancelFormClick,
         onSubmit: handleSubmit,
-        isFinishClicked
+        actionButton
       }
     ));
   };
@@ -36684,10 +36720,10 @@
   var Deals_default = () => /* @__PURE__ */ import_react13.default.createElement("div", { id: "Home" }, /* @__PURE__ */ import_react13.default.createElement(Nav_default, null), /* @__PURE__ */ import_react13.default.createElement(Main_default2, null));
 
   // app/javascript/components/Moderators/Moderators.jsx
-  var import_react18 = __toESM(require_react());
+  var import_react19 = __toESM(require_react());
 
   // app/javascript/components/Moderators/Main.jsx
-  var import_react17 = __toESM(require_react());
+  var import_react18 = __toESM(require_react());
   var import_jquery6 = __toESM(require_jquery());
 
   // app/javascript/components/Moderators/Bar.jsx
@@ -36720,7 +36756,22 @@
   };
 
   // app/javascript/components/Moderators/Table.jsx
+  var import_react16 = __toESM(require_react());
+
+  // app/javascript/components/Moderators/Select.jsx
   var import_react15 = __toESM(require_react());
+  var Select_default = ({ onChangeStatus, moderator, rightsStatus }) => {
+    function anotherStatus(rightsStatus2) {
+      console.log(rightsStatus2);
+      if (rightsStatus2 == "\u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0439")
+        return "\u043D\u0435 \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0439";
+      if (rightsStatus2 == "\u043D\u0435 \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0439")
+        return "\u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0439";
+    }
+    return /* @__PURE__ */ import_react15.default.createElement("select", { name: "rights_status", onChange: onChangeStatus, "data-id": moderator.id }, /* @__PURE__ */ import_react15.default.createElement("option", { value: rightsStatus }, rightsStatus), /* @__PURE__ */ import_react15.default.createElement("option", { value: anotherStatus(rightsStatus) }, anotherStatus(rightsStatus)));
+  };
+
+  // app/javascript/components/Moderators/Table.jsx
   var Table_default2 = ({ moderators, isActive, onBlurComment, onChangeStatus }) => {
     const moderatorsByStatusRights = moderators.filter((moderator) => {
       if (isActive && moderator.rights_status == "active")
@@ -36728,12 +36779,6 @@
       else if (!isActive && moderator.rights_status == "inactive")
         return moderator;
     });
-    function isActiveStatus(status) {
-      return (status = "active") ? "\u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0439" : "\u043D\u0435 \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0439";
-    }
-    function anotherStatus(status) {
-      return (status = "active") ? "\u043D\u0435 \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0439" : "\u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0439";
-    }
     function inProcessDispudesSize({ disputes }) {
       const inProcess = disputes.filter((dispute) => dispute.state == "in_process");
       return inProcess.length;
@@ -36754,11 +36799,25 @@
       }
       return `${disputes.length} | ${seller_lost.length} | ${custumer_lost.length} | ${all_lost.length}`;
     }
-    return /* @__PURE__ */ import_react15.default.createElement("div", { id: "Table" }, /* @__PURE__ */ import_react15.default.createElement("div", { id: "TableHead", className: "fr6 f-s-07" }, /* @__PURE__ */ import_react15.default.createElement("div", { className: "cell6" }, "telegram_id"), /* @__PURE__ */ import_react15.default.createElement("div", { className: "cell6" }, "username"), /* @__PURE__ */ import_react15.default.createElement("div", { className: "cell6" }, "\u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439"), /* @__PURE__ */ import_react15.default.createElement("div", { className: "cell6" }, "\u0440\u0430\u0441\u0441\u043C\u043E\u0442\u0440\u0435\u043D\u043D\u044B\u0445 \u0441\u043F\u043E\u0440\u043E\u0432 ", /* @__PURE__ */ import_react15.default.createElement("br", null), "\u0432\u0441\u0435\u0433\u043E | \u043F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u044C_\u0432\u044B\u0439\u0433\u0440\u0430\u043B | \u043F\u0440\u043E\u0434\u0430\u0432\u0435\u0446_\u0432\u044B\u0439\u0433\u0440\u0430\u043B | \u0433\u0430\u0440\u0430\u043D\u0442_\u0432\u044B\u0439\u0433\u0440\u0430\u043B"), /* @__PURE__ */ import_react15.default.createElement("div", { className: "cell6" }, "\u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0445 \u0441\u043F\u043E\u0440\u043E\u0432"), /* @__PURE__ */ import_react15.default.createElement("div", { className: "cell6" }, "\u0441\u0442\u0430\u0442\u0443\u0441")), moderatorsByStatusRights.map((moderator) => /* @__PURE__ */ import_react15.default.createElement("div", { className: "row fr6 f-s-07", key: moderator.id }, /* @__PURE__ */ import_react15.default.createElement("span", { className: "cell6 cell6-body" }, moderator.telegram_id), /* @__PURE__ */ import_react15.default.createElement("span", { className: "cell6 cell6-body" }, moderator.username), /* @__PURE__ */ import_react15.default.createElement("span", { className: "cell6 cell6-body" }, /* @__PURE__ */ import_react15.default.createElement("textarea", { name: "comment", className: "f-s-08", placeholder: moderator.comment, "data-id": moderator.id, onBlur: onBlurComment })), /* @__PURE__ */ import_react15.default.createElement("span", { className: "cell6 cell6-body" }, finishedDisputesSize(moderator)), /* @__PURE__ */ import_react15.default.createElement("span", { className: "cell6 cell6-body" }, inProcessDispudesSize(moderator)), /* @__PURE__ */ import_react15.default.createElement("span", { className: "cell6 cell6-body" }, /* @__PURE__ */ import_react15.default.createElement("select", { name: "rights_status", onChange: onChangeStatus, "data-id": moderator.id }, /* @__PURE__ */ import_react15.default.createElement("option", { value: isActiveStatus(moderator.rights_status) }, isActiveStatus(moderator.rights_status)), /* @__PURE__ */ import_react15.default.createElement("option", { value: anotherStatus(moderator.rights_status) }, anotherStatus(moderator.rights_status)))))));
+    return /* @__PURE__ */ import_react16.default.createElement("div", { id: "Table" }, /* @__PURE__ */ import_react16.default.createElement("div", { id: "TableHead", className: "fr6 f-s-07" }, /* @__PURE__ */ import_react16.default.createElement("div", { className: "cell6" }, "telegram_id"), /* @__PURE__ */ import_react16.default.createElement("div", { className: "cell6" }, "username"), /* @__PURE__ */ import_react16.default.createElement("div", { className: "cell6" }, "\u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439"), /* @__PURE__ */ import_react16.default.createElement("div", { className: "cell6" }, "\u0440\u0430\u0441\u0441\u043C\u043E\u0442\u0440\u0435\u043D\u043D\u044B\u0445 \u0441\u043F\u043E\u0440\u043E\u0432 ", /* @__PURE__ */ import_react16.default.createElement("br", null), "\u0432\u0441\u0435\u0433\u043E | \u043F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u044C_\u0432\u044B\u0439\u0433\u0440\u0430\u043B | \u043F\u0440\u043E\u0434\u0430\u0432\u0435\u0446_\u0432\u044B\u0439\u0433\u0440\u0430\u043B | \u0433\u0430\u0440\u0430\u043D\u0442_\u0432\u044B\u0439\u0433\u0440\u0430\u043B"), /* @__PURE__ */ import_react16.default.createElement("div", { className: "cell6" }, "\u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0445 \u0441\u043F\u043E\u0440\u043E\u0432"), /* @__PURE__ */ import_react16.default.createElement("div", { className: "cell6" }, "\u0441\u0442\u0430\u0442\u0443\u0441")), moderatorsByStatusRights.map((moderator) => /* @__PURE__ */ import_react16.default.createElement("div", { className: "row fr6 f-s-07", key: moderator.id }, /* @__PURE__ */ import_react16.default.createElement("span", { className: "cell6 cell6-body" }, moderator.telegram_id), /* @__PURE__ */ import_react16.default.createElement("span", { className: "cell6 cell6-body" }, moderator.username), /* @__PURE__ */ import_react16.default.createElement("span", { className: "cell6 cell6-body" }, /* @__PURE__ */ import_react16.default.createElement("textarea", { name: "comment", className: "f-s-08", placeholder: moderator.comment, "data-id": moderator.id, onBlur: onBlurComment })), /* @__PURE__ */ import_react16.default.createElement("span", { className: "cell6 cell6-body" }, finishedDisputesSize(moderator)), /* @__PURE__ */ import_react16.default.createElement("span", { className: "cell6 cell6-body" }, inProcessDispudesSize(moderator)), /* @__PURE__ */ import_react16.default.createElement("span", { className: "cell6 cell6-body" }, isActive && /* @__PURE__ */ import_react16.default.createElement(
+      Select_default,
+      {
+        onChangeStatus,
+        rightsStatus: "\u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0439",
+        moderator
+      }
+    ), !isActive && /* @__PURE__ */ import_react16.default.createElement(
+      Select_default,
+      {
+        onChangeStatus,
+        rightsStatus: "\u043D\u0435 \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0439",
+        moderator
+      }
+    )))));
   };
 
   // app/javascript/components/Moderators/Form.jsx
-  var import_react16 = __toESM(require_react());
+  var import_react17 = __toESM(require_react());
   var import_jquery5 = __toESM(require_jquery());
   var Form_default3 = ({ isForm, onCancelForm, onSubmit }) => {
     const form = (0, import_jquery5.default)("form");
@@ -36766,18 +36825,18 @@
     if (isForm) {
       const top2 = (window.innerHeight - form.height()) / 3;
     }
-    return /* @__PURE__ */ import_react16.default.createElement("div", { className: is_active }, /* @__PURE__ */ import_react16.default.createElement("div", { id: "blanket", className: "blanket" }), /* @__PURE__ */ import_react16.default.createElement("div", { id: "form-wrap" }, /* @__PURE__ */ import_react16.default.createElement("form", { style: { top }, action: "/create_moderator", method: "post", onSubmit }, /* @__PURE__ */ import_react16.default.createElement("input", { name: "telegram_id", placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 telegram_id..." }), /* @__PURE__ */ import_react16.default.createElement("div", { id: "form-buttons" }, /* @__PURE__ */ import_react16.default.createElement("input", { type: "submit", value: "\u0421\u043E\u0437\u0434\u0430\u0442\u044C", className: "form-button" }), /* @__PURE__ */ import_react16.default.createElement("button", { onClick: onCancelForm, className: "form-button" }, "\u041E\u0442\u043C\u0435\u043D\u0430")))));
+    return /* @__PURE__ */ import_react17.default.createElement("div", { className: is_active }, /* @__PURE__ */ import_react17.default.createElement("div", { id: "blanket", className: "blanket" }), /* @__PURE__ */ import_react17.default.createElement("div", { id: "form-wrap" }, /* @__PURE__ */ import_react17.default.createElement("form", { style: { top }, action: "/create_moderator", method: "post", onSubmit }, /* @__PURE__ */ import_react17.default.createElement("input", { name: "telegram_id", placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 telegram_id..." }), /* @__PURE__ */ import_react17.default.createElement("div", { id: "form-buttons" }, /* @__PURE__ */ import_react17.default.createElement("input", { type: "submit", value: "\u0421\u043E\u0437\u0434\u0430\u0442\u044C", className: "form-button" }), /* @__PURE__ */ import_react17.default.createElement("button", { onClick: onCancelForm, className: "form-button" }, "\u041E\u0442\u043C\u0435\u043D\u0430")))));
   };
 
   // app/javascript/components/Moderators/Main.jsx
   var Main_default3 = () => {
-    const [moderators, setModerators] = (0, import_react17.useState)([]);
-    const [isActiveModerators, serIsActiveModerators] = (0, import_react17.useState)(true);
-    const [disputes, setDisputes] = (0, import_react17.useState)([]);
-    const [isForm, setIsForm] = (0, import_react17.useState)(false);
+    const [moderators, setModerators] = (0, import_react18.useState)([]);
+    const [isActiveModerators, serIsActiveModerators] = (0, import_react18.useState)(true);
+    const [disputes, setDisputes] = (0, import_react18.useState)([]);
+    const [isForm, setIsForm] = (0, import_react18.useState)(false);
     const rightStatusButtonTexts = { active: "\u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0435", inactive: "\u043D\u0435 \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0435" };
     const X_CSRF_Token = (0, import_jquery6.default)('meta[name="csrf-token"]').attr("content");
-    (0, import_react17.useEffect)(() => {
+    (0, import_react18.useEffect)(() => {
       async function getModerators() {
         const res = await fetch("/getModerators");
         const body = await res.text();
@@ -36871,7 +36930,7 @@
         setModerators(moderators2);
       });
     }
-    return /* @__PURE__ */ import_react17.default.createElement("div", { id: "Main" }, /* @__PURE__ */ import_react17.default.createElement(
+    return /* @__PURE__ */ import_react18.default.createElement("div", { id: "Main" }, /* @__PURE__ */ import_react18.default.createElement(
       Bar_default3,
       {
         isActive: isActiveModerators,
@@ -36880,7 +36939,7 @@
         disputes,
         onCreateClick: handleCreateClick
       }
-    ), /* @__PURE__ */ import_react17.default.createElement(
+    ), /* @__PURE__ */ import_react18.default.createElement(
       Table_default2,
       {
         moderators,
@@ -36888,7 +36947,7 @@
         onBlurComment: handleBlurComment,
         onChangeStatus: handleChangeStatus
       }
-    ), /* @__PURE__ */ import_react17.default.createElement(
+    ), /* @__PURE__ */ import_react18.default.createElement(
       Form_default3,
       {
         isForm,
@@ -36899,20 +36958,34 @@
   };
 
   // app/javascript/components/Moderators/Moderators.jsx
-  var Moderators_default = () => /* @__PURE__ */ import_react18.default.createElement("div", { id: "Home" }, /* @__PURE__ */ import_react18.default.createElement(Nav_default, null), /* @__PURE__ */ import_react18.default.createElement(Main_default3, null));
+  var Moderators_default = () => /* @__PURE__ */ import_react19.default.createElement("div", { id: "Home" }, /* @__PURE__ */ import_react19.default.createElement(Nav_default, null), /* @__PURE__ */ import_react19.default.createElement(Main_default3, null));
+
+  // app/javascript/components/Finances/Finances.jsx
+  var import_react21 = __toESM(require_react());
+
+  // app/javascript/components/Finances/Main.jsx
+  var import_react20 = __toESM(require_react());
+  var Main_default4 = () => {
+    return /* @__PURE__ */ import_react20.default.createElement("div", { id: "Main" });
+  };
+
+  // app/javascript/components/Finances/Finances.jsx
+  var Finances_default = () => {
+    return /* @__PURE__ */ import_react21.default.createElement("div", { id: "Home" }, /* @__PURE__ */ import_react21.default.createElement(Nav_default, null), /* @__PURE__ */ import_react21.default.createElement(Main_default4, null));
+  };
 
   // app/javascript/routes/index.jsx
-  var routes_default = /* @__PURE__ */ import_react19.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react19.default.createElement(Routes, null, /* @__PURE__ */ import_react19.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react19.default.createElement(Users_default, null) }), /* @__PURE__ */ import_react19.default.createElement(Route, { path: "/moderators", element: /* @__PURE__ */ import_react19.default.createElement(Moderators_default, null) }), /* @__PURE__ */ import_react19.default.createElement(Route, { path: "/deals", element: /* @__PURE__ */ import_react19.default.createElement(Deals_default, null) })));
+  var routes_default = /* @__PURE__ */ import_react22.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react22.default.createElement(Routes, null, /* @__PURE__ */ import_react22.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react22.default.createElement(Users_default, null) }), /* @__PURE__ */ import_react22.default.createElement(Route, { path: "/moderators", element: /* @__PURE__ */ import_react22.default.createElement(Moderators_default, null) }), /* @__PURE__ */ import_react22.default.createElement(Route, { path: "/deals", element: /* @__PURE__ */ import_react22.default.createElement(Deals_default, null) }), /* @__PURE__ */ import_react22.default.createElement(Route, { path: "/finances", element: /* @__PURE__ */ import_react22.default.createElement(Finances_default, null) })));
 
   // app/javascript/components/App.jsx
-  var App_default = (props) => /* @__PURE__ */ import_react20.default.createElement(import_react20.default.Fragment, null, routes_default);
+  var App_default = (props) => /* @__PURE__ */ import_react23.default.createElement(import_react23.default.Fragment, null, routes_default);
 
   // app/javascript/components/index.jsx
   document.addEventListener("turbo:load", () => {
     const root = (0, import_client.createRoot)(
       document.body.appendChild(document.createElement("div"))
     );
-    root.render(/* @__PURE__ */ import_react21.default.createElement(App_default, null));
+    root.render(/* @__PURE__ */ import_react24.default.createElement(App_default, null));
   });
 })();
 /*! Bundled license information:

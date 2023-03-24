@@ -1,4 +1,5 @@
 import React from "react";
+import Select from "./Select"
 
 export default ({moderators, isActive, onBlurComment, onChangeStatus})=>{
 
@@ -8,12 +9,6 @@ export default ({moderators, isActive, onBlurComment, onChangeStatus})=>{
         else if (!isActive && moderator.rights_status == 'inactive') return moderator
     })
 
-    function isActiveStatus(status){
-        return (status = 'active') ? 'активный' : 'не активный'
-    }
-    function anotherStatus(status){
-        return (status = 'active') ? 'не активный' : 'активный'
-    }
 
     function inProcessDispudesSize({disputes}){
         const inProcess = disputes.filter(dispute=>dispute.state == 'in_process')
@@ -54,10 +49,14 @@ export default ({moderators, isActive, onBlurComment, onChangeStatus})=>{
                     <span className="cell6 cell6-body">{finishedDisputesSize(moderator)}</span>
                     <span className="cell6 cell6-body">{inProcessDispudesSize(moderator)}</span>
                     <span className="cell6 cell6-body">
-                        <select name="rights_status"  onChange={onChangeStatus} data-id={moderator.id}>
-                            <option value={isActiveStatus(moderator.rights_status)}>{isActiveStatus(moderator.rights_status)}</option>
-                            <option value={anotherStatus(moderator.rights_status)}>{anotherStatus(moderator.rights_status)}</option>
-                        </select>
+                        { isActive && <Select 
+                            onChangeStatus={onChangeStatus} 
+                            rightsStatus={'активный'} 
+                            moderator={moderator}/>}
+                        {!isActive && <Select 
+                            onChangeStatus={onChangeStatus} 
+                            rightsStatus={'не активный'} 
+                            moderator={moderator}/>}
                     </span>
                 </div>
             ))}                      

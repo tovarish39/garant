@@ -24,5 +24,12 @@ export default () => {
                 className={(current_path == '/deals') ? 'active' : ''}
                 >Сделки</button>
         </NavLink>
+
+        <NavLink to="/finances">
+            <button 
+                className={(current_path == '/finances') ? 'active' : ''}
+                >Финансы</button>
+        </NavLink>
+
     </div>
 )}

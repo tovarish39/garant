@@ -94,7 +94,7 @@ def view_history_deals # statuses: == 'rejected by_seller' || == 'rejected by_cu
             $moderators_username  = dispute.moderator.username
             $comment_by_moderator = dispute.comment_by_moderator
         end
-# сделку отменил или завершил администратор
+# сделку отменил или завершил или "гарант"         администратор
         if dispute && dispute.status == nil
             $comment_by_administrator = dispute.comment_by_moderator
         end

@@ -21,11 +21,19 @@ def has_dispute_deals? # status: =~ /dispute/
   $dispute_deals.empty? ? false : true
 end
 
-def has_history_deals? # statuses: == 'rejected by_seller' || == 'rejected by_custumer' || == 'canceled by_custumer' || == 'finished by_custumer' || == 'finished by_moderator'
+def has_history_deals? 
+# statuses: 
+# == 'rejected by_seller' 
+# == 'rejected by_custumer' 
+# == 'canceled by_custumer' 
+# == 'finished by_custumer' 
+# == 'finished by_moderator'
+
+# == 'garant win by_administrator'
   all_deals_for_user = get_all_deals_for_user()  
   $history_deals = all_deals_for_user.filter do |deal| 
     status = deal.status
-    status =~ /rejected/ || status =~ /canceled/ || status =~ /finished/ 
+    status =~ /rejected/ || status =~ /canceled/ || status =~ /finished/ || status =~ /garant/
   end
   $history_deals.empty? ? false : true
 end

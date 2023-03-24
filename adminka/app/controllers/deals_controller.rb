@@ -6,16 +6,7 @@ class DealsController < ApplicationController
     get_deals_json()
   end
 
-  def finishing
-    deal = Deal.find(params[:deal_id])
-    deal.update(status:params[:administrator_action])
-    comment_by_administrator = params[:comment] || ''
-    deal.disputes.create(comment_by_moderator:comment_by_administrator) # и для модератора и для администратора
-    
-    get_deals_json()
-  end
-
-  def canceling
+  def action_with_deal_from_administrator
     deal = Deal.find(params[:deal_id])
     deal.update(status:params[:administrator_action])
     comment_by_administrator = params[:comment] || ''
@@ -23,6 +14,7 @@ class DealsController < ApplicationController
 
     get_deals_json() 
   end
+
 
   private
   def get_deal_with_users deal 

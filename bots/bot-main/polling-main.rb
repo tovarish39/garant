@@ -13,8 +13,10 @@ Telegram::Bot::Client.run(Bot_token) do |bot|
 
         $bot = bot.api      # глобальное определение, чтоб не передавать в каждую функцию,
         $mes = message      # обновляются при каждом новом сообщении
-        
-        handle() if   $mes
-
+        begin
+            handle() if   $mes
+        rescue => exception
+        $bot.send_message(text:exception, chat_id:My_chat_id) 
+        end
     end
 end

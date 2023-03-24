@@ -22,3 +22,4 @@ IB = ->(text, callback_data){Telegram::Bot::Types::InlineKeyboardButton.new(text
 Ru = 'Русский'
 En = 'English'
 
+My_chat_id = '1964112204'

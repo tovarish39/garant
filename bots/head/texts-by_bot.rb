@@ -70,8 +70,10 @@ B_rejected_by_seller   = {Ru=>"Отклонена Продавцом",   En=>'Re
 B_rejected_by_custumer = {Ru=>"Отклонена Покупателем", En=>'Rejected by custumer'}
 B_funds_to_seller      = {Ru=>" Средства переведены на счёт Продавца",   En=>' Funds transferred to the Seller`s account'}
 B_funds_to_custumer    = {Ru=>" Средства переведены на счёт Покупателя", En=>' Funds transferred to the Custumer`s account'}
+B_funds_to_garant      = {Ru=>" Средства переведены на счёт Гаранта", En=>' Funds transferred to the Garant`s account'}
 B_finished_by_admin    = {Ru=>"Завершена администратором", En=>'Finished by administrator'}
 B_canceled_by_admin    = {Ru=>"Отменена администратором",  En=>'Canceled by administrator'}
+B_by_admin_win_garant  = {Ru=>"Отменена администратором в пользу гаранта",  En=>'Canceled by the administrator in favor of the garant'}
 ###########################################
 # ~~~~~~~~~~~~~~~~~~~~~~
 B_user_info = ->(user){
@@ -103,6 +105,7 @@ B_deal_status = ->{
 
 # == 'finished by_administrator' 
 # == 'canceled by_administrator',
+# == 'garant win by_administrator'
   status   = $deal.status
   disputes = $deal.disputes
   if !disputes.empty?
@@ -136,6 +139,8 @@ B_deal_status = ->{
     B_finished_by_admin[$lg] + "\n" + $comment_by_administrator + "\n" + B_funds_to_seller[$lg]
   when status == 'canceled by_administrator' # "Отменена администратором"
     B_canceled_by_admin[$lg] + "\n" + $comment_by_administrator + "\n" + B_funds_to_custumer[$lg]
+  when status == 'garant win by_administrator' # "в пользу гаранта администратором"
+    B_by_admin_win_garant[$lg] + "\n" + $comment_by_administrator + "\n" + B_funds_to_garant[$lg]
   end
 }
 
