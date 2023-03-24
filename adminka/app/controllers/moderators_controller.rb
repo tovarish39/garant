@@ -10,6 +10,7 @@ class ModeratorsController < ApplicationController
     end
 
     def update_status
+        debugger
         new_status = (params[:newStatus] == 'активный' ? 'active' : 'inactive')
         Moderator.find(params[:moderator_id]).update(rights_status:new_status)
         render_moderators()
