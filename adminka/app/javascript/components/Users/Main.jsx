@@ -123,7 +123,7 @@ export default () => {
             'user_ids':checkedList
             }
 
-        const X_CSRF_Token = $('meta[name="csrf-token"]').attr('content')
+
         fetch('/send_message_to_users', {
                 method:"POST",
                 body:JSON.stringify(data),

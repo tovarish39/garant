@@ -11,7 +11,7 @@ export default () => {
     const [isForm,             setIsForm]             = useState(false)
 
     const rightStatusButtonTexts = {active:'активные', inactive:'не активные'}
-    const X_CSRF_Token = $('meta[name="csrf-token"]').attr('content')
+
 
     useEffect(()=>{
         async function getModerators(){ 

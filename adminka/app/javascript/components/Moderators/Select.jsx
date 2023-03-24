@@ -2,7 +2,7 @@ import React from "react"
 
 export default ({onChangeStatus, moderator, rightsStatus})=>{
     function anotherStatus(rightsStatus){
-        console.log(rightsStatus)
+        // console.log(rightsStatus)
         if (rightsStatus == 'активный')    return 'не активный'
         if (rightsStatus == 'не активный') return 'активный'
     }

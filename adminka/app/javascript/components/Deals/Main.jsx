@@ -13,7 +13,7 @@ export default () => {
     const [actionButton,    setActionButton]    = useState('') //  finish || reject || garant
     const [currentDealId,   setCurrentDealId]   = useState('')
 
-    const X_CSRF_Token = $('meta[name="csrf-token"]').attr('content')
+
 
     useEffect(()=>{
         async function getDeals(){ 

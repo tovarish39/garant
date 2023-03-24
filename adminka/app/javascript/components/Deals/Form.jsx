@@ -7,7 +7,7 @@ export default ({
     onSubmit,
     actionButton
 })=>{
-    console.log(actionButton)
+    // console.log(actionButton)
     const form = $('form')
     const is_active = (isForm) ? '' : 'none'
     if (isForm) {
