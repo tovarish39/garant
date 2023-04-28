@@ -38,9 +38,6 @@ def handle
   $user ||= create_user
   $lg = $user.lang
 
-  puts mes_photo?
-  puts valid_photos_size?
-  puts get_size_now 
   if $mes.instance_of?(ChatMemberUpdated)
     # update_is_member
   elsif mes_text? || mes_data? || is_user_shared? || mes_photo?

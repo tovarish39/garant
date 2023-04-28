@@ -12,4 +12,3 @@ gem 'aasm', '~> 5.1', '>= 5.1.1'
 
 gem 'ruby-debug-ide'
 
-# can't find executable rdebug-ide for gem ruby-debug-ide. ruby-debug-ide

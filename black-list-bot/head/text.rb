@@ -31,7 +31,7 @@ module Text
     def self.complaint_photos
         'Отправьте скриншоты диалога на которых виден процесс обмана, порсле отправки нажмите кнопку “Готово”'
     end
-    def self.more_then_max_photos_size
+    def self.notice_max_photos_size
         "Максимальное количество фотографий #{MAX_PHOTOS_SIZE}"
     end
     def self.less_then_min_photos_size

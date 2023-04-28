@@ -10,6 +10,8 @@ require_relative 'button'
 require_relative 'text'
 require_relative 'markup'
 require_relative 'inline'
+require_relative 'shorts'
+
 
 def require_all(path)
   Dir.glob("#{path}/**/*.rb").sort.each do |file|

@@ -35,7 +35,7 @@ end
 
 module Get
     def self.file file_id
-        bot.api.get_file(file_id: file_id)
+        $bot.api.get_file(file_id: file_id)
     end
 end
 
@@ -46,6 +46,7 @@ end
 def action(from_state) = "#{from_state}_action"        
 
 def mes_photo?
+    return false unless $mes.class == Message
     $mes.photo.present?
 end
 

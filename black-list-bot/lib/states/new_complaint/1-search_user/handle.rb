@@ -25,7 +25,7 @@ def to_verify_user_info
                status: 'filling'
              )
            end
-
+# puts scamer.inspect
   $user.update(cur_scamer_id: scamer.id)
 
   begin
