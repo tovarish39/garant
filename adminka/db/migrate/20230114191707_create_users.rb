@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateUsers < ActiveRecord::Migration[7.0]
   def change
     create_table :users do |t|
@@ -13,7 +15,6 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :currency
       t.string :amount
       t.text   :conditions
-      
 
       t.timestamps
     end

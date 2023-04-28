@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_19_155058) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_27_202301) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "black_list_users", force: :cascade do |t|
+    t.string "telegram_id"
+    t.string "username"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "lang"
+    t.string "state_aasm"
+    t.string "cur_scamer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "deals", force: :cascade do |t|
     t.integer "seller_id"
@@ -25,6 +37,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_19_155058) do
     t.string "status"
     t.text "conditions"
     t.string "hash_name"
+    t.string "comment"
+    t.string "grade"
     t.index ["user_id"], name: "index_deals_on_user_id"
   end
 
@@ -54,6 +68,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_19_155058) do
     t.string "pushed_action"
     t.string "rights_status"
     t.string "comment"
+  end
+
+  create_table "scamers", force: :cascade do |t|
+    t.bigint "black_list_user_id", null: false
+    t.string "telegram_id"
+    t.string "username"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "status"
+    t.string "photos_dir_path"
+    t.text "complaint_text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "photos_size", default: 0
+    t.index ["black_list_user_id"], name: "index_scamers_on_black_list_user_id"
   end
 
   create_table "taken_disputes", force: :cascade do |t|
@@ -95,6 +124,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_19_155058) do
 
   add_foreign_key "deals", "users"
   add_foreign_key "disputes", "deals"
+  add_foreign_key "scamers", "black_list_users"
   add_foreign_key "taken_disputes", "disputes"
   add_foreign_key "taken_disputes", "moderators"
 end

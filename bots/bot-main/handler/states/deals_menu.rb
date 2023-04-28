@@ -131,6 +131,8 @@ def finishing_deal_by_custumer
     $deal.update(status:'finished by_custumer')
     # сообщение Продавцу и Покупателю
     [$seller, $custumer].each {|user| send_message_to_user(B_deal_canceled_or_finished.call, user)}
+
+    send_message(B_add_grade[$lg], IM_add_grade.call)
 end
 
 def canceled_deal_by_seller

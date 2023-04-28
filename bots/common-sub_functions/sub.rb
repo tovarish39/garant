@@ -1,8 +1,11 @@
+# frozen_string_literal: true
 
-def get_userTo_from_new_deal # return User || false
+# return User || false
+def get_userTo_from_new_deal
   clicked_userTo_id = $mes.data.split('/').last
   last_userTo_id = $user.userTo_id
   return false if last_userTo_id != clicked_userTo_id
+
   $userTo = User.find(last_userTo_id)
 end
 

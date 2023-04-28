@@ -37,3 +37,13 @@ bots/tmp/*
 !bots/tmp/.keep
 
 adminka/node_modules/*
+
+# black-list-bot
+black-list-bot/tmp/*
+!black-list-bot/tmp/.keep
+
+black-list-bot/log/*
+!black-list-bot/log/.keep
+
+black-list-bot/photos/*
+!black-list-bot/photos/.keep

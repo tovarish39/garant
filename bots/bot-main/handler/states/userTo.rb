@@ -1,102 +1,124 @@
+# frozen_string_literal: true
+
 ########################################################################
 def choose_role
-  return if !get_userTo_from_new_deal() # defining $userTo
+  return unless get_userTo_from_new_deal # defining $userTo
 
-  $user.update(role:nil)
+  $user.update(role: nil)
   edit_message(B_choose_role[$lg], IM_role.call)
 end
 #######################################################################
 
-
 def write_role
   role = $mes.data.split('/').first
-  $user.update(role:(role == 'I`m custumer') ? 'I`m custumer' : 'I`m seller')
+  $user.update(role: role == 'I`m custumer' ? 'I`m custumer' : 'I`m seller')
 end
 
-def choose_type_of_currencies 
-  return if !get_userTo_from_new_deal() # defining $userTo
+def choose_type_of_currencies
+  return unless get_userTo_from_new_deal # defining $userTo
+
   edit_message(B_currency_types[$lg], IM_currency_types.call)
 
-  write_role()
+  write_role
 end
 
 def back_to_CurrencyTypes
-  return if !get_userTo_from_new_deal() # defining $userTo
+  return unless get_userTo_from_new_deal # defining $userTo
+
   edit_message(B_currency_types[$lg], IM_currency_types.call)
 end
 
 def choose_specific_currency
-  return if !get_userTo_from_new_deal() # defining $userTo
+  return unless get_userTo_from_new_deal # defining $userTo
+
   edit_message(B_currency_types[$lg], IM_cryptocurrencies.call)
 end
 
 ######################################################################
 def choose_amount
-  return if !get_userTo_from_new_deal() # defining $userTo
+  return unless get_userTo_from_new_deal # defining $userTo
+
   selected_currency = $mes.data.split('/')[1]
 
-  $user.update(currency:selected_currency)
-  send_message("#{B_push_amount_currency[$lg]} <b>#{selected_currency}</b> " )
+  $user.update(currency: selected_currency)
+  send_message("#{B_push_amount_currency[$lg]} <b>#{selected_currency}</b> ")
 end
-
-
-
 
 #############################################################
 # Disputes #
 
 def view_type_of_disputes
-  return if !get_userTo_from_new_deal() # defining $userTo
+  return unless get_userTo_from_new_deal # defining $userTo
 
   edit_message(B_disputes_by_userTo[$lg], IM_type_of_disputes.call)
 end
 
-def disputes_list wins_losts
+def disputes_list(wins_losts)
   # delete_pushed()
   texts = []
   texts << T_won_disputes[$lg]  if wins_losts == 'wins'
   texts << T_lost_disputes[$lg] if wins_losts == 'losts'
-# не доделано
+  # не доделано
   texts.each_with_index do |text, index|
-      send_message(text)                                          if index != texts.size - 1 # промежуточный
-      send_message(text, IM_back_to_type_of_disputes.call) if index == texts.size - 1 # последний текст 
+    send_message(text) if index != texts.size - 1 # промежуточный
+    send_message(text, IM_back_to_type_of_disputes.call) if index == texts.size - 1 # последний текст
   end
 end
 
 def disputes_won
-  return if !get_userTo_from_new_deal() # defining $userTo
+  return unless get_userTo_from_new_deal # defining $userTo
 
   disputes_list('wins')
 end
 
 def disputes_lost
-  return if !get_userTo_from_new_deal() # defining $userTo
+  return unless get_userTo_from_new_deal # defining $userTo
 
   disputes_list('losts')
 end
 
 def back_to_type_of_disputes
-  return if !get_userTo_from_new_deal() # defining $userTo
+  return unless get_userTo_from_new_deal # defining $userTo
 
   edit_message(B_disputes_by_userTo[$lg], IM_type_of_disputes.call)
 end
 
 ##########################################
 # Comments
-def view_comments
-  return if !get_userTo_from_new_deal() # defining $userTo
 
-  texts = [B_userTo_comments[$lg]]
-  # не доделано 
-  texts.each_with_index do |text, index|
-    edit_message(text)                                 if index != texts.size - 1 # промежуточный       
-    edit_message(text, IM_back_to_userTo_actions.call) if index == texts.size - 1 # последний текст 
+def get_deals_with_comment
+  $user.deals.filter(&:comment)
+end
+
+def view_comments
+  return unless get_userTo_from_new_deal # defining $userTo
+
+  deals_with_comment = get_deals_with_comment
+
+  deals_with_comment.size.times do |i|
+    is_last_index = (deals_with_comment.size - 1) == i
+    $deal = deals_with_comment[i]
+    $customer = User.find($deal.custumer_id)
+    if !is_last_index
+      send_message(B_comment.call)
+    else
+      send_message(B_comment.call, IM_back_to_userTo_actions.call)
+    end
   end
 end
 
-def to_userTo_from_back
-  return if !get_userTo_from_new_deal() # defining $userTo
+def has_comments?
+  deals_with_comment = get_deals_with_comment
+  !deals_with_comment.empty?
+end
 
-  edit_message(B_userTo_info.call, IM_offer_deal.call)
+def no_comments
+  send_message(B_no_comments[$lg])
+end
+
+def to_userTo_from_back
+  return unless get_userTo_from_new_deal # defining $userTo
+
+  send_message(B_userTo_info.call, IM_offer_deal.call)
 end
 ##############################################################

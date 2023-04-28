@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # seva - 6016837864
 
 # text нажата "Найти пользователя"

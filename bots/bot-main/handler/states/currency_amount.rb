@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 ###################################
-def choose_conditions  
-  $user.update(amount:$mes.text)
+def choose_conditions
+  $user.update(amount: $mes.text)
   send_message(B_push_conditions[$lg])
 end
 

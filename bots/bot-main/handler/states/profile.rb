@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 def view_profile
-    send_message(B_view_wallet.call, IM_extract.call)
+  send_message(B_view_wallet.call, IM_extract.call)
 end
 
 def empty_wallet
-    send_message(B_empty_wallet[$lg])
+  send_message(B_empty_wallet[$lg])
 end
 
 def extracting
-    $user.update(wallet:{})
-    empty_wallet()
-    to_start()
+  $user.update(wallet: {})
+  empty_wallet
+  to_start
 end

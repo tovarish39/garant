@@ -1,4 +1,6 @@
-desc "starting polling main bot && starting pollint moderator bot && starting redis-listener"
+# frozen_string_literal: true
+
+desc 'starting polling main bot && starting pollint moderator bot && starting redis-listener'
 task :start do
   main_path      = "#{__dir__}/bot-main/polling-main.rb"
   moderator_path = "#{__dir__}/bot-moderator/polling-mod.rb"
@@ -8,17 +10,17 @@ task :start do
   system("(bundle exec ruby #{redis_path} &)")     # redis
 end
 
-desc "killing pids bots && redis"
+desc 'killing pids bots && redis'
 task :stop do
   pids_file_path = "#{__dir__}/tmp/pids.txt"
   pids_file = File.readlines(pids_file_path).each do |pid|
     system("kill -9 #{pid}")
-  end 
+  end
   FileUtils.rm(pids_file_path)
 end
 
-desc "stop + start"
+desc 'stop + start'
 task :restart do
-  system("rake stop")
-  system("rake start")
+  system('rake stop')
+  system('rake start')
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddColumnsToModerators < ActiveRecord::Migration[7.0]
   def change
     add_column :moderators, :pushed_IB_mes_id,   :string

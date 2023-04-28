@@ -1,17 +1,16 @@
+# frozen_string_literal: true
+
 require 'telegram/bot'
 require 'json'
 require 'active_record'
 require 'redis'
-require "logger"
-
+require 'logger'
 
 logger = Logger.new('logs_kassa.log')
-logger.formatter = proc do |severity, datetime, progname, msg|
-    date_format = datetime.strftime("%Y-%m-%d %H:%M:%S")
-    "#{severity.slice(0)}-[#{date_format}] pid=##{Process.pid} mes='#{msg}'\n"
+logger.formatter = proc do |severity, datetime, _progname, msg|
+  date_format = datetime.strftime('%Y-%m-%d %H:%M:%S')
+  "#{severity.slice(0)}-[#{date_format}] pid=##{Process.pid} mes='#{msg}'\n"
 end
-
-
 
 redis = Redis.new
 
@@ -26,16 +25,14 @@ En = 'English'
 #
 begin
   redis.subscribe(:one, :two) do |on|
-    on.message do |channel, message|
-
+    on.message do |_channel, message|
       puts message
-
     end
   end
-rescue Redis::BaseConnectionError => error
-    logger.error("#{error}, retrying in 1s")
-    sleep 1
-    retry
+rescue Redis::BaseConnectionError => e
+  logger.error("#{e}, retrying in 1s")
+  sleep 1
+  retry
 end
 
 #
@@ -43,8 +40,6 @@ end
 #
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
-    bot.api.send_message(text:message.text, chat_id:message.chat.id)
+    bot.api.send_message(text: message.text, chat_id: message.chat.id)
   end
 end
-
-
