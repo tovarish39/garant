@@ -2,7 +2,7 @@
 
 require_relative 'head/requires'
 
-pid_file_path = "#{ROOT_BOT}/tmp/pid.txt"
+pid_file_path = "#{ROOT_BOT}/tmp/main_pid.txt"
 File.delete(pid_file_path) if File.exist?(pid_file_path)
 File.open(pid_file_path, 'a') { |pid_file| pid_file.puts Process.pid }
 

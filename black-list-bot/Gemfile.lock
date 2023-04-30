@@ -64,6 +64,7 @@ PLATFORMS
 DEPENDENCIES
   aasm (~> 5.1, >= 5.1.1)
   activerecord
+  faraday
   pg (~> 1.4.5)
   ruby-debug-ide
   telegram-bot-ruby (~> 1.0)
