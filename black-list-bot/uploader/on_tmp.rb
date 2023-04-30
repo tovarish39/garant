@@ -1,22 +1,24 @@
 require_relative '../head/requires'
+require 'faraday'
+require 'faraday/multipart'
 
 pid_file_path = "#{ROOT_BOT}/tmp/upload_on_telegraph_pid.txt"
 File.delete(pid_file_path) if File.exist?(pid_file_path)
 File.open(pid_file_path, 'a') { |pid_file| pid_file.puts Process.pid }
 
-require 'faraday'
+
+
 
 domain = 'api.filechan.org'
-
-conn = Faraday.new(
-    url: "https://#{domain}",
-    # headers: {'Content-Type' => 'image/jpg'}
-    headers: {'Content-Type' => 'multipart/form-data'}
-  )
-  
 file = File.open('/home/g/Desktop/download.jpeg')
 
-response = conn.post('/upload') do |req|
-  req.params['file'] = file
+
+
+conn = Faraday.new("https://#{domain}") do |f|
+  f.request :multipart
 end
-puts response.body
+
+response = conn.post('/upload', {
+  'file'=>Faraday::Multipart::FilePart.new(file, 'text/x-ruby')
+})
+puts response.status
