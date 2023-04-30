@@ -34,10 +34,19 @@ module Text
     def self.notice_max_photos_size
         "Максимальное количество фотографий #{MAX_PHOTOS_SIZE}"
     end
+    def self.notice_min_photos_size
+        'Необходимо отправить фото'
+    end
     def self.less_then_min_photos_size
         "Необходимо отправить хотя бы одно фото"
     end
-    def self.handle_photo
-        "Изображение №#{$user.photos_size} успешно принято, вы можете отправить еще или продолжить подачу жалобы нажав кнопку “Готово”"
+    def self.handle_photo photos_size
+        "Изображение №#{photos_size} успешно принято, вы можете отправить еще или продолжить подачу жалобы нажав кнопку “Готово”"
+    end
+    def self.compare_user_id
+        'Перешлите сообщения ответчика из чата, соответствующие скрину'
+    end
+    def self.complaint_request_to_moderator
+        'Ваша жалоба была отправлена на проверку модератором, .ожидайте её рассмотрения о результатах вас оповестит бот'
     end
 end

@@ -12,7 +12,9 @@ end
 #     (get_size_now + 1) < MIN_PHOTOS_SIZE
 # end
 
-
+def in_min_limit?
+    get_size_now > MIN_PHOTOS_SIZE
+end
 
 def in_max_limit? # ..21
     get_size_now < MAX_PHOTOS_SIZE

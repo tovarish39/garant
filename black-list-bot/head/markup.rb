@@ -55,6 +55,13 @@ module M
       )
     end
 
+    def self.compare_user_id
+      self::RM.call(
+        [Button.skip],
+        [Button.cancel]
+      )
+    end
+
     def self.make_objects(arr)
       arr.map! { |line| line.map! { |but| { text: but } } }
     end
