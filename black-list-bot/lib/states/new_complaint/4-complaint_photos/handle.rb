@@ -1,11 +1,12 @@
 def write_file file, scamer
     file_path = file['result']['file_path']
     file_url = URI("https://api.telegram.org/file/bot#{TOKEN_BOT}/#{file_path}")
-  puts   file_url
+#   puts   file_url
     dir_path = get_photo_dir_path(scamer)
     Dir.mkdir(dir_path) if !Dir.exist?(dir_path)
 
     scamer.photos_size += 1
+    scamer.photos_dir_path = dir_path
     scamer.save
 
     photo_path = "#{dir_path}/#{scamer.photos_size}.jpg"
@@ -16,7 +17,7 @@ def write_file file, scamer
 end
 
 def handle_photo
-    min_size = 0 # availible 3 variants
+    min_size = 2 # availible 3 variants
     file_id = $mes.photo[min_size].file_id
     file = Get.file(file_id)
     scamer = Scamer.find($user.cur_scamer_id)

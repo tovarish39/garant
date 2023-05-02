@@ -6,7 +6,7 @@
 
 def to_verify_user_info
   if    is_user_shared?
-    scamer_telegram_id = $mes.user_shared[:user_id]
+    scamer_telegram_id = $mes.user_shared[:user_id].to_s
   elsif mes_text?
     scamer_telegram_id = $mes.text
   end
@@ -16,18 +16,16 @@ def to_verify_user_info
     telegram_id: scamer_telegram_id
   )
 
-  scamer = if not_complete_the_scamer.present?
-             not_complete_the_scamer
-           else
-             Scamer.new(
-               telegram_id: scamer_telegram_id,
-               black_list_user_id: $user.id,
-               status: 'filling'
-             )
-           end
-# puts scamer.inspect
+  scamer =  if not_complete_the_scamer
+              not_complete_the_scamer
+            else
+               Scamer.create(
+                telegram_id: scamer_telegram_id,
+                black_list_user_id: $user.id,
+                status: 'filling'
+              )
+            end
   $user.update(cur_scamer_id: scamer.id)
-
   begin
     data = GetChat.info(scamer_telegram_id)['result']
     scamer.username   = data['username']

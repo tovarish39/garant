@@ -13,4 +13,7 @@ gem 'aasm', '~> 5.1', '>= 5.1.1'
 gem 'ruby-debug-ide'
 
 gem 'faraday'
+
 gem 'faraday-multipart'
+
+gem 'nokogiri'

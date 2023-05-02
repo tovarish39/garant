@@ -38,8 +38,7 @@ def handle
   $user ||= create_user
   $lg = $user.lang
 
-puts $mes.forward_from.inspect
-puts $mes.forward_from.id.inspect if $mes.forward_from.present?  
+
   if $mes.instance_of?(ChatMemberUpdated)
     # update_is_member
   elsif mes_text? || mes_data? || is_user_shared? || mes_photo?

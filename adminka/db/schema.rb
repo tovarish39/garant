@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_30_092117) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_30_221942) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,12 +77,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_092117) do
     t.string "first_name"
     t.string "last_name"
     t.string "status"
-    t.string "photos_dir_path"
     t.text "complaint_text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "photos_size", default: 0
     t.boolean "is_proofed_by_forwarted_mes", default: false
+    t.string "photos_dir_path"
+    t.string "photo_ulrs_remote_tmp", default: [], array: true
     t.index ["black_list_user_id"], name: "index_scamers_on_black_list_user_id"
   end
 

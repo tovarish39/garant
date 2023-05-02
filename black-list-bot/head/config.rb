@@ -10,6 +10,8 @@ MIN_LENGTH_COMPLAINT_TEXT = 20
 MAX_PHOTOS_SIZE = 20
 MIN_PHOTOS_SIZE = 0
 PHOTOS_PATH = "#{ROOT_BOT}/photos"
+UPLOAD_ON_TELEGRAPH_PATH = "#{ROOT_BOT}/uploader/on_telegraph.rb"
+UPLOAD_ON_TMP_PATH = "#{ROOT_BOT}/uploader/on_tmp.rb"
 
 CallbackQuery     = Telegram::Bot::Types::CallbackQuery
 Message           = Telegram::Bot::Types::Message
