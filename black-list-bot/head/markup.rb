@@ -9,6 +9,26 @@ module M
                       [IB.ru, IB.en]
                     ])
     end
+    def self.moderator_complaint scamer
+      self::IM.call([
+        [IB.accept_complaint(scamer)],
+        [IB.reject_complaint(scamer)]
+      ])
+      
+    end
+    def self.view_complaints
+      self::IM.call([
+        [IB.justification]
+      ])
+    end
+    def self.justification_request_to_moderator user
+      self::IM.call([
+        [IB.access_justification(user)],
+        [IB.block_user(user)]
+      ])
+    end
+
+
   end
 
   module Reply
@@ -24,7 +44,7 @@ module M
         [Button.make_a_complaint],
         [Button.request_status],
         [Button.account_status],
-        [Button.request_history]
+        # [Button.request_history]
       )
     end
 
@@ -59,6 +79,11 @@ module M
       self::RM.call(
         [Button.skip],
         [Button.cancel]
+      )
+    end
+    def self.greeting_mod
+      self::RM.call(
+        [Button.active_complaints]
       )
     end
 

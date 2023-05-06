@@ -41,12 +41,20 @@ def handle
 
   if $mes.instance_of?(ChatMemberUpdated)
     # update_is_member
+  elsif $user.is_blocked_by_moderator
   elsif mes_text? || mes_data? || is_user_shared? || mes_photo?
-    if $lg.nil?
+    
+
+    if $lg.nil? # язык ещё не выбран
       $user.update(state_aasm: 'language')
-    elsif mes_text? && Button.all_main.include?($mes.text)
+    elsif $user.is_self_scamer 
+      state = $user.state_aasm
+      $user.update(state_aasm:'scamer') if state != 'scamer' && state != 'justification' 
+      # elsif $user.state_aasm == 'scamer' || $user.state_aasm == 'justification' # чтоб не работали ниже условия
+    elsif mes_text? && Button.all_main.include?($mes.text) # кнопка главного меню или /start
       $user.update(state_aasm: 'start')
     end
+
 
     event_bot = StateMachine.new
 
@@ -57,5 +65,7 @@ def handle
 
     new_state = event_bot.aasm.current_state
     $user.update(state_aasm: new_state)
+    puts $user.justification
+    puts
   end
 end

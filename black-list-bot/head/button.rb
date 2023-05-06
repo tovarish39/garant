@@ -4,7 +4,7 @@ module Button
             self.make_a_complaint,
             self.request_status,
             self.account_status,
-            self.request_history,
+            # self.request_history,
             '/start'
         ]
     end
@@ -19,9 +19,9 @@ module Button
     def self.account_status 
         '📛 Статус аккаунта'
     end
-    def self.request_history 
-        '🏛 История заявок'
-    end
+    # def self.request_history 
+    #     '🏛 История заявок'
+    # end
     def self.select_user
         '🔎 Выбрать'
     end
@@ -36,5 +36,20 @@ module Button
     end
     def self.skip
         'Пропустить'        
+    end
+    def self.active_complaints
+        'Активные заявки'
+    end
+    def self.accept
+        'Одобрить'
+    end
+    def self.reject
+        '❌Отклонить'
+    end
+    def self.justification
+        "Оспорить"
+    end
+    def self.block_user
+        "❌Заблокировать юзера"
     end
 end

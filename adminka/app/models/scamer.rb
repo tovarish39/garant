@@ -3,9 +3,9 @@ class Scamer < ApplicationRecord
 
   validates :status, inclusion: {in: %w[
     filling
-    request_by_user
-    uploaded_on_tmp
-    accepted_by_moderator
-    rejected_by_moderator
+    request
+    to_moderator
+    accepted_complaint
+    rejected_complaint
     ]}
 end

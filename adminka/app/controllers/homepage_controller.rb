@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class HomepageController < ApplicationController
+  http_basic_authenticate_with name: "qqq", password: "qqq"
+  
   def index; end
 
   def users
@@ -25,12 +27,10 @@ class HomepageController < ApplicationController
     ids = params['user_ids'] # .split(',')
     message = params['message']
 
-    Telegram::Bot::Client.run(token_main) do |bot|
-      ids.each do |id|
-        user = User.find(id)
-
-        bot.api.send_message(text: message, chat_id: user.telegram_id)
-      end
+    bot =Telegram::Bot::Client.new(token_main)
+    ids.each do |id|
+      user = User.find(id)
+      bot.api.send_message(text: message, chat_id: user.telegram_id)
     end
 
     head :ok

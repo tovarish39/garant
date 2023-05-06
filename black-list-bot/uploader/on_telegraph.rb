@@ -76,18 +76,31 @@ content << "]"
 
 
 
-puts content
+# puts content
 response = create_page(title, content, access_token)
-puts response
-telegraph_link = response['result']['url'] 
-bot = Telegram::Bot::Client.new(TOKEN_BOT)
-bot.api.send_message(
-    text:"<a href='#{telegraph_link}'>telegraph_link</a>", 
-    chat_id:user.telegram_id, 
-    parse_mode:'HTML'
+# puts response
+telegraph_link = response['result']['url']
+puts scamer.inspect
+scamer.update(
+    telegraph_link:telegraph_link,
+    status:'to_moderator'
 )
-    
+# puts 
+# puts scamer.inspect
 
+bot = Telegram::Bot::Client.new(TOKEN_BOT_MODERATOR)
+moderators = BlackListModerator.all
+moderators.each do |moderator|
+    mes = bot.api.send_message(
+        text:Text.moderator_complaint(user, scamer), 
+        chat_id:moderator.telegram_id,
+        reply_markup:M::Inline.moderator_complaint(scamer),
+        parse_mode:'HTML'
+    )
+    # puts mes.inspect
+    rescue => exception
+        puts   exception.backtrace
+end
 
 
 

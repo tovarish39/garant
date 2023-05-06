@@ -1,0 +1,2 @@
+class BlackListModerator < ApplicationRecord
+end

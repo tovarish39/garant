@@ -9,9 +9,9 @@ scamer = Scamer.find(scamer_id)
 photos_dir_path = scamer.photos_dir_path
 photo_names = Dir.entries(photos_dir_path).filter {|file| file =~ /.jpg$/}
 DOMAINS = %w[
+  api.anonfiles.com
   api.filechan.org  
   api.letsupload.cc
-  api.anonfiles.com
 ]
 domain_index = 0
 
@@ -69,5 +69,5 @@ photo_names.each do |photo_name|
   end
 end
 
-scamer.update(status:'uploaded_on_tmp')
+# scamer.update(status:'to_moderator')
 system("bundle exec ruby #{UPLOAD_ON_TELEGRAPH_PATH} #{scamer.id} #{user_id}")
