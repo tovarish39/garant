@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ModeratorsController < ApplicationController
+class Garant::ModeratorsController < ApplicationController
   def getModerators
     render_moderators
   end

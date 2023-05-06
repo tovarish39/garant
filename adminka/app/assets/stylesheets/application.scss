@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "bootstrap";
+
 $bg-nav: #0e1621;
 $bg-main: #242f3d;
 
@@ -42,6 +45,7 @@ body{
       border: none;
       width: 16vw;
       text-align: left;
+      // text-decoration: none;
    }
    .active{
       width: 18vw;
@@ -264,3 +268,4 @@ body{
 }
 
 .none{display: none;}
+a{text-decoration: none;}

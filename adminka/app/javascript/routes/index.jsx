@@ -8,10 +8,10 @@ import Finances from "../components/Finances/Finances";
 export default (
   <Router>
     <Routes>
-      <Route path="/"           element={<Users />} />
-      <Route path="/moderators" element={<Moderators />} />
-      <Route path="/deals"      element={<Deals />} />
-      <Route path="/finances"   element={<Finances />} />
+      <Route path="/"                  element={<Users />} />
+      <Route path="/garant/moderators" element={<Moderators />} />
+      <Route path="/garant/deals"      element={<Deals />} />
+      <Route path="/garant/finances"   element={<Finances />} />
     </Routes>
   </Router>
 );

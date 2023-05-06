@@ -7,7 +7,7 @@ import Form  from './Form'
 
 export default () => {
     const [users,         setUsers]         = useState([])
-    const [language,      setLanguage]      = useState('En')
+    const [language,      setLanguage]      = useState('Ru')
     const [checkedList,   setCheckedList]   = useState([])
     const [isForm,        setIsForm]        = useState(false)
     const [withBotStatus, setWithBotStatus] = useState('member')

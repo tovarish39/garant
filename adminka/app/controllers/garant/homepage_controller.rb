@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class HomepageController < ApplicationController
-  http_basic_authenticate_with name: "qqq", password: "qqq"
+class Garant::HomepageController < ApplicationController
   
   def index; end
 

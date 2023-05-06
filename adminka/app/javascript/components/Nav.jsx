@@ -13,21 +13,21 @@ export default () => {
             >Пользователи</button>
         </NavLink>
 
-        <NavLink to="/moderators">
+        <NavLink to="/garant/moderators">
             <button 
-                className={(current_path == '/moderators') ? 'active' : ''}
+                className={(current_path == '/garant/moderators') ? 'active' : ''}
                 >Модераторы</button>
         </NavLink>
 
-        <NavLink to="/deals">
+        <NavLink to="/garant/deals">
             <button 
-                className={(current_path == '/deals') ? 'active' : ''}
+                className={(current_path == '/garant/deals') ? 'active' : ''}
                 >Сделки</button>
         </NavLink>
 
-        <NavLink to="/finances">
+        <NavLink to="/garant/finances">
             <button 
-                className={(current_path == '/finances') ? 'active' : ''}
+                className={(current_path == '/garant/finances') ? 'active' : ''}
                 >Финансы</button>
         </NavLink>
 

@@ -36228,22 +36228,22 @@
         className: current_path == "/" ? "active" : ""
       },
       "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0438"
-    )), /* @__PURE__ */ import_react.default.createElement(NavLink, { to: "/moderators" }, /* @__PURE__ */ import_react.default.createElement(
+    )), /* @__PURE__ */ import_react.default.createElement(NavLink, { to: "/garant/moderators" }, /* @__PURE__ */ import_react.default.createElement(
       "button",
       {
-        className: current_path == "/moderators" ? "active" : ""
+        className: current_path == "/garant/moderators" ? "active" : ""
       },
       "\u041C\u043E\u0434\u0435\u0440\u0430\u0442\u043E\u0440\u044B"
-    )), /* @__PURE__ */ import_react.default.createElement(NavLink, { to: "/deals" }, /* @__PURE__ */ import_react.default.createElement(
+    )), /* @__PURE__ */ import_react.default.createElement(NavLink, { to: "/garant/deals" }, /* @__PURE__ */ import_react.default.createElement(
       "button",
       {
-        className: current_path == "/deals" ? "active" : ""
+        className: current_path == "/garant/deals" ? "active" : ""
       },
       "\u0421\u0434\u0435\u043B\u043A\u0438"
-    )), /* @__PURE__ */ import_react.default.createElement(NavLink, { to: "/finances" }, /* @__PURE__ */ import_react.default.createElement(
+    )), /* @__PURE__ */ import_react.default.createElement(NavLink, { to: "/garant/finances" }, /* @__PURE__ */ import_react.default.createElement(
       "button",
       {
-        className: current_path == "/finances" ? "active" : ""
+        className: current_path == "/garant/finances" ? "active" : ""
       },
       "\u0424\u0438\u043D\u0430\u043D\u0441\u044B"
     )));
@@ -36332,7 +36332,7 @@
         (is_searchTemplateEmpty || regex.test(user.telegram_id) || regex.test(user.username))
       )
     );
-    return /* @__PURE__ */ import_react4.default.createElement("div", { id: "Table" }, /* @__PURE__ */ import_react4.default.createElement("div", { id: "TableHead", className: "col-5 f-s-08" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell5" }, /* @__PURE__ */ import_react4.default.createElement("input", { id: "general-checkbox", type: "checkbox", onClick: onGeneralCheckboxClick })), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell5" }, "telegram_id"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell5" }, "username"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell5" }, "\u0434\u0430\u0442\u0430 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell5" }, "\u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0441\u0434\u0435\u043B\u043E\u043A")), filteresUsers.map((user) => /* @__PURE__ */ import_react4.default.createElement("div", { className: "row col-5 f-s-07", key: user.id, "data-id": user.id }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell5 cell5-body" }, /* @__PURE__ */ import_react4.default.createElement("input", { className: "user-checkbox", type: "checkbox", "data-id": user.id, onClick: onCheckboxClick })), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell5 cell5-body" }, user.telegram_id), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell5 cell5-body" }, user.username), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell5 cell5-body" }, getFriendlyDateFormat(user.created_at)), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell5 cell5-body" }, user.deals_size))));
+    return /* @__PURE__ */ import_react4.default.createElement("div", { id: "Table" }, /* @__PURE__ */ import_react4.default.createElement("div", { id: "TableHead", className: "col-5 f-s-08" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell5" }, /* @__PURE__ */ import_react4.default.createElement("input", { id: "general-checkbox", type: "checkbox", onClick: onGeneralCheckboxClick })), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell5" }, "telegram_id"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell5" }, "username"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell5" }, "\u0434\u0430\u0442\u0430 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438"), /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell5" }, "\u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0441\u0434\u0435\u043B\u043E\u043A")), filteresUsers.map((user) => /* @__PURE__ */ import_react4.default.createElement("div", { className: "row col-5 f-s-07", key: user.id, "data-id": user.id }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "cell5 cell5-body" }, /* @__PURE__ */ import_react4.default.createElement("input", { className: "user-checkbox", type: "checkbox", "data-id": user.id, onClick: onCheckboxClick })), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell5 cell5-body" }, user.telegram_id), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell5 cell5-body" }, user.username), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell5 cell5-body" }, getFriendlyDateFormat(user.created_at)), /* @__PURE__ */ import_react4.default.createElement("span", { className: "cell5 cell5-body" }, user.deals_size))), /* @__PURE__ */ import_react4.default.createElement("button", { type: "button", class: "btn btn-outline-primary" }, "Primary"));
   };
 
   // app/javascript/components/Users/Form.jsx
@@ -36350,7 +36350,7 @@
   // app/javascript/components/Users/Main.jsx
   var Main_default = () => {
     const [users, setUsers] = (0, import_react6.useState)([]);
-    const [language, setLanguage] = (0, import_react6.useState)("En");
+    const [language, setLanguage] = (0, import_react6.useState)("Ru");
     const [checkedList, setCheckedList] = (0, import_react6.useState)([]);
     const [isForm, setIsForm] = (0, import_react6.useState)(false);
     const [withBotStatus, setWithBotStatus] = (0, import_react6.useState)("member");
@@ -36973,7 +36973,7 @@
   };
 
   // app/javascript/routes/index.jsx
-  var routes_default = /* @__PURE__ */ import_react22.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react22.default.createElement(Routes, null, /* @__PURE__ */ import_react22.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react22.default.createElement(Users_default, null) }), /* @__PURE__ */ import_react22.default.createElement(Route, { path: "/moderators", element: /* @__PURE__ */ import_react22.default.createElement(Moderators_default, null) }), /* @__PURE__ */ import_react22.default.createElement(Route, { path: "/deals", element: /* @__PURE__ */ import_react22.default.createElement(Deals_default, null) }), /* @__PURE__ */ import_react22.default.createElement(Route, { path: "/finances", element: /* @__PURE__ */ import_react22.default.createElement(Finances_default, null) })));
+  var routes_default = /* @__PURE__ */ import_react22.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react22.default.createElement(Routes, null, /* @__PURE__ */ import_react22.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react22.default.createElement(Users_default, null) }), /* @__PURE__ */ import_react22.default.createElement(Route, { path: "/garant/moderators", element: /* @__PURE__ */ import_react22.default.createElement(Moderators_default, null) }), /* @__PURE__ */ import_react22.default.createElement(Route, { path: "/garant/deals", element: /* @__PURE__ */ import_react22.default.createElement(Deals_default, null) }), /* @__PURE__ */ import_react22.default.createElement(Route, { path: "/garant/finances", element: /* @__PURE__ */ import_react22.default.createElement(Finances_default, null) })));
 
   // app/javascript/components/App.jsx
   var App_default = (props) => /* @__PURE__ */ import_react23.default.createElement(import_react23.default.Fragment, null, routes_default);

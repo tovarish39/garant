@@ -39,5 +39,6 @@ export default ({users, lang, onCheckboxClick, onGeneralCheckboxClick, usersStat
                 <span className="cell5 cell5-body">{user.deals_size}</span>
             </div>
         ))}
+                <button type="button" class="btn btn-outline-primary">Primary</button>
     </div>
 )}

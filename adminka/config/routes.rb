@@ -1,23 +1,23 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'homepage#index'
+  root 'garant/homepage#index'
   namespace :garant do
     resources :moderators, only: %i[index]
     resources :deals,      only: %i[index]
     resources :finances,   only: %i[index]
   end
 
-  get  '/getUsers',              to: 'homepage#users'
-  post '/send_message_to_users', to: 'homepage#send_message_to_users'
+  get  '/getUsers',              to: 'garant/homepage#users'
+  post '/send_message_to_users', to: 'garant/homepage#send_message_to_users'
 
-  get  '/getModerators',    to: 'moderators#getModerators'
-  get  '/getDisputes',      to: 'moderators#getDisputes'
-  post '/create_moderator', to: 'moderators#create'
-  post '/update_comment',   to: 'moderators#update_comment'
-  post '/update_status',    to: 'moderators#update_status'
+  get  '/getModerators',    to: 'garant/moderators#getModerators'
+  get  '/getDisputes',      to: 'garant/moderators#getDisputes'
+  post '/create_moderator', to: 'garant/moderators#create'
+  post '/update_comment',   to: 'garant/moderators#update_comment'
+  post '/update_status',    to: 'garant/moderators#update_status'
 
-  get '/getDeals', to: 'deals#get_deals'
-  post '/action_with_deal_from_administrator', to: 'deals#action_with_deal_from_administrator'
+  get '/getDeals', to: 'garant/deals#get_deals'
+  post '/action_with_deal_from_administrator', to: 'garant/deals#action_with_deal_from_administrator'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 end

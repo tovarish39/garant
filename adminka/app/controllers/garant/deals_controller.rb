@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DealsController < ApplicationController
+class Garant::DealsController < ApplicationController
   def index; end
 
   def get_deals
