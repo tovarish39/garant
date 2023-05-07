@@ -1,21 +1,29 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'garant/homepage#index'
+  root to: redirect('garant/users') #   'garant/homepage#index'
+  
+  namespace :black_list do
+    resources :users,      only: %i[index]    
+  end
+
+
   namespace :garant do
+    resources :users,      only: %i[index]
     resources :moderators, only: %i[index]
     resources :deals,      only: %i[index]
     resources :finances,   only: %i[index]
   end
 
-  get  '/getUsers',              to: 'garant/homepage#users'
-  post '/send_message_to_users', to: 'garant/homepage#send_message_to_users'
+  get  '/getUsers',              to: 'garant/users#users'
+  get  '/getGarantUserStatistic',to: 'garant/users#statistic'
+  post '/send_message_to_users', to: 'garant/users#send_message_to_users'
 
-  get  '/getModerators',    to: 'garant/moderators#getModerators'
-  get  '/getDisputes',      to: 'garant/moderators#getDisputes'
-  post '/create_moderator', to: 'garant/moderators#create'
-  post '/update_comment',   to: 'garant/moderators#update_comment'
-  post '/update_status',    to: 'garant/moderators#update_status'
+  get  '/getModerators',    to: 'garant/users#getModerators'
+  get  '/getDisputes',      to: 'garant/users#getDisputes'
+  post '/create_moderator', to: 'garant/users#create'
+  post '/update_comment',   to: 'garant/users#update_comment'
+  post '/update_status',    to: 'garant/users#update_status'
 
   get '/getDeals', to: 'garant/deals#get_deals'
   post '/action_with_deal_from_administrator', to: 'garant/deals#action_with_deal_from_administrator'

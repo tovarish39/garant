@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 def to_add_comment
   $deal = get_deal

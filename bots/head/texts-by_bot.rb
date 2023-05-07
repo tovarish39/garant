@@ -1,90 +1,89 @@
-# frozen_string_literal: true
 
 # # сообщения бота
 B_choose_language       = 'Выберите язык / Choose language'
-B_choose_action         = { Ru => 'Выберите действие из меню', En => 'Choose action in menu' }.freeze
+B_choose_action         = { Ru => 'Выберите действие из меню', En => 'Choose action in menu' }
 B_await_username_or_id  = {
   Ru => 'Отправьте username или id пользователя или выберите из списка контактов, нажав на кнопку',
   En => 'Send username or user id or select from the contact list by clicking on the button'
-}.freeze
-B_userTo_not_found      = { Ru => 'Пользователь не найден', En => 'User not found' }.freeze
+}
+B_userTo_not_found      = { Ru => 'Пользователь не найден', En => 'User not found' }
 B_userTo_not_subscr     = { Ru => 'Пользователь не подписан на бота',
-                            En => 'The user is not subscribed to the bot' }.freeze
+                            En => 'The user is not subscribed to the bot' }
 # B_userTo_comments       = {Ru=>'Отзывы о пользователе',                  En=>'Users comments'}
-B_disputes_by_userTo = { Ru => 'Споры пользователя', En => 'Users disputes' }.freeze
-B_choose_role           = { Ru => 'Выберите роль',                          En => 'Choose role' }.freeze
-B_currency_types        = { Ru => 'Выберите валюту сделки',                 En => 'Choose currency type' }.freeze
+B_disputes_by_userTo = { Ru => 'Споры пользователя', En => 'Users disputes' }
+B_choose_role           = { Ru => 'Выберите роль',                          En => 'Choose role' }
+B_currency_types        = { Ru => 'Выберите валюту сделки',                 En => 'Choose currency type' }
 B_push_amount_currency  = { Ru => 'Введите сумму сделки в',
-                            En => 'Enter the transaction amount in' }.freeze
-B_push_conditions       = { Ru => 'Введите условия сделки',                 En => 'Enter deal conditions' }.freeze
-B_invalid_amount        = { Ru => 'Не валидное число',                      En => 'Invalid amount' }.freeze
-B_reject_deal_self      = { Ru => 'Вы отменили сделку',                     En => 'You canceled the deal' }.freeze
-B_info                  = { Ru => 'Информация о пользователе', En => 'User information' }.freeze
+                            En => 'Enter the transaction amount in' }
+B_push_conditions       = { Ru => 'Введите условия сделки',                 En => 'Enter deal conditions' }
+B_invalid_amount        = { Ru => 'Не валидное число',                      En => 'Invalid amount' }
+B_reject_deal_self      = { Ru => 'Вы отменили сделку',                     En => 'You canceled the deal' }
+B_info                  = { Ru => 'Информация о пользователе', En => 'User information' }
 B_couse_disput          = { Ru => 'Укажите причину спора',
-                            En => 'Specify the reason for the dispute' }.freeze
-B_opened_disput         = { Ru => 'Открыт спор',                            En => 'Dispute opened' }.freeze
-B_request               = { Ru => 'Запрос отправлен',                       En => 'Request has been sent' }.freeze
+                            En => 'Specify the reason for the dispute' }
+B_opened_disput         = { Ru => 'Открыт спор',                            En => 'Dispute opened' }
+B_request               = { Ru => 'Запрос отправлен',                       En => 'Request has been sent' }
 
-B_user               = { Ru => '👤Пользователь:', En => '👤User:' }.freeze
-B_first_name         = { Ru => 'Имя:',                     En => 'First name:' }.freeze
-B_last_name          = { Ru => 'Фамилия:',                 En => 'Last name:' }.freeze
-B_username           = { Ru => 'username:',                En => 'username:' }.freeze
-B_user_id            = { Ru => 'id:',                      En => 'id:' }.freeze
-B_deals_how_seller   = { Ru => '📈Сделок как продавец:',   En => '📈Deals how seller:' }.freeze
-B_deals_how_custumer = { Ru => '📉Сделок как покупатель:', En => '📉Deals how custumer:' }.freeze
-B_dusputs            = { Ru => '⚖️Споры:', En => '⚖️Dusputs:' }.freeze
-B_comments           = { Ru => '📬Отзывы:', En => '📬Comments:' }.freeze
-B_rating             = { Ru => '⭐️Рейтинг:', En => '⭐️Rating:' }.freeze
-B_with_seller        = { Ru => ' с 👤Продавцом:',          En => ' with 👤Seller:' }.freeze
-B_with_custumer      = { Ru => ' с 👤Покупателем:',        En => ' with 👤Custumer:' }.freeze
-B_conditions         = { Ru => 'Условия сделки:',          En => 'Conditions:' }.freeze
-B_amount_deal        = { Ru => 'Cумма сделки:',            En => 'Amount:' }.freeze
-B_comission          = { Ru => 'Комиссия гаранта:',        En => 'Comission:' }.freeze
-B_amount_result      = { Ru => 'Сумма к оплате:',          En => 'Result amount:' }.freeze
-B_offer              = { Ru => 'Предложение',              En => 'Offer' }.freeze
-B_from               = { Ru => 'от',                       En => 'from' }.freeze
-B_to_buy             = { Ru => 'покупки',                  En => 'to buy' }.freeze
-B_to_sell            = { Ru => 'продажи',                  En => 'to sell' }.freeze
-B_deal               = { Ru => 'Сделка ',                  En => 'Deal ' }.freeze
-B_reject_deal        = { Ru => 'Отклонил сделку',          En => 'Reject deal' }.freeze
-B_custumer           = { Ru => 'Покупатель',               En => 'Custumer' }.freeze
-B_seller             = { Ru => 'Продавец',                 En => 'Seller' }.freeze
-B_accessed           = { Ru => 'принял сделку №',          En => 'accessed deal №' }.freeze
+B_user               = { Ru => '👤Пользователь:', En => '👤User:' }
+B_first_name         = { Ru => 'Имя:',                     En => 'First name:' }
+B_last_name          = { Ru => 'Фамилия:',                 En => 'Last name:' }
+B_username           = { Ru => 'username:',                En => 'username:' }
+B_user_id            = { Ru => 'id:',                      En => 'id:' }
+B_deals_how_seller   = { Ru => '📈Сделок как продавец:',   En => '📈Deals how seller:' }
+B_deals_how_custumer = { Ru => '📉Сделок как покупатель:', En => '📉Deals how custumer:' }
+B_dusputs            = { Ru => '⚖️Споры:', En => '⚖️Dusputs:' }
+B_comments           = { Ru => '📬Отзывы:', En => '📬Comments:' }
+B_rating             = { Ru => '⭐️Рейтинг:', En => '⭐️Rating:' }
+B_with_seller        = { Ru => ' с 👤Продавцом:',          En => ' with 👤Seller:' }
+B_with_custumer      = { Ru => ' с 👤Покупателем:',        En => ' with 👤Custumer:' }
+B_conditions         = { Ru => 'Условия сделки:',          En => 'Conditions:' }
+B_amount_deal        = { Ru => 'Cумма сделки:',            En => 'Amount:' }
+B_comission          = { Ru => 'Комиссия гаранта:',        En => 'Comission:' }
+B_amount_result      = { Ru => 'Сумма к оплате:',          En => 'Result amount:' }
+B_offer              = { Ru => 'Предложение',              En => 'Offer' }
+B_from               = { Ru => 'от',                       En => 'from' }
+B_to_buy             = { Ru => 'покупки',                  En => 'to buy' }
+B_to_sell            = { Ru => 'продажи',                  En => 'to sell' }
+B_deal               = { Ru => 'Сделка ',                  En => 'Deal ' }
+B_reject_deal        = { Ru => 'Отклонил сделку',          En => 'Reject deal' }
+B_custumer           = { Ru => 'Покупатель',               En => 'Custumer' }
+B_seller             = { Ru => 'Продавец',                 En => 'Seller' }
+B_accessed           = { Ru => 'принял сделку №',          En => 'accessed deal №' }
 B_accessed_by_seller = {
   Ru => 'Принял сделку, чтобы продолжить, передайте средства на храниние гаранту',
   En => 'Accepted the deal, to continue, transfer the funds for safekeeping to the guarant'
-}.freeze
-B_opened_by          = { Ru => 'Спор открыт',              En => 'Dispute opened by' }.freeze
-B_by_seller          = { Ru => 'Продавцом',                En => 'Seller' }.freeze
-B_by_custumer        = { Ru => 'Покупателем',              En => 'Custumer' }.freeze
-B_pending_userTo     = { Ru => 'В ожидании подтверждения...', En => 'Pending confirmation...' }.freeze
-B_leads              = { Ru => 'ведёт', En => 'leeds' }.freeze
+}
+B_opened_by          = { Ru => 'Спор открыт',              En => 'Dispute opened by' }
+B_by_seller          = { Ru => 'Продавцом',                En => 'Seller' }
+B_by_custumer        = { Ru => 'Покупателем',              En => 'Custumer' }
+B_pending_userTo     = { Ru => 'В ожидании подтверждения...', En => 'Pending confirmation...' }
+B_leads              = { Ru => 'ведёт', En => 'leeds' }
 B_canceled_by_seller = {
   Ru => 'Сделка была отменена Продавцом, средства возвращены Покупателю',
   En => 'The deal was canceled by the Seller, the funds were returned to the Custumer'
-}.freeze
+}
 B_finished_by_custumer = {
   Ru => 'Сделка успешно завершена Покупателем, средства переведены Продавцу',
   En => 'The deal was successfully completed by the Custumer, the funds were transferred to the Seller'
-}.freeze
+}
 B_finished_by_moderator = lambda {
   return "Сделка завершена модератором @#{$moderators_username} \n комментарий \n #{$comment_by_moderator}" if $lg == Ru
   if $lg == En
     return "The deal was completed by the moderator @#{$moderators_username} \n комментарий \n #{$comment_by_moderator}"
   end
 }
-B_rejected_by_seller   = { Ru => 'Отклонена Продавцом',   En => 'Rejected by seller' }.freeze
-B_rejected_by_custumer = { Ru => 'Отклонена Покупателем', En => 'Rejected by custumer' }.freeze
+B_rejected_by_seller   = { Ru => 'Отклонена Продавцом',   En => 'Rejected by seller' }
+B_rejected_by_custumer = { Ru => 'Отклонена Покупателем', En => 'Rejected by custumer' }
 B_funds_to_seller      = { Ru => ' Средства переведены на счёт Продавца',
-                           En => ' Funds transferred to the Seller`s account' }.freeze
+                           En => ' Funds transferred to the Seller`s account' }
 B_funds_to_custumer = { Ru => ' Средства переведены на счёт Покупателя',
-                        En => ' Funds transferred to the Custumer`s account' }.freeze
+                        En => ' Funds transferred to the Custumer`s account' }
 B_funds_to_garant = { Ru => ' Средства переведены на счёт Гаранта',
-                      En => ' Funds transferred to the Garant`s account' }.freeze
-B_finished_by_admin    = { Ru => 'Завершена администратором', En => 'Finished by administrator' }.freeze
-B_canceled_by_admin    = { Ru => 'Отменена администратором',  En => 'Canceled by administrator' }.freeze
+                      En => ' Funds transferred to the Garant`s account' }
+B_finished_by_admin    = { Ru => 'Завершена администратором', En => 'Finished by administrator' }
+B_canceled_by_admin    = { Ru => 'Отменена администратором',  En => 'Canceled by administrator' }
 B_by_admin_win_garant  = { Ru => 'Отменена администратором в пользу гаранта',
-                           En => 'Canceled by the administrator in favor of the garant' }.freeze
+                           En => 'Canceled by the administrator in favor of the garant' }
 ###########################################
 # ~~~~~~~~~~~~~~~~~~~~~~
 B_user_info = lambda { |user|
@@ -225,7 +224,7 @@ B_request_deal_to_custumer = lambda {
 B_success_notify = {
   Ru => "Принял сделку, средства заморожены на счету гаранта, вы можете передать товар/оказать услугу.\nЗавершить сделку может покупатель. Если у вас возник спор, то вы можете вызвать модератора, перейдя в раздел 'Сделки'.",
   En => "I accepted the deal, the funds are frozen on the account of the guarantor, you can transfer the goods / provide the service.\nThe buyer can complete the transaction. If you have a dispute, you can call a moderator by going to the 'Deals' section."
-}.freeze
+}
 
 B_notifi_to_seller_success_payed = lambda {
   %(#{B_deal[$lg]} ##{$deal.hash_name}
@@ -237,14 +236,14 @@ B_notifi_to_seller_success_payed = lambda {
 B_notify_to_custumer_success_payed = {
   Ru => 'Средства переведены на хранение гаранту',
   En => 'The funds were transferred to the safekeeping of the guarant'
-}.freeze
+}
 
 # 🤝Сделки🤝'
-B_none_active_deals = { Ru => 'У вас нет активных сделок', En => 'You don`t have any active deals' }.freeze
-B_none_request_deals = { Ru => 'У вас нет запросов на сделки', En => 'You don`t have any request deals' }.freeze
+B_none_active_deals = { Ru => 'У вас нет активных сделок', En => 'You don`t have any active deals' }
+B_none_request_deals = { Ru => 'У вас нет запросов на сделки', En => 'You don`t have any request deals' }
 B_none_dispute_deals = { Ru => 'У вас нет сделки c открытым спором',
-                         En => 'You do not have a deal with an open dispute' }.freeze
-B_none_history_deals = { Ru => 'У вас нет завершённых сделок', En => 'You don`t have any history deals' }.freeze
+                         En => 'You do not have a deal with an open dispute' }
+B_none_history_deals = { Ru => 'У вас нет завершённых сделок', En => 'You don`t have any history deals' }
 
 B_disput_offer = lambda { |seller, custumer, deal, dispute, initiator, lg|
   text = "<b>Продавец</b>\n"
@@ -285,8 +284,8 @@ B_dispute_comment = lambda { |dispute|
 }
 
 # 👨‍💼Профиль👨‍💼
-B_empty_wallet = { Ru => 'Кошелёк пуст', En => 'Wallet is empty' }.freeze
-B_wallet       = { Ru => 'У вас в кошельке', En => 'In your wallet' }.freeze
+B_empty_wallet = { Ru => 'Кошелёк пуст', En => 'Wallet is empty' }
+B_wallet       = { Ru => 'У вас в кошельке', En => 'In your wallet' }
 
 B_view_wallet = lambda {
   wallet_content = "#{B_wallet[$lg]}\n\n"
@@ -299,12 +298,12 @@ B_view_wallet = lambda {
   wallet_content
 }
 
-B_add_grade     = { Ru => 'Оцените сделку',            En => 'Rate the deal' }.freeze
-B_add_comment   = { Ru => 'Напишите отзыв о продавце', En => 'Write a review about the seller' }.freeze
-B_comment_added = { Ru => 'Комментарий добавлен', En => 'Comment added' }.freeze
-B_no_comments   = { Ru => 'У пользователя нету отзывов', En => 'The user has no comments' }.freeze
+B_add_grade     = { Ru => 'Оцените сделку',            En => 'Rate the deal' }
+B_add_comment   = { Ru => 'Напишите отзыв о продавце', En => 'Write a review about the seller' }
+B_comment_added = { Ru => 'Комментарий добавлен', En => 'Comment added' }
+B_no_comments   = { Ru => 'У пользователя нету отзывов', En => 'The user has no comments' }
 
-B_comment_word = { Ru => 'Комментарий', En => 'Comment' }.freeze
+B_comment_word = { Ru => 'Комментарий', En => 'Comment' }
 
 B_comment = lambda {
   %(

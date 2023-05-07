@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 File.open("#{__dir__}/../tmp/pids.txt", 'a') { |pids_file| pids_file.puts Process.pid }
 
@@ -25,7 +25,7 @@ begin
       if channel == 'one'
         dispute = Dispute.find(message)
         # проверка модераторов по white list
-        avalible_morerator_telegram_ids = AvalibleModerator.all.map(&:telegram_id)
+        avalible_morerator_telegram_ids = AvalibleModerator.all&.map(&:telegram_id)
 
         Telegram::Bot::Client.run(token_mod) do |bot|
           $bot = bot.api

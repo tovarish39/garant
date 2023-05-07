@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 def creating_deal(seller:, custumer:)
   deal = $user.deals.create(

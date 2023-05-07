@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 def handle_comment
   deal = Deal.find($user.cur_deal_id)

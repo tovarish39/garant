@@ -1,0 +1,2 @@
+module BlackList::UsersHelper
+end

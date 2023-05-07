@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 def searching_user(model_name = 'User')
   model = model_name == 'User' ? User : Moderator

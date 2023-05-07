@@ -1,35 +1,36 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import NavGarant from './NavGarant'
+import NavBlackList from './NavBlackList'
 
 export default () => {
+
+const current_path = window.location.pathname
+
+return (
+<div id="Nav">
+
+
+    {current_path.includes('garant') && <NavGarant
+        current_path={current_path}
+        />}
+    {current_path.includes('black_list') && <NavBlackList
+        current_path={current_path}
+        />}
+
+
+
     
-    const current_path = window.location.pathname
-
-    return (
-    <div id="Nav">
-        
-        <NavLink to="/">
-            <button className={(current_path == '/') ? 'active' : ''}
-            >Пользователи</button>
+    
+    <div className="groupe2">
+        <NavLink to="/garant/users">
+            <button className={`rounded but-alone block ${current_path.includes('garant') ? 'active' : ''
+                }`}>Garant</button>
         </NavLink>
-
-        <NavLink to="/garant/moderators">
-            <button 
-                className={(current_path == '/garant/moderators') ? 'active' : ''}
-                >Модераторы</button>
+        <NavLink to="/black_list/users">
+            <button className={`rounded but-alone block ${current_path.includes('black_list') ? 'active' : ''
+                }`}>Black-List</button>
         </NavLink>
-
-        <NavLink to="/garant/deals">
-            <button 
-                className={(current_path == '/garant/deals') ? 'active' : ''}
-                >Сделки</button>
-        </NavLink>
-
-        <NavLink to="/garant/finances">
-            <button 
-                className={(current_path == '/garant/finances') ? 'active' : ''}
-                >Финансы</button>
-        </NavLink>
-
     </div>
+</div>
 )}

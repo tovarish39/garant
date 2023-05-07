@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 desc 'starting polling main bot && starting pollint moderator bot && starting redis-listener'
 task :start do

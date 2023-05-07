@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 def income_message
   if data?

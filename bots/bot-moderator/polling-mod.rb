@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 File.open("#{__dir__}/../tmp/pids.txt", 'a') { |pids_file| pids_file.puts Process.pid }
 

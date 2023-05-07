@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 File.open("#{__dir__}/../tmp/pids.txt", 'a') { |pids_file| pids_file.puts Process.pid }
 
@@ -16,8 +16,9 @@ Telegram::Bot::Client.run(Bot_token) do |bot|
     $mes = message # обновляются при каждом новом сообщении
     begin
       handle if $mes
-    rescue StandardError => e
-      $bot.send_message(text: e, chat_id: My_chat_id)
+    # rescue StandardError => e
+    #   $bot.send_message(text: e, chat_id: My_chat_id)
+    #   $bot.send_message(text: e.backtrace, chat_id: My_chat_id)
     end
   end
 end

@@ -1,6 +1,6 @@
 import React from "react";
 import Main from "./Main";
-import Nav from "../Nav";
+import Nav from "../../Nav";
 
 export default ()=>{
    return( 

@@ -14,10 +14,16 @@
  *= require_self
  */
 
- @import "bootstrap";
 
-$bg-nav: #0e1621;
+ $bg-nav: #0e1621;
 $bg-main: #242f3d;
+// $theme-colors: (
+//   "main": $bg-main
+// );
+
+//  @import "bootstrap";
+
+
 
 body{
    font-family: Arial;
@@ -36,9 +42,6 @@ body{
 
    button{
       background-color: #242f3d;
-      margin: 2vw 2vw 1vw 2vw;
-      padding: 1vw;
-      font-size: 1.5vw;
       border-radius: 3px;
       color: white;
       font-weight: bold;
@@ -47,14 +50,34 @@ body{
       text-align: left;
       // text-decoration: none;
    }
-   .active{
-      width: 18vw;
-      display: block;
+   .but-alone{
+    margin: 2vw 2vw 1vw 2vw;
+    padding: 1vw;
+    font-size: 1.5vw;
+  
    }
-   :not(.active):hover{
-      opacity: 0.7;
+   .but-group{
+    position: fixed;
+    font-size: 2vw;
+    // margin-left: 2vw;
+    bottom: 2vw;
+   }
+   .active{
+      width: 20vw;
+      // display: block;
    }
 
+   .groupe2{
+    bottom: 2vw;
+    position: absolute;
+    // left: 2vw;
+   }
+   .block{
+    display: block;
+   }
+      button:not(.active):hover{
+      opacity: 0.7;
+   }
 }
 
 #Main{
@@ -74,18 +97,10 @@ body{
       #rightSideBar, #leftSideBar {
          display: flex;
          flex-direction: column;
-         align-items: center;
+         // align-items: center;
       }
 
-      #search-user{
-         background-color: #0e1621;
-         border: 1px white solid;
-         border-radius: 5px;
-         font-size: 1.5vw;
-         color: white;
-         padding-left: 2vw; 
-         padding-right: 2vw;
-       }
+
 
       #BarButton{
          color: white;
@@ -116,14 +131,25 @@ body{
       #ToggleLanguage{
          display: flex;
          margin-bottom: 1vw;
+         justify-content: space-between;
       }
    }
 
+   #search-user{
+      background-color: #0e1621;
+      border: 1px white solid;
+      border-radius: 5px;
+      font-size: 1.5vw;
+      color: white;
+      padding-left: 2vw; 
+      padding-right: 2vw;
+      margin: 1vw 3.5vw;
+    }
    #Table{
       width: 73vw;
       margin-left: auto;
       margin-right: auto;
-      margin-top: 2vw;
+      // margin-top: 2vw;
 
       color: white;
 

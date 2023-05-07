@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 def userTo_not_found
   send_message(B_userTo_not_found[$lg])  if text_mes? # при вводе telegram_id || username

@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 deals1 = [1, 2]
 deals2 = [3, 4]

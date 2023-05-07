@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 def view_profile
   send_message(B_view_wallet.call, IM_extract.call)

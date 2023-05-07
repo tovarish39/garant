@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 username_pg = ENV['Counter_invited_sites_db_dev_username']
 password_pg = ENV['Counter_invited_sites_db_dev_password']

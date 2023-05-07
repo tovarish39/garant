@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 # seva - 6016837864
 

@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 def create_dispute
   $deal = Deal.find($user.cur_deal_id)

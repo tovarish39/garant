@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 require 'telegram/bot'
 
@@ -18,10 +18,10 @@ my_telegram_id   = 1_964_112_204
 seva_telegram_id = 6_016_837_864
 
 request_id = 111
-UserShared = { request_id: request_id }.freeze
+UserShared = { request_id: request_id }
 
-KeyboardButtonRequestUser = { request_id: request_id }.freeze
-KeyboardButton = { text: 'textttt', request_user: KeyboardButtonRequestUser }.freeze
+KeyboardButtonRequestUser = { request_id: request_id }
+KeyboardButton = { text: 'textttt', request_user: KeyboardButtonRequestUser }
 
 def send_message(text, reply_markup = nil)
   $bot.send_message(chat_id: $chat_id, text: text, reply_markup: reply_markup, parse_mode: 'HTML')

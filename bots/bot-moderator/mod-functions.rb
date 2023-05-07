@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 def search_dispute
   dispute_id = $mes.data.split('/').last

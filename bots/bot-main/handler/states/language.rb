@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 def language_selected
   $lg = $mes.data.split('/').first

@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 # return User || false
 def get_userTo_from_new_deal

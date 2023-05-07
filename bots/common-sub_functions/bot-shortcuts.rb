@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 def send_message(text, reply_markup = nil)
   $bot.send_message(chat_id: $chat_id, text: text, reply_markup: reply_markup, parse_mode: 'HTML')

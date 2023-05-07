@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 class Event_bot
   include AASM
@@ -225,7 +225,7 @@ class Event_bot
   end
 
   def log_error(exception)
-    #     fail
+        fail
     $logger.error("ERR ; user_id = #{$user.id} #{exception}")
   end
 end

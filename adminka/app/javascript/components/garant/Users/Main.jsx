@@ -3,7 +3,7 @@ import $     from 'jquery'
 import Bar   from './Bar'
 import Table from "./Table";
 import Form  from './Form'
-
+import Search from "./Search";
 
 export default () => {
     const [users,         setUsers]         = useState([])
@@ -12,6 +12,7 @@ export default () => {
     const [isForm,        setIsForm]        = useState(false)
     const [withBotStatus, setWithBotStatus] = useState('member')
     const [searching,     setSearching]     = useState('')
+    const [statistic,     setStatistic]     = useState({})
 
 
  // получение users при старте   
@@ -22,6 +23,14 @@ export default () => {
             const users = JSON.parse(body)
             setUsers(users)
         }
+        async function getStatistic(){ 
+            const res   = await fetch('/getGarantUserStatistic')
+            const body  = await res.text()
+            const statistic = JSON.parse(body)
+            console.log(statistic)
+        }
+        
+        getStatistic()
         getUsers()
     }, [])
 // кнопка "Рассылка"
@@ -153,8 +162,12 @@ export default () => {
                 onLanguageClick={handleLanguageClick}
                 onSendButtonClick={handleSendButtonClick}
                 onStatusClick={handleStatusClick}
-                onChangeSearching={handleChangeSearcging}
+
                 />
+            <Search
+                            onChangeSearching={handleChangeSearcging}
+            />
+
             <Table
               users={users}
               lang={language}
