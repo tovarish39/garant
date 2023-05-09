@@ -12,7 +12,7 @@ const trySelectedKicked = (usersStatus == 'kicked') ? 'selected' : 'not-selected
 
 const stateSendButton = (checkedList.length > 0) ? 'unlock' : 'lock'
 
-console.log(viewStatistic)
+// console.log(viewStatistic)
 
 
 return (

@@ -2,6 +2,17 @@ class BlackList::UsersController < ApplicationController
   def index
   end
 
+  def update
+    user = BlackListUser.find(params[:id])
+    # debugger
+    user.update!(is_self_scamer:false)               if params[:newStatus] == 'Не скамер'
+    user.update!(is_self_scamer:true)                if params[:newStatus] == 'Cкамер'
+    user.update!(status_by_moderator:'Проверенный')  if params[:newStatus] == 'Проверенный'
+    # debugger
+    # 
+    self.users
+  end
+
   def users
     black_list_users = []
     BlackListUser.all.each do |user|

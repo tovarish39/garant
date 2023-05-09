@@ -6,7 +6,7 @@ import Form  from './Form'
 
 export default () => {
     const [moderators,         setModerators]         = useState([])
-    const [isActiveModerators, serIsActiveModerators] = useState(true)
+    const [isActiveModerators, setIsActiveModerators] = useState(true)
     // const [disputes,           setDisputes]           = useState([])
     const [isForm,             setIsForm]             = useState(false)
     const [statistic,     setStatistic]     = useState({})
@@ -49,8 +49,8 @@ export default () => {
         const isToActive   = e.target.innerHTML == activeText   // 'активные' 
         const isToInactive = e.target.innerHTML == inactiveText // 'не активные'
         
-        if      (isToActive)   serIsActiveModerators(true)
-        else if (isToInactive) serIsActiveModerators(false)
+        if      (isToActive)   setIsActiveModerators(true)
+        else if (isToInactive) setIsActiveModerators(false)
     }
 
 // 'создать' форму

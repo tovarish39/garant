@@ -1,8 +1,8 @@
 import React from "react";
-// import Select from "./Select"
+import Select from "./Select"
 
 export default ({
-    blackListUsers
+    blackListUsers, onChangeStatus
 })=>{
 
 
@@ -48,7 +48,12 @@ export default ({
                     <span className="cell6 cell6-body">{user.created_at}</span>
                     <span className="cell6 cell6-body">{user.create_scamers_size}</span>
                     <span className="cell6 cell6-body">{user.self_scamers_size}</span>
-                    <span className="cell6 cell6-body">{user.is_self_scamer}</span>
+                    <span className="cell6 cell6-body">
+                        <Select 
+                            onChangeStatus={onChangeStatus} 
+                            // rightsStatus={'не активный'} 
+                            blackListUser={user}/>
+                    </span>
                 </div>
             ))}                      
         </div>

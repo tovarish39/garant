@@ -12,8 +12,8 @@ class Garant::ModeratorsController < ApplicationController
     if params[:moderator][:comment].present?
       comment = params[:moderator][:comment]
       moderator.update(comment:comment)
-    elsif params[:moderator][:newStatus].present?
-      new_status = (params[:moderator][:newStatus] == 'активный' ? 'active' : 'inactive')
+    elsif params[:newStatus].present?
+      new_status = (params[:newStatus] == 'активный' ? 'active' : 'inactive')
       moderator.update(rights_status: new_status)
     end
     

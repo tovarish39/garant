@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: redirect('garant/users') #   'garant/homepage#index'
   
   namespace :black_list do
-    resources :users,      only: %i[index]    
+    resources :users,      only: %i[index update]    
   end
   get '/getBlackListUsers', to: 'black_list/users#users'
 

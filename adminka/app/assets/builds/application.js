@@ -9407,9 +9407,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React33 = require_react();
+          var React34 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React33.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React34.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -11014,7 +11014,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React33.Children.forEach(props.children, function(child) {
+                  React34.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -19461,7 +19461,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React33.Component().refs;
+          var emptyRefsObject = new React34.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -34450,14 +34450,14 @@
   var import_jquery7 = __toESM(require_jquery());
 
   // app/javascript/components/index.jsx
-  var import_react30 = __toESM(require_react());
+  var import_react31 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // app/javascript/components/App.jsx
-  var import_react29 = __toESM(require_react());
+  var import_react30 = __toESM(require_react());
 
   // app/javascript/routes/index.jsx
-  var import_react28 = __toESM(require_react());
+  var import_react29 = __toESM(require_react());
 
   // node_modules/react-router-dom/dist/index.js
   var React2 = __toESM(require_react());
@@ -36275,7 +36275,6 @@
     const trySelectedMember = usersStatus == "member" ? "selected" : "not-selected";
     const trySelectedKicked = usersStatus == "kicked" ? "selected" : "not-selected";
     const stateSendButton = checkedList.length > 0 ? "unlock" : "lock";
-    console.log(viewStatistic);
     return /* @__PURE__ */ import_react5.default.createElement("div", { id: "Bar" }, /* @__PURE__ */ import_react5.default.createElement("div", { id: "leftSideBar" }, /* @__PURE__ */ import_react5.default.createElement("span", null, "\u0410\u043A\u0442\u0438\u0432\u043D\u044B\u0445 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0435\u0439 Ru: ", viewStatistic["active_ru_users"]), /* @__PURE__ */ import_react5.default.createElement("span", null, "\u0410\u043A\u0442\u0438\u0432\u043D\u044B\u0445 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0435\u0439 En: ", viewStatistic["active_en_users"]), /* @__PURE__ */ import_react5.default.createElement("span", null, "\u041D\u0435 \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0445 Ru: ", viewStatistic["inactive_ru_users"]), /* @__PURE__ */ import_react5.default.createElement("span", null, "\u041D\u0435 \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0445 En: ", viewStatistic["inactive_en_users"])), /* @__PURE__ */ import_react5.default.createElement("div", { id: "centerSideBar" }, /* @__PURE__ */ import_react5.default.createElement("span", null, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0440\u0430\u0441\u0441\u043C\u043E\u0442\u0440\u0435\u043D\u043D\u044B\u0445 \u0441\u043F\u043E\u0440\u043E\u0432"), /* @__PURE__ */ import_react5.default.createElement("span", null, "--- \u0437\u0430 \u0434\u0435\u043D\u044C: ", viewStatistic["closed_disputes_by_day"]), /* @__PURE__ */ import_react5.default.createElement("span", null, "--- \u0437\u0430 \u043D\u0435\u0434\u0435\u043B\u044E: ", viewStatistic["closed_disputes_by_week"]), /* @__PURE__ */ import_react5.default.createElement("span", null, "--- \u0437\u0430 \u043C\u0435\u0441\u044F\u0446: ", viewStatistic["closed_disputes_by_month"]), /* @__PURE__ */ import_react5.default.createElement("span", null, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043D\u0435 \u0440\u0430\u0441\u043F\u0440\u0435\u0434\u0435\u043B\u0451\u043D\u043D\u044B\u0445 \u0441\u043F\u043E\u0440\u043E\u0432: ", viewStatistic["opened_disputes"])), /* @__PURE__ */ import_react5.default.createElement("div", { id: "rightSideBar" }, /* @__PURE__ */ import_react5.default.createElement("div", { id: "ToggleLanguage" }, /* @__PURE__ */ import_react5.default.createElement(
       BarButton_default,
       {
@@ -36800,7 +36799,7 @@
   // app/javascript/components/garant/Moderators/Main.jsx
   var Main_default3 = () => {
     const [moderators, setModerators] = (0, import_react21.useState)([]);
-    const [isActiveModerators, serIsActiveModerators] = (0, import_react21.useState)(true);
+    const [isActiveModerators, setIsActiveModerators] = (0, import_react21.useState)(true);
     const [isForm, setIsForm] = (0, import_react21.useState)(false);
     const [statistic, setStatistic] = (0, import_react21.useState)({});
     const rightStatusButtonTexts = { active: "\u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0435", inactive: "\u043D\u0435 \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0435" };
@@ -36829,9 +36828,9 @@
       const isToActive = e.target.innerHTML == activeText;
       const isToInactive = e.target.innerHTML == inactiveText;
       if (isToActive)
-        serIsActiveModerators(true);
+        setIsActiveModerators(true);
       else if (isToInactive)
-        serIsActiveModerators(false);
+        setIsActiveModerators(false);
     }
     function handleCreateClick() {
       setIsForm(true);
@@ -36943,23 +36942,38 @@
   };
 
   // app/javascript/components/black_list/Users/BlackListUsers.jsx
-  var import_react27 = __toESM(require_react());
+  var import_react28 = __toESM(require_react());
 
   // app/javascript/components/black_list/Users/Main.jsx
-  var import_react26 = __toESM(require_react());
+  var import_react27 = __toESM(require_react());
 
   // app/javascript/components/black_list/Users/Table.jsx
+  var import_react26 = __toESM(require_react());
+
+  // app/javascript/components/black_list/Users/Select.jsx
   var import_react25 = __toESM(require_react());
+  var Select_default2 = ({ onChangeStatus, blackListUser }) => {
+    return /* @__PURE__ */ import_react25.default.createElement("select", { name: "status_by_moderator", onChange: onChangeStatus, "data-id": blackListUser.id }, /* @__PURE__ */ import_react25.default.createElement("option", { value: "\u0421\u043A\u0430\u043C\u0435\u0440" }, "\u0421\u043A\u0430\u043C\u0435\u0440"), /* @__PURE__ */ import_react25.default.createElement("option", { value: "\u041D\u0435 \u0441\u043A\u0430\u043C\u0435\u0440" }, "\u041D\u0435 \u0441\u043A\u0430\u043C\u0435\u0440"), /* @__PURE__ */ import_react25.default.createElement("option", { value: "\u041F\u0440\u043E\u0432\u0435\u0440\u0435\u043D\u043D\u044B\u0439" }, "\u041F\u0440\u043E\u0432\u0435\u0440\u0435\u043D\u043D\u044B\u0439"));
+  };
+
+  // app/javascript/components/black_list/Users/Table.jsx
   var Table_default3 = ({
-    blackListUsers
+    blackListUsers,
+    onChangeStatus
   }) => {
-    return /* @__PURE__ */ import_react25.default.createElement("div", { id: "Table" }, /* @__PURE__ */ import_react25.default.createElement("div", { id: "TableHead", className: "fr6 f-s-07" }, /* @__PURE__ */ import_react25.default.createElement("div", { className: "cell6" }, "telegram_id"), /* @__PURE__ */ import_react25.default.createElement("div", { className: "cell6" }, "username"), /* @__PURE__ */ import_react25.default.createElement("div", { className: "cell6" }, "\u0414\u0430\u0442\u0430 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438"), /* @__PURE__ */ import_react25.default.createElement("div", { className: "cell6" }, "\u0416\u0430\u043B\u043E\u0431 \u043F\u043E\u0434\u0430\u043D\u043E"), /* @__PURE__ */ import_react25.default.createElement("div", { className: "cell6" }, "\u0416\u0430\u043B\u043E\u0431 \u043F\u0440\u0438\u043D\u044F\u0442\u043E"), /* @__PURE__ */ import_react25.default.createElement("div", { className: "cell6" }, "\u0421\u0442\u0430\u0442\u0443\u0441")), blackListUsers.map((user) => /* @__PURE__ */ import_react25.default.createElement("div", { className: "row fr6 f-s-07", key: user.id }, /* @__PURE__ */ import_react25.default.createElement("span", { className: "cell6 cell6-body" }, user.telegram_id), /* @__PURE__ */ import_react25.default.createElement("span", { className: "cell6 cell6-body" }, user.username), /* @__PURE__ */ import_react25.default.createElement("span", { className: "cell6 cell6-body" }, user.created_at), /* @__PURE__ */ import_react25.default.createElement("span", { className: "cell6 cell6-body" }, user.create_scamers_size), /* @__PURE__ */ import_react25.default.createElement("span", { className: "cell6 cell6-body" }, user.self_scamers_size), /* @__PURE__ */ import_react25.default.createElement("span", { className: "cell6 cell6-body" }, user.is_self_scamer))));
+    return /* @__PURE__ */ import_react26.default.createElement("div", { id: "Table" }, /* @__PURE__ */ import_react26.default.createElement("div", { id: "TableHead", className: "fr6 f-s-07" }, /* @__PURE__ */ import_react26.default.createElement("div", { className: "cell6" }, "telegram_id"), /* @__PURE__ */ import_react26.default.createElement("div", { className: "cell6" }, "username"), /* @__PURE__ */ import_react26.default.createElement("div", { className: "cell6" }, "\u0414\u0430\u0442\u0430 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438"), /* @__PURE__ */ import_react26.default.createElement("div", { className: "cell6" }, "\u0416\u0430\u043B\u043E\u0431 \u043F\u043E\u0434\u0430\u043D\u043E"), /* @__PURE__ */ import_react26.default.createElement("div", { className: "cell6" }, "\u0416\u0430\u043B\u043E\u0431 \u043F\u0440\u0438\u043D\u044F\u0442\u043E"), /* @__PURE__ */ import_react26.default.createElement("div", { className: "cell6" }, "\u0421\u0442\u0430\u0442\u0443\u0441")), blackListUsers.map((user) => /* @__PURE__ */ import_react26.default.createElement("div", { className: "row fr6 f-s-07", key: user.id }, /* @__PURE__ */ import_react26.default.createElement("span", { className: "cell6 cell6-body" }, user.telegram_id), /* @__PURE__ */ import_react26.default.createElement("span", { className: "cell6 cell6-body" }, user.username), /* @__PURE__ */ import_react26.default.createElement("span", { className: "cell6 cell6-body" }, user.created_at), /* @__PURE__ */ import_react26.default.createElement("span", { className: "cell6 cell6-body" }, user.create_scamers_size), /* @__PURE__ */ import_react26.default.createElement("span", { className: "cell6 cell6-body" }, user.self_scamers_size), /* @__PURE__ */ import_react26.default.createElement("span", { className: "cell6 cell6-body" }, /* @__PURE__ */ import_react26.default.createElement(
+      Select_default2,
+      {
+        onChangeStatus,
+        blackListUser: user
+      }
+    )))));
   };
 
   // app/javascript/components/black_list/Users/Main.jsx
   var Main_default5 = () => {
-    const [blackListUsers, setBlackListUsers] = (0, import_react26.useState)([]);
-    (0, import_react26.useEffect)(() => {
+    const [blackListUsers, setBlackListUsers] = (0, import_react27.useState)([]);
+    (0, import_react27.useEffect)(() => {
       async function getBlackListUsers() {
         const res = await fetch("/getBlackListUsers");
         const body = await res.text();
@@ -36968,29 +36982,47 @@
       }
       getBlackListUsers();
     }, []);
-    return /* @__PURE__ */ import_react26.default.createElement("div", { id: "Main" }, /* @__PURE__ */ import_react26.default.createElement(
+    function handleChangeStatus(e) {
+      const black_list_user_id = e.target.dataset.id;
+      const newStatus = e.target.value;
+      const data = {
+        // moderator_id:moderator_id,
+        newStatus
+      };
+      fetch(`/black_list/users/${black_list_user_id}`, {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": X_CSRF_Token
+        }
+      }).then((res) => res.text()).then((body) => JSON.parse(body)).then((moderators) => {
+      });
+    }
+    return /* @__PURE__ */ import_react27.default.createElement("div", { id: "Main" }, /* @__PURE__ */ import_react27.default.createElement(
       Table_default3,
       {
-        blackListUsers
+        blackListUsers,
+        onChangeStatus: handleChangeStatus
       }
     ));
   };
 
   // app/javascript/components/black_list/Users/BlackListUsers.jsx
-  var BlackListUsers_default = () => /* @__PURE__ */ import_react27.default.createElement("div", { id: "Home" }, /* @__PURE__ */ import_react27.default.createElement(Nav_default, null), /* @__PURE__ */ import_react27.default.createElement(Main_default5, null));
+  var BlackListUsers_default = () => /* @__PURE__ */ import_react28.default.createElement("div", { id: "Home" }, /* @__PURE__ */ import_react28.default.createElement(Nav_default, null), /* @__PURE__ */ import_react28.default.createElement(Main_default5, null));
 
   // app/javascript/routes/index.jsx
-  var routes_default = /* @__PURE__ */ import_react28.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react28.default.createElement(Routes, null, /* @__PURE__ */ import_react28.default.createElement(Route, { path: "/garant/users", element: /* @__PURE__ */ import_react28.default.createElement(GarantUsers_default, null) }), /* @__PURE__ */ import_react28.default.createElement(Route, { path: "/garant/moderators", element: /* @__PURE__ */ import_react28.default.createElement(GarantModerators_default, null) }), /* @__PURE__ */ import_react28.default.createElement(Route, { path: "/garant/deals", element: /* @__PURE__ */ import_react28.default.createElement(GarantDeals_default, null) }), /* @__PURE__ */ import_react28.default.createElement(Route, { path: "/garant/finances", element: /* @__PURE__ */ import_react28.default.createElement(GarantFinances_default, null) }), /* @__PURE__ */ import_react28.default.createElement(Route, { path: "/black_list/users", element: /* @__PURE__ */ import_react28.default.createElement(BlackListUsers_default, null) })));
+  var routes_default = /* @__PURE__ */ import_react29.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react29.default.createElement(Routes, null, /* @__PURE__ */ import_react29.default.createElement(Route, { path: "/garant/users", element: /* @__PURE__ */ import_react29.default.createElement(GarantUsers_default, null) }), /* @__PURE__ */ import_react29.default.createElement(Route, { path: "/garant/moderators", element: /* @__PURE__ */ import_react29.default.createElement(GarantModerators_default, null) }), /* @__PURE__ */ import_react29.default.createElement(Route, { path: "/garant/deals", element: /* @__PURE__ */ import_react29.default.createElement(GarantDeals_default, null) }), /* @__PURE__ */ import_react29.default.createElement(Route, { path: "/garant/finances", element: /* @__PURE__ */ import_react29.default.createElement(GarantFinances_default, null) }), /* @__PURE__ */ import_react29.default.createElement(Route, { path: "/black_list/users", element: /* @__PURE__ */ import_react29.default.createElement(BlackListUsers_default, null) })));
 
   // app/javascript/components/App.jsx
-  var App_default = (props) => /* @__PURE__ */ import_react29.default.createElement(import_react29.default.Fragment, null, routes_default);
+  var App_default = (props) => /* @__PURE__ */ import_react30.default.createElement(import_react30.default.Fragment, null, routes_default);
 
   // app/javascript/components/index.jsx
   document.addEventListener("turbo:load", () => {
     const root = (0, import_client.createRoot)(
       document.body.appendChild(document.createElement("div"))
     );
-    root.render(/* @__PURE__ */ import_react30.default.createElement(App_default, null));
+    root.render(/* @__PURE__ */ import_react31.default.createElement(App_default, null));
   });
 
   // app/javascript/application.js
