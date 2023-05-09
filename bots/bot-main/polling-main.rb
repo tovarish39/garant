@@ -15,6 +15,9 @@ Telegram::Bot::Client.run(Bot_token) do |bot|
     $bot = bot.api # глобальное определение, чтоб не передавать в каждую функцию,
     $mes = message # обновляются при каждом новом сообщении
     begin
+
+      # puts $mes.location.inspect
+
       handle if $mes
     # rescue StandardError => e
     #   $bot.send_message(text: e, chat_id: My_chat_id)

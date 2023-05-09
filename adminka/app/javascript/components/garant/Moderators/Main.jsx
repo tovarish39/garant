@@ -7,8 +7,9 @@ import Form  from './Form'
 export default () => {
     const [moderators,         setModerators]         = useState([])
     const [isActiveModerators, serIsActiveModerators] = useState(true)
-    const [disputes,           setDisputes]           = useState([])
+    // const [disputes,           setDisputes]           = useState([])
     const [isForm,             setIsForm]             = useState(false)
+    const [statistic,     setStatistic]     = useState({})
 
     const rightStatusButtonTexts = {active:'активные', inactive:'не активные'}
 
@@ -20,17 +21,21 @@ export default () => {
             const moderators = JSON.parse(body)
             setModerators(moderators)
         }
-        async function getDisputes(){ 
-            const res   = await fetch('/getDisputes')
-            const body  = await res.text()
-            const disputes = JSON.parse(body)
-            setDisputes(disputes)
-        }
 
+
+
+        async function getStatistic(){ 
+            const res   = await fetch('/getGarantUserStatistic')
+            const body  = await res.text()
+            const statistic = JSON.parse(body)
+            setStatistic(statistic)
+        }
+        
+        getStatistic()
 // получение модераторов
         getModerators()
 // получение споров
-        getDisputes() // finished_by_day, finished_by_week, finished_by_month, pending_disputes 
+        // getDisputes() // finished_by_day, finished_by_week, finished_by_month, pending_disputes 
     }, [])
 // клик на 'активные' || 'не активные' 
     function handleRightStatusClick(e) {
@@ -72,7 +77,7 @@ function handleSubmit(e){
             e.preventDefault()
     
             
-            fetch('/create_moderator', {
+            fetch('/garant/moderators', {
                     method:"POST",
                     body:JSON.stringify({telegram_id:telegram_id,}),
                     headers: {
@@ -95,12 +100,13 @@ function handleSubmit(e){
         const moderator_id = e.target.dataset.id
         let   comment      = e.target.value
         const data = {
-            moderator_id:moderator_id,
+            // moderator_id:moderator_id,
             comment:comment
         }
 
-        fetch('/update_comment', {
-            method:"POST",
+
+        fetch(`/garant/moderators/${moderator_id}`, {
+            method:"PUT",
             body:JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
@@ -119,12 +125,12 @@ function handleSubmit(e){
         const moderator_id = e.target.dataset.id
         const newStatus    = e.target.value
         const data = {
-            moderator_id:moderator_id,
+            // moderator_id:moderator_id,
             newStatus:newStatus
         }
 
-        fetch('/update_status', {
-            method:"POST",
+        fetch(`/garant/moderators/${moderator_id}`, {
+            method:"PUT",
             body:JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
@@ -143,8 +149,9 @@ function handleSubmit(e){
                 isActive={isActiveModerators}
                 onRightStatusClick={handleRightStatusClick} 
                 butTexts={rightStatusButtonTexts}
-                disputes={disputes}
                 onCreateClick={handleCreateClick}
+                viewStatistic={statistic}
+
                 />
             <Table
                 moderators={moderators}

@@ -1,38 +1,27 @@
 import React, {useState, useEffect} from "react";
+import Table from "./Table";
 
-export default () => (
-<div id="Main">
-  <table class="container table-light caption-top m-1">
-    <caption>List of users</caption>
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+export default () =>{
+  const [blackListUsers, setBlackListUsers] = useState([])
+  useEffect(()=>{
+    async function getBlackListUsers(){ 
+        const res   = await fetch('/getBlackListUsers')
+        const body  = await res.text()
+        const users = JSON.parse(body)
+        setBlackListUsers(users)
+    }
+    
+    getBlackListUsers()
+}, [])
 
-);
+return (
+  <div id="Main">
+
+
+      <Table
+        blackListUsers={blackListUsers}
+        />
+
+  </div>
+)
+}

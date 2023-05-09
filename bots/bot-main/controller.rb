@@ -3,7 +3,7 @@
 class Event_bot
   include AASM
 
-  # aasm whiny_transitions: false
+  aasm whiny_transitions: false
 
   aasm do
     state :language

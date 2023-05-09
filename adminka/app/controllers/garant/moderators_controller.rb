@@ -5,16 +5,27 @@ class Garant::ModeratorsController < ApplicationController
     render_moderators
   end
 
-  def update_comment
-    Moderator.find(params[:moderator_id]).update(comment: params[:comment])
+  def update
+    moderator = Moderator.find(params[:id])
+    # debugger
+
+    if params[:moderator][:comment].present?
+      comment = params[:moderator][:comment]
+      moderator.update(comment:comment)
+    elsif params[:moderator][:newStatus].present?
+      new_status = (params[:moderator][:newStatus] == 'активный' ? 'active' : 'inactive')
+      moderator.update(rights_status: new_status)
+    end
+    
+    # Moderator.find(params[:moderator_id]).update(comment: params[:comment])
     render_moderators
   end
 
-  def update_status
-    new_status = (params[:newStatus] == 'активный' ? 'active' : 'inactive')
-    Moderator.find(params[:moderator_id]).update(rights_status: new_status)
-    render_moderators
-  end
+  # def update_status
+  #   new_status = (params[:newStatus] == 'активный' ? 'active' : 'inactive')
+  #   Moderator.find(params[:moderator_id]).update(rights_status: new_status)
+  #   render_moderators
+  # end
 
   def create
     moderator = Moderator.find_by(telegram_id: params[:telegram_id])
@@ -29,29 +40,29 @@ class Garant::ModeratorsController < ApplicationController
     render_moderators
   end
 
-  def getDisputes
-    # // finished_by_day, finished_by_week, finished_by_month, pending_disputes
-    pending_disputes = Dispute.where(status: 'pending_moderator')
-    finished_disputes = Dispute.where(status: 'finished')
-    time_now = Time.now
+  # def getDisputes
+  #   # // finished_by_day, finished_by_week, finished_by_month, pending_disputes
+  #   pending_disputes = Dispute.where(status: 'pending_moderator')
+  #   finished_disputes = Dispute.where(status: 'finished')
+  #   time_now = Time.now
 
-    f_by_day   = []
-    f_by_week  = []
-    f_by_month = []
+  #   f_by_day   = []
+  #   f_by_week  = []
+  #   f_by_month = []
 
-    finished_disputes.each do |dispute|
-      f_by_day << dispute if (Time.now - 1.day) < dispute.updated_at
-      f_by_week  << dispute if (Time.now - 1.week)  < dispute.updated_at
-      f_by_month << dispute if (Time.now - 1.month) < dispute.updated_at
-    end
+  #   finished_disputes.each do |dispute|
+  #     f_by_day << dispute if (Time.now - 1.day) < dispute.updated_at
+  #     f_by_week  << dispute if (Time.now - 1.week)  < dispute.updated_at
+  #     f_by_month << dispute if (Time.now - 1.month) < dispute.updated_at
+  #   end
 
-    render json: {
-      finished_by_day: f_by_day.size,
-      finished_by_week: f_by_week.size,
-      finished_by_month: f_by_month.size,
-      pending_disputes: pending_disputes.size
-    }
-  end
+  #   render json: {
+  #     finished_by_day: f_by_day.size,
+  #     finished_by_week: f_by_week.size,
+  #     finished_by_month: f_by_month.size,
+  #     pending_disputes: pending_disputes.size
+  #   }
+  # end
 
   private
 

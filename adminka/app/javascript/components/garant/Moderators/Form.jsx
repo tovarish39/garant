@@ -13,7 +13,7 @@ export default ({isForm, onCancelForm, onSubmit})=>{
             <div className={is_active}>
                 <div id="blanket" className="blanket"></div>
                 <div id="form-wrap">
-                    <form style={{top:top}} action="/create_moderator" method="post" onSubmit={onSubmit}>
+                    <form style={{top:top}} action="#" method="post" onSubmit={onSubmit}>
                         <input name="telegram_id" placeholder="Введите telegram_id..." ></input>
                         
                         <div id="form-buttons">

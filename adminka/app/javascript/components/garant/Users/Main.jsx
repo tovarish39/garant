@@ -27,7 +27,7 @@ export default () => {
             const res   = await fetch('/getGarantUserStatistic')
             const body  = await res.text()
             const statistic = JSON.parse(body)
-            console.log(statistic)
+            setStatistic(statistic)
         }
         
         getStatistic()
@@ -162,7 +162,7 @@ export default () => {
                 onLanguageClick={handleLanguageClick}
                 onSendButtonClick={handleSendButtonClick}
                 onStatusClick={handleStatusClick}
-
+                viewStatistic={statistic}
                 />
             <Search
                             onChangeSearching={handleChangeSearcging}
