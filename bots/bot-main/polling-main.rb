@@ -14,14 +14,17 @@ Telegram::Bot::Client.run(Bot_token) do |bot|
   bot.listen do |message|
     $bot = bot.api # глобальное определение, чтоб не передавать в каждую функцию,
     $mes = message # обновляются при каждом новом сообщении
+
+
+
+   
+   
+   
     begin
-
-      # puts $mes.location.inspect
-
       handle if $mes
-    # rescue StandardError => e
-    #   $bot.send_message(text: e, chat_id: My_chat_id)
-    #   $bot.send_message(text: e.backtrace, chat_id: My_chat_id)
+    rescue StandardError => e
+      $bot.send_message(text: e, chat_id: My_chat_id)
+      $bot.send_message(text: e.backtrace, chat_id: My_chat_id)
     end
   end
 end

@@ -36953,7 +36953,26 @@
   // app/javascript/components/black_list/Users/Select.jsx
   var import_react25 = __toESM(require_react());
   var Select_default2 = ({ onChangeStatus, blackListUser }) => {
-    return /* @__PURE__ */ import_react25.default.createElement("select", { name: "status_by_moderator", onChange: onChangeStatus, "data-id": blackListUser.id }, /* @__PURE__ */ import_react25.default.createElement("option", { value: "\u0421\u043A\u0430\u043C\u0435\u0440" }, "\u0421\u043A\u0430\u043C\u0435\u0440"), /* @__PURE__ */ import_react25.default.createElement("option", { value: "\u041D\u0435 \u0441\u043A\u0430\u043C\u0435\u0440" }, "\u041D\u0435 \u0441\u043A\u0430\u043C\u0435\u0440"), /* @__PURE__ */ import_react25.default.createElement("option", { value: "\u041F\u0440\u043E\u0432\u0435\u0440\u0435\u043D\u043D\u044B\u0439" }, "\u041F\u0440\u043E\u0432\u0435\u0440\u0435\u043D\u043D\u044B\u0439"));
+    console.log(blackListUser);
+    const setCurrentStatus = (blackListUser2) => {
+      if (blackListUser2.status_by_moderator == "\u041F\u0440\u043E\u0432\u0435\u0440\u0435\u043D\u043D\u044B\u0439") {
+        currentStatus = "\u041F\u0440\u043E\u0432\u0435\u0440\u0435\u043D\u043D\u044B\u0439";
+        return;
+      }
+      currentStatus = blackListUser2.is_self_scamer;
+    };
+    const setAnotherStatuses = () => {
+      avalibleStatuses.forEach((status) => {
+        if (status != currentStatus)
+          anotherStatuses.push(status);
+      });
+    };
+    const avalibleStatuses = ["\u0421\u043A\u0430\u043C\u0435\u0440", "\u041D\u0435 \u0441\u043A\u0430\u043C\u0435\u0440", "\u041F\u0440\u043E\u0432\u0435\u0440\u0435\u043D\u043D\u044B\u0439"];
+    let currentStatus = "";
+    const anotherStatuses = [];
+    setCurrentStatus(blackListUser);
+    setAnotherStatuses();
+    return /* @__PURE__ */ import_react25.default.createElement("select", { name: "status_by_moderator", onChange: onChangeStatus, "data-id": blackListUser.id }, /* @__PURE__ */ import_react25.default.createElement("option", { value: currentStatus }, currentStatus), /* @__PURE__ */ import_react25.default.createElement("option", { value: anotherStatuses[0] }, anotherStatuses[0]), /* @__PURE__ */ import_react25.default.createElement("option", { value: anotherStatuses[1] }, anotherStatuses[1]));
   };
 
   // app/javascript/components/black_list/Users/Table.jsx

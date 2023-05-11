@@ -65,7 +65,7 @@ def handle
 
     new_state = event_bot.aasm.current_state
     $user.update(state_aasm: new_state)
-    puts $user.justification
-    puts
+    # puts $user.justification
+    # puts
   end
 end
