@@ -3,8 +3,8 @@ def forwarted?
 end
 
 def match?
-    scamer = Scamer.find_by(id:$user.cur_scamer_id)
+    complaint = Complaint.find_by(id:$user.cur_complaint_id)
     forwarded_telegram_id = $mes.forward_from.id.to_s
-    writed_telegram_id = scamer.telegram_id
+    writed_telegram_id = complaint.telegram_id
     forwarded_telegram_id == writed_telegram_id
 end

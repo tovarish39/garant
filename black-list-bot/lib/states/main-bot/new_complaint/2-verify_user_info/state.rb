@@ -7,10 +7,8 @@ class StateMachine
       state :verify_user_info
 
       event :verify_user_info_action, from: :verify_user_info do
-        transitions if: -> { mes_text?(Button.cancel) }, after: :to_start, to: :start
-        transitions if: lambda {
-                          mes_text?(Button.verify_potential_scamer)
-                        }, after: :to_complaint_text, to: :complaint_text
+        transitions if: -> { mes_text?(Button.cancel)                 }, after: :to_start         , to: :start
+        transitions if: -> { mes_text?(Button.verify_potential_scamer)}, after: :to_complaint_text, to: :complaint_text
       end
     end
   end

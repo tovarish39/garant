@@ -5,17 +5,11 @@ class StateMachine
         state :scamer
   
         event :scamer_action, from: :scamer do
-          transitions if: -> { already_used_justification? },after: :justification_already_used ,  to: :scamer
-          
+          transitions if: -> { already_used_justification? }                                        ,after: :justification_already_used ,  to: :scamer
 
+          transitions if: -> { mes_data?("Оспорить_justification") && !already_used_justification? },after: :to_justification         ,  to: :justification
 
-          transitions if: -> { mes_data?("Оспорить_justification") && !already_used_justification? },after: :to_justification ,  to: :justification
-          # transitions if: -> { mes_data?("Оспорить_justification") &&  already_push_justification },after: :notify_after_justification ,  to: :scamer
-          
-          # transitions if: -> { mes_data?("Оспорить_justification") &&  already_push_justification },after: :notify_after_justification ,  to: :justification
-
-
-          transitions if: -> { mes_text?() && !already_used_justification? }, after: :view_complaints_to_scamer, to: :scamer
+          transitions if: -> { mes_text?() && !already_used_justification? }                        , after: :view_complaints_to_scamer, to: :scamer
         end
       end
     end

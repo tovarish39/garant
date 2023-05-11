@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_09_144804) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_11_040729) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,7 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_09_144804) do
     t.string "state_aasm", default: "moderator"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "cur_scamer_id"
+    t.string "cur_complaint_id"
   end
 
   create_table "black_list_users", force: :cascade do |t|
@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_09_144804) do
     t.string "last_name"
     t.string "lang"
     t.string "state_aasm"
-    t.string "cur_scamer_id"
+    t.string "cur_complaint_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_self_scamer", default: false
@@ -40,6 +40,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_09_144804) do
     t.boolean "is_blocked_by_moderator", default: false
     t.string "status"
     t.string "status_by_moderator"
+  end
+
+  create_table "complaints", force: :cascade do |t|
+    t.bigint "black_list_user_id", null: false
+    t.string "telegram_id"
+    t.string "username"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "status"
+    t.string "photos_dir_path"
+    t.text "complaint_text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "photos_size", default: 0
+    t.boolean "is_proofed_by_forwarted_mes", default: false
+    t.string "photo_ulrs_remote_tmp", default: [], array: true
+    t.string "telegraph_link"
+    t.text "explanation_by_moderator"
+    t.index ["black_list_user_id"], name: "index_complaints_on_black_list_user_id"
   end
 
   create_table "deals", force: :cascade do |t|
@@ -86,25 +105,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_09_144804) do
     t.string "comment"
   end
 
-  create_table "scamers", force: :cascade do |t|
-    t.bigint "black_list_user_id", null: false
-    t.string "telegram_id"
-    t.string "username"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "status"
-    t.string "photos_dir_path"
-    t.text "complaint_text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "photos_size", default: 0
-    t.boolean "is_proofed_by_forwarted_mes", default: false
-    t.string "photo_ulrs_remote_tmp", default: [], array: true
-    t.string "telegraph_link"
-    t.text "explanation_by_moderator"
-    t.index ["black_list_user_id"], name: "index_scamers_on_black_list_user_id"
-  end
-
   create_table "taken_disputes", force: :cascade do |t|
     t.bigint "moderator_id", null: false
     t.bigint "dispute_id", null: false
@@ -142,9 +142,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_09_144804) do
     t.string "with_bot_status", default: "member"
   end
 
+  add_foreign_key "complaints", "black_list_users"
   add_foreign_key "deals", "users"
   add_foreign_key "disputes", "deals"
-  add_foreign_key "scamers", "black_list_users"
   add_foreign_key "taken_disputes", "disputes"
   add_foreign_key "taken_disputes", "moderators"
 end

@@ -9,10 +9,10 @@ module M
                       [IB.ru, IB.en]
                     ])
     end
-    def self.moderator_complaint scamer
+    def self.moderator_complaint complaint
       self::IM.call([
-        [IB.accept_complaint(scamer)],
-        [IB.reject_complaint(scamer)]
+        [IB.accept_complaint(complaint)],
+        [IB.reject_complaint(complaint)]
       ])
       
     end

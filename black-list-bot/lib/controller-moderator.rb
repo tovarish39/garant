@@ -34,8 +34,8 @@ class StateMachine
   end
   
   def handle_moderator
-    $user = user_search_and_update_if_changed('moderator')
-    $user ||= create_user('moderator')
+    $user = user_search_and_update_if_changed('BlackListModerator')
+    $user ||= create_user('BlackListModerator')
 
   
     if $mes.instance_of?(ChatMemberUpdated)

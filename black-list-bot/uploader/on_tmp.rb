@@ -3,10 +3,10 @@ require 'faraday'
 require 'faraday/multipart'
 require 'telegram/bot'
 
-scamer_id = ARGV[0]
+complaint_id = ARGV[0]
 user_id   = ARGV[1]
-scamer = Scamer.find(scamer_id)
-photos_dir_path = scamer.photos_dir_path
+complaint = Complaint.find(complaint_id)
+photos_dir_path = complaint.photos_dir_path
 photo_names = Dir.entries(photos_dir_path).filter {|file| file =~ /.jpg$/}
 DOMAINS = %w[
   api.anonfiles.com
@@ -63,11 +63,11 @@ photo_names.each do |photo_name|
 
   if photo.present?
     url = upload_on_tmp(photo, domain_index)
-    urls = scamer.photo_ulrs_remote_tmp
-    scamer.update(photo_ulrs_remote_tmp:urls << url[:url].gsub('\\', ''))
+    urls = complaint.photo_ulrs_remote_tmp
+    complaint.update(photo_ulrs_remote_tmp:urls << url[:url].gsub('\\', ''))
   else next
   end
 end
 
 # scamer.update(status:'to_moderator')
-system("bundle exec ruby #{UPLOAD_ON_TELEGRAPH_PATH} #{scamer.id} #{user_id}")
+system("bundle exec ruby #{UPLOAD_ON_TELEGRAPH_PATH} #{complaint.id} #{user_id}")

@@ -15,7 +15,7 @@ class StateMachine
           
           transitions if: -> { mes_data?(/access_justification/) }  , after: :accessing_justification, to: :moderator
 
-          transitions if: -> { mes_data?(/block_user/) }            , after: :blocking_user          , to: :moderator
+          transitions if: -> { mes_data?(/block_user/) }            , after: :blocking_scamer         , to: :moderator
 
         end
       end

@@ -34,13 +34,12 @@ class StateMachine
 end
 
 def handle
-  $user = user_search_and_update_if_changed
-  $user ||= create_user
+  $user = user_search_and_update_if_changed('BlackListUser')
+  $user ||= create_user('BlackListUser')
   $lg = $user.lang
 
 
   if $mes.instance_of?(ChatMemberUpdated)
-    # update_is_member
   elsif $user.is_blocked_by_moderator
   elsif mes_text? || mes_data? || is_user_shared? || mes_photo?
     
@@ -65,7 +64,5 @@ def handle
 
     new_state = event_bot.aasm.current_state
     $user.update(state_aasm: new_state)
-    # puts $user.justification
-    # puts
   end
 end

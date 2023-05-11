@@ -6,15 +6,15 @@ def notify_complaint_length
 end
 
 def to_complaint_photos
-  scamer = Scamer.find_by(
-    id: $user.cur_scamer_id,
+  complaint = Complaint.find_by(
+    id: $user.cur_complaint_id,
     status: 'filling'
   )
-  scamer.update(complaint_text: $mes.text)
+  complaint.update(complaint_text: $mes.text)
 
-  dir_path = get_photo_dir_path(scamer)
+  dir_path = get_photo_dir_path(complaint)
   FileUtils.rm_rf(dir_path) if Dir.exist?(dir_path)
 
-  scamer.update(photos_size:0)
+  complaint.update(photos_size:0)
   Send.mes(Text.complaint_photos, M::Reply.complaint_photos)
 end

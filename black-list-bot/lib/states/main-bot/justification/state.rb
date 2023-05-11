@@ -6,13 +6,13 @@ class StateMachine
   
         event :justification_action, from: :justification do
 
-          transitions if: -> { mes_text?(Button.make_a_complaint) }, to: :scamer
-          transitions if: -> { mes_text?(Button.request_status) }, to: :scamer
-          transitions if: -> { mes_text?(Button.account_status) },to: :scamer
-          transitions if: -> { mes_text?('/start') }, to: :scamer
+          transitions if: -> { mes_text?(Button.make_a_complaint) }, after: :to_justification , to: :justification
+          transitions if: -> { mes_text?(Button.request_status) }  , after: :to_justification , to: :justification
+          transitions if: -> { mes_text?(Button.account_status) }  , after: :to_justification , to: :justification
+          transitions if: -> { mes_text?('/start') }               , after: :to_justification , to: :justification
 
 
-          transitions if: ->{ mes_text? },after: :text_justification ,to: :scamer
+          transitions if: ->{ mes_text? }                          ,after: :text_justification, to: :scamer
         end
       end
     end

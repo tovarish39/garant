@@ -1,7 +1,7 @@
 def get_size_now
-    scamer = Scamer.find_by(id:$user.cur_scamer_id)
-    return 0 if scamer.nil? # если нету скамера по причине, что пропущено состояние создания скамера
-    size_now = scamer.photos_size
+    complaint = Complaint.find_by(id:$user.cur_complaint_id)
+    return 0 if complaint.nil? # если нету скамера по причине, что пропущено состояние создания скамера
+    size_now = complaint.photos_size
 end
 
 # def less_then_max_photos_size?

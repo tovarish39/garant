@@ -1,15 +1,15 @@
-def write_file file, scamer
+def write_file file, complaint
     file_path = file['result']['file_path']
     file_url = URI("https://api.telegram.org/file/bot#{TOKEN_BOT}/#{file_path}")
 #   puts   file_url
-    dir_path = get_photo_dir_path(scamer)
+    dir_path = get_photo_dir_path(complaint)
     Dir.mkdir(dir_path) if !Dir.exist?(dir_path)
 
-    scamer.photos_size += 1
-    scamer.photos_dir_path = dir_path
-    scamer.save
+    complaint.photos_size += 1
+    complaint.photos_dir_path = dir_path
+    complaint.save
 
-    photo_path = "#{dir_path}/#{scamer.photos_size}.jpg"
+    photo_path = "#{dir_path}/#{complaint.photos_size}.jpg"
     
     photo_data = Net::HTTP.get_response(file_url).body
 
@@ -17,13 +17,13 @@ def write_file file, scamer
 end
 
 def handle_photo
-    min_size = 2 # availible 3 variants
+    min_size = 2 # availible 3 variants (indexes)
     file_id = $mes.photo[min_size].file_id
     file = Get.file(file_id)
-    scamer = Scamer.find($user.cur_scamer_id)
-    write_file(file, scamer) if file.present?
+    complaint = Complaint.find($user.cur_complaint_id)
+    write_file(file, complaint) if file.present?
 
-    Send.mes(Text.handle_photo(scamer.photos_size))
+    Send.mes(Text.handle_photo(complaint.photos_size))
 end
 
 

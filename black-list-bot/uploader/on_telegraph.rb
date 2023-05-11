@@ -6,10 +6,10 @@ require 'telegram/bot'
 
 require_relative '../head/requires'
 
-scamer_id = ARGV[0]
+complaint_id = ARGV[0]
 user_id   = ARGV[1]
 
-scamer = Scamer.find(scamer_id)
+complaint = Complaint.find(complaint_id)
 user = BlackListUser.find(user_id)
 
 access_token = '17bfdc2d653bbef801cfbb3c3caff533b4011513e06dfefad55b87178a81'
@@ -49,7 +49,7 @@ content = %Q{[
     {"tag":"p","children":["Приветствие!"]}
 }
 
-scamer.photo_ulrs_remote_tmp.each do |url|
+complaint.photo_ulrs_remote_tmp.each do |url|
     src = get_src(url)
     img = %Q{
         ,{"tag":"img", "attrs":{"src":"#{src}"}}
@@ -57,12 +57,12 @@ scamer.photo_ulrs_remote_tmp.each do |url|
     content << img
 end
 
-user_info = "Telegram ID : #{scamer.telegram_id}"
-user_info << "\nUsername : @#{scamer.username}" if scamer.username.present?
-user_info << "\nFirst_name : #{scamer.first_name}" if scamer.first_name.present?
-user_info << "\nLast_name : #{scamer.last_name}" if scamer.last_name.present?
+user_info = "Telegram ID : #{complaint.telegram_id}"
+user_info << "\nUsername : @#{complaint.username}" if complaint.username.present?
+user_info << "\nFirst_name : #{complaint.first_name}" if complaint.first_name.present?
+user_info << "\nLast_name : #{complaint.last_name}" if complaint.last_name.present?
 
-complaint_text = "Complaint : #{scamer.complaint_text}"
+complaint_text = "Complaint : #{complaint.complaint_text}"
 
 content << %Q{
     ,{"tag":"p","children":["#{user_info}"]}
@@ -76,25 +76,20 @@ content << "]"
 
 
 
-# puts content
 response = create_page(title, content, access_token)
-# puts response
 telegraph_link = response['result']['url']
-puts scamer.inspect
-scamer.update(
+complaint.update(
     telegraph_link:telegraph_link,
     status:'to_moderator'
 )
-# puts 
-# puts scamer.inspect
 
 bot = Telegram::Bot::Client.new(TOKEN_BOT_MODERATOR)
 moderators = BlackListModerator.all
 moderators.each do |moderator|
     mes = bot.api.send_message(
-        text:Text.moderator_complaint(user, scamer), 
+        text:Text.moderator_complaint(user, complaint), 
         chat_id:moderator.telegram_id,
-        reply_markup:M::Inline.moderator_complaint(scamer),
+        reply_markup:M::Inline.moderator_complaint(complaint),
         parse_mode:'HTML'
     )
     # puts mes.inspect

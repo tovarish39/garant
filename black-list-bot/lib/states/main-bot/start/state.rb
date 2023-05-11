@@ -9,11 +9,11 @@ class StateMachine
       event :start_action, from: :start do
         transitions if: -> { mes_text?(Button.make_a_complaint) }, after: :to_search_user, to: :search_user
 
-        transitions if: -> { mes_text?(Button.request_status) }, after: :view_requests, to: :start
+        transitions if: -> { mes_text?(Button.request_status) }  , after: :view_requests , to: :start
         
-        transitions if: -> { mes_text?(Button.account_status) }, after: :notify_account, to: :start
+        transitions if: -> { mes_text?(Button.account_status) }  , after: :notify_account, to: :start
 
-        transitions if: -> { mes_text?('/start') }, after: :to_start, to: :start
+        transitions if: -> { mes_text?('/start') }               , after: :to_start      , to: :start
       end
     end
   end

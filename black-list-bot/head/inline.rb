@@ -6,8 +6,8 @@ module IB
     def self.ru = IB.call(Button.ru, "#{Ru}/lg")     
     def self.en = IB.call(Button.en, "#{En}/lg")   
       
-    def self.accept_complaint scamer
-      IB.call(Button.accept, "#{scamer.id}/accept_complaint") 
+    def self.accept_complaint complaint
+      IB.call(Button.accept, "#{complaint.id}/accept_complaint") 
     end
     def self.reject_complaint scamer
       IB.call(Button.reject, "#{scamer.id}/reject_complaint")       

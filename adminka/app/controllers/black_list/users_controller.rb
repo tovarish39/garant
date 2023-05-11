@@ -44,7 +44,7 @@ class BlackList::UsersController < ApplicationController
   end
 
   def self_scamers user
-    scamers = Scamer.where(telegram_id:user.telegram_id)
+    scamers = Complaint.where(telegram_id:user.telegram_id)
     scamers.where.not(status:'filling') if scamers.any?
     scamers
   end
