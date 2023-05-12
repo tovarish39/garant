@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'bashrequires'
+require_relative 'requires'
 
 pid_file_path = "#{ROOT_BOT}/tmp/moderator.pid"
 File.delete(pid_file_path) if File.exist?(pid_file_path)
