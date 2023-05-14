@@ -27,8 +27,8 @@ params = {
   host: 'localhost',
   port: 5432,
   dbname: 'garant_dev',
-  user: ENV['USERNAME_PG'],
-  password: ENV['PASSWORD_PG']
+  user: ENV['Counter_invited_sites_db_dev_username'],
+  password: ENV['Counter_invited_sites_db_dev_password']
 }
 
 ActiveRecord::Base.establish_connection(params)

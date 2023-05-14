@@ -37,12 +37,12 @@ if ! kill -0 $pid_garant_moderator; then
 fi
 
 # blackList
-# if ! kill -0 $pid_blackList_main; then
-#     cd $Garant_Path/black_list-bots
-#     $bundle_path exec $ruby_path main.rb &
-# fi
+if ! kill -0 $pid_blackList_main; then
+    cd $Garant_Path/black_list-bots
+    $bundle_path exec $ruby_path main.rb &
+fi
 
-# if ! kill -0 $pid_blackList_main; then
-#     cd $Garant_Path/black_list-bots
-#     $bundle_path exec $ruby_path moderator.rb &
-# fi
+if ! kill -0 $pid_blackList_main; then
+    cd $Garant_Path/black_list-bots
+    $bundle_path exec $ruby_path moderator.rb &
+fi

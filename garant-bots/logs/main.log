@@ -49,3 +49,6 @@ I date=[2023-05-12 22:14:03] pid=#108852 message='BEFORE ; user_id = 1 ; from_st
 I date=[2023-05-12 22:14:03] pid=#108852 message='BEFORE ; user_id = 1 ; from_state = start ; 'text = 📛 Статус аккаунта''
 I date=[2023-05-12 22:14:04] pid=#108852 message='BEFORE ; user_id = 1 ; from_state = start ; 'text = /start''
 I date=[2023-05-12 22:14:05] pid=#108852 message='AFTER  ; user_id = 1 ; new_state  = start'
+I date=[2023-05-12 23:27:18] pid=#120866 message='BEFORE ; user_id = 1 ; from_state = start ; 'text = 😱Помощь😱''
+I date=[2023-05-12 23:34:42] pid=#120866 message='BEFORE ; user_id = 1 ; from_state = start ; 'text = 👨‍💼Профиль👨‍💼''
+I date=[2023-05-12 23:34:43] pid=#120866 message='AFTER  ; user_id = 1 ; new_state  = start'
