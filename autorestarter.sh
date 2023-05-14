@@ -1,6 +1,6 @@
 # export Garant_Path in .bashrc
 
-source /home/g/.bashrc # ! changeble
+source /root/.bashrc # ! changeble
 
 ruby_path=$(which ruby)
 bundle_path=$(which bundle)
