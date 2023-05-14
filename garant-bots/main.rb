@@ -1,7 +1,10 @@
 require_relative 'requires'
 require_all "#{ROOT}/main"
 
-File.open("#{ROOT}/tmp/main.pid", 'a') { |pids_file| pids_file.puts Process.pid }
+
+pid_file_path = "#{ROOT}/tmp/main.pid"
+File.delete(pid_file_path) if File.exist?(pid_file_path)
+File.open(pid_file_path, 'a') { |pid_file| pid_file.puts Process.pid }
 
 log_path = "#{ROOT}/logs/main.log"
 $logger = Logger.new(log_path, 'weekly')
