@@ -17,14 +17,14 @@ Telegram::Bot::Client.run(TOKEN_BOT) do |bot|
     $mes = message
     $bot = bot
 
-    Send.mes('$mes.inspect.to_s', MY_CHAT_ID)
+    Send.mes('$mes.inspect.to_s', to:MY_CHAT_ID)
     
       
     # begin
     #   handle if $mes.from.present?
     # rescue StandardError => e
-    #   Send.mes(e, MY_CHAT_ID)
-    #   Send.mes(e.backtrace, MY_CHAT_ID)
+    #   Send.mes(e, to:MY_CHAT_ID)
+    #   Send.mes(e.backtrace, to:MY_CHAT_ID)
     # end
   end
 end
