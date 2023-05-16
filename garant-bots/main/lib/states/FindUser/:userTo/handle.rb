@@ -99,13 +99,9 @@ end
  end
  
  def disputes_list(type)
-  #  userTo_disputes_lost = get_userTo_disputes_lost()
   texts = []
-
 # 4 варианта 
 # dispute.dispute_lost ==  'seller_lost' || 'custumer_lost'
-# 
-
   if type == 'wins'
     userTo_disputes_won  = get_userTo_disputes_won()
     userTo_disputes_won.each do |dispute_won|
@@ -116,8 +112,23 @@ end
                               else
                                 'with_custumer' # сам seller
                               end
-      B_deal_verbose.call(userTo_with_user_role)
+      text += B_deal_verbose.call(userTo_with_user_role)
       text += B_dispute_comment.call(dispute_won)
+      texts << text
+    end
+  elsif type == 'losts'
+    userTo_disputes_lost = get_userTo_disputes_lost()
+    userTo_disputes_lost.each do |dispute_lost|
+      text = "Спор по сделке ##{dispute_lost.deal.hash_name} \n"
+      $deal = dispute_lost.deal
+      userTo_with_user_role =  if dispute_lost.dispute_lost == 'seller_lost'   # если seller проиграл, значит customer выйграл. значит usetTo == сustumer
+                                'with_custumer' # сам seller
+                              else
+                                'with_seller' # сам custumer
+                              end
+      text += B_deal_verbose.call(userTo_with_user_role)
+      text += B_dispute_comment.call(dispute_lost)
+      texts << text
     end
   end
 
@@ -132,7 +143,6 @@ end
  
  def disputes_won
    return unless get_userTo_from_new_deal # defining $userTo
- 
    disputes_list('wins')
  end
   
