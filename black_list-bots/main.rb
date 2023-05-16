@@ -17,7 +17,7 @@ Telegram::Bot::Client.run(TOKEN_BOT) do |bot|
     $mes = message
     $bot = bot
 
-    Send.mes($mes.inspect.to_s, MY_CHAT_ID)
+    Send.mes('$mes.inspect.to_s', MY_CHAT_ID)
     
       
     # begin

@@ -100,30 +100,35 @@ end
  
  def disputes_list(type)
   #  userTo_disputes_lost = get_userTo_disputes_lost()
-  text_message = ""
+  texts = []
+
+# 4 варианта 
+# dispute.dispute_lost ==  'seller_lost' || 'custumer_lost'
+# 
 
   if type == 'wins'
     userTo_disputes_won  = get_userTo_disputes_won()
-
-    $deal
-
-    B_deal_verbose.call('with_custumer', with_userTo)
-    text = "Спор по сделке ##{dispute.deal.hash_name} \n"
-    text += B_dispute_comment.call(dispute)
-   
-
-
-
+    userTo_disputes_won.each do |dispute_won|
+      text = "Спор по сделке ##{dispute_won.deal.hash_name} \n"
+      $deal = dispute_won.deal
+      userTo_with_user_role =  if dispute_won.dispute_lost == 'seller_lost'   # если seller проиграл, значит customer выйграл. значит usetTo == сustumer
+                                'with_seller' # сам custumer
+                              else
+                                'with_custumer' # сам seller
+                              end
+      B_deal_verbose.call(userTo_with_user_role)
+      text += B_dispute_comment.call(dispute_won)
+    end
   end
 
 
 
 
-   texts.each_with_index do |text, index|
-     send_message(text) if index != texts.size - 1 # промежуточный
-     send_message(text, IM_back_to_type_of_disputes.call) if index == texts.size - 1 # последний текст
-   end
- end
+  texts.each_with_index do |text, index|
+    send_message(text) if index != texts.size - 1 # промежуточный
+    send_message(text, IM_back_to_type_of_disputes.call) if index == texts.size - 1 # последний текст
+  end
+end
  
  def disputes_won
    return unless get_userTo_from_new_deal # defining $userTo
