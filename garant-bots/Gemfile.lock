@@ -3,12 +3,12 @@ GEM
   specs:
     aasm (5.5.0)
       concurrent-ruby (~> 1.0)
-    activemodel (7.0.4.2)
-      activesupport (= 7.0.4.2)
-    activerecord (7.0.4.2)
-      activemodel (= 7.0.4.2)
-      activesupport (= 7.0.4.2)
-    activesupport (7.0.4.2)
+    activemodel (7.0.4.3)
+      activesupport (= 7.0.4.3)
+    activerecord (7.0.4.3)
+      activemodel (= 7.0.4.3)
+      activesupport (= 7.0.4.3)
+    activesupport (7.0.4.3)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
@@ -20,8 +20,10 @@ GEM
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     colorize (0.8.1)
-    concurrent-ruby (1.2.0)
-    connection_pool (2.3.0)
+    concurrent-ruby (1.2.2)
+    debase (0.2.5.beta2)
+      debase-ruby_core_source (>= 0.10.12)
+    debase-ruby_core_source (3.2.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     dry-inflector (1.0.0)
@@ -31,16 +33,15 @@ GEM
     faraday-multipart (1.0.4)
       multipart-post (~> 2)
     faraday-net_http (3.0.2)
-    i18n (1.12.0)
+    i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
-    minitest (5.17.0)
+    minitest (5.18.0)
     multipart-post (2.3.0)
-    pg (1.4.5)
-    redis (5.0.6)
-      redis-client (>= 0.9.0)
-    redis-client (0.12.2)
-      connection_pool
+    pg (1.5.2)
+    rake (13.0.6)
+    ruby-debug-ide (0.7.3)
+      rake (>= 0.8.1)
     ruby2_keywords (0.0.5)
     telegram-bot-ruby (0.23.0)
       dry-inflector
@@ -62,9 +63,10 @@ DEPENDENCIES
   aasm (~> 5.1, >= 5.1.1)
   activerecord
   colorize
+  debase
   pg (~> 1.1)
-  redis
+  ruby-debug-ide
   telegram-bot-ruby (~> 0.23.0)
 
 BUNDLED WITH
-   2.4.3
+   2.4.13

@@ -11,15 +11,18 @@ end
     IB_rus                    =    IB.call(Ru,                        "#{Ru}/Выбранный язык")
     IB_en                     =    IB.call(En,                        "#{En}/Выбранный язык")
     # :await_userTo_data
+
     # UserToActions
-    IB_offer_deal             = -> { IB.call(T_offer_deal[$lg],      "Offer_deal/#{$userTo.id}") }
-    IB_comments               = -> { IB.call(T_comments[$lg],        "Comments/#{$userTo.id}") }
-    IB_disputes               = -> { IB.call(T_disputes[$lg],        "Disputes/#{$userTo.id}") }
+    IB_offer_deal             = ->                       { IB.call(T_offer_deal[$lg]                            ,      "Offer_deal/#{$userTo.id}") }
+    IB_comments               = -> (userTo_comments_size){ IB.call("#{T_comments[$lg]}(#{userTo_comments_size})",        "Comments/#{$userTo.id}") }
+    IB_disputes               = -> (userTo_disputes_size){ IB.call("#{T_disputes[$lg]}(#{userTo_disputes_size})",        "Disputes/#{$userTo.id}") }
+    
+    
     # TypeOfDisputes Comments Role CurrenyTypes
     IB_back_to_userTo_actions = -> { IB.call(T_back[$lg],            "Back_to userTo_actions/#{$userTo.id}") }
     # TypeOfDisputesB_await_username_or_id
-    IB_won_disputes             = -> { IB.call("#{T_wons[$lg]} (111)",  "Won_disputes/#{$userTo.id}") }
-    IB_lost_disputes            = -> { IB.call("#{T_losts[$lg]} (111)", "Lost_disputes/#{$userTo.id}") }
+    IB_won_disputes             = -> (won_size){ IB.call("#{T_wons[$lg]} (#{won_size})",  "Won_disputes/#{$userTo.id}") }
+    IB_lost_disputes            = -> (lost_size){ IB.call("#{T_losts[$lg]} (#{lost_size})", "Lost_disputes/#{$userTo.id}") }
     # WonDisputes LostDisputes
     IB_back_to_type_of_disputes = -> { IB.call(T_back[$lg],            "Back_to TypeOfDisputes/#{$userTo.id}") }
     # Role

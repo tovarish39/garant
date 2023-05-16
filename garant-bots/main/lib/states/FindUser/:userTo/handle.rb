@@ -47,29 +47,89 @@ def choose_role
   #############################################################
   # Disputes #
   
-  def view_type_of_disputes
-    return unless get_userTo_from_new_deal # defining $userTo
-  
-    edit_message(B_disputes_by_userTo[$lg], IM_type_of_disputes.call)
-  end
-  
-  def disputes_list(type)
-    # delete_pushed()
-    texts = []
-    texts << B_won_disputes[$lg]  if type == 'wins'
-    texts << B_lost_disputes[$lg] if type == 'losts'
-    # не доделано
-    texts.each_with_index do |text, index|
-      send_message(text) if index != texts.size - 1 # промежуточный
-      send_message(text, IM_back_to_type_of_disputes.call) if index == texts.size - 1 # последний текст
+
+
+def userTo_disputes_lost_AND_won
+  closed_deals = Deal.closed_statuses(DEAL_Closed_Statuses)
+
+  dispute_userTo_won  = []
+  dispute_userTo_lost = []
+
+  userTo_disputes = closed_deals.as_seller_OR_as_customer($userTo).each do |deal| 
+    if deal.disputes.any? 
+      dispute = deal.disputes[0]
+      if    dispute.dispute_lost == 'seller_lost'   && deal.seller_id == $userTo.id
+        dispute_userTo_lost << dispute
+      elsif dispute.dispute_lost == 'custumer_lost' && deal.seller_id == $userTo.id
+        dispute_userTo_won  << dispute
+      elsif dispute.dispute_lost == 'custumer_lost' && deal.custumer_id == $userTo.id
+        dispute_userTo_lost << dispute
+      elsif dispute.dispute_lost == 'seller_lost' && deal.custumer_id == $userTo.id
+        dispute_userTo_won  << dispute
+      end
     end
   end
-  
-  def disputes_won
-    return unless get_userTo_from_new_deal # defining $userTo
-  
-    disputes_list('wins')
+  {lost:dispute_userTo_lost,
+    won:dispute_userTo_won}
+end
+
+
+def get_userTo_disputes_lost
+  userTo_disputes_lost_AND_won[:lost]
+end
+
+def get_userTo_disputes_won
+  userTo_disputes_lost_AND_won[:won]
+end
+
+
+ def view_type_of_disputes
+   return unless get_userTo_from_new_deal # defining $userTo
+ 
+   userTo_disputes_won  = get_userTo_disputes_won()
+   userTo_disputes_lost = get_userTo_disputes_lost()
+
+
+   edit_message(
+    B_disputes_by_userTo[$lg], 
+    IM_type_of_disputes.call(
+      userTo_disputes_won.size,
+      userTo_disputes_lost.size
+    ))
+ end
+ 
+ def disputes_list(type)
+  #  userTo_disputes_lost = get_userTo_disputes_lost()
+  text_message = ""
+
+  if type == 'wins'
+    userTo_disputes_won  = get_userTo_disputes_won()
+
+    $deal
+
+    B_deal_verbose.call('with_custumer', with_userTo)
+    text = "Спор по сделке ##{dispute.deal.hash_name} \n"
+    text += B_dispute_comment.call(dispute)
+   
+
+
+
   end
+
+
+
+
+   texts.each_with_index do |text, index|
+     send_message(text) if index != texts.size - 1 # промежуточный
+     send_message(text, IM_back_to_type_of_disputes.call) if index == texts.size - 1 # последний текст
+   end
+ end
+ 
+ def disputes_won
+   return unless get_userTo_from_new_deal # defining $userTo
+ 
+   disputes_list('wins')
+ end
   
   def disputes_lost
     return unless get_userTo_from_new_deal # defining $userTo
@@ -86,15 +146,13 @@ def choose_role
   ##########################################
   # Comments
   
-  def get_deals_with_comment
-    $user.deals.filter(&:comment)
-end
-  
   def view_comments
     return unless get_userTo_from_new_deal # defining $userTo
   
-    deals_with_comment = get_deals_with_comment
+    deals_with_comment = get_deals_with_comment()
   
+    
+
     deals_with_comment.size.times do |i|
       is_last_index = (deals_with_comment.size - 1) == i
       $deal = deals_with_comment[i]
@@ -115,7 +173,9 @@ end
   def to_userTo_from_back
     return unless get_userTo_from_new_deal # defining $userTo
   
-    send_message(B_userTo_info.call, IM_offer_deal.call)
+    run_to_userTo
+
+    # send_message(B_userTo_info.call, IM_offer_deal.call)
   end
   ##############################################################
   

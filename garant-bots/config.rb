@@ -1,6 +1,20 @@
-username_pg = ENV['Counter_invited_sites_db_dev_username']
-password_pg = ENV['Counter_invited_sites_db_dev_password']
-ActiveRecord::Base.establish_connection("postgres://#{username_pg}:#{password_pg}@localhost/garant_dev")
+# username_pg = ENV['Counter_invited_sites_db_dev_username']
+# password_pg = ENV['Counter_invited_sites_db_dev_password']
+# ActiveRecord::Base.establish_connection("postgres://#{username_pg}:#{password_pg}@localhost/garant_dev")
+
+
+params = {
+    adapter: 'postgresql',
+    host: 'localhost',
+    port: 5432,
+    dbname: 'garant_dev',
+    user: ENV['Counter_invited_sites_db_dev_username'],
+    password: ENV['Counter_invited_sites_db_dev_password']
+  }
+  
+  ActiveRecord::Base.establish_connection(params)
+
+
 
 ROOT                 = ENV['Garant_Bots_Path']
 
@@ -16,6 +30,7 @@ My_Chat_Id           = ENV["Telegram_Chat_Id_My"]
 Ru = 'Русский'
 En = 'English'
 
+DEAL_Closed_Statuses = ['finished by_custumer', 'canceled by_seller', 'finished by_moderator']
 
 
 

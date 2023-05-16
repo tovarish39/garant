@@ -1,6 +1,6 @@
 def handle
   $user = searching_user              # поиск ранее созданного user
-  $user ||= create_user unless $user  # создание user, если не найден
+  ruby-debug-ide ||= create_user unless $user  # создание user, если не найден
   $lg = $user.lang
   update_user_info_if_changed         # обновление информации о user, если изменил
   $chat_id = $mes.instance_of?(MessageClass) ? $mes.chat.id : $mes.message.chat.id
@@ -10,6 +10,11 @@ def handle
     new_status = $mes.new_chat_member.status
     $user.update(with_bot_status: new_status) if new_status == 'member'
     $user.update(with_bot_status: new_status) if new_status == 'kicked'
+  # elsif true; to_start
+    # puts user_shared? &&  bot_has_userTo?
+    # puts text_mes? && bot_has_userTo?
+  # puts  user_shared? 
+  # puts bot_has_userTo?
   # при любом состоянии     не изменяя состояние
   elsif $lg && data?(/Reject/); rejecting_deal # отклонение    сделки seller || custumer
   elsif $lg && data?(/Accept/); accepting_deal # подтверждение сделки seller || custumer

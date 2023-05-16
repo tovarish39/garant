@@ -18,11 +18,12 @@ Telegram::Bot::Client.run(Bot_Token_Main) do |bot|
     $bot = bot.api 
     $mes = message 
 
+
     begin
       handle if $mes
-    rescue StandardError => e
-      $bot.send_message(text: e, chat_id: My_chat_id)
-      $bot.send_message(text: e.backtrace, chat_id: My_chat_id)
+    # rescue StandardError => e
+    #   $bot.send_message(text: e, chat_id: My_Chat_Id)
+    #   $bot.send_message(text: e.backtrace, chat_id: My_Chat_Id)
     end
   end
 end

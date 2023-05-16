@@ -10,10 +10,10 @@ end
 
 
   IM_languages = IM.call([[IB_rus, IB_en]])
-  IM_offer_deal              = -> { IM.call([IB_offer_deal.call, IB_comments.call, IB_disputes.call]) }
+  IM_offer_deal              = -> (userTo_comments_size, userTo_disputes_size){ IM.call([IB_offer_deal.call, IB_comments.call(userTo_comments_size), IB_disputes.call(userTo_disputes_size)]) }
   IM_back_to_userTo_actions  = -> { IM.call(IB_back_to_userTo_actions.call) }
-  IM_type_of_disputes = lambda {
-    IM.call([IB_won_disputes.call, IB_lost_disputes.call, IB_back_to_userTo_actions.call])
+  IM_type_of_disputes = ->(won_size, lost_size) {
+    IM.call([IB_won_disputes.call(won_size), IB_lost_disputes.call(lost_size), IB_back_to_userTo_actions.call])
   }
   IM_back_to_type_of_disputes = -> { IM.call(IB_back_to_type_of_disputes.call) }
   IM_role                    = -> { IM.call([IB_custumer.call, IB_seller.call, IB_back_to_userTo_actions.call]) }

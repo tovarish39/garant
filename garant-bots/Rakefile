@@ -18,8 +18,8 @@ end
 
 desc 'killing pids bots'
 task :stop do
-  main_file_path = "#{root}/tmp/main_pid.txt"
-  moderator_file_path = "#{root}/tmp/moderator_pid.txt"
+  main_file_path = "#{root}/tmp/main.pid"
+  moderator_file_path = "#{root}/tmp/moderator.pid"
   kill_pid(main_file_path)
   kill_pid(moderator_file_path)
 end

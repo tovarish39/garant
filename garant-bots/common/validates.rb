@@ -58,7 +58,11 @@ def comparing message, compare
   false
 end
   
-def user_shared? = $mes.user_shared ? true : false
+def user_shared?
+  # puts $mes 
+  # ($mes.class != CallbackClass) &&  
+  ($mes.respond_to?('user_shared') ? true : false)
+end
   
 def text_mes? compare = nil # сообщение text любое или соответствие сравниваемому
    return nil if $mes.class != MessageClass

@@ -106,25 +106,11 @@ B_deal_info = lambda { |deal|
 
 B_deal_hash = -> { "##{$deal.hash_name}" }
 
-B_deal_status = lambda {
-  # == nil
-  # =~ /rejected/
-  # =~ /accessed/
-  # =~ /payed
-  # =~ /dispute
-  # == 'finished by_seller'
-  # == 'finished by_custumer'
-  # == 'finished by_moderator'
-
-  # == 'finished by_administrator'
-  # == 'canceled by_administrator',
-  # == 'garant win by_administrator'
+B_deal_status = -> {
   status   = $deal.status
   disputes = $deal.disputes
   unless disputes.empty?
     dispute       = disputes.first
-    # puts dispute.inspect
-    # puts $deal.inspect
     initiator_id  = dispute.created_by_user_id
     is_in_process = dispute.status == 'in_process'
     created_by    = B_by_seller[$lg]   if $deal.seller_id.to_s   == initiator_id
@@ -158,7 +144,7 @@ B_deal_status = lambda {
 
 B_deal_verbose = lambda { |with, user = $userTo|
   %(
-#{B_deal[$lg] + (unless $deal.hash_name.nil?
+#{B_deal[$lg] + (if $deal.hash_name.present?
                    "##{$deal.hash_name}"
                  end).to_s + (with == 'with_custumer' ? B_with_custumer[$lg] : B_with_seller[$lg]).to_s}
 #{B_user_info.call(user)}
@@ -182,15 +168,23 @@ B_deal_canceled_or_finished = lambda {
 }
 
 ###########################################
-B_userTo_info = lambda {
+B_userTo_info = ->(as_seller, as_customer, userTo_reiting) {
   %(<b>#{B_user[$lg]}</b>
 #{B_user_info.call($userTo)}
-<b>#{B_deals_how_seller[$lg]}</b>
-<b>#{B_deals_how_custumer[$lg]}</b>
-<b>#{B_dusputs[$lg]}</b>
-<b>#{B_comments[$lg]}</b>
-<b>#{B_rating[$lg]}</b> 5/5)
-}
+<b>#{B_deals_how_seller[$lg]}</b> #{as_seller}
+<b>#{B_deals_how_custumer[$lg]}</b> #{as_customer}
+#{"<b>#{B_rating[$lg]}</b> #{userTo_reiting}" if userTo_reiting.present? }   
+)}
+
+# B_userTo_info = lambda {
+#   %(<b>#{B_user[$lg]}</b>
+# #{B_user_info.call($userTo)}
+# <b>#{B_deals_how_seller[$lg]}</b>
+# <b>#{B_deals_how_custumer[$lg]}</b>
+# <b>#{B_dusputs[$lg]}</b>
+# <b>#{B_comments[$lg]}</b>
+# <b>#{B_rating[$lg]}</b> 5/5)
+# }
 
 B_confirm_deal = lambda { |with|
   %(#{B_deal[$lg] + (with == 'with_custumer' ? B_with_custumer[$lg] : B_with_seller[$lg])}
