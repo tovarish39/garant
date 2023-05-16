@@ -25,16 +25,16 @@ if ! kill -0 $pid_adminka; then
 fi
 
 
-# garant
-if ! kill -0 $pid_garant_main; then
-    cd $Garant_Path/garant-bots
-    $bundle_path exec $ruby_path main.rb &
-fi
+# # garant
+# if ! kill -0 $pid_garant_main; then
+#     cd $Garant_Path/garant-bots
+#     $bundle_path exec $ruby_path main.rb &
+# fi
 
-if ! kill -0 $pid_garant_moderator; then
-    cd $Garant_Path/garant-bots
-    $bundle_path exec $ruby_path moderator.rb &
-fi
+# if ! kill -0 $pid_garant_moderator; then
+#     cd $Garant_Path/garant-bots
+#     $bundle_path exec $ruby_path moderator.rb &
+# fi
 
 # blackList
 if ! kill -0 $pid_blackList_main; then
