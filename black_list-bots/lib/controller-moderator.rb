@@ -42,9 +42,9 @@ class StateMachine
 
 
   
-    if $mes.instance_of?(ChatMemberUpdated)
+    # if $mes.instance_of?(ChatMemberUpdated)
       # update_is_member
-    elsif mes_text? || mes_data?# || is_user_shared? || mes_photo?
+    if mes_text? || mes_data?# || is_user_shared? || mes_photo?
     #   if $lg.nil? # язык ещё не выбран
     #     $user.update(state_aasm: 'language')
     #   elsif $user.state_aasm == 'scamer' || $user.state_aasm == 'justification' # чтоб не работали ниже условия

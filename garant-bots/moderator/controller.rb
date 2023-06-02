@@ -11,7 +11,7 @@ def handle
 
   if    $mod.username == '-'
     require_username # обязательный юзернейм
-  elsif $mes.instance_of?(ChatMemberUpdated) # реагирует только от private chat
+  # elsif $mes.instance_of?(ChatMemberUpdated) # реагирует только от private chat
   else
     # from_state = :moderate           # предидущее состояние
     from_state = $mod.aasm_state.to_sym           # предидущее состояние
