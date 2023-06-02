@@ -6,7 +6,8 @@ def handle
 
   return if $mod.rights_status != 'active' # админ определил статуc 'active'
 
-  
+  begin
+    
   
   if    $mod.username == '-'
     require_username # обязательный юзернейм
@@ -23,6 +24,10 @@ def handle
     new_state = event_bot.aasm.current_state
     $mod.update(aasm_state: new_state)            # запись нового состояния
   end
+rescue => exception
+    
+end
+
 end
 
 
