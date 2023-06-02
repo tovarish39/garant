@@ -15,7 +15,7 @@ def handle
   # puts  user_shared? 
   # puts bot_has_userTo?
   # при любом состоянии     не изменяя состояние
-  elsif $user.with_bot_status = 'kicked'
+  elsif $user.with_bot_status == 'kicked'
   elsif $lg && data?(/Reject/); rejecting_deal # отклонение    сделки seller || custumer
   elsif $lg && data?(/Accept/); accepting_deal # подтверждение сделки seller || custumer
   # при определённом состоянии изменяя состояние
