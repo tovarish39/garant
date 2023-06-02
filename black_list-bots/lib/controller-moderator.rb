@@ -39,8 +39,6 @@ class StateMachine
 
 
       
-
-
   
     # if $mes.instance_of?(ChatMemberUpdated)
       # update_is_member
