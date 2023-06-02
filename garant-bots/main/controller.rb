@@ -3,7 +3,6 @@ def handle
   ruby-debug-ide ||= create_user unless $user  # создание user, если не найден
   $lg = $user.lang
   update_user_info_if_changed         # обновление информации о user, если изменил
-  $chat_id = $mes.instance_of?(MessageClass) ? $mes.chat.id : $mes.message.chat.id
 
   # юзер заблокировал|разблокировал бота
   if    $mes.instance_of?(UpdateMember)
@@ -16,10 +15,14 @@ def handle
   # puts  user_shared? 
   # puts bot_has_userTo?
   # при любом состоянии     не изменяя состояние
+  elsif $user.with_bot_status = 'kicked'
   elsif $lg && data?(/Reject/); rejecting_deal # отклонение    сделки seller || custumer
   elsif $lg && data?(/Accept/); accepting_deal # подтверждение сделки seller || custumer
   # при определённом состоянии изменяя состояние
   else
+    $chat_id = $mes.instance_of?(MessageClass) ? $mes.chat.id : $mes.message.chat.id # после UpdateChatMember
+
+
     from_state = if !$lg
                    'language'.to_sym # язык не выбран, перевод в "language" состояние
                  elsif click_main_button_or_start?
