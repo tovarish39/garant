@@ -1,4 +1,4 @@
-require_relative '../head/requires'
+require_relative '../requires'
 require 'faraday'
 require 'faraday/multipart'
 require 'telegram/bot'

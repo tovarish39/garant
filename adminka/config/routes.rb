@@ -3,6 +3,8 @@
 Rails.application.routes.draw do
   root to: redirect('garant/users') #   'garant/homepage#index'
   
+  get '/test', to: 'garant/users#test'
+
   namespace :black_list do
     resources :users,      only: %i[index update]    
   end

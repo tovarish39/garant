@@ -4,7 +4,7 @@ require 'net/http'
 require 'nokogiri'
 require 'telegram/bot'
 
-require_relative '../head/requires'
+require_relative '../requires'
 
 complaint_id = ARGV[0]
 user_id   = ARGV[1]
@@ -14,7 +14,6 @@ user = BlackListUser.find(user_id)
 
 access_token = '17bfdc2d653bbef801cfbb3c3caff533b4011513e06dfefad55b87178a81'
 
-# url = URI("https://api.telegra.ph/createAccount?short_name=Sandbox&author_name=Anonymous")
 
 
 def create_page(title, content, access_token)
@@ -31,28 +30,13 @@ end
 
 
 title = 'Заголовок страницы'
-# url = %Q{
-#     "https://api.telegram.org/file/bot5676653907:AAEHL8SFnepPYxVMT58EHdBHubOx4rehBkY/photos/file_2.jpg"
-# }
-
-def get_src ulr
-    uri = URI(ulr)
-    html = Net::HTTP.get(uri)
-    document = Nokogiri::HTML.parse(html)
-    imgs        = document.css("#download-preview-image")
-    imgs.first['src']        
-end
-
-# content = %Q{[
-# }
 content = %Q{[
     {"tag":"p","children":["Приветствие!"]}
 }
 
 complaint.photo_ulrs_remote_tmp.each do |url|
-    src = get_src(url)
     img = %Q{
-        ,{"tag":"img", "attrs":{"src":"#{src}"}}
+        ,{"tag":"img", "attrs":{"src":"#{url}"}}
     }
     content << img
 end
@@ -83,6 +67,22 @@ complaint.update(
     status:'to_moderator'
 )
 
+sended_mes_id = user.cur_mes_id
+begin
+    # puts "sended_mes_id = #{sended_mes_id}"
+    main_bot = Telegram::Bot::Client.new(TOKEN_BOT)
+
+
+    main_bot.api.edit_message_text(
+        chat_id:user.telegram_id, 
+        text:"Ваша жалоба #N#{complaint.id} была отправлена на проверку модератором, ожидайте её рассмотрения о результатах вас оповестит бот", 
+        message_id:sended_mes_id
+    )            
+rescue => exception
+end
+
+
+
 bot = Telegram::Bot::Client.new(TOKEN_BOT_MODERATOR)
 moderators = BlackListModerator.all
 moderators.each do |moderator|
@@ -94,18 +94,6 @@ moderators.each do |moderator|
     )
     # puts mes.inspect
     rescue => exception
+        puts   exception
         puts   exception.backtrace
 end
-
-
-
-
-# src = %Q{https://api.telegram.org/file/bot5676653907:AAEHL8SFnepPYxVMT58EHdBHubOx4rehBkY/photos/file_2.jpg}
-# img = %Q{
-#     ,{"tag":"img", "attrs":{"src":"#{src}"}}
-# }
-# content = %Q{[
-#     {"tag":"p","children":["Hello,+world!"]}
-#         #{img}
-# ]}
-

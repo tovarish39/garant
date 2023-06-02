@@ -2,8 +2,8 @@
 main_path      = "#{__dir__}/main.rb"
 moderator_path = "#{__dir__}/moderator.rb"
 
-main_pid_file_path      = "#{__dir__}/tmp/main_pid.txt"
-moderator_pid_file_path = "#{__dir__}/tmp/moderator_pid.txt"
+main_pid_file_path      = "#{__dir__}/tmp/main.pid"
+moderator_pid_file_path = "#{__dir__}/tmp/moderator.pid"
 
 def stopping pid_path
     File.readlines(pid_path).each do |pid|

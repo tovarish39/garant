@@ -18,8 +18,13 @@ end
 
 def handle_photo
     min_size = 2 # availible 3 variants (indexes)
-    file_id = $mes.photo[min_size].file_id
-    file = Get.file(file_id)
+
+    # bug 
+    file = $mes.photo[min_size]
+    return if file.nil?
+    
+    
+    file = Get.file(file.file_id)
     complaint = Complaint.find($user.cur_complaint_id)
     write_file(file, complaint) if file.present?
 

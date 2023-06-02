@@ -7,7 +7,10 @@ end
 
 module Send
     def self.mes text, reply_markup = nil, to: Chat_id
-        $bot.api.send_message(chat_id: to.telegram_id, text:text, reply_markup:reply_markup, parse_mode:"HTML")
+
+        $bot.api.send_message(
+            chat_id: (to.class == String) ? MY_CHAT_ID : to.telegram_id , 
+            text:text, reply_markup:reply_markup, parse_mode:"HTML")
     end 
 end
 
@@ -48,6 +51,10 @@ def action(from_state) = "#{from_state}_action"
 def mes_photo?
     return false unless $mes.class == Message
     $mes.photo.present?
+end
+
+def mes_from_group?
+    $mes.chat.type == 'group'
 end
 
 def mes_text? compare = nil # сообщение text любое или соответствие сравниваемому

@@ -4,6 +4,13 @@ class Garant::UsersController < ApplicationController
   
   def index; end
 
+  def test
+
+    debugger
+
+    
+  end
+
   def users
     users = User.all
     users_with_deals_size = []

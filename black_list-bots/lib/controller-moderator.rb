@@ -37,6 +37,10 @@ class StateMachine
     $user = user_search_and_update_if_changed('BlackListModerator')
     $user ||= create_user('BlackListModerator')
 
+
+      
+
+
   
     if $mes.instance_of?(ChatMemberUpdated)
       # update_is_member
@@ -47,7 +51,6 @@ class StateMachine
     #   elsif mes_text? && Button.all_main.include?($mes.text) # кнопка главного меню или /start
     #     $user.update(state_aasm: 'start')
     #   end
-  # puts $user.inspect
   
       event_bot = StateMachine.new
   

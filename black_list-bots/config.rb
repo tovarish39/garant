@@ -12,8 +12,21 @@ MAX_PHOTOS_SIZE = 20
 MIN_PHOTOS_SIZE = 0
 PHOTOS_PATH = "#{ROOT_BOT}/photos"
 UPLOAD_ON_TELEGRAPH_PATH = "#{ROOT_BOT}/uploader/on_telegraph.rb"
-UPLOAD_ON_TMP_PATH = "#{ROOT_BOT}/uploader/on_tmp.rb"
+UPLOAD_ON_FREEIMAGE = "#{ROOT_BOT}/uploader/on_freeimage_host.rb"
+# UPLOAD_ON_TMP_PATH = "#{ROOT_BOT}/uploader/on_tmp.rb"
+# UPLOAD_ON_YANDEX_DISK = "#{ROOT_BOT}/uploader/on_yandex_disk.rb"
 COMMON = "#{ROOT_BOT}/common"
+
+TOKEN_YANDEX_DISK = ENV['TOKEN_YANDEX_DISK']
+
+#kozmaps_channel_id '-1001176838228'
+
+TELEGRAM_CHANNEL_ID_MY       = '-1001706121107'
+TELEGRAM_CHANNEL_USERNAME_MY = 'https://t.me/aaasdfasfd'
+
+TELEGRAM_CHANNEL_ID       = TELEGRAM_CHANNEL_ID_MY
+TELEGRAM_CHANNEL_USERNAME = TELEGRAM_CHANNEL_USERNAME_MY
+
 
 CallbackQuery     = Telegram::Bot::Types::CallbackQuery
 Message           = Telegram::Bot::Types::Message

@@ -28,7 +28,7 @@ module Text
         "вы ввели недостаточно символов отправьте сообщение длиной от #{MIN_LENGTH_COMPLAINT_TEXT} символов"
     end
     def self.complaint_photos
-        'Отправьте скриншоты диалога на которых виден процесс обмана, порсле отправки нажмите кнопку “Готово”'
+        'Отправьте скриншоты диалога на которых виден процесс обмана, после отправки нажмите кнопку “Готово”'
     end
     def self.notice_max_photos_size
         "Максимальное количество фотографий #{MAX_PHOTOS_SIZE}"
@@ -45,8 +45,8 @@ module Text
     def self.compare_user_id
         'Перешлите сообщения ответчика из чата, соответствующие скрину'
     end
-    def self.complaint_request_to_moderator scamer
-        "Ваша жалоба #N#{scamer.id} была отправлена на проверку модератором, ожидайте её рассмотрения о результатах вас оповестит бот"
+    def self.complaint_request_to_moderator complaint
+        "Ваша жалоба #N#{complaint.id} была отправлена на проверку модератором, ожидайте её рассмотрения о результатах вас оповестит бот ⏳"
     end
     def self.moderator_complaint user, scamer
         %{\n
@@ -62,11 +62,11 @@ module Text
     def self.was_handled
         'Был ранее обработан'
     end
-    def self.handle_accept_complaint
-        'Обработано. ссылка на пост на канале'
+    def self.handle_accept_complaint complaint
+        %{Обработано. <a href='#{TELEGRAM_CHANNEL_USERNAME}/#{complaint.mes_id_published_in_channel}'>ссылка</a> на пост на канале  }
     end
-    def self.complaint_published scamer
-        "Ваша жалоба #N#{scamer.id} Опубликована. Ссылка на пост"
+    def self.complaint_published complaint
+        %{Ваша жалоба #N#{complaint.id} Опубликована.  <a href='#{TELEGRAM_CHANNEL_USERNAME}/#{complaint.mes_id_published_in_channel}'>ссылка</a> на пост}
     end
     def self.input_cause_of_reject
         'ВВедите причину отклонения'
@@ -101,9 +101,21 @@ module Text
         "Вы заблокированы"
     end
     def self.not_complaints
-        "Заявки ни зарегистрированы"
+        "Заявки не зарегистрированы"
     end
     def self.complaint scamer
         "Жалоба #N#{scamer.id}"
+    end
+    def self.not_scamer users_data
+        "#{users_data}  - не скамер"
+    end
+    def self.is_scamer users_data, complaint
+        "#{users_data}  - скамер <a href='#{TELEGRAM_CHANNEL_USERNAME}/#{complaint.mes_id_published_in_channel}'>ссылка</a> на пост"
+    end
+    def self.verifyed users_data
+        "#{users_data}  - Проверенный"
+    end
+    def self.require_subscribe_channel
+        "Необходимо подписаться на <a href='#{TELEGRAM_CHANNEL_USERNAME}'>канал</a>"
     end
 end

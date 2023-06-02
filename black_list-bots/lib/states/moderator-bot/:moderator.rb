@@ -1,5 +1,34 @@
-def greeting_mod
+class StateMachine
+    class_eval do
+      include AASM
+      aasm do
+        state :moderator
+  
+        event :moderator_action, from: :moderator do
+          transitions if: -> { mes_text?('/start') }                , after: :greeting_mod           , to: :moderator
+
+          transitions if: -> { mes_text?(Button.active_complaints) }, after: :view_complaints        , to: :moderator
+
+          transitions if: -> { mes_data?(/accept_complaint/) }      , after: :handle_accept_complaint, to: :moderator
+          
+          transitions if: -> { mes_data?(/reject_complaint/) && is_already_handled?() }, after: :already_handled        , to: :moderator
+          transitions if: -> { mes_data?(/reject_complaint/) }                         , after: :handle_reject_complaint, to: :explanation
+          
+          transitions if: -> { mes_data?(/access_justification/) }  , after: :accessing_justification, to: :moderator
+
+          transitions if: -> { mes_data?(/block_user/) }            , after: :blocking_scamer         , to: :moderator
+
+        end
+      end
+    end
+  end
+  
+  def greeting_mod
     Send.mes(Text.greeting_mod, M::Reply.greeting_mod)
+end
+
+def already_handled
+    Send.mes(Text.was_handled)
 end
 
 def view_complaints
@@ -24,7 +53,10 @@ def view_complaints
     Send.mes(Text.not_complaints) if complaints_to_moderator.empty? && userTo_justifications.empty?
 end
 
-def publishing_in_channel
+def publishing_in_channel complaint
+    main_bot = Telegram::Bot::Client.new(TOKEN_BOT)
+    res = main_bot.api.send_message(text:complaint.telegraph_link, chat_id:TELEGRAM_CHANNEL_ID)
+    complaint.update(mes_id_published_in_channel:res['result']['message_id'])
 end
 
 def get_complaint_by_button
@@ -45,22 +77,28 @@ def handle_accept_complaint
         Send.mes(Text.was_handled)
     else
         complaint.update(status:'accepted_complaint')
-        publishing_in_channel
+        publishing_in_channel(complaint)
         update_black_list_user_whith_scamer_status(complaint)
-        Send.mes(Text.handle_accept_complaint)
+        Send.mes(Text.handle_accept_complaint(complaint))
         black_list_bot = Telegram::Bot::Client.new(TOKEN_BOT)
         black_list_bot.api.send_message(
             text:Text.complaint_published(complaint),
-            chat_id:complaint.black_list_user.telegram_id
+            chat_id:complaint.black_list_user.telegram_id,
+            parse_mode:"HTML"
         )
     end
+end
+
+def is_already_handled? 
+    complaint = get_complaint_by_button()
+    return if complaint.nil?
+    complaint.status != "to_moderator"
 end
 
 def handle_reject_complaint
     complaint = get_complaint_by_button()
     return if complaint.nil?
-    is_already_handled = complaint.status != "to_moderator"
-    if is_already_handled
+    if is_already_handled?()
         Send.mes(Text.was_handled)
     else
         $user.update(cur_complaint_id:complaint.id)

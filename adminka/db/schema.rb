@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_12_172659) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_02_172854) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_12_172659) do
     t.boolean "is_blocked_by_moderator", default: false
     t.string "status"
     t.string "status_by_moderator"
+    t.datetime "verifying_by_time"
+    t.string "cur_mes_id"
   end
 
   create_table "complaints", force: :cascade do |t|
@@ -58,6 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_12_172659) do
     t.string "photo_ulrs_remote_tmp", default: [], array: true
     t.string "telegraph_link"
     t.text "explanation_by_moderator"
+    t.string "mes_id_published_in_channel"
     t.index ["black_list_user_id"], name: "index_complaints_on_black_list_user_id"
   end
 

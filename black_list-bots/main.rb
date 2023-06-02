@@ -17,15 +17,15 @@ Telegram::Bot::Client.run(TOKEN_BOT) do |bot|
     $mes = message
     $bot = bot
 
-    bot.api.send_message(text:$mes.inspect, chat_id:MY_CHAT_ID)
+    # bot.api.send_message(text:$mes.inspect, chat_id:MY_CHAT_ID)
     
       
-    # begin
-    #   handle if $mes.from.present?
-    # rescue StandardError => e
-    #   Send.mes(e, to:MY_CHAT_ID)
-    #   Send.mes(e.backtrace, to:MY_CHAT_ID)
-    # end
+    begin
+      handle if $mes.from.present?
+    rescue StandardError => e
+      Send.mes(e, to:MY_CHAT_ID)
+      Send.mes(e.backtrace, to:MY_CHAT_ID)
+    end
   end
 end
 
