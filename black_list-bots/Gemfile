@@ -4,7 +4,8 @@ source 'https://rubygems.org'
 
 gem 'telegram-bot-ruby', '~> 1.0'
 
-gem 'pg', '~> 1.4.5'
+# gem 'pg', '~> 1.4.5'
+gem 'pg', '~> 1.5', '>= 1.5.3'
 
 gem 'activerecord'
 
@@ -19,4 +20,4 @@ gem 'nokogiri'
 
 
 gem 'ruby-debug-ide'
-gem 'debase'
+# gem 'debase'

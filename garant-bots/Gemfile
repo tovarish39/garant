@@ -13,4 +13,4 @@ gem 'telegram-bot-ruby', '~> 0.23.0'
 
 
 gem 'ruby-debug-ide'
-gem 'debase'
+# gem 'debase'
