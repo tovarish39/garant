@@ -24,7 +24,7 @@ Telegram::Bot::Client.run(TOKEN_BOT) do |bot|
       handle if $mes.from.present?
     rescue StandardError => e
       Send.mes(e, to:MY_CHAT_ID)
-      Send.mes(e.backtrace, to:MY_CHAT_ID)
+      Send.mes(e.backtrace.slice(0, 300), to:MY_CHAT_ID)
     end
   end
 end

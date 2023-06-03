@@ -7,7 +7,7 @@ gem 'activerecord'
 gem 'colorize'
 gem 'pg', '~> 1.5', '>= 1.5.3'
 gem 'faraday', '2.3.0'
-gem 'telegram-bot-ruby', '~> 0.23.0'
+gem 'telegram-bot-ruby', '~> 1.0.0'
 
 group :debug do
     gem 'ruby-debug-ide'
