@@ -2,15 +2,22 @@
 
 source 'https://rubygems.org'
 
-# gem "rails"
 gem 'aasm', '~> 5.1', '>= 5.1.1'
 gem 'activerecord'
 gem 'colorize'
-# gem 'pg', '~> 1.1'
 gem 'pg', '~> 1.5', '>= 1.5.3'
-# gem 'redis'
+gem 'faraday', '2.3.0'
 gem 'telegram-bot-ruby', '~> 0.23.0'
 
+group :debug do
+    gem 'ruby-debug-ide'
+    gem 'debase', '0.2.5.beta2'
+end
 
-gem 'ruby-debug-ide'
-# gem 'debase'
+
+
+
+
+gem 'faraday-multipart'
+
+gem 'nokogiri'

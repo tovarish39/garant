@@ -1,6 +1,0 @@
-# in .bashrc
-export BLACK_LIST=""
-export TOKEN_BLACK_LIST_BOT=""
-export MY_CHAT_ID=""
-
-export Garant_Path
