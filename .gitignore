@@ -29,22 +29,23 @@
 
 # Ignore master key for decrypting credentials and more.
 /adminka/config/master.key
+######################################################
+garant/logs/*
+!/garant/logs/.keep
 
-garant-bots/logs/*
-!/garant-bots/logs/.keep
+garant/tmp/*
+!/garant/tmp/.keep
 
-garant-bots/tmp/*
-!/garant-bots/tmp/.keep
+
 
 adminka/node_modules/*
 
 # black-list-bot
-black_list-bots/tmp/*
-!black_list-bots/tmp/.keep
+black_list/tmp/*
+!black_list/tmp/.keep
 
-black_list-bots/log/*
-!black_list-bots/log/.keep
+black_list/log/*
+!black_list/log/.keep
 
-
-black_list-bots/photos/*
-!black_list-bots/photos/.keep
+black_list/photos/*
+!black_list/photos/.keep

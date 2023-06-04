@@ -1,0 +1,31 @@
+root_garant = ENV['Garant_Bots_Path']
+
+
+def kill_pid pids_file_path
+  pids_file = File.readlines(pids_file_path).each do |pid|
+    system("kill -9 #{pid}")
+  end
+  FileUtils.rm(pids_file_path)
+end
+
+desc 'starting 1_primary && starting 2_secondary'
+task :start do
+  primary_1_path      = "#{root_garant}/1_primary/start_1_primary.rb"
+  secondary_2_path    = "#{root_garant}/2_secondary/start_2_secondary.rb"
+  system("(bundle exec ruby #{primary_1_path}   &)") 
+  system("(bundle exec ruby #{secondary_2_path} &)") 
+end
+
+desc 'killing pids bots'
+task :stop do
+  primary_1_pid_path   = "#{root_garant}/tmp/1_primary.pid"
+  secondary_2_pid_path = "#{root_garant}/tmp/2_secondary.pid"
+  kill_pid(primary_1_pid_path)
+  kill_pid(secondary_2_pid_path)
+end
+
+desc 'stop + start'
+task :restart do
+  system('rake stop')
+  system('rake start')
+end
