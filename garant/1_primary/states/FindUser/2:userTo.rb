@@ -7,8 +7,9 @@ class StateMachine
         event :userTo_action, from: :userTo do
           ## UserToActions
           transitions if: -> {data?(/Comments/) &&  has_comments?}, after: :view_comments            , to: :userTo # "Отзывы"
-          transitions if: -> {data?(/Comments/) && !has_comments?}, after: :no_comments              , to: :userTo # "Отзывы"
-          transitions if: -> {data?(/Disputes/)                  }, after: :view_type_of_disputes    , to: :userTo # "Комментарии"
+          transitions if: -> {data?(/Comments/) && !has_comments?}, after: :no_comments              , to: :userTo # 
+          transitions if: -> {data?(/Disputes/) &&  has_disputes?}, after: :view_type_of_disputes    , to: :userTo # "Комментарии"
+          transitions if: -> {data?(/Disputes/) && !has_disputes?}, after: :no_disputes              , to: :userTo # 
           transitions if: -> {data?(/Offer_deal/)                }, after: :choose_role              , to: :userTo # "Предложить сделку"
           ## Comments TypeOfDisputes Role CurrencyTypes
           transitions if: -> { data?(/Back_to userTo_actions/)   }, after: :to_userTo_from_back      , to: :userTo # "Назад"
@@ -43,14 +44,26 @@ def has_comments?
     deals_with_comment.any?
 end
 
+def has_disputes?
+  $userTo = User.find($user.userTo_id)
+  userTo_disputes_won  = get_userTo_disputes_won()
+  userTo_disputes_lost = get_userTo_disputes_lost()
+  amount = userTo_disputes_won.size + userTo_disputes_lost.size
+  result = (amount == 0) ? false : true
+  puts result 
+  result
+end
 
+def no_disputes
+  Send.mes(T_no_disputes[$lg])
+end
 
 ########################################################################
 def choose_role
   return unless get_userTo_from_new_deal # defining $userTo
 
   $user.update(role: nil)
-  edit_message(B_choose_role[$lg], IM_role.call)
+  Edit.mes(B_choose_role[$lg], M::Inline.role)
 end
 #######################################################################
 
@@ -62,7 +75,7 @@ end
 def choose_type_of_currencies
   return unless get_userTo_from_new_deal # defining $userTo
 
-  edit_message(B_currency_types[$lg], IM_currency_types.call)
+  Edit.mes(B_currency_types[$lg], M::Inline.currency_types)
 
   write_role
 end
@@ -70,13 +83,13 @@ end
 def back_to_CurrencyTypes
   return unless get_userTo_from_new_deal # defining $userTo
 
-  edit_message(B_currency_types[$lg], IM_currency_types.call)
+  Edit.mes(B_currency_types[$lg], M::Inline.currency_types)
 end
 
 def choose_specific_currency
   return unless get_userTo_from_new_deal # defining $userTo
 
-  edit_message(B_currency_types[$lg], IM_cryptocurrencies.call)
+  Edit.mes(B_currency_types[$lg], M::Inline.cryptocurrencies)
 end
 
 ######################################################################
@@ -86,7 +99,7 @@ def choose_amount
   selected_currency = $mes.data.split('/')[1]
 
   $user.update(currency: selected_currency)
-  send_message("#{B_push_amount_currency[$lg]} <b>#{selected_currency}</b> ")
+  Send.mes("#{B_push_amount_currency[$lg]} <b>#{selected_currency}</b> ")
 end
 
 #############################################################
@@ -135,9 +148,9 @@ def view_type_of_disputes
  userTo_disputes_lost = get_userTo_disputes_lost()
 
 
- edit_message(
+ Edit.mes(
   B_disputes_by_userTo[$lg], 
-  IM_type_of_disputes.call(
+  M::Inline.type_of_disputes(
     userTo_disputes_won.size,
     userTo_disputes_lost.size
   ))
@@ -181,8 +194,8 @@ end
 
 
 texts.each_with_index do |text, index|
-  send_message(text) if index != texts.size - 1 # промежуточный
-  send_message(text, IM_back_to_type_of_disputes.call) if index == texts.size - 1 # последний текст
+  Send.mes(text) if index != texts.size - 1 # промежуточный
+  Send.mes(text, M::Inline.back_to_type_of_disputes) if index == texts.size - 1 # последний текст
 end
 end
 
@@ -200,7 +213,7 @@ end
 def back_to_type_of_disputes
   return unless get_userTo_from_new_deal # defining $userTo
 
-  edit_message(B_disputes_by_userTo[$lg], IM_type_of_disputes.call)
+  Edit.mes(B_disputes_by_userTo[$lg], IM_type_of_disputes.call)
 end
 
 ##########################################
@@ -218,16 +231,16 @@ def view_comments
     $deal = deals_with_comment[i]
     $customer = User.find($deal.custumer_id)
     if !is_last_index
-      send_message(B_comment.call)
+      Send.mes(B_comment.call)
     else
-      send_message(B_comment.call, IM_back_to_userTo_actions.call)
+      Send.mes(B_comment.call, M::Inline.back_to_userTo_actions)
     end
   end
 end
 
 
 def no_comments
-  send_message(B_no_comments[$lg])
+  Send.mes(B_no_comments[$lg])
 end
 
 def to_userTo_from_back
@@ -235,6 +248,6 @@ def to_userTo_from_back
 
   run_to_userTo
 
-  # send_message(B_userTo_info.call, IM_offer_deal.call)
+  # Send.mes(B_userTo_info.call, IM_offer_deal.call)
 end
 ##############################################################

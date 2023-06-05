@@ -12,23 +12,25 @@ class StateMachine
     end
   end
   
-  def from_redis dispute_id
-    dispute = Dispute.find(dispute_id)
+  def from_redis dispute
+    # dispute = Dispute.find(dispute_id)
     # проверка модераторов по white list
     # avalible_morerator_telegram_ids = AvalibleModerator.all&.map(&:telegram_id)
   
     bot = Telegram::Bot::Client.new(Bot_Token_2_SECONDARY)
-    $bot = bot.api
+    $bot = bot
     Moderator.all.each do |moderator|
-      $chat_id = moderator.telegram_id
+      # $chat_id = moderator.telegram_id
       deal     = dispute.deal
       seller   = User.find(deal.seller_id)
       custumer = User.find(deal.custumer_id)
       lg = Ru # moderator.lang
       initiator = dispute.created_by_user_id == seller.id.to_s ? B_by_seller[lg] : B_by_custumer[lg]
-      mes = send_message(
+      mes = Send.mes(
         B_disput_offer.call(seller, custumer, deal, dispute, initiator, lg),
-        IM_dispute_offer.call(dispute, lg)
+        M::Inline.dispute_offer(dispute, lg),
+        to:moderator
+
       )
       dispute.sended_to_moderators << { moderator.id => mes['result']['message_id'].to_s }
       dispute.save
@@ -50,10 +52,13 @@ class StateMachine
       with = 'with_seller'   if self_role == 'I`m custumer'
       userTo_id = $deal.seller_id == $user.id ? $deal.custumer_id : $deal.seller_id
       $userTo = User.find(userTo_id)
-      send_message_to_user("#{B_deal_verbose.call(with, $user)}\n\n#{B_opened_disput[$lg]}", $userTo)
-      edit_message("#{B_deal_verbose.call(with)}\n\n#{B_opened_disput[$lg]}", nil, $user.mes_ids_to_edit[0])
-      send_message(B_request[$lg], RM_deals_menu.call)
+      Send.mes("#{B_deal_verbose.call(with, $user)}\n\n#{B_opened_disput[$lg]}", to:$userTo)
+      begin
+        Edit.mes("#{B_deal_verbose.call(with)}\n\n#{B_opened_disput[$lg]}", nil, $user.mes_ids_to_edit[0])
+      rescue => exception
+      end
+      Send.mes(B_request[$lg], M::Reply.deals_menu)
   
-      from_redis(dispute.id)
+      from_redis(dispute)
     end
     

@@ -1,5 +1,5 @@
-module Button
-end
+
+
 
 T_find_user        = { Ru => '🔎Найти пользователя🔎', En => '🔎Find_user🔎' }
 T_deals            = { Ru => '🤝Сделки🤝',            En => '🤝Deals🤝' }
@@ -13,9 +13,8 @@ T_start_actions = [
   T_help[Ru],      T_help[En],
   '/start'
 ]
-# IB
-Arr_cryptoCurrecues = %w[BTC ETH]
 
+T_cryptoCurrecues = %w[BTC ETH]
 # # текст кнопок
 T_cancel         = { Ru => 'Отмена',                En => 'Cancel' }
 T_select_contact = { Ru => 'Выбрать контакт',       En => 'Select contact' }

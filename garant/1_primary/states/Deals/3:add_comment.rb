@@ -21,6 +21,6 @@ class StateMachine
   
     deal.update(comment: comment)
   
-    send_message(B_comment_added[$lg], RM_deals_menu.call)
+    Send.mes(B_comment_added[$lg], M::Reply.deals_menu)
   end
   

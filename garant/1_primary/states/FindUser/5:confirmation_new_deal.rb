@@ -6,10 +6,10 @@ class StateMachine
   
         ## :confirmation_new_deal
         event :confirmation_new_deal_action, from: :confirmation_new_deal do
-          transitions if: lambda {
+          transitions if: -> {
                             data?(/Confirming_new_deal/)
                           }, after: :deal_request, to: :start # создание сделки и отправка на подтверждение seller || custumer
-          transitions if: lambda {
+          transitions if: -> {
                             data?(/Cancel_new_deal/)
                           }, after: :to_userTo_from_back, to: :userTo # "Отмена" сделки (не создание)
         end
@@ -33,10 +33,10 @@ class StateMachine
   end
   
   def send_request_to_userTo(action)
-    send_message_to_user(
+    Send.mes(
       B_request_deal_to_userTo.call(action),
-      $userTo,
-      IM_accept_reject.call
+      M::Inline.accept_reject,
+      to:$userTo
     )
   end
   
@@ -56,7 +56,7 @@ class StateMachine
       $deal = creating_deal(seller: $userTo, custumer: $user)
       send_request_to_userTo(B_to_buy[$lg])
     end
-    send_message(B_request_deal_self.call) # уведомление создающему дело
+    Send.mes(B_request_deal_self.call) # уведомление создающему дело
     to_start
   end
   #######################################################################################

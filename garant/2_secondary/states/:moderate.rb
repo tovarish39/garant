@@ -12,14 +12,15 @@ class StateMachine
           transitions if: -> {text_mes?('История споров')}, after: :list_my_closed_disputes   , to: :moderate
 
           transitions if: -> {data?(/Accept/)}            , after: :handle_acception          , to: :moderate # модератор принимает спор
-          transitions if: -> {data?(/Decision/)}          , after: :handle_decision           , to: :comment # seller_lost || custumer_lost || nonobservance
+          transitions if: -> {data?(/Decision/) &&  dispute_actual?}          , after: :handle_decision           , to: :comment # seller_lost || custumer_lost || nonobservance
+          transitions if: -> {data?(/Decision/) && !dispute_actual?}          , after: :already_handled           , to: :moderate # seller_lost || custumer_lost || nonobservance
         end
       end
     end
   end
   
   def view_menu
-    send_message(B_choose_action[Ru], RM.call(['Открытые споры', 'Мои споры', 'История споров']))
+    Send.mes(B_choose_action[Ru], M::Reply.moderator_menu)
   end
   
   def get_data_dispute(dispute)
@@ -36,13 +37,13 @@ class StateMachine
         opened_disputes.each do |dispute|
           data = get_data_dispute(dispute)
     
-          send_message(
+          Send.mes(
             B_disput_offer.call(data[:seller], data[:custumer], data[:deal], dispute, data[:initiator], Ru),
-            IM_dispute_offer.call(dispute, Ru)
+            M::Inline.dispute_offer(dispute, Ru)
           )
         end
       else
-        send_message('Открытых споров нет')
+        Send.mes('Открытых споров нет')
       end
     end
   
@@ -52,13 +53,13 @@ class StateMachine
     if inProcess_disputes.any?
       inProcess_disputes.each do |dispute|
         data = get_data_dispute(dispute)
-        send_message(
+        Send.mes(
           B_disput_offer.call(data[:seller], data[:custumer], data[:deal], dispute, data[:initiator], Ru),
-          IM_decision_actions.call(dispute, Ru)
+          M::Inline.decision_actions(dispute, Ru)
         )
       end
     else
-      send_message('Все споры обработаны')
+      Send.mes('Все споры обработаны')
     end
   end
   
@@ -67,13 +68,13 @@ class StateMachine
       if finished_disputes.any?
         finished_disputes.each do |dispute|
           data = get_data_dispute(dispute)
-          send_message(
+          Send.mes(
             B_disput_offer.call(data[:seller], data[:custumer], data[:deal], dispute, data[:initiator],
                                 Ru) + B_dispute_comment.call(dispute)
           )
         end
       else
-        send_message('Обработаных споров не было')
+        Send.mes('Обработаных споров не было')
       end
     end
   
@@ -90,11 +91,14 @@ class StateMachine
       seller   = User.find(dispute.deal.seller_id)
       custumer = User.find(dispute.deal.custumer_id)
       bot = Telegram::Bot::Client.new(Bot_Token_1_PRIMARY)
-      $bot = bot.api
+      $bot = bot
       moderator_username = dispute.moderator.username
+      puts '1'
       [seller, custumer].each do |to_user|
-        send_message_to_user("Спор по сделки ##{dispute.deal.hash_name} ведёт @#{moderator_username}", to_user)
+        Send.mes("Спор по сделки ##{dispute.deal.hash_name} ведёт @#{moderator_username}", to:to_user)
       end
+      puts '2'
+
     end
   
   def handle_acception
@@ -107,41 +111,58 @@ class StateMachine
   
     TakenDispute.create!(moderator_id: $mod.id, dispute_id: dispute.id)
     dispute.update(status: 'in_process')
-  
+
+    Delete.pushed
+    Send.mes("Спор перенесён во вкладку 'Мои споры'")
+
     dispute.sended_to_moderators.each do |obj|
       mod_id = obj.keys[0]
       mes_id = obj.values[0]
-      $chat_id = $mes.message.chat.id
+      # $chat_id = $mes.message.chat.id
   
       begin
         if mod_id == $mod.id.to_s
-          edit_message("спор по сделки ##{dispute.deal.hash_name} взят вами в обработку", nil,
+          Edit.mes("спор по сделки ##{dispute.deal.hash_name} взят вами в обработку", nil,
                        mes_id)
         end
         if mod_id != $mod.id.to_s
-          edit_message("спор по сделки ##{dispute.deal.hash_name} взят другим модератором в обработку", nil,
+          Edit.mes("спор по сделки ##{dispute.deal.hash_name} взят другим модератором в обработку", nil,
                        mes_id)
         end
         $logger.info("#{obj} dispute_id #{dispute.id} ---> edited successfull")
-      rescue StandardError => e
+      rescue  => e
         $logger.error("#{dispute.sended_to_moderators.inspect} ---> #{e}")
       end
       from_redis1("#{dispute.id}:get-dispute")
     end
-    delete_pushed
-    send_message("Спор перенесён во вкладку 'Мои споры'")
   end
   
-  def handle_decision
+  def get_dispute_by_button
       dispute_id = dispute_id = $mes.data.split('/').last
       action     = $mes.data.split('/')[1]
-      dispute    = Dispute.find(dispute_id)
-      return if dispute.status != 'in_process' # был ранее обработан
+      Dispute.find(dispute_id)
+  end
+
+  def dispute_actual?
+      dispute = get_dispute_by_button
+      dispute.status == 'in_process'
+  end
+
+def already_handled
+
+    Delete.pushed
+    Send.mes('Cпор был ранее обработан')
+end
+  
+  def handle_decision
+      action     = $mes.data.split('/')[1]
+      dispute = get_dispute_by_button
     
       $mod.update(
         pushed_IB_mes_id: $mes.message.message_id,
-        current_dispute_id: dispute_id,
+        current_dispute_id: dispute.id,
         pushed_action: action
       )
-      send_message('Введите комментарий решения, который отобразится Покупателю и Продавцу', RM.call('Отмена'))
+      $lg = Ru
+      Send.mes('Введите комментарий решения, который отобразится Покупателю и Продавцу', M::Reply.cancel)
     end

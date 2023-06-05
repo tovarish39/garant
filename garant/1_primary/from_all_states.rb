@@ -16,16 +16,16 @@ def accepting_deal
   if    self_seller # подтверждение и отправка покупателю запрос на оплату
     $userTo = User.find($deal.custumer_id)
     $deal.update(status: 'accessed by_seller')
-    send_message_to_user(B_request_deal_to_custumer.call, $userTo, IM_accept_reject.call)
-    send_message(B_request_deal_self.call)
+    Send.mes(B_request_deal_to_custumer.call, M::Inline.accept_reject, to:$userTo)
+    Send.mes(B_request_deal_self.call)
   elsif self_custumer # оплата покупателем и status:payed
     # перевод средств от custumer
     result = try_paying
     if result
       $userTo = User.find($deal.seller_id)
       $deal.update(status: 'payed by_custumer')
-      send_message(B_notify_to_custumer_success_payed[$lg])
-      send_message_to_user(B_notifi_to_seller_success_payed.call, $userTo)
+      Send.mes(B_notify_to_custumer_success_payed[$lg])
+      Send.mes(B_notifi_to_seller_success_payed.call, to:$userTo)
     end
   end
 end
@@ -46,6 +46,6 @@ def rejecting_deal
     $deal.update(status: 'rejected by_custumer')
   end
 
-  send_message_to_user(B_reject_deal_userTo.call, $userTo)
-  send_message(B_reject_deal_self[$lg])
+  Send.mes(B_reject_deal_userTo.call, to:$userTo)
+  Send.mes(B_reject_deal_self[$lg])
 end

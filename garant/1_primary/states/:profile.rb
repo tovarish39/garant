@@ -12,11 +12,11 @@ class StateMachine
   end
   
   def view_profile
-    send_message(B_view_wallet.call, IM_extract.call)
+    Send.mes(B_view_wallet.call, M::Inline.extract)
   end
   
   def empty_wallet
-    send_message(B_empty_wallet[$lg])
+    Send.mes(B_empty_wallet[$lg])
   end
   
   def extracting

@@ -22,8 +22,9 @@ En = 'English'
 
 DEAL_Closed_Statuses = ['finished by_custumer', 'canceled by_seller', 'finished by_moderator']
 
-CallbackClass  = Telegram::Bot::Types::CallbackQuery
-MessageClass   = Telegram::Bot::Types::Message
-UpdateMember   = Telegram::Bot::Types::ChatMemberUpdated
-
-
+CallbackQuery        = Telegram::Bot::Types::CallbackQuery
+Message              = Telegram::Bot::Types::Message
+ChatMemberUpdated    = Telegram::Bot::Types::ChatMemberUpdated
+ReplyKeyboardMarkup  = Telegram::Bot::Types::ReplyKeyboardMarkup
+InlineKeyboardMarkup = Telegram::Bot::Types::InlineKeyboardMarkup
+InlineKeyboardButton = Telegram::Bot::Types::InlineKeyboardButton

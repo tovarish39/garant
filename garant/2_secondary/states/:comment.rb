@@ -19,7 +19,7 @@ end
     seller   = User.find(dispute.deal.seller_id)
     custumer = User.find(dispute.deal.custumer_id)
     bot = Telegram::Bot::Client.new(Bot_Token_1_PRIMARY)
-    $bot = bot.api
+    $bot = bot
   
     decision = dispute.dispute_lost # 'seller_lost' || 'custumer_lost' || 'all_lost'
     currency = dispute.deal.currency
@@ -49,7 +49,7 @@ end
   
     text = "Спор по сделке ##{dispute.deal.hash_name} \n"
     text += B_dispute_comment.call(dispute)
-    [seller, custumer].each { |to_user| send_message_to_user(text, to_user) }
+    [seller, custumer].each { |to_user| Send.mes(text, to:to_user) }
   end
   
   def finishing_dispute
@@ -69,9 +69,10 @@ end
         status: 'finished',
         dispute_lost: $mod.pushed_action
       )
-      delete_pushed($mod.pushed_IB_mes_id)
-      send_message("спор по сделке ##{dispute.deal.hash_name} обработан",
-                   RM.call(['Открытые споры', 'Мои споры', 'История споров']))
+      Delete.pushed($mod.pushed_IB_mes_id)
+      Send.mes(
+        "спор по сделке ##{dispute.deal.hash_name} обработан",
+        M::Reply.moderator_menu)
       from_redis2("#{dispute.id}:push-decision")
     end
     $mod.update(

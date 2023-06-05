@@ -5,10 +5,10 @@ class StateMachine
         state :currency_amount
   
         event :currency_amount_action, from: :currency_amount do
-          transitions if: lambda {
+          transitions if: -> {
                             text_mes?(/^\s*\d+([,.]\d+)?\s*$/)
                           }, after: :choose_conditions, to: :conditions #    валидное количество валюты
-          transitions unless: lambda {
+          transitions unless: -> {
                                 text_mes?(/^\s*\d+([,.]\d+)?\s*$/)
                               }, after: :amount_invalid, to: :currency_amount # не валидное количество валюты
         end
@@ -21,9 +21,9 @@ class StateMachine
 ###################################
 def choose_conditions
   $user.update(amount: $mes.text)
-  send_message(B_push_conditions[$lg])
+  Send.mes(B_push_conditions[$lg])
 end
 
 def amount_invalid
-  send_message(B_invalid_amount[$lg])
+  Send.mes(B_invalid_amount[$lg])
 end

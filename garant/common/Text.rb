@@ -68,7 +68,7 @@ B_finished_by_custumer = {
   Ru => 'Сделка успешно завершена Покупателем, средства переведены Продавцу',
   En => 'The deal was successfully completed by the Custumer, the funds were transferred to the Seller'
 }
-B_finished_by_moderator = lambda {
+B_finished_by_moderator = -> {
   return "Сделка завершена модератором @#{$moderators_username} \n комментарий \n #{$comment_by_moderator}" if $lg == Ru
   if $lg == En
     return "The deal was completed by the moderator @#{$moderators_username} \n комментарий \n #{$comment_by_moderator}"
@@ -88,7 +88,7 @@ B_by_admin_win_garant  = { Ru => 'Отменена администраторо�
                            En => 'Canceled by the administrator in favor of the garant' }
 ###########################################
 # ~~~~~~~~~~~~~~~~~~~~~~
-B_user_info = lambda { |user|
+B_user_info = -> (user){ 
   text = ''
   text << "<b>#{B_first_name[$lg]}</b> #{user.first_name} \n" if user.first_name != '-'
   text << "<b>#{B_last_name[$lg]}</b> #{user.last_name} \n" if user.last_name != '-'
@@ -96,7 +96,7 @@ B_user_info = lambda { |user|
   text << "<b>#{B_user_id[$lg]}</b> #{user.telegram_id} \n"
 }
 # ~~~~~~~~~~~~~~~~~~~~~~
-B_deal_info = lambda { |deal|
+B_deal_info = -> (deal){ 
   %(<b>#{B_conditions[$lg]}</b>
 #{deal.conditions}
 #{B_amount_deal[$lg]} <b>#{deal.amount} #{deal.currency}</b>
@@ -142,7 +142,7 @@ B_deal_status = -> {
   end
 }
 
-B_deal_verbose = lambda { |with, user = $userTo|
+B_deal_verbose = -> (with, user = $userTo) { 
   %(
 #{B_deal[$lg] + (if $deal.hash_name.present?
                    "##{$deal.hash_name}"
@@ -153,7 +153,7 @@ B_deal_verbose = lambda { |with, user = $userTo|
 )
 }
 
-B_deal_canceled_or_finished = lambda {
+B_deal_canceled_or_finished = -> {
   %(#{B_deal[$lg]} ##{$deal.hash_name}
 
 #{B_seller[$lg]}
@@ -176,7 +176,7 @@ B_userTo_info = ->(as_seller, as_customer, userTo_reiting) {
 #{"<b>#{B_rating[$lg]}</b> #{userTo_reiting}" if userTo_reiting.present? }   
 )}
 
-# B_userTo_info = lambda {
+# B_userTo_info = -> {
 #   %(<b>#{B_user[$lg]}</b>
 # #{B_user_info.call($userTo)}
 # <b>#{B_deals_how_seller[$lg]}</b>
@@ -186,32 +186,32 @@ B_userTo_info = ->(as_seller, as_customer, userTo_reiting) {
 # <b>#{B_rating[$lg]}</b> 5/5)
 # }
 
-B_confirm_deal = lambda { |with|
+B_confirm_deal = -> (with){ 
   %(#{B_deal[$lg] + (with == 'with_custumer' ? B_with_custumer[$lg] : B_with_seller[$lg])}
 #{B_user_info.call($userTo)}
 #{B_deal_info.call($user)})
 }
 
-B_request_deal_self = lambda {
+B_request_deal_self = -> {
   return "Запрос на сделкy ##{$deal.hash_name} успешно отправлен, ожидайте подтверждения" if $lg == Ru
   return "Request to deal ##{$deal.hash_name} sent successfully, please wait for confirmation" if $lg == En
 }
 
-B_request_deal_to_userTo = lambda { |action|
+B_request_deal_to_userTo = -> (action) { 
   %(#{B_offer[$lg]} #{action} #{B_from[$lg]}
 #{B_user_info.call($user)}
 #{B_deal_hash.call}
 #{B_deal_info.call($deal)})
 }
 
-B_reject_deal_userTo = lambda {
+B_reject_deal_userTo = -> {
   %(#{B_deal[$lg]} ##{$deal.hash_name}
 <b>#{B_user[$lg]}</b>
 #{B_user_info.call($user)}
 #{B_reject_deal[$lg]})
 }
 
-B_request_deal_to_custumer = lambda {
+B_request_deal_to_custumer = -> {
   %(#{B_seller[$lg]}
 #{B_user_info.call($user)}
 #{B_accessed_by_seller[$lg]})
@@ -222,7 +222,7 @@ B_success_notify = {
   En => "I accepted the deal, the funds are frozen on the account of the guarantor, you can transfer the goods / provide the service.\nThe buyer can complete the transaction. If you have a dispute, you can call a moderator by going to the 'Deals' section."
 }
 
-B_notifi_to_seller_success_payed = lambda {
+B_notifi_to_seller_success_payed = -> {
   %(#{B_deal[$lg]} ##{$deal.hash_name}
 #{B_custumer[$lg]}
 #{B_user_info.call($user)}
@@ -241,7 +241,7 @@ B_none_dispute_deals = { Ru => 'У вас нет сделки c открытым
                          En => 'You do not have a deal with an open dispute' }
 B_none_history_deals = { Ru => 'У вас нет завершённых сделок', En => 'You don`t have any history deals' }
 
-B_disput_offer = lambda { |seller, custumer, deal, dispute, initiator, lg|
+B_disput_offer = -> (seller, custumer, deal, dispute, initiator, lg) { 
   text = "<b>Продавец</b>\n"
   text << "<b>#{B_first_name[lg]}</b> #{seller.first_name} \n" if seller.first_name != '-'
   text << "<b>#{B_last_name[lg]}</b> #{seller.last_name} \n" if seller.last_name != '-'
@@ -265,7 +265,7 @@ B_disput_offer = lambda { |seller, custumer, deal, dispute, initiator, lg|
   text << dispute.content.to_s
   text
 }
-B_dispute_comment = lambda { |dispute|
+B_dispute_comment = -> (dispute) { 
   desision = dispute.dispute_lost
   text = "\n"
   case desision
@@ -283,7 +283,7 @@ B_dispute_comment = lambda { |dispute|
 B_empty_wallet = { Ru => 'Кошелёк пуст', En => 'Wallet is empty' }
 B_wallet       = { Ru => 'У вас в кошельке', En => 'In your wallet' }
 
-B_view_wallet = lambda {
+B_view_wallet = -> {
   wallet_content = "#{B_wallet[$lg]}\n\n"
   wallet = $user.wallet
   currencies = $user.wallet.keys
@@ -298,10 +298,11 @@ B_add_grade     = { Ru => 'Оцените сделку',            En => 'Rate 
 B_add_comment   = { Ru => 'Напишите отзыв о продавце', En => 'Write a review about the seller' }
 B_comment_added = { Ru => 'Комментарий добавлен', En => 'Comment added' }
 B_no_comments   = { Ru => 'У пользователя нету отзывов', En => 'The user has no comments' }
+T_no_disputes   = { Ru => 'У пользователя нету споров' , En => 'The user has no disputes' }
 
 B_comment_word = { Ru => 'Комментарий', En => 'Comment' }
 
-B_comment = lambda {
+B_comment = -> {
   %(
 #{B_from[$lg]}
 #{B_user_info.call($customer)}

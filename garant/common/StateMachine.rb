@@ -1,7 +1,7 @@
 class StateMachine
     include AASM
   
-    # aasm whiny_transitions: false
+    aasm whiny_transitions: false
   
     aasm do
   

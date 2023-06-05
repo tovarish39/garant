@@ -5,7 +5,7 @@ class StateMachine
         state :conditions
   
         event :conditions_action, from: :conditions do
-          transitions if: lambda {
+          transitions if: -> {
                             text_mes?
                           }, after: :to_confirming, to: :confirmation_new_deal # ввод условий сделки
         end
@@ -26,7 +26,7 @@ class StateMachine
     self_role = $user.role
     with = 'with_custumer' if self_role == 'I`m seller'
     with = 'with_seller'   if self_role == 'I`m custumer'
-    send_message(B_confirm_deal.call(with), IM_confirm_deal.call)
+    Send.mes(B_confirm_deal.call(with), M::Inline.confirm_deal)
   end
   
   def get_uniq_hash_name

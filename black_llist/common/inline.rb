@@ -1,5 +1,5 @@
 module IB
-    IB = lambda { |text, callback_data|
+    IB = -> { |text, callback_data|
         Telegram::Bot::Types::InlineKeyboardButton.new(text: text, callback_data: callback_data)
       }
 

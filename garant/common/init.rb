@@ -31,3 +31,7 @@ def update_user_info_if_changed(model_name = 'User')
   model.update(first_name: first_name_cur || '-') if first_name_cur != first_name_written
   model.update(last_name:  last_name_cur || '-')  if last_name_cur  != last_name_written
 end
+
+def require_username
+  Send.mes('Для продолжения работы укажите свой "username"')
+end

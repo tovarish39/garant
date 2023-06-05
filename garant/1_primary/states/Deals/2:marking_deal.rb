@@ -19,6 +19,6 @@ class StateMachine
     $deal.update(grade: grade)
     $user.update(cur_deal_id: $deal.id)
   
-    send_message(B_add_comment[$lg], IM_add_comment.call)
+    Send.mes(B_add_comment[$lg], M::Inline.add_comment)
   end
   
