@@ -139,7 +139,6 @@ class StateMachine
   
   def get_dispute_by_button
       dispute_id = dispute_id = $mes.data.split('/').last
-      action     = $mes.data.split('/')[1]
       Dispute.find(dispute_id)
   end
 
@@ -155,8 +154,8 @@ def already_handled
 end
   
   def handle_decision
-      action     = $mes.data.split('/')[1]
       dispute = get_dispute_by_button
+      action     = $mes.data.split('/')[1]
     
       $mod.update(
         pushed_IB_mes_id: $mes.message.message_id,

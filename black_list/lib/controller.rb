@@ -38,9 +38,9 @@ def handle
   $user ||= create_user('BlackListUser')
   $lg = $user.lang
 
-
+  # puts $mes.inspect
 ####### group
-  if mes_from_group?
+  if $mes.class == Message && mes_from_group?
     if verify_with_text?
       username = $mes.text.split(' ').last
       verifying_text(username)

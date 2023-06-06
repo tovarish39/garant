@@ -31,7 +31,7 @@ def upload_and_get_direct_link base64_image, url
 
     return direct_link = JSON.parse(response.body)['image']['url']
   rescue => exception
-    if $counter >= 10 
+    if $counter >= 20 
       $counter = 0
       raise $counter 
     end

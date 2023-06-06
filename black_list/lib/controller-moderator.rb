@@ -54,7 +54,8 @@ class StateMachine
     #   end
   
       event_bot = StateMachine.new
-  
+  puts $user.inspect
+  puts 
       from_state = $user.state_aasm.to_sym          # предидущее состояние
       event_bot.aasm.current_state = from_state
   

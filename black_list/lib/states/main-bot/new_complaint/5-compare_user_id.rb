@@ -72,8 +72,8 @@ def skip_proof
     complaint = Complaint.find_by(id:$user.cur_complaint_id)
     complaint.update(photo_ulrs_remote_tmp:[]) # чтоб не добавлялись фото, при неудачной загрузке не телеграф
 
-    # puts complaint.id
-    # puts $user.id
+    puts complaint.id
+    puts $user.id
 
     notice_request complaint
     system("bundle exec ruby #{UPLOAD_ON_FREEIMAGE} #{complaint.id} #{$user.id}") 

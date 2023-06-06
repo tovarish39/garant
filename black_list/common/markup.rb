@@ -32,10 +32,10 @@ module M
   end
 
   module Reply
-    RM = -> { |*buttons|
+    RM = -> (*buttons){ 
       Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: make_objects(buttons), resize_keyboard: true)
     }
-    RM_with_user_request = -> { |buttons|
+    RM_with_user_request = -> (buttons){ 
       Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: buttons, resize_keyboard: true)
     }
 
