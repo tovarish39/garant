@@ -18,12 +18,12 @@ def handle
       from_state = $mod.aasm_state.to_sym           # предидущее состояние
       event_bot = StateMachine.new
 
-      after_info
+      # after_info
 
       event_bot.aasm.current_state = from_state
       event_bot.method("#{from_state}_action").call # event = #{from_state}_action
 
-      before_info
+      # before_info
       new_state = event_bot.aasm.current_state
       $mod.update(aasm_state: new_state)            # запись нового состояния
     end
